@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creamos Tu Web — Diseñamos el futuro de tu negocio</title>
+<meta name="description" content="Agencia de diseño y desarrollo web. Landing pages, webs multipágina, Instagram a web y tiendas Shopify para negocios reales. Diseñamos el futuro de tu negocio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000;
+    --white:#fff;
+    --red:#FA4838;
+    --grey:#6f6f72;
+    --ink:#0a0a0b;
+    --silk-deep:#04132c;
+    --silk-mid:#10396f;
+    --silk-light:#5d8fc9;
+    --blue-grad: linear-gradient(96deg,#0a2a5e 0%,#2e5fa8 48%,#7aa6db 100%);
+    --maxw:1380px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Hanken Grotesk',Arial,sans-serif;
+    font-weight:400;
+    font-size:17px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--red);color:#fff}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  ::-webkit-scrollbar{width:9px}
+  ::-webkit-scrollbar-track{background:#0a0a0a}
+  ::-webkit-scrollbar-thumb{background:#2b2b2b;border-radius:10px}
+  ::-webkit-scrollbar-thumb:hover{background:#3a3a3a}
+
+  .display{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;line-height:.95}
+  .label{font-family:'Hanken Grotesk';font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+
+  /* ---------- Silk background (hero + footer) ---------- */
+  .silk{
+    position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--silk-deep);
+  }
+  .silk::before,.silk::after{
+    content:'';position:absolute;inset:-25%;
+    background:
+      radial-gradient(40% 55% at 22% 30%, #1a4d92 0%, transparent 60%),
+      radial-gradient(45% 60% at 80% 25%, #2a64ab 0%, transparent 55%),
+      radial-gradient(50% 70% at 65% 80%, #0c2f63 0%, transparent 60%),
+      radial-gradient(35% 50% at 10% 75%, #06122b 0%, transparent 60%),
+      radial-gradient(60% 80% at 90% 90%, #3d76bd 0%, transparent 55%);
+    filter:blur(40px) saturate(1.05);
+    animation:silkmove 26s ease-in-out infinite alternate;
+  }
+  .silk::after{
+    mix-blend-mode:screen;opacity:.55;
+    animation-duration:34s;animation-direction:alternate-reverse;
+    background:
+      radial-gradient(45% 60% at 70% 35%, #4f86c9 0%, transparent 55%),
+      radial-gradient(40% 55% at 25% 65%, #0a2347 0%, transparent 60%),
+      radial-gradient(55% 70% at 50% 10%, #1c4f95 0%, transparent 55%);
+  }
+  @keyframes silkmove{
+    0%{transform:translate3d(-3%,-2%,0) rotate(0deg) scale(1.05)}
+    50%{transform:translate3d(2%,3%,0) rotate(4deg) scale(1.12)}
+    100%{transform:translate3d(-2%,1%,0) rotate(-3deg) scale(1.07)}
+  }
+  .grain{position:fixed;inset:0;z-index:-1;opacity:.05;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  /* ---------- Pills / buttons ---------- */
+  .pill-group{display:inline-flex;align-items:stretch;gap:5px}
+  .pill{
+    display:inline-flex;align-items:center;justify-content:center;
+    background:var(--white);color:var(--red);
+    font-family:'Hanken Grotesk';font-weight:700;font-size:.84rem;
+    padding:13px 22px;border-radius:999px;white-space:nowrap;
+    transition:.3s ease;letter-spacing:.01em;
+  }
+  .pill.arrow{padding:13px;width:48px}
+  .pill:hover{background:var(--red);color:#fff}
+  .pill svg{width:17px;height:17px}
+
+  /* ---------- Nav ---------- */
+  header{position:fixed;top:0;left:0;right:0;z-index:200;padding:13px 0 15px;transition:.4s ease}
+  header.scrolled{background:rgba(2,8,20,.55);backdrop-filter:blur(14px);padding:10px 0}
+  .nav-toprow{display:flex;justify-content:center;margin-bottom:13px}
+  header.scrolled .nav-toprow{display:none}
+  nav{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+  .nav-left{display:flex;align-items:center}
+  .nav-logo{font-family:'Bricolage Grotesque';font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:#fff}
+  .nav-mid{display:flex;gap:30px;justify-content:center}
+  .nav-mid a{font-family:'Hanken Grotesk';font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.85;transition:.25s}
+  .nav-mid a:hover{opacity:1;color:var(--red)}
+  .nav-right{display:flex;align-items:center;justify-content:flex-end;gap:16px}
+  .nav-lang{font-family:'Hanken Grotesk';font-weight:700;font-size:.74rem;letter-spacing:.1em;opacity:.7}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+  .burger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 4vh;overflow:hidden}
+  .hero-text{position:absolute;top:26vh;right:0;width:100%;max-width:var(--maxw);left:50%;transform:translateX(-50%);padding:0 32px;pointer-events:none}
+  .hero-text p{
+    margin-left:auto;max-width:30ch;text-align:left;font-size:clamp(1.2rem,2vw,1.7rem);
+    line-height:1.25;font-weight:500;width:fit-content;
+    opacity:0;animation:fade .9s ease .5s forwards;
+  }
+  .hero-mark{max-width:var(--maxw);width:100%;margin:0 auto;padding:0 28px}
+  .hero-mark h1{
+    font-family:'Bricolage Grotesque';font-weight:800;color:#fff;
+    font-size:clamp(4rem,19vw,17rem);line-height:.82;letter-spacing:-.04em;text-transform:uppercase;
+  }
+  .hero-mark h1 .ln{display:block;overflow:hidden}
+  .hero-mark h1 .ln span{display:block;transform:translateY(108%);animation:up 1s cubic-bezier(.16,1,.3,1) forwards}
+  .hero-mark h1 .ln:nth-child(2) span{animation-delay:.12s}
+  @keyframes up{to{transform:translateY(0)}}
+  @keyframes fade{to{opacity:1}}
+
+  /* ---------- Big statement sections (silk) ---------- */
+  .statement{position:relative;padding:14vh 0;max-width:var(--maxw);margin:0 auto}
+  .statement .wrap{padding:0 32px;position:relative}
+  .statement .label{position:absolute;top:0;left:32px;opacity:.85}
+  .statement .big{
+    font-family:'Bricolage Grotesque';font-weight:500;letter-spacing:-.03em;line-height:1.02;
+    font-size:clamp(2.1rem,5.4vw,5rem);max-width:18ch;margin-left:auto;text-align:left;
+  }
+  .statement.left .big{margin-left:0;margin-right:auto}
+  .statement .big .arrow-ic{display:inline-block;color:var(--red);transform:translateY(-.35em)}
+  .team{max-width:30ch;margin:48px 0 0 auto}
+  .team .member{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 0;border-top:1px solid rgba(255,255,255,.18)}
+  .team .member:last-child{border-bottom:1px solid rgba(255,255,255,.18)}
+  .team .m-name{font-family:'Bricolage Grotesque';font-weight:700;font-size:1.3rem;letter-spacing:-.01em}
+  .team .m-role{color:rgba(255,255,255,.72);font-size:.92rem;text-align:right;line-height:1.3;max-width:62%}
+
+  /* ---------- Horizontal services ---------- */
+  .h-services{position:relative;height:560vh}
+  .h-sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+  .h-track{display:flex;height:100vh;will-change:transform}
+
+  .panel{flex:0 0 100vw;height:100vh;position:relative}
+  /* white service card */
+  .panel.card{background:var(--white);color:var(--ink);display:flex;flex-direction:column;justify-content:space-between;padding:13vh 5vw 6vh}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:30px}
+  .card-top p{max-width:40ch;font-size:clamp(1rem,1.4vw,1.35rem);line-height:1.35;color:var(--ink)}
+  .card-arrow{color:var(--red);flex:0 0 auto}
+  .card-arrow svg{width:34px;height:34px}
+  .card-price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:24px}
+  .card-price .old{color:#a2a2a2;text-decoration:line-through;font-weight:500;font-size:1.1rem}
+  .card-price .new,.card-price .single{font-family:'Bricolage Grotesque';font-weight:700;font-size:1.65rem;color:var(--ink);letter-spacing:-.01em}
+  .fbadge{background:var(--red);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:6px 11px;border-radius:999px;align-self:center}
+  .card-meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:14px;font-size:.92rem;color:var(--grey)}
+  .card-meta b{color:var(--ink);font-weight:700}
+  .card-bottom .label{color:#1a3f7a;margin-bottom:6px;display:block}
+  .card-bottom .title{
+    font-family:'Bricolage Grotesque';font-weight:700;letter-spacing:-.04em;line-height:.85;
+    font-size:clamp(4rem,13vw,12rem);
+    background:var(--blue-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  /* blue divider panel */
+  .panel.divider{flex:0 0 42vw;background:var(--silk-deep);overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .panel.divider::before{content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(50% 60% at 30% 30%,#1d4d8f,transparent 60%),
+      radial-gradient(60% 70% at 80% 80%,#3a72bb,transparent 55%),
+      radial-gradient(40% 50% at 70% 20%,#0a2347,transparent 60%);
+    filter:blur(30px)}
+  .divider .lbl-top,.divider .lbl-bot{position:absolute;left:0;right:0;text-align:center;color:#fff;opacity:.9}
+  .divider .lbl-top{top:7vh}.divider .lbl-bot{bottom:7vh}
+  .divider .geo{position:relative;width:78px;height:78px;color:#fff;opacity:.85}
+
+  /* progress bar */
+  .h-progress{position:absolute;bottom:0;left:0;height:3px;width:0;background:var(--red);z-index:5}
+
+  /* ---------- Values (white) ---------- */
+  .bg-white{background:var(--white);color:var(--ink);position:relative;z-index:1}
+  .pay-strip{max-width:var(--maxw);margin:0 auto;padding:8vh 32px 0;text-align:center;color:var(--grey);font-size:1.05rem}
+  .pay-strip b{color:var(--ink);font-weight:700;font-family:'Bricolage Grotesque'}
+  .values{padding:10vh 0 10vh}
+  .values .head{max-width:var(--maxw);margin:0 auto 8vh;padding:0 32px}
+  .values .head .label{color:var(--red)}
+  .values .head h2{font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(2rem,4.4vw,3.6rem);letter-spacing:-.03em;line-height:1.02;margin-top:14px;max-width:20ch}
+  .values-grid{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .value{padding:0 30px;border-left:1px solid #e2e2e2;min-height:340px;display:flex;flex-direction:column}
+  .value:first-child{border-left:none;padding-left:0}
+  .value .vic{color:var(--red);height:80px;margin-bottom:40px}
+  .value .vic svg{width:56px;height:56px}
+  .value h3{font-family:'Bricolage Grotesque';font-weight:600;font-size:1.45rem;letter-spacing:-.02em;line-height:1.05;margin-bottom:16px}
+  .value p{color:var(--grey);font-size:.98rem;line-height:1.45}
+
+  /* ---------- Marquee ---------- */
+  .marquee{background:var(--white);overflow:hidden;padding:5vh 0;white-space:nowrap;border-top:1px solid #eee;border-bottom:1px solid #eee}
+  .marquee-row{display:inline-flex;align-items:center;gap:40px;animation:scrollx 26s linear infinite}
+  .marquee-row span{font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(3rem,9vw,8rem);letter-spacing:-.03em;color:#1f4f93;text-transform:uppercase}
+  .marquee-row .sep{width:clamp(34px,5vw,64px);height:clamp(34px,5vw,64px);border-radius:50%;border:2px solid #1f4f93;background:repeating-linear-gradient(45deg,#1f4f93 0 2px,transparent 2px 7px);flex:0 0 auto}
+  @keyframes scrollx{to{transform:translateX(-50%)}}
+
+  /* ---------- Cases / sectors (white) ---------- */
+  .cases{background:var(--white);color:var(--ink);padding:8vh 0 16vh}
+  .cases-grid{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+  .case .ph{aspect-ratio:1/1.18;border-radius:2px;overflow:hidden;position:relative;display:flex;align-items:flex-end;padding:22px;color:#fff}
+  .case .ph span{position:relative;z-index:2;font-family:'Bricolage Grotesque';font-weight:600;font-size:1.1rem;opacity:.92}
+  .case .ph.b1{background:linear-gradient(150deg,#0b2c5e,#3f74b8 70%,#86b0e0)}
+  .case .ph.b2{background:linear-gradient(150deg,#102a52,#5d6f95 60%,#cdd6e6)}
+  .case .ph.b3{background:linear-gradient(150deg,#06101f,#243a55 55%,#a23b2f)}
+  .case .ph::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");opacity:.12;mix-blend-mode:overlay}
+  .case-info{display:flex;justify-content:space-between;align-items:flex-start;margin-top:20px;gap:16px}
+  .case-info h4{font-family:'Bricolage Grotesque';font-weight:600;font-size:1.45rem;letter-spacing:-.01em}
+  .case-info .sub{color:var(--ink);font-size:.96rem;margin-top:2px}
+  .case-info .cat{color:var(--grey);font-size:.92rem;margin-top:14px}
+  .case-info .ar{color:var(--red);flex:0 0 auto}
+  .case-info .ar svg{width:20px;height:20px}
+  .cases-note{max-width:var(--maxw);margin:8vh auto 0;padding:0 32px;color:var(--grey);font-size:.88rem;font-style:italic}
+
+  /* ---------- Footer (silk) ---------- */
+  footer{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:16vh 0 4vh;overflow:hidden}
+  .foot-top{max-width:var(--maxw);margin:0 auto;width:100%;padding:0 32px;display:flex;justify-content:flex-end}
+  .foot-top .inner{max-width:30ch}
+  .foot-top h2{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(1.8rem,3.4vw,3rem);letter-spacing:-.02em;line-height:1.1;margin-bottom:32px}
+  .foot-bottom{max-width:var(--maxw);margin:0 auto;width:100%;padding:0 28px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+  .foot-brand .tag{font-size:1rem;font-weight:500;margin-bottom:12px;max-width:34ch}
+  .foot-brand h2{font-family:'Bricolage Grotesque';font-weight:800;text-transform:uppercase;font-size:clamp(3.4rem,15vw,13rem);line-height:.8;letter-spacing:-.04em}
+  .foot-links{display:flex;flex-direction:column;gap:8px;text-align:right}
+  .foot-links a{font-family:'Hanken Grotesk';font-weight:700;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;opacity:.65;transition:.25s}
+  .foot-links a:hover{opacity:1;color:var(--red)}
+  .ph-data{color:var(--red);opacity:.95!important}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- Mobile menu ---------- */
+  .mobile-menu{position:fixed;inset:0;background:rgba(3,10,24,.97);backdrop-filter:blur(16px);z-index:199;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;pointer-events:none;transition:.35s}
+  .mobile-menu.open{opacity:1;pointer-events:auto}
+  .mobile-menu a{font-family:'Bricolage Grotesque';font-weight:700;font-size:1.8rem;text-transform:uppercase;letter-spacing:-.02em}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:900px){
+    .nav-mid{display:none}
+    .nav-lang{display:none}
+    .burger{display:flex}
+    .nav-toprow{display:none}
+    .values-grid{grid-template-columns:1fr 1fr;gap:40px 0}
+    .value{min-height:auto;padding:0 22px}
+    .value:nth-child(3){border-left:none;padding-left:0}
+    .cases-grid{grid-template-columns:1fr;gap:46px}
+    /* disable horizontal scroll on mobile: stack cards */
+    .h-services{height:auto}
+    .h-sticky{position:relative;height:auto;overflow:visible}
+    .h-track{flex-direction:column;height:auto;transform:none!important}
+    .panel{flex:none;width:100%;height:auto}
+    .panel.card{min-height:90vh;padding:14vh 7vw 8vh}
+    .panel.divider{flex:none;width:100%;height:34vh;min-height:240px}
+    .h-progress{display:none}
+    .hero-text{position:relative;top:auto;transform:none;left:auto;margin-top:18vh}
+    .hero-text p{margin-left:0}
+    .foot-bottom{flex-direction:column;align-items:flex-start}
+    .foot-links{text-align:left}
+    .foot-top{justify-content:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<div class="silk"></div>
+<div class="grain"></div>
+
+<!-- NAV -->
+<header id="header">
+  <div class="nav-toprow">
+    <a href="#contacto" class="pill-group" aria-label="Empieza tu proyecto">
+      <span class="pill">Empieza tu proyecto</span>
+      <span class="pill arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+  </div>
+  <nav>
+    <div class="nav-left"><a href="#inicio" class="nav-logo">Creamos Tu Web</a></div>
+    <div class="nav-mid">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#valores">Por qué</a>
+      <a href="#sectores">Sectores</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-lang">ES</span>
+      <a href="#contacto" class="pill-group">
+        <span class="pill">Contáctanos</span>
+        <span class="pill arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#nosotros">Nosotros</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#valores">Por qué</a>
+  <a href="#sectores">Sectores</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-text">
+    <p>Diseñamos páginas web modernas para negocios reales. Con un trato cercano y profesional.</p>
+  </div>
+  <div class="hero-mark">
+    <h1>
+      <span class="ln"><span>Creamos</span></span>
+      <span class="ln"><span>Tu Web</span></span>
+    </h1>
+  </div>
+</section>
+
+<!-- NOSOTROS (APPROACH) -->
+<section class="statement" id="nosotros">
+  <div class="wrap">
+    <span class="label">Nosotros</span>
+    <p class="big">Somos Ángel y Angelina, dos primos detrás de Creamos Tu Web. Unimos diseño, creatividad y tecnología para dar a tu negocio una web a la altura y generar crecimiento real.</p>
+    <div class="team reveal">
+      <div class="member"><span class="m-name">Ángel</span><span class="m-role">Diseño y desarrollo · entrega final</span></div>
+      <div class="member"><span class="m-name">Angelina</span><span class="m-role">Clientes, relaciones y ventas</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS intro (OFFERS) -->
+<section class="statement left" id="servicios">
+  <div class="wrap">
+    <span class="label">Servicios</span>
+    <p class="big">Adaptamos diseño, contenido y tecnología para convertir tu proyecto en una web que trabaja por ti.</p>
+  </div>
+</section>
+
+<!-- HORIZONTAL SERVICES -->
+<section class="h-services" id="servicios-h">
+  <div class="h-sticky">
+    <div class="h-track" id="hTrack">
+
+      <!-- divider -->
+      <div class="panel divider">
+        <span class="label lbl-top">Servicio</span>
+        <div class="geo"><svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="40" cy="40" r="38"/><path d="M2 40 A38 38 0 0 1 78 40"/><path d="M40 2 L78 40 L40 78"/></svg></div>
+        <span class="label lbl-bot">Servicio</span>
+      </div>
+
+      <!-- CARD 1 -->
+      <div class="panel card">
+        <div class="card-top">
+          <div>
+            <p>Una sola página, moderna y optimizada para convertir visitas en clientes. Diseño a medida, formulario de contacto y SEO básico, con integración de Shopify si la necesitas.</p>
+            <div class="card-price"><span class="old">600–1.000€</span><span class="new">420–700€</span><span class="fbadge">−30% fundadores</span></div>
+            <div class="card-meta"><span><b>3–5 días</b></span><span><b>1</b> revisión</span></div>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+        </div>
+        <div class="card-bottom">
+          <span class="label">Página única</span>
+          <div class="title">Landing</div>
+        </div>
+      </div>
+
+      <!-- divider -->
+      <div class="panel divider">
+        <span class="label lbl-top">Servicio</span>
+        <div class="geo"><svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="6" y="6" width="68" height="68"/><path d="M6 40 Q40 6 74 40 M6 40 Q40 74 74 40"/></svg></div>
+        <span class="label lbl-bot">Servicio</span>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="panel card">
+        <div class="card-top">
+          <div>
+            <p>Web multipágina completa con varias secciones, blog integrado y animaciones de scroll. Hasta 5 páginas, Google Maps y SEO básico, todo adaptado a móvil y tablet.</p>
+            <div class="card-price"><span class="old">900–1.500€</span><span class="new">630–1.050€</span><span class="fbadge">−30% fundadores</span></div>
+            <div class="card-meta"><span><b>1–2 semanas</b></span><span><b>2</b> revisiones</span></div>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+        </div>
+        <div class="card-bottom">
+          <span class="label">Web multipágina</span>
+          <div class="title">Scrolling</div>
+        </div>
+      </div>
+
+      <!-- divider -->
+      <div class="panel divider">
+        <span class="label lbl-top">Servicio</span>
+        <div class="geo"><svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="30" cy="40" r="22"/><circle cx="50" cy="40" r="22"/></svg></div>
+        <span class="label lbl-bot">Servicio</span>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="panel card">
+        <div class="card-top">
+          <div>
+            <p>Convertimos tu perfil de Instagram en una web profesional con tu identidad y tus colores. Galería de fotos integrada, enlace directo a tu perfil y formulario de contacto.</p>
+            <div class="card-price"><span class="single">250–600€</span></div>
+            <div class="card-meta"><span><b>2–3 días</b></span><span><b>1</b> revisión</span></div>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+        </div>
+        <div class="card-bottom">
+          <span class="label">De Instagram a web</span>
+          <div class="title">Social</div>
+        </div>
+      </div>
+
+      <!-- divider -->
+      <div class="panel divider">
+        <span class="label lbl-top">Servicio</span>
+        <div class="geo"><svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M40 4 L76 40 L40 76 L4 40 Z"/><circle cx="40" cy="40" r="20"/></svg></div>
+        <span class="label lbl-bot">Servicio</span>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="panel card">
+        <div class="card-top">
+          <div>
+            <p>Tienda online completa lista para vender, con pasarela de pago configurada (Stripe, PayPal o similar). Carga de productos iniciales, diseño a medida y dominio y hosting incluidos.</p>
+            <div class="card-price"><span class="old">desde 1.200€</span><span class="new">desde 840€</span><span class="fbadge">−30% fundadores</span></div>
+            <div class="card-meta"><span><b>Según proyecto</b></span><span><b>3</b> revisiones</span></div>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+        </div>
+        <div class="card-bottom">
+          <span class="label">Tienda online</span>
+          <div class="title">Shopify</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="h-progress" id="hProgress"></div>
+  </div>
+</section>
+
+<!-- VALUES (POSTURE) -->
+<div class="bg-white">
+<p class="pay-strip">Forma de pago en todos los servicios: <b>50% al inicio · 50% en la entrega.</b></p>
+<section class="values" id="valores">
+  <div class="head reveal">
+    <span class="label">Por qué nosotros</span>
+    <h2>Somos el equipo de diseño de tu negocio, cercano y de verdad.</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value reveal">
+      <div class="vic"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="28" cy="28" r="26"/><path d="M2 28h52"/></svg></div>
+      <h3>Diseño 100% a medida</h3>
+      <p>Nada de plantillas genéricas. Cada web se adapta a tu negocio, tu identidad y tus clientes.</p>
+    </div>
+    <div class="value reveal">
+      <div class="vic"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="50" height="50"/><path d="M3 28 Q28 3 53 28 M3 28 Q28 53 53 28"/></svg></div>
+      <h3>Cercanía y trato directo</h3>
+      <p>Hablas siempre con nosotros, los que diseñamos tu web. Sin intermediarios ni call centers.</p>
+    </div>
+    <div class="value reveal">
+      <div class="vic"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="22" cy="28" r="18"/><circle cx="36" cy="28" r="18"/></svg></div>
+      <h3>Entrega rápida</h3>
+      <p>Tu web lista en días, no en meses. Desde 2–3 días para los proyectos más sencillos.</p>
+    </div>
+    <div class="value reveal">
+      <div class="vic"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M28 3 L53 28 L28 53 L3 28 Z"/><path d="M16 28l8 8 16-16"/></svg></div>
+      <h3>Pago justo y claro</h3>
+      <p>50% al inicio y 50% en la entrega. Sin sorpresas ni costes ocultos en ningún proyecto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-row">
+    <span>Diseñamos el futuro</span><div class="sep"></div>
+    <span>Diseñamos el futuro</span><div class="sep"></div>
+    <span>Diseñamos el futuro</span><div class="sep"></div>
+    <span>Diseñamos el futuro</span><div class="sep"></div>
+  </div>
+</div>
+
+<!-- SECTORS (CASES) -->
+<section class="cases" id="sectores">
+  <div class="cases-grid">
+    <div class="case reveal">
+      <div class="ph b1"><span>[ FOTO AQUÍ ]</span></div>
+      <div class="case-info">
+        <div>
+          <h4>Bares y restaurantes</h4>
+          <div class="sub">Carta, reservas y ambiente</div>
+          <div class="cat">Landing Page · Web Scrolling</div>
+        </div>
+        <div class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      </div>
+    </div>
+    <div class="case reveal">
+      <div class="ph b2"><span>[ FOTO AQUÍ ]</span></div>
+      <div class="case-info">
+        <div>
+          <h4>Peluquerías y barberías</h4>
+          <div class="sub">Servicios, precios y citas</div>
+          <div class="cat">Landing Page · Instagram a Web</div>
+        </div>
+        <div class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      </div>
+    </div>
+    <div class="case reveal">
+      <div class="ph b3"><span>[ FOTO AQUÍ ]</span></div>
+      <div class="case-info">
+        <div>
+          <h4>Gimnasios y entrenadores</h4>
+          <div class="sub">Planes, horarios y motivación</div>
+          <div class="cat">Web Scrolling · Instagram a Web</div>
+        </div>
+        <div class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+      </div>
+    </div>
+  </div>
+  <p class="cases-note">Aún estamos construyendo nuestro portfolio. Estos son los sectores para los que diseñamos — sustituye las imágenes por proyectos reales cuando los tengas.</p>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="foot-top">
+    <div class="inner">
+      <h2>¿Una idea, un proyecto, o solo quieres dar el salto a internet?</h2>
+      <a href="https://instagram.com/creamostuweb" target="_blank" rel="noopener" class="pill-group">
+        <span class="pill">Hablemos !</span>
+        <span class="pill arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-brand">
+      <p class="tag">Agencia de diseño y desarrollo web.<br>Diseñamos el futuro de tu negocio.</p>
+      <h2>Creamos<br>Tu Web</h2>
+    </div>
+    <div class="foot-links">
+      <a href="mailto:" class="ph-data">[TU EMAIL AQUÍ]</a>
+      <a href="https://instagram.com/creamostuweb" target="_blank" rel="noopener">Instagram · @creamostuweb</a>
+      <a href="#">creamostuweb.es</a>
+      <a href="#">Aviso legal</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header scrolled
+  const header = document.getElementById('header');
+  addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 60), {passive:true});
+
+  // Mobile menu
+  const burger = document.getElementById('burger');
+  const mm = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => mm.classList.toggle('open'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+
+  // Reveal
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:.18});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Stagger values
+  document.querySelectorAll('.values-grid .value').forEach((v,i)=>v.style.transitionDelay=(i*110)+'ms');
+  document.querySelectorAll('.cases-grid .case').forEach((v,i)=>v.style.transitionDelay=(i*120)+'ms');
+
+  // ---- Horizontal scroll (vanilla, sticky + translateX) ----
+  (function(){
+    const sec = document.getElementById('servicios-h');
+    const track = document.getElementById('hTrack');
+    const prog = document.getElementById('hProgress');
+    if (!sec || !track) return;
+    const isMobile = matchMedia('(max-width:900px)').matches;
+    if (isMobile) return; // stacked on mobile
+
+    let maxX = 0;
+    function measure(){ maxX = track.scrollWidth - innerWidth; }
+    measure();
+    addEventListener('resize', measure);
+
+    let ticking = false;
+    function onScroll(){
+      const rect = sec.getBoundingClientRect();
+      const scrolled = -rect.top;
+      const scrollable = sec.offsetHeight - innerHeight;
+      let p = scrolled / scrollable;
+      p = Math.max(0, Math.min(1, p));
+      track.style.transform = `translate3d(${-p*maxX}px,0,0)`;
+      if (prog) prog.style.width = (p*100)+'%';
+      ticking = false;
+    }
+    addEventListener('scroll', () => {
+      if (!ticking){ requestAnimationFrame(onScroll); ticking = true; }
+    }, {passive:true});
+    onScroll();
+  })();
+</script>
+</body>
+</html>
