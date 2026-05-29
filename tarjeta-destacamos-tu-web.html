@@ -36,11 +36,12 @@
   .front{display:flex;flex-direction:column;justify-content:space-between}
   .front-top{display:flex;justify-content:space-between;align-items:flex-start}
   .front-top .lbl{font-size:2.7mm}
-  .mono{
-    width:9mm;height:9mm;border-radius:50%;border:.5mm solid var(--accent);
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Bricolage Grotesque';font-weight:700;font-size:4mm;color:var(--accent);flex:0 0 auto;
+  .iso{
+    display:flex;flex-direction:column;align-items:center;gap:.8mm;flex:0 0 auto;
   }
+  .iso svg{width:8mm;height:auto;display:block}
+  .iso .dtw{font-family:'Bricolage Grotesque';font-weight:800;font-size:3.4mm;letter-spacing:-.02em;color:var(--white);line-height:1}
+  .iso .dtw .o{color:var(--accent)}
   .brand{font-family:'Bricolage Grotesque';font-weight:800;line-height:.9;letter-spacing:-.02em}
   .brand .l1{font-size:11mm;color:var(--white)}
   .brand .l2{font-size:11mm;color:var(--accent)}
@@ -62,6 +63,10 @@
   .data .val{font-size:2.95mm;font-weight:600;color:var(--white)}
   .back-foot{display:flex;align-items:center;gap:4mm}
   .back-foot .dot{width:2.6mm;height:2.6mm;border-radius:50%;background:var(--accent);flex:0 0 auto}
+  .iso-mini{display:flex;align-items:center;gap:1.6mm;flex:0 0 auto}
+  .iso-mini svg{width:5mm;height:auto;display:block}
+  .iso-mini .dtw{font-family:'Bricolage Grotesque';font-weight:800;font-size:3.4mm;letter-spacing:-.02em;color:var(--white);line-height:1}
+  .iso-mini .dtw .o{color:var(--accent)}
   .back-foot .rule{flex:1;height:.3mm;background:linear-gradient(90deg,var(--accent),transparent)}
   .back-foot .talk{font-family:'Bricolage Grotesque';font-weight:700;font-size:4.2mm;color:var(--accent);white-space:nowrap}
 </style>
@@ -72,7 +77,13 @@
   <div class="face front">
     <div class="front-top">
       <span class="lbl">Diseño · Desarrollo · Web</span>
-      <span class="mono">D</span>
+      <div class="iso">
+        <svg viewBox="0 0 96 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 30 L48 6 L80 30" stroke="#E0B23C" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 52 L48 28 L80 52" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".88"/>
+        </svg>
+        <span class="dtw">D<span class="o">T</span>W</span>
+      </div>
     </div>
     <div class="brand">
       <div class="l1">Destacamos</div>
@@ -81,7 +92,7 @@
     <div class="front-bottom">
       <p class="slogan">Diseñamos el futuro de tu negocio con webs hechas a medida.</p>
       <div class="est">
-        <span class="lbl lbl-grey">Est. 2024</span>
+        <span class="lbl lbl-grey">Est. 2026</span>
         <span class="lbl lbl-grey">Agencia · ES</span>
       </div>
     </div>
@@ -106,7 +117,13 @@
       <div><span class="lbl">Teléfono</span><span class="val">+376 656 660</span></div>
     </div>
     <div class="back-foot">
-      <span class="dot"></span>
+      <div class="iso-mini">
+        <svg viewBox="0 0 96 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 30 L48 6 L80 30" stroke="#E0B23C" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 52 L48 28 L80 52" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".88"/>
+        </svg>
+        <span class="dtw">D<span class="o">T</span>W</span>
+      </div>
       <span class="rule"></span>
       <span class="talk">Hablemos →</span>
     </div>
