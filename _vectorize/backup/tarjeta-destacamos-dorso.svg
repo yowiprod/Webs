@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 910 610" width="910" height="610">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Hanken+Grotesk:wght@600;700&amp;display=swap');
+      .lbl{font-family:'Hanken Grotesk',Arial,sans-serif;font-weight:700;letter-spacing:4px;}
+      .name{font-family:'Bricolage Grotesque',Arial,sans-serif;font-weight:800;letter-spacing:-2px;}
+      .who{font-family:'Bricolage Grotesque',Arial,sans-serif;font-weight:700;letter-spacing:-1px;}
+      .val{font-family:'Hanken Grotesk',Arial,sans-serif;font-weight:600;}
+      .dtw{font-family:'Bricolage Grotesque',Arial,sans-serif;font-weight:800;letter-spacing:-1px;}
+      .talk{font-family:'Bricolage Grotesque',Arial,sans-serif;font-weight:700;letter-spacing:-1px;}
+    </style>
+    <radialGradient id="g1" cx="100%" cy="105%" r="75%">
+      <stop offset="0%" stop-color="#E0B23C" stop-opacity="0.30"/>
+      <stop offset="60%" stop-color="#E0B23C" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="92%" cy="6%" r="55%">
+      <stop offset="0%" stop-color="#E0B23C" stop-opacity="0.15"/>
+      <stop offset="60%" stop-color="#E0B23C" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E0B23C"/>
+      <stop offset="100%" stop-color="#E0B23C" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="910" height="610" fill="#0c0c0f"/>
+  <rect width="910" height="610" fill="url(#g1)"/>
+  <rect width="910" height="610" fill="url(#g2)"/>
+
+  <!-- nombre + sub arriba izq -->
+  <text x="80" y="128" class="name" font-size="50" fill="#ffffff">Destacamos Tu Web</text>
+  <text x="80" y="166" class="lbl" font-size="23" fill="#9a9aa0">AGENCIA · DISEÑO WEB</text>
+
+  <!-- equipo arriba der -->
+  <text x="830" y="108" text-anchor="end" class="lbl" font-size="23" fill="#E0B23C">EQUIPO</text>
+  <text x="830" y="152" text-anchor="end" class="who" font-size="36" fill="#ffffff">Ángel &amp; Angelina</text>
+
+  <!-- datos: fila 1 -->
+  <text x="80" y="298" class="lbl" font-size="23" fill="#E0B23C">INSTAGRAM</text>
+  <text x="80" y="333" class="val" font-size="29" fill="#ffffff">@destacamostuweb</text>
+  <text x="500" y="298" class="lbl" font-size="23" fill="#E0B23C">WEB</text>
+  <text x="500" y="333" class="val" font-size="29" fill="#ffffff">destacamostuweb.com</text>
+
+  <!-- datos: fila 2 -->
+  <text x="80" y="403" class="lbl" font-size="23" fill="#E0B23C">EMAIL</text>
+  <text x="80" y="438" class="val" font-size="29" fill="#ffffff">info@destacamostuweb.com</text>
+  <text x="500" y="403" class="lbl" font-size="23" fill="#E0B23C">TELÉFONO</text>
+  <text x="500" y="438" class="val" font-size="29" fill="#ffffff">+376 656 660</text>
+
+  <!-- footer: isotipo + linea + hablemos -->
+  <g transform="translate(80,515)">
+    <g transform="scale(0.5)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+      <path d="M16 30 L48 6 L80 30" stroke="#E0B23C"/>
+      <path d="M16 52 L48 28 L80 52" stroke="#ffffff" stroke-opacity="0.88"/>
+    </g>
+    <text x="56" y="36" class="dtw" font-size="30" fill="#ffffff">D<tspan fill="#E0B23C">T</tspan>W</text>
+  </g>
+  <rect x="250" y="533" width="350" height="3" fill="url(#rule)"/>
+  <text x="830" y="547" text-anchor="end" class="talk" font-size="40" fill="#E0B23C">Hablemos →</text>
+</svg>

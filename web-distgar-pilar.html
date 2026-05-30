@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DISTGAR S.L. — Distribución de electrodoméstico y hogar en Andorra desde 1999</title>
+<meta name="description" content="DISTGAR S.L. — Distribuidores oficiales de pequeño electrodoméstico y artículos del hogar en el Principat d'Andorra desde 1999. Venta a grandes almacenes y profesionales. Distribuidor oficial de Cecotec en Andorra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===================== TOKENS ===================== */
+:root{
+  --navy-950:#070f1f;
+  --navy-900:#0a1628;
+  --navy-850:#0d1d34;
+  --navy-800:#11243f;
+  --navy-700:#16335c;
+  --blue:#2563eb;
+  --blue-bright:#3b82f6;
+  --blue-soft:#60a5fa;
+  --blue-deep:#1d4ed8;
+  --paper:#eef2f8;
+  --paper-2:#f6f9fd;
+  --white:#ffffff;
+  --ink:#0a1628;
+  --ink-soft:#33425c;
+  --muted-light:#5d6e89;
+  --muted-dark:#8ba0bf;
+  --line-light:rgba(10,22,40,.10);
+  --line-dark:rgba(255,255,255,.10);
+  --max:1280px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:var(--navy-900);color:var(--white);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.dsp{font-family:'Archivo',sans-serif;line-height:1;letter-spacing:-.02em;font-weight:800}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.blue{color:var(--blue-bright)}
+::selection{background:var(--blue);color:#fff}
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:var(--navy-950)}
+::-webkit-scrollbar-thumb{background:var(--blue-deep);border-radius:8px;border:2px solid var(--navy-950)}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 34px;position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:11px;font-family:'Archivo',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--blue-bright)}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--blue-bright)}
+
+/* ===================== BUTTONS ===================== */
+.btn{display:inline-flex;align-items:center;gap:11px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.86rem;letter-spacing:.02em;padding:16px 30px;border-radius:4px;cursor:pointer;border:1px solid transparent;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,background .3s,color .3s,border-color .3s}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 14px 38px -14px rgba(37,99,235,.8)}
+.btn-blue:hover{transform:translateY(-3px);background:var(--blue-bright);box-shadow:0 20px 50px -14px rgba(59,130,246,.9)}
+.btn-ghost{background:transparent;border-color:rgba(255,255,255,.28);color:#fff}
+.btn-ghost:hover{transform:translateY(-3px);border-color:var(--blue-bright);color:var(--blue-soft)}
+.btn-dark{background:var(--navy-800);color:#fff;border-color:transparent}
+.btn-dark:hover{transform:translateY(-3px);background:var(--navy-700)}
+.btn svg{width:17px;height:17px}
+
+/* ===================== HEADER / NAV ===================== */
+header{position:fixed;inset:0 0 auto 0;z-index:200;background:#fff;border-bottom:1px solid rgba(10,22,40,.08);transition:background .45s ease,border-color .45s ease,backdrop-filter .45s,box-shadow .45s}
+header.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(10,22,40,.12);box-shadow:0 10px 30px -20px rgba(10,22,40,.4)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 40px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{height:42px;width:auto}
+.brand .bn{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.18rem;letter-spacing:.14em}
+.nav-right{display:flex;align-items:center;gap:26px}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-family:'Archivo',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.04em;color:#000080;position:relative;transition:color .25s;text-transform:uppercase}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:2px;background:#000080;transition:width .3s}
+.nav-links a:hover{color:var(--blue)}.nav-links a:hover::after{width:100%}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:9px;z-index:210}
+.burger span{width:26px;height:2px;background:var(--navy-700);transition:.3s;border-radius:2px}
+.burger.open span{background:#fff}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile menu overlay */
+.mobile-menu{position:fixed;inset:0;z-index:205;background:rgba(7,15,31,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.mobile-menu.open{opacity:1;visibility:visible}
+.mobile-menu a{font-family:'Archivo',sans-serif;font-weight:800;font-size:2rem;color:#fff;letter-spacing:-.01em;padding:8px 0;transition:color .25s}
+.mobile-menu a:hover{color:var(--blue-soft)}
+
+/* ===================== SCROLL PROGRESS (right rail, à la Pilar) ===================== */
+.rail{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;align-items:center;gap:9px;mix-blend-mode:difference}
+.rail .tk{width:14px;height:1.5px;background:rgba(255,255,255,.45);transition:.4s}
+.rail .tk.lg{width:26px}
+.rail-prog{position:fixed;right:31px;top:0;height:0;width:2px;background:var(--blue-bright);z-index:91;box-shadow:0 0 14px var(--blue-bright);transition:height .12s linear}
+@media(max-width:1100px){.rail,.rail-prog{display:none}}
+
+/* ===================== HERO (scroll-video scrub + capítulos) ===================== */
+.hero{position:relative;height:420vh;background:var(--navy-950)}
+.hero-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;display:flex;align-items:center}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero .poster{z-index:0}
+.hero-veil{position:absolute;inset:0;z-index:1;background:
+  radial-gradient(120% 90% at 78% 50%,rgba(37,99,235,.16) 0%,transparent 55%),
+  linear-gradient(90deg,rgba(7,15,31,.94) 0%,rgba(7,15,31,.62) 42%,rgba(7,15,31,.20) 100%),
+  linear-gradient(0deg,rgba(7,15,31,.95) 0%,transparent 32%,transparent 72%,rgba(7,15,31,.55) 100%)}
+.hero-ch{position:absolute;inset:0;z-index:3;display:flex;align-items:center;opacity:0;visibility:hidden;transition:opacity .7s cubic-bezier(.4,0,.2,1),visibility .7s}
+.hero-ch.on{opacity:1;visibility:visible}
+.hero-ch .in{max-width:var(--max);margin:0 auto;padding:0 40px;width:100%}
+.hero-ch .in>*{transform:translateY(30px);opacity:0;transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .8s}
+.hero-ch.on .in>*{transform:none;opacity:1}
+.hero-ch.on .in>*:nth-child(2){transition-delay:.08s}
+.hero-ch.on .in>*:nth-child(3){transition-delay:.16s}
+.hero-ch.on .in>*:nth-child(4){transition-delay:.24s}
+.kik{font-family:'Archivo',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--blue-soft);display:block;margin-bottom:22px}
+.hero-ch h1{font-size:clamp(2.8rem,7vw,5.6rem);font-weight:900;max-width:14ch;text-transform:uppercase;letter-spacing:-.02em}
+.hero-ch h1 em{font-style:normal;color:var(--blue-bright)}
+.hero-ch p.lead{font-size:1.18rem;color:#cdd9ec;max-width:500px;margin:26px 0 36px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.scrollcue{position:absolute;left:50%;bottom:46px;transform:translateX(-50%);z-index:4;color:var(--muted-dark);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:9px;font-family:'Archivo',sans-serif;font-weight:600;transition:opacity .4s}
+.scrollcue .ms{width:22px;height:36px;border:2px solid rgba(255,255,255,.3);border-radius:12px;position:relative}
+.scrollcue .ms::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:7px;background:var(--blue-bright);border-radius:2px;animation:cue 1.6s infinite}
+@keyframes cue{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}80%{opacity:0;transform:translate(-50%,12px)}}
+
+/* ===================== STRIP (marcas) ===================== */
+.strip{background:var(--navy-950);padding:46px 0;border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);overflow:hidden}
+.strip .lbl{text-align:center;font-family:'Archivo',sans-serif;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:30px}
+.marquee{display:flex;gap:70px;align-items:center;width:max-content;animation:slide 34s linear infinite}
+.marquee img{height:30px;width:auto;opacity:.55;filter:brightness(0) invert(1);transition:opacity .3s}
+.marquee img:hover{opacity:1}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ===================== FEATURES (sticky scrollytelling) ===================== */
+.features{position:relative;background:var(--paper);color:var(--ink)}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr}
+.feat-text{padding:0 60px 0 max(34px,calc((100vw - var(--max))/2 + 34px))}
+.feat-step{min-height:100vh;display:flex;flex-direction:column;justify-content:center;max-width:520px;padding:90px 0}
+.feat-step .num{font-family:'Archivo',sans-serif;font-weight:800;font-size:.82rem;letter-spacing:.2em;color:var(--blue);margin-bottom:18px}
+.feat-step .topic{font-family:'Archivo',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted-light);margin-bottom:14px}
+.feat-step h2{font-size:clamp(2.1rem,4vw,3.4rem);font-weight:900;text-transform:uppercase;color:var(--ink);margin-bottom:22px;line-height:1.02}
+.feat-step p{color:var(--ink-soft);font-size:1.08rem;margin-bottom:26px}
+.feat-step ul{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:30px}
+.feat-step li{display:flex;gap:13px;align-items:flex-start;color:var(--ink-soft);font-size:1rem}
+.feat-step li svg{width:19px;height:19px;flex:0 0 auto;margin-top:3px;color:var(--blue)}
+/* sticky media panel */
+.feat-media{position:sticky;top:0;height:100vh;background:linear-gradient(160deg,var(--navy-850),var(--navy-950));overflow:hidden;display:flex;align-items:center;justify-content:center}
+.feat-media::before{content:"";position:absolute;width:78%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.35),transparent 65%);filter:blur(20px)}
+.feat-media .grid-tex{position:absolute;inset:0;background-image:linear-gradient(var(--line-dark) 1px,transparent 1px),linear-gradient(90deg,var(--line-dark) 1px,transparent 1px);background-size:54px 54px;opacity:.6;mask-image:radial-gradient(circle at center,#000 30%,transparent 75%)}
+.feat-prod{position:absolute;max-height:74%;max-width:72%;width:auto;object-fit:contain;opacity:0;transform:translateY(40px) scale(.94);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 50px 70px rgba(0,0,0,.6));z-index:2}
+.feat-prod.on{opacity:1;transform:none}
+.feat-tag{position:absolute;bottom:48px;left:0;right:0;text-align:center;font-family:'Archivo',sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--blue-soft);opacity:0;transition:opacity .6s;z-index:3}
+.feat-tag.on{opacity:1}
+
+/* ===================== SHOWREEL (full-bleed cinemático) ===================== */
+.reel{position:relative;height:100vh;overflow:hidden;display:flex;align-items:flex-end;background:var(--navy-950)}
+.reel video,.reel .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.reel-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(7,15,31,.92) 0%,transparent 45%,rgba(7,15,31,.4) 100%)}
+.reel .in{position:relative;z-index:2;width:100%;padding-bottom:90px}
+.reel h2{font-size:clamp(2.4rem,6vw,5rem);font-weight:900;text-transform:uppercase;max-width:18ch;line-height:1;margin:18px 0}
+.reel p{color:#cdd9ec;font-size:1.15rem;max-width:540px}
+
+/* ===================== AMBIENTE (foto real full-bleed) ===================== */
+.ambient{position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--navy-950)}
+.ambient img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:scale(1.04)}
+.ambient .veil{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(90deg,rgba(7,15,31,.92) 0%,rgba(7,15,31,.55) 42%,rgba(7,15,31,.12) 100%),
+  linear-gradient(0deg,rgba(7,15,31,.96) 0%,rgba(7,15,31,.22) 52%,rgba(7,15,31,.55) 100%),
+  radial-gradient(120% 80% at 16% 100%,rgba(37,99,235,.24),transparent 58%)}
+.ambient .in{position:relative;z-index:2;padding:0 0 86px}
+.ambient h2{font-size:clamp(2.2rem,5vw,4.1rem);font-weight:900;text-transform:uppercase;line-height:1;max-width:17ch;margin:18px 0 22px}
+.ambient h2 em{font-style:normal;color:var(--blue-bright)}
+.ambient p{color:#cdd9ec;font-size:1.14rem;max-width:540px;margin-bottom:30px}
+
+/* ===================== CLIENTES (galería horizontal) ===================== */
+.clients{background:var(--paper-2);color:var(--ink);padding:120px 0 130px}
+.clients .head{text-align:center;max-width:760px;margin:0 auto 60px}
+.clients .head h2{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:900;text-transform:uppercase;color:var(--ink)}
+.clients .head h2 em{font-style:normal;color:var(--blue)}
+.clients .head p{color:var(--muted-light);font-size:1.08rem;margin-top:16px}
+.cli-track{display:flex;gap:22px;overflow-x:auto;padding:10px 34px 30px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.cli-track::-webkit-scrollbar{display:none}
+.cli-card{flex:0 0 224px;scroll-snap-align:center;position:relative;border-radius:13px;overflow:hidden;aspect-ratio:4/5;background:linear-gradient(165deg,#ffffff,#dde6f2);box-shadow:0 20px 42px -26px rgba(10,22,40,.5)}
+.cli-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:20px 20px 82px;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.cli-card:hover img{transform:scale(1.05)}
+.cli-card .ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,15,31,.94) 0%,rgba(7,15,31,.6) 16%,transparent 42%);z-index:1}
+.cli-card .cap{position:absolute;left:18px;bottom:18px;right:18px;z-index:2}
+.cli-card .cap .t{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.02rem;text-transform:uppercase;color:#fff;line-height:1.1}
+.cli-card .cap .d{font-size:.78rem;color:var(--blue-soft);margin-top:5px}
+
+/* ===================== DUAL SHOWCASE (à la BLACK / WHITE) ===================== */
+.dual{display:grid;grid-template-columns:1fr 1fr;min-height:84vh}
+.dual .pane{position:relative;display:flex;align-items:flex-end;padding:60px;overflow:hidden;min-height:62vh}
+.dual .pane.dark{background:linear-gradient(160deg,var(--navy-800),var(--navy-950));color:#fff}
+.dual .pane.light{background:linear-gradient(160deg,var(--white),var(--paper));color:var(--ink)}
+.dual .pane img.prod{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);max-height:62%;width:auto;transition:transform .9s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 40px 60px rgba(0,0,0,.45))}
+.dual .pane:hover img.prod{transform:translate(-50%,-58%) scale(1.05)}
+.dual .pane .meta{position:relative;z-index:2}
+.dual .pane .meta .k{font-family:'Archivo',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;opacity:.7}
+.dual .pane .meta h3{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.8rem,3vw,2.6rem);text-transform:uppercase;margin-top:8px}
+.dual .pane.light .meta .k{color:var(--blue)}
+
+/* ===================== CATEGORÍAS ===================== */
+.cats{position:relative;background:var(--navy-950);padding:130px 0;overflow:hidden}
+.cats::before{content:"";position:absolute;width:46%;aspect-ratio:1;left:-12%;top:6%;background:radial-gradient(circle,rgba(37,99,235,.16),transparent 62%);filter:blur(44px);pointer-events:none}
+.cats::after{content:"";position:absolute;width:42%;aspect-ratio:1;right:-10%;bottom:-6%;background:radial-gradient(circle,rgba(96,165,250,.10),transparent 62%);filter:blur(44px);pointer-events:none}
+.cats .head{max-width:760px;margin-bottom:60px}
+.cats .head h2{font-size:clamp(2rem,4.4vw,3.4rem);font-weight:900;text-transform:uppercase}
+.cats .head p{color:var(--muted-dark);font-size:1.08rem;margin-top:16px}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.cat{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:300px;border:1px solid var(--line-dark);border-radius:16px;padding:24px;overflow:hidden;isolation:isolate;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .5s,box-shadow .5s}
+.cat::after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(165deg,var(--navy-800),var(--navy-950))}
+.cat::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;background:linear-gradient(165deg,rgba(37,99,235,.34),rgba(37,99,235,.03));transition:opacity .5s}
+.cat:hover{transform:translateY(-8px);border-color:rgba(96,165,250,.55);box-shadow:0 30px 60px -30px rgba(37,99,235,.75)}
+.cat:hover::before{opacity:1}
+.cat .glow{position:absolute;top:18%;left:50%;transform:translateX(-50%);width:80%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.28),transparent 64%);filter:blur(14px);z-index:0;opacity:.7;transition:opacity .5s}
+.cat:hover .glow{opacity:1}
+.cat .wm{position:absolute;left:22px;top:18px;font-family:'Archivo',sans-serif;font-weight:900;font-size:1.5rem;line-height:1;color:rgba(255,255,255,.14);z-index:2;pointer-events:none;letter-spacing:.04em;transition:color .5s}
+.cat:hover .wm{color:var(--blue-soft)}
+.cat .ar{position:absolute;right:20px;top:20px;z-index:2;color:var(--muted-dark);transition:transform .45s,color .45s}
+.cat:hover .ar{transform:translate(4px,-4px);color:#fff}
+.cat-img{position:absolute;top:48px;left:50%;transform:translateX(-50%);height:160px;width:auto;max-width:80%;object-fit:contain;z-index:1;filter:drop-shadow(0 26px 34px rgba(0,0,0,.55));transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.cat:hover .cat-img{transform:translateX(-50%) scale(1.07)}
+.cat-bot{position:relative;z-index:2}
+.cat h4{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.04rem;text-transform:uppercase;line-height:1.14;letter-spacing:.01em}
+.cat .see{display:inline-flex;align-items:center;gap:7px;margin-top:9px;font-family:'Archivo',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-soft);opacity:0;transform:translateY(7px);transition:opacity .45s,transform .45s}
+.cat .see svg{width:13px;height:13px}
+.cat:hover .see{opacity:1;transform:none}
+
+/* ===================== STATS ===================== */
+.stats{background:var(--navy-900);padding:90px 0;border-top:1px solid var(--line-dark)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+.stat .n{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(2.6rem,5vw,4rem);color:#fff;line-height:1}
+.stat .n em{font-style:normal;color:var(--blue-bright)}
+.stat .l{color:var(--muted-dark);font-size:.92rem;margin-top:10px;letter-spacing:.04em}
+
+/* ===================== CTA / CONTACTO ===================== */
+.cta{position:relative;background:linear-gradient(160deg,var(--navy-800),var(--navy-950));padding:130px 0;overflow:hidden}
+.cta::before{content:"";position:absolute;width:60%;aspect-ratio:1;right:-10%;top:-30%;background:radial-gradient(circle,rgba(37,99,235,.3),transparent 65%);filter:blur(30px)}
+.cta-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.cta h2{font-size:clamp(2.2rem,5vw,4rem);font-weight:900;text-transform:uppercase;line-height:1;margin-bottom:22px}
+.cta p{color:#cdd9ec;font-size:1.12rem;margin-bottom:34px;max-width:480px}
+.cta .acts{display:flex;gap:14px;flex-wrap:wrap}
+.contact-card{background:rgba(255,255,255,.04);border:1px solid var(--line-dark);border-radius:12px;padding:36px;backdrop-filter:blur(8px)}
+.contact-card .row{display:flex;gap:15px;padding:16px 0;border-bottom:1px solid var(--line-dark);align-items:flex-start}
+.contact-card .row:last-child{border-bottom:0;padding-bottom:0}
+.contact-card .row svg{width:20px;height:20px;color:var(--blue-bright);flex:0 0 auto;margin-top:3px}
+.contact-card .row .k{font-family:'Archivo',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-dark)}
+.contact-card .row .v{color:#e8eef8;font-size:1rem;font-weight:500}
+.contact-card .row .v a:hover{color:var(--blue-soft)}
+
+/* ===================== FOOTER ===================== */
+footer{background:var(--navy-950);padding:80px 0 36px;border-top:1px solid var(--line-dark)}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid var(--line-dark)}
+.foot-brand .brand img{height:38px}
+.foot-brand p{color:var(--muted-dark);font-size:.96rem;margin-top:20px;max-width:340px}
+.foot-col h5{font-family:'Archivo',sans-serif;font-weight:800;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin-bottom:20px}
+.foot-col a{display:block;color:var(--muted-dark);font-size:.94rem;padding:7px 0;transition:color .25s}
+.foot-col a:hover{color:var(--blue-soft)}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:14px}
+.foot-bot p{color:var(--muted-dark);font-size:.84rem}
+.foot-bot .official{font-family:'Archivo',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-soft);border:1px solid rgba(59,130,246,.3);border-radius:50px;padding:7px 16px}
+
+/* ===================== REVEAL ===================== */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:980px){
+  .nav-links{display:none}
+  .burger{display:flex}
+  .hero{height:auto}
+  .hero-sticky{position:relative;height:100vh}
+  .hero-ch{position:relative;height:auto;opacity:1;visibility:visible;padding:120px 0 80px}
+  .hero-ch:not(:first-of-type){display:none}
+  .hero-ch .in>*{transform:none;opacity:1}
+  .feat-grid{grid-template-columns:1fr}
+  .feat-media{display:none}
+  .feat-text{padding:0 28px}
+  .feat-step{min-height:auto;padding:70px 0}
+  .feat-step .feat-prod-m{display:block;max-height:300px;margin:0 auto 30px;width:auto}
+  .dual{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}
+  .cta-grid{grid-template-columns:1fr;gap:40px}
+  .foot-top{grid-template-columns:1fr;gap:34px}
+}
+.feat-prod-m{display:none}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="hdr">
+  <div class="nav">
+    <a href="#top" class="brand">
+      <img src="assets/distgar/logo.png" alt="Distgar S.L.">
+    </a>
+    <div class="nav-right">
+      <nav class="nav-links">
+        <a href="#empresa">Empresa</a>
+        <a href="#gama">Gama</a>
+        <a href="#marcas">Marcas</a>
+        <a href="#clientes">Clientes</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a href="#contacto" class="btn btn-blue" style="padding:11px 22px;font-size:.78rem">Solicita catálogo</a>
+      <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#empresa">Empresa</a>
+  <a href="#gama">Gama</a>
+  <a href="#marcas">Marcas</a>
+  <a href="#clientes">Clientes</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
+<!-- ===== RIGHT RAIL ===== -->
+<div class="rail-prog" id="railProg"></div>
+<div class="rail">
+  <div class="tk lg"></div><div class="tk"></div><div class="tk"></div>
+  <div class="tk lg"></div><div class="tk"></div><div class="tk"></div>
+  <div class="tk lg"></div><div class="tk"></div><div class="tk"></div><div class="tk lg"></div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-sticky">
+    <img class="poster" src="assets/distgar/video/hero-poster.jpg" alt="" id="heroPoster">
+    <video id="heroVid" muted playsinline preload="auto" poster="assets/distgar/video/hero-poster.jpg">
+      <source src="assets/distgar/video/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-veil"></div>
+
+    <div class="hero-ch on" data-ch="0">
+      <div class="in">
+        <span class="kik">Distribución · Andorra · desde 1999</span>
+        <h1>El motor del <em>hogar</em> en Andorra</h1>
+        <p class="lead">Distribuidores oficiales de pequeño electrodoméstico y artículos del hogar. Servimos a grandes almacenes y profesionales en todo el Principat.</p>
+        <div class="hero-cta">
+          <a href="#contacto" class="btn btn-blue">Solicita el catálogo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#empresa" class="btn btn-ghost">Conoce Distgar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-ch" data-ch="1">
+      <div class="in">
+        <span class="kik">Catálogo</span>
+        <h1>Una gama <em>completa</em></h1>
+        <p class="lead">Diez familias de producto, miles de referencias. De la cocina al fitness, todo lo que tu lineal necesita en un solo distribuidor.</p>
+      </div>
+    </div>
+
+    <div class="hero-ch" data-ch="2">
+      <div class="in">
+        <span class="kik">Confianza</span>
+        <h1>Distribuidor <em>oficial</em> Cecotec</h1>
+        <p class="lead">Más de dos décadas siendo el socio logístico de referencia en Andorra. Stock, servicio y marcas que se venden solas.</p>
+        <div class="hero-cta">
+          <a href="#gama" class="btn btn-ghost">Ver la gama</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="scrollcue" id="cue"><span>Scroll</span><span class="ms"></span></div>
+  </div>
+</section>
+
+<!-- ===== STRIP MARCAS ===== -->
+<section class="strip">
+  <div class="lbl">Marcas que distribuimos</div>
+  <div class="marquee">
+    <img src="assets/distgar/marcas/cecotec.png" alt="Cecotec">
+    <img src="assets/distgar/marcas/conga.png" alt="Conga">
+    <img src="assets/distgar/marcas/bomann.png" alt="Bomann">
+    <img src="assets/distgar/marcas/clatronic.png" alt="Clatronic">
+    <img src="assets/distgar/marcas/cecomix.png" alt="Cecomix">
+    <img src="assets/distgar/marcas/cecomixer.png" alt="Cecomixer">
+    <img src="assets/distgar/marcas/cecofry.png" alt="Cecofry">
+    <img src="assets/distgar/marcas/recolax.png" alt="Recolax">
+    <img src="assets/distgar/marcas/fit.png" alt="Fit">
+    <!-- duplicado para loop infinito -->
+    <img src="assets/distgar/marcas/cecotec.png" alt="">
+    <img src="assets/distgar/marcas/conga.png" alt="">
+    <img src="assets/distgar/marcas/bomann.png" alt="">
+    <img src="assets/distgar/marcas/clatronic.png" alt="">
+    <img src="assets/distgar/marcas/cecomix.png" alt="">
+    <img src="assets/distgar/marcas/cecomixer.png" alt="">
+    <img src="assets/distgar/marcas/cecofry.png" alt="">
+    <img src="assets/distgar/marcas/recolax.png" alt="">
+    <img src="assets/distgar/marcas/fit.png" alt="">
+  </div>
+</section>
+
+<!-- ===== FEATURES (sticky scrollytelling) ===== -->
+<section class="features" id="empresa">
+  <div class="feat-grid">
+    <div class="feat-text">
+
+      <div class="feat-step" data-feat="0">
+        <img class="feat-prod-m" src="assets/distgar/productos-cut/robot.png" alt="">
+        <div class="num">01</div>
+        <div class="topic">Trayectoria</div>
+        <h2>Más de 25 años moviendo Andorra</h2>
+        <p>Desde 1999 abastecemos al comercio del Principat. Conocemos el mercado, los tiempos de entrega y lo que cada cliente necesita en su lineal.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Empresa familiar con raíces en Sant Julià de Lòria</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Relaciones estables con los grandes almacenes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Especialistas en venta B2B, no al consumidor final</li>
+        </ul>
+      </div>
+
+      <div class="feat-step" data-feat="1">
+        <img class="feat-prod-m" src="assets/distgar/productos-cut/frigo-inox.png" alt="">
+        <div class="num">02</div>
+        <div class="topic">Catálogo</div>
+        <h2>Diez familias, miles de referencias</h2>
+        <p>Una gama tan amplia que cubre toda la casa: cocina, frío, lavado, cocción, climatización, cuidado personal, fitness y mucho más.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Pequeño y gran electrodoméstico</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Stock real para reposición rápida</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Novedades de temporada cada campaña</li>
+        </ul>
+      </div>
+
+      <div class="feat-step" data-feat="2">
+        <img class="feat-prod-m" src="assets/distgar/productos-cut/robot2.png" alt="">
+        <div class="num">03</div>
+        <div class="topic">Marcas</div>
+        <h2>Distribuidor oficial de Cecotec</h2>
+        <p>Trabajamos con las marcas que el cliente busca y que rotan en el lineal. Garantía oficial y soporte directo del fabricante.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Cecotec, Conga, Bomann, Clatronic y más</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Producto con garantía y recambio asegurado</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Material de apoyo para el punto de venta</li>
+        </ul>
+      </div>
+
+      <div class="feat-step" data-feat="3">
+        <img class="feat-prod-m" src="assets/distgar/productos-cut/lavadora1.png" alt="">
+        <div class="num">04</div>
+        <div class="topic">Servicio</div>
+        <h2>Del almacén a tu lineal</h2>
+        <p>Logística pensada para el comercio andorrano: pedidos ágiles, entregas coordinadas y un trato cercano que entiende tu negocio.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Entrega rápida en todo el Principat</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Asesoramiento de surtido por categoría</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Atención directa, sin intermediarios</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="feat-media">
+      <div class="grid-tex"></div>
+      <img class="feat-prod" data-prod="0" src="assets/distgar/productos-cut/robot.png" alt="Robot aspirador Conga">
+      <img class="feat-prod" data-prod="1" src="assets/distgar/productos-cut/frigo-inox.png" alt="Frigorífico inox">
+      <img class="feat-prod" data-prod="2" src="assets/distgar/productos-cut/robot2.png" alt="Robot aspirador con estación de autovaciado">
+      <img class="feat-prod" data-prod="3" src="assets/distgar/productos-cut/lavadora1.png" alt="Lavadora">
+      <div class="feat-tag" data-tag="0">Robot aspirador · Conga</div>
+      <div class="feat-tag" data-tag="1">Frigorífico · Bolero</div>
+      <div class="feat-tag" data-tag="2">Conga con autovaciado · Cecotec</div>
+      <div class="feat-tag" data-tag="3">Lavadora · Bolero</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SHOWREEL ===== -->
+<section class="reel">
+  <video id="reelVid" muted loop playsinline preload="none" poster="assets/distgar/video/showreel-poster.jpg">
+    <source src="assets/distgar/video/showreel.mp4" type="video/mp4">
+  </video>
+  <div class="reel-veil"></div>
+  <div class="wrap in">
+    <span class="eyebrow rv">Nuestro día a día</span>
+    <h2 class="rv d1">Tecnología que<br>llena tus estantes</h2>
+    <p class="rv d2">Cada referencia que distribuimos está pensada para venderse. Producto que la gente reconoce, busca y compra.</p>
+  </div>
+</section>
+
+<!-- ===== DUAL SHOWCASE ===== -->
+<section class="dual">
+  <div class="pane dark">
+    <img class="prod" src="assets/distgar/productos-cut/frigo-sbs.png" alt="Frigorífico side-by-side">
+    <div class="meta">
+      <div class="k">Gran electrodoméstico</div>
+      <h3>Frío & Lavado</h3>
+    </div>
+  </div>
+  <div class="pane light">
+    <img class="prod" src="assets/distgar/productos-cut/robot.png" alt="Robot aspirador">
+    <div class="meta">
+      <div class="k">Pequeño electrodoméstico</div>
+      <h3>Cocina & Hogar</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AMBIENTE (foto real) ===== -->
+<section class="ambient">
+  <img class="bg" src="assets/distgar/web-ref/banner-cecotec.jpg" alt="Cocina equipada con electrodomésticos Cecotec">
+  <div class="wrap in">
+    <span class="eyebrow rv">El hogar completo</span>
+    <h2 class="rv d1">Una gama para <em>completar tu casa</em></h2>
+    <p class="rv d2">Lavado, cocción, frío y pequeño electrodoméstico de las marcas que tus clientes reconocen. Todo bajo un mismo distribuidor en Andorra.</p>
+    <a href="#gama" class="btn btn-blue rv d3">Ver toda la gama
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<!-- ===== CLIENTES (galería horizontal) ===== -->
+<section class="clients" id="clientes">
+  <div class="head">
+    <span class="eyebrow rv" style="justify-content:center;display:inline-flex">A quién servimos</span>
+    <h2 class="rv d1">Distgar trabaja <em>para tu negocio</em></h2>
+    <p class="rv d2">No vendemos al consumidor final: abastecemos a los profesionales que hacen del hogar su negocio en Andorra.</p>
+  </div>
+  <div class="cli-track">
+    <div class="cli-card"><img src="assets/distgar/productos/robot.jpg" alt="Robot aspirador"><div class="ov"></div><div class="cap"><div class="t">Grandes almacenes</div><div class="d">Robots aspiradores y pequeño electro</div></div></div>
+    <div class="cli-card"><img src="assets/distgar/productos/frigorifico.jpg" alt="Frigorífico"><div class="ov"></div><div class="cap"><div class="t">Hoteles</div><div class="d">Frigoríficos y frío para habitaciones</div></div></div>
+    <div class="cli-card"><img src="assets/distgar/productos/lavadora1.jpg" alt="Lavadora"><div class="ov"></div><div class="cap"><div class="t">Apartamentos turísticos</div><div class="d">Lavadoras fiables y económicas</div></div></div>
+    <div class="cli-card"><img src="assets/distgar/productos/placa1.jpg" alt="Placa de cocina"><div class="ov"></div><div class="cap"><div class="t">Cocinas & reformas</div><div class="d">Placas de cocina y cocción</div></div></div>
+    <div class="cli-card"><img src="assets/distgar/productos/vinoteca.jpg" alt="Vinoteca"><div class="ov"></div><div class="cap"><div class="t">Hostelería</div><div class="d">Vinotecas y conservación</div></div></div>
+    <div class="cli-card"><img src="assets/distgar/productos/campana1.jpg" alt="Campana extractora"><div class="ov"></div><div class="cap"><div class="t">Distribuidores</div><div class="d">Campanas extractoras al por mayor</div></div></div>
+  </div>
+</section>
+
+<!-- ===== CATEGORÍAS ===== -->
+<section class="cats" id="gama">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow rv">La gama</span>
+      <h2 class="rv d1">Diez familias para toda la casa</h2>
+      <p class="rv d2">Cubrimos cada rincón del hogar con producto que rota. Pide el catálogo completo por categoría.</p>
+    </div>
+    <div class="cat-grid">
+      <a href="#contacto" class="cat rv">
+        <span class="glow"></span><span class="wm">01</span>
+        <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        <img class="cat-img" src="assets/distgar/productos-cut/robot.png" alt="Robot aspirador">
+        <div class="cat-bot"><h4>Robots aspiradores</h4><span class="see">Ver gama <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a href="#contacto" class="cat rv d1">
+        <span class="glow"></span><span class="wm">02</span>
+        <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        <img class="cat-img" src="assets/distgar/productos-cut/vertical1.png" alt="Aspirador vertical">
+        <div class="cat-bot"><h4>Aspiradores</h4><span class="see">Ver gama <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a href="#contacto" class="cat rv d2">
+        <span class="glow"></span><span class="wm">03</span>
+        <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        <img class="cat-img" src="assets/distgar/productos-cut/frigo-inox.png" alt="Frigorífico">
+        <div class="cat-bot"><h4>Frigoríficos</h4><span class="see">Ver gama <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a href="#contacto" class="cat rv d3">
+        <span class="glow"></span><span class="wm">04</span>
+        <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        <img class="cat-img" src="assets/distgar/productos-cut/congelador.png" alt="Congelador">
+        <div class="cat-bot"><h4>Congeladores</h4><span class="see">Ver gama <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a href="#contacto" class="cat rv d4">
+        <span class="glow"></span><span class="wm">05</span>
+        <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        <img class="cat-img" src="assets/distgar/productos-cut/lavadora1.png" alt="Lavadora">
+        <div class="cat-bot"><h4>Lavadoras</h4><span class="see">Ver gama <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a href="#contacto" class="cat rv">
+        <span class="glow"></span><span class="wm">06</span>
+        <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        <img class="cat-img" src="assets/distgar/productos-cut/secadora.png" alt="Secadora">
+        <div class="cat-bot"><h4>Secadoras</h4><span class="see">Ver gama <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a href="#contacto" class="cat rv d1">
+        <span class="glow"></span><span class="wm">07</span>
+        <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        <img class="cat-img" src="assets/distgar/productos-cut/lavavajillas.png" alt="Lavavajillas">
+        <div class="cat-bot"><h4>Lavavajillas</h4><span class="see">Ver gama <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a href="#contacto" class="cat rv d2">
+        <span class="glow"></span><span class="wm">08</span>
+        <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        <img class="cat-img" src="assets/distgar/productos-cut/placa1.png" alt="Placa de cocina">
+        <div class="cat-bot"><h4>Placas de cocina</h4><span class="see">Ver gama <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a href="#contacto" class="cat rv d3">
+        <span class="glow"></span><span class="wm">09</span>
+        <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        <img class="cat-img" src="assets/distgar/productos-cut/campana1.png" alt="Campana extractora">
+        <div class="cat-bot"><h4>Campanas extractoras</h4><span class="see">Ver gama <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a href="#contacto" class="cat rv d4">
+        <span class="glow"></span><span class="wm">10</span>
+        <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        <img class="cat-img" src="assets/distgar/productos-cut/vinoteca.png" alt="Vinoteca">
+        <div class="cat-bot"><h4>Vinotecas</h4><span class="see">Ver gama <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat rv"><div class="n">+<em>25</em></div><div class="l">Años distribuyendo</div></div>
+      <div class="stat rv d1"><div class="n"><em>10</em></div><div class="l">Familias de producto</div></div>
+      <div class="stat rv d2"><div class="n"><em>9</em>+</div><div class="l">Marcas representadas</div></div>
+      <div class="stat rv d3"><div class="n"><em>100</em>%</div><div class="l">Enfoque profesional B2B</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA / CONTACTO ===== -->
+<section class="cta" id="contacto">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div>
+        <span class="eyebrow rv">Hablemos</span>
+        <h2 class="rv d1">Pide tu catálogo<br>de profesional</h2>
+        <p class="rv d2">Cuéntanos qué tipo de comercio tienes y te preparamos una propuesta de surtido a medida. Sin compromiso.</p>
+        <div class="acts rv d3">
+          <a href="mailto:info@distgar.com?subject=Solicitud%20de%20catálogo%20profesional" class="btn btn-blue">Solicitar catálogo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="https://wa.me/376841623" target="_blank" rel="noopener" class="btn btn-dark">WhatsApp directo</a>
+        </div>
+      </div>
+      <div class="contact-card rv d2">
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><div class="k">Dirección</div><div class="v">Av. Verge de Canòlich, 101<br>AD600 Sant Julià de Lòria · Andorra</div></div>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div><div class="k">Teléfono</div><div class="v"><a href="tel:+376841823">+376 841 823</a> · <a href="tel:+376841822">+376 841 822</a></div></div>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+          <div><div class="k">Email</div><div class="v"><a href="mailto:info@distgar.com">info@distgar.com</a></div></div>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div><div class="k">Horario</div><div class="v">L–V · 9:00–13:00 y 15:00–19:00</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="#top" class="brand"><img src="assets/distgar/logo.png" alt="Distgar" style="filter:brightness(0) invert(1)"></a>
+        <p>Distribuidores oficiales de pequeño electrodoméstico y artículos del hogar en el Principat d'Andorra desde 1999. Venta a grandes almacenes y profesionales.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Navegación</h5>
+        <a href="#empresa">Empresa</a>
+        <a href="#gama">Gama de producto</a>
+        <a href="#marcas">Marcas</a>
+        <a href="#clientes">Clientes</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <a href="tel:+376841823">+376 841 823</a>
+        <a href="mailto:info@distgar.com">info@distgar.com</a>
+        <a href="https://wa.me/376841623" target="_blank" rel="noopener">WhatsApp +376 841 623</a>
+        <a href="https://facebook.com/distgarimportexport" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> DISTGAR S.L. · Sant Julià de Lòria, Andorra · Todos los derechos reservados.</p>
+      <span class="official">Distribuidor oficial Cecotec · Andorra</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== Año ===== */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ===== Header scrolled ===== */
+const hdr = document.getElementById('hdr');
+addEventListener('scroll', ()=>{ hdr.classList.toggle('scrolled', scrollY > 40); }, {passive:true});
+
+/* ===== Menú móvil ===== */
+const burger = document.getElementById('burger');
+const mm = document.getElementById('mobileMenu');
+burger.addEventListener('click', ()=>{ burger.classList.toggle('open'); mm.classList.toggle('open'); });
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{ burger.classList.remove('open'); mm.classList.remove('open'); }));
+
+/* ===== Barra de progreso global (right rail) ===== */
+const railProg = document.getElementById('railProg');
+function updRail(){
+  const h = document.documentElement.scrollHeight - innerHeight;
+  const p = h>0 ? scrollY/h : 0;
+  railProg.style.height = (p*100)+'vh';
+}
+addEventListener('scroll', updRail, {passive:true}); updRail();
+
+/* ===== HERO: scrubbing de vídeo + capítulos =====
+   El truco: la sección .hero mide 420vh y el vídeo va "pegado" (sticky).
+   Mapeamos cuánto hemos avanzado dentro de la sección (0→1) al currentTime
+   del vídeo, y partimos ese recorrido en 3 capítulos de texto. */
+const hero = document.querySelector('.hero');
+const vid = document.getElementById('heroVid');
+const poster = document.getElementById('heroPoster');
+const chapters = [...document.querySelectorAll('.hero-ch')];
+const cue = document.getElementById('cue');
+let vidReady = false, duration = 0, ticking = false;
+
+vid.addEventListener('loadedmetadata', ()=>{ duration = vid.duration || 0; vidReady = true; poster.style.opacity = 0; poster.style.transition='opacity .6s'; });
+// Forzamos una primera carga del frame
+vid.load();
+
+function heroScroll(){
+  const rect = hero.getBoundingClientRect();
+  const total = hero.offsetHeight - innerHeight;
+  // progreso 0→1 mientras la sección recorre el viewport
+  let p = Math.min(1, Math.max(0, (-rect.top) / total));
+
+  // scrub de vídeo
+  if(vidReady && duration){
+    const t = p * (duration - 0.05);
+    if(Math.abs(vid.currentTime - t) > 0.02){ try{ vid.currentTime = t; }catch(e){} }
+  }
+
+  // capítulos: 0 → [0,.40) · 1 → [.40,.72) · 2 → [.72,1]
+  let idx = p < 0.40 ? 0 : p < 0.72 ? 1 : 2;
+  chapters.forEach((c,i)=> c.classList.toggle('on', i===idx));
+
+  // ocultar el "scroll" tras empezar
+  cue.style.opacity = p > 0.04 ? 0 : 1;
+  ticking = false;
+}
+addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(heroScroll); ticking = true; } }, {passive:true});
+heroScroll();
+
+/* ===== FEATURES: producto sticky que cambia según el paso activo ===== */
+const prods = [...document.querySelectorAll('.feat-prod')];
+const tags = [...document.querySelectorAll('.feat-tag')];
+function setFeat(i){
+  prods.forEach(p=> p.classList.toggle('on', +p.dataset.prod===i));
+  tags.forEach(t=> t.classList.toggle('on', +t.dataset.tag===i));
+}
+const featObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) setFeat(+e.target.dataset.feat); });
+}, {threshold:0.55});
+document.querySelectorAll('.feat-step').forEach(s=> featObs.observe(s));
+setFeat(0);
+
+/* ===== Showreel: play solo cuando es visible (ahorra batería) ===== */
+const reelVid = document.getElementById('reelVid');
+const reelObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ reelVid.play().catch(()=>{}); } else { reelVid.pause(); }
+  });
+}, {threshold:0.25});
+reelObs.observe(reelVid);
+
+/* ===== Reveal on scroll ===== */
+const rvObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); rvObs.unobserve(e.target); } });
+}, {threshold:0.18});
+document.querySelectorAll('.rv').forEach(el=> rvObs.observe(el));
+</script>
+</body>
+</html>

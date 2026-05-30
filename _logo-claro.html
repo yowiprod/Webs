@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --accent:#C8902A; --ink:#15151a; --paper:#f4f1ea; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:640px;height:640px;background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'Hanken Grotesk',Arial,sans-serif}
+  .logo{display:flex;flex-direction:column;align-items:center;gap:18px}
+  .dtw{font-family:'Bricolage Grotesque';font-weight:800;font-size:96px;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+  .dtw .o{color:var(--accent)}
+  .name{font-family:'Bricolage Grotesque';font-weight:700;font-size:30px;letter-spacing:.01em;color:var(--ink);line-height:1}
+  .name .o{color:var(--accent)}
+</style>
+</head>
+<body>
+  <div class="logo">
+    <div class="dtw">D<span class="o">T</span>W</div>
+    <svg width="96" height="58" viewBox="0 0 96 58" fill="none">
+      <path d="M16 30 L48 6 L80 30" stroke="#C8902A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M16 52 L48 28 L80 52" stroke="#15151a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity=".82"/>
+    </svg>
+    <div class="name">Destacamos <span class="o">Tu Web</span></div>
+  </div>
+</body>
+</html>

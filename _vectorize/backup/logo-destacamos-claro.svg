@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+      .dtw{font-family:'Bricolage Grotesque',Arial,sans-serif;font-weight:800;letter-spacing:-3px;}
+      .nm{font-family:'Bricolage Grotesque',Arial,sans-serif;font-weight:700;}
+    </style>
+  </defs>
+  <rect width="640" height="640" fill="#f4f1ea"/>
+  <text x="320" y="285" text-anchor="middle" class="dtw" font-size="138" fill="#15151a">D<tspan fill="#C8902A">T</tspan>W</text>
+  <g transform="translate(253,318) scale(1.45)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="7">
+    <path d="M16 30 L48 6 L80 30" stroke="#C8902A"/>
+    <path d="M16 52 L48 28 L80 52" stroke="#15151a" stroke-opacity="0.82"/>
+  </g>
+  <text x="320" y="470" text-anchor="middle" class="nm" font-size="40" fill="#15151a">Destacamos <tspan fill="#C8902A">Tu Web</tspan></text>
+</svg>

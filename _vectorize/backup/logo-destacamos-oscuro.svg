@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;display=swap');
+      .dtw{font-family:'Bricolage Grotesque',Arial,sans-serif;font-weight:800;letter-spacing:-3px;}
+      .nm{font-family:'Bricolage Grotesque',Arial,sans-serif;font-weight:700;}
+    </style>
+    <radialGradient id="glow" cx="82%" cy="8%" r="60%">
+      <stop offset="0%" stop-color="#E0B23C" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#E0B23C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="640" fill="#0c0c0f"/>
+  <rect width="640" height="640" fill="url(#glow)"/>
+  <text x="320" y="285" text-anchor="middle" class="dtw" font-size="138" fill="#ffffff">D<tspan fill="#E0B23C">T</tspan>W</text>
+  <g transform="translate(253,318) scale(1.45)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="7">
+    <path d="M16 30 L48 6 L80 30" stroke="#E0B23C"/>
+    <path d="M16 52 L48 28 L80 52" stroke="#ffffff" stroke-opacity="0.88"/>
+  </g>
+  <text x="320" y="470" text-anchor="middle" class="nm" font-size="40" fill="#ffffff">Destacamos <tspan fill="#E0B23C">Tu Web</tspan></text>
+</svg>

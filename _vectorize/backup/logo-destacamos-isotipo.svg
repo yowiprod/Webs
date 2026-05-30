@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" width="360" height="360">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&amp;display=swap');
+      .dtw{font-family:'Bricolage Grotesque',Arial,sans-serif;font-weight:800;letter-spacing:-2px;}
+    </style>
+  </defs>
+  <rect width="360" height="360" rx="0" fill="#0c0c0f"/>
+  <text x="180" y="190" text-anchor="middle" class="dtw" font-size="150" fill="#ffffff">D<tspan fill="#E0B23C">T</tspan>W</text>
+  <g transform="translate(120,230) scale(1.45)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
+    <path d="M16 30 L48 6 L80 30" stroke="#E0B23C"/>
+    <path d="M16 52 L48 28 L80 52" stroke="#ffffff" stroke-opacity="0.88"/>
+  </g>
+</svg>

@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CALYRA Shop — Train With Intention</title>
+<meta name="description" content="CALYRA Shop. Ropa fitness, máquinas, accesorios y suplementos. Entrena con propósito." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     PALETA — beige pastel monocromática
+     Fondo: blanco sucio (#f5f0e6)
+     Acento: beige pastel saturado (#c4a98a)
+     Texto: marrón cálido (#5c4a35)
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  :root {
+    --bg: #f5f0e6;
+    --bg-soft: #f0eadc;
+    --ink: #5c4a35;
+    --ink-soft: #8a7559;
+    --accent: #c4a98a;
+    --accent-strong: #a8896b;
+    --line: #e6dccb;
+    --ff: 'Instrument Serif', 'Iowan Old Style', 'Apple Garamond', Baskerville, 'Times New Roman', serif;
+    --maxw: 1320px;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--ff);
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-strong); }
+
+  /* ============================
+     ANNOUNCEMENT BAR
+     ============================ */
+  .annc {
+    background: var(--accent);
+    color: var(--bg);
+    text-align: center;
+    padding: 11px 16px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-style: italic;
+  }
+
+  /* ============================
+     HEADER
+     ============================ */
+  .header {
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: box-shadow .3s;
+  }
+  .header.scrolled { box-shadow: 0 2px 14px rgba(92,74,53,.06); }
+
+  /* Fila superior: NAV izquierda — LOGO centro — ICONOS derecha */
+  .header__top {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 22px 32px 18px;
+    gap: 16px;
+  }
+  .header__nav-left {
+    justify-self: start;
+  }
+  .nav-left-links {
+    display: flex;
+    list-style: none;
+    gap: 26px;
+    font-size: 16px;
+    align-items: center;
+  }
+  .nav-left-links a {
+    position: relative;
+    padding: 4px 2px;
+    transition: color .2s;
+    font-style: italic;
+  }
+  .nav-left-links a:hover { color: var(--accent-strong); }
+  .nav-left-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent-strong);
+    transition: width .3s;
+  }
+  .nav-left-links a:hover::after { width: 100%; }
+
+  .header__logo {
+    justify-self: center;
+    display: block;
+    transition: transform .3s ease;
+  }
+  .header__logo:hover { transform: scale(1.03); }
+  .header__logo img {
+    height: 100px;
+    width: auto;
+    display: block;
+    mix-blend-mode: multiply;
+    filter: contrast(1.05);
+  }
+
+  .header__icons {
+    justify-self: end;
+    display: flex; align-items: center; gap: 14px;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .header__icons .icon {
+    width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink);
+    transition: color .2s;
+  }
+  .header__icons .icon:hover { color: var(--accent-strong); }
+  .cart-count {
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 50%;
+    font-size: 10px;
+    width: 18px; height: 18px;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-left: -8px;
+    margin-top: -16px;
+    font-family: -apple-system, sans-serif;
+  }
+
+  /* Fila inferior del header: categorías */
+  .header__categories {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 14px 32px;
+    border-top: 1px solid var(--line);
+    font-size: 16px;
+    list-style: none;
+  }
+  .header__categories a {
+    position: relative;
+    padding: 4px 2px;
+    transition: color .2s;
+    font-style: italic;
+  }
+  .header__categories a:hover { color: var(--accent-strong); }
+  .header__categories a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent-strong);
+    transition: width .3s;
+  }
+  .header__categories a:hover::after { width: 100%; }
+
+  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .burger span { width: 24px; height: 1.5px; background: var(--ink); }
+
+  @media (max-width: 900px) {
+    .header__top { padding: 18px 22px 14px; }
+    .header__logo img { height: 70px; }
+    .nav-left-links { display: none; }
+    .header__nav-left { display: flex; align-items: center; }
+    .header__nav-left .burger { display: flex; }
+    .header__categories { gap: 22px; font-size: 14px; padding: 12px 16px; overflow-x: auto; justify-content: flex-start; white-space: nowrap; }
+  }
+
+  /* ============================
+     HERO con imagen de fondo
+     ============================ */
+  .hero {
+    position: relative;
+    min-height: 78vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background-image:
+      linear-gradient(rgba(245,240,230,.45), rgba(245,240,230,.55)),
+      url("https://www.calyrashop.com/cdn/shop/files/imagen_fondo_home_pages.jpg?v=1774719275&width=3840");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 100px 28px;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .hero-eyebrow {
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--ink);
+    margin-bottom: 24px;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeIn 1s .3s forwards;
+  }
+  .hero h1 {
+    font-size: clamp(54px, 9vw, 140px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -1.5px;
+    margin-bottom: 30px;
+    color: var(--ink);
+  }
+  .hero h1 .line { display: block; overflow: hidden; }
+  .hero h1 .line > span {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: lineUp 1s cubic-bezier(.22,.61,.36,1) forwards;
+  }
+  .hero h1 .line:nth-child(1) > span { animation-delay: .3s; }
+  .hero h1 .line:nth-child(2) > span {
+    animation-delay: .5s;
+    font-style: italic;
+    color: var(--accent-strong);
+  }
+  @keyframes lineUp { to { transform: translateY(0); } }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  .hero-sub {
+    font-size: 20px;
+    color: var(--ink);
+    max-width: 620px;
+    margin: 0 auto 40px;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeIn 1s 1s forwards;
+  }
+  .hero-ctas {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeIn 1s 1.2s forwards;
+  }
+  .btn {
+    padding: 16px 36px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-style: italic;
+    transition: transform .2s, background .2s, color .2s;
+    border-radius: 0;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .btn-primary:hover { background: var(--accent-strong); transform: translateY(-2px); }
+  .btn-ghost {
+    background: rgba(245,240,230,.4);
+    color: var(--ink);
+    border: 1.5px solid var(--accent);
+    backdrop-filter: blur(4px);
+  }
+  .btn-ghost:hover { background: var(--accent); color: var(--bg); }
+
+  /* ============================
+     RICH TEXT (envíos / contra reembolso)
+     ============================ */
+  .rich-text {
+    background: var(--bg);
+    padding: 50px 28px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .rich-text-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .rich-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .rich-text .emoji {
+    font-size: 22px;
+    margin-right: 8px;
+    font-style: normal;
+  }
+  .rich-text strong {
+    font-style: normal;
+    color: var(--accent-strong);
+    font-weight: 400;
+  }
+  @media (max-width: 720px) {
+    .rich-text-inner { grid-template-columns: 1fr; gap: 22px; }
+  }
+
+  /* ============================
+     SECTION BASE
+     ============================ */
+  section.collection {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+  }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    flex-wrap: wrap; gap: 24px;
+  }
+  .section-tag {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+    font-style: italic;
+  }
+  .section-tag::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--accent);
+  }
+  .section-title {
+    font-size: clamp(46px, 7vw, 90px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -1px;
+    max-width: 700px;
+  }
+  .section-title .italic { font-style: italic; color: var(--accent-strong); }
+  .section-desc {
+    color: var(--ink-soft);
+    max-width: 380px;
+    font-size: 17px;
+    font-style: italic;
+  }
+
+  /* ============================
+     PRODUCT GRID 4x2 (8 visibles) + Ver más
+     ============================ */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px 8px;
+  }
+  /* Ocultar productos a partir del 9 hasta que se expanda */
+  .product-grid:not(.expanded) > .product-card:nth-child(n+9) {
+    display: none;
+  }
+  /* Animación de entrada de los productos expandidos */
+  .product-grid.expanded > .product-card:nth-child(n+9) {
+    animation: cardIn .5s ease forwards;
+  }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 1000px) {
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+    .product-grid:not(.expanded) > .product-card:nth-child(n+7) { display: none; }
+  }
+  @media (max-width: 720px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .product-grid:not(.expanded) > .product-card:nth-child(n+5) { display: none; }
+  }
+
+  .product-card {
+    text-align: center;
+    padding: 22px 14px 22px;
+    position: relative;
+    transition: transform .5s cubic-bezier(.2,.8,.2,1);
+    cursor: pointer;
+    background: transparent;
+  }
+  .product-card:hover { transform: translateY(-6px); }
+  .product-img-wrap {
+    height: 280px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .product-img {
+    max-width: 90%;
+    max-height: 250px;
+    width: auto; height: auto;
+    object-fit: contain;
+    /* Funde el fondo blanco de las fotos con el fondo crema de la página */
+    mix-blend-mode: multiply;
+    filter: drop-shadow(0 22px 28px rgba(92,74,53,.16))
+            drop-shadow(0 6px 10px rgba(92,74,53,.08));
+    transition: transform .6s cubic-bezier(.2,.8,.2,1), filter .4s;
+    animation: floatY 6s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+  }
+  .product-card:nth-child(2n) .product-img { animation-delay: -1.5s; }
+  .product-card:nth-child(3n) .product-img { animation-delay: -3s; }
+  .product-card:nth-child(4n) .product-img { animation-delay: -4.5s; }
+  .product-card:nth-child(5n) .product-img { animation-delay: -2.2s; }
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .product-card:hover .product-img {
+    transform: translateY(-14px) scale(1.05);
+    filter: drop-shadow(0 38px 45px rgba(92,74,53,.25))
+            drop-shadow(0 10px 14px rgba(92,74,53,.12));
+  }
+
+  .product-shadow {
+    position: absolute;
+    bottom: 8px; left: 50%;
+    transform: translateX(-50%);
+    width: 140px; height: 14px;
+    background: radial-gradient(ellipse, rgba(92,74,53,.15) 0%, transparent 70%);
+    filter: blur(6px);
+    z-index: 1;
+    transition: transform .5s, opacity .5s;
+  }
+  .product-card:hover .product-shadow {
+    transform: translateX(-50%) scaleX(.7);
+    opacity: .6;
+  }
+
+  .product-cat {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+  .product-name {
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+    min-height: 40px;
+  }
+  .product-price {
+    font-size: 17px;
+    color: var(--accent-strong);
+    font-style: italic;
+  }
+
+  /* ============================
+     BOTÓN VER MÁS
+     ============================ */
+  .see-more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  .see-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 36px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--ink);
+    font-style: italic;
+    border: 1.5px solid var(--accent);
+    background: transparent;
+    transition: background .3s, color .3s, transform .2s;
+    position: relative;
+  }
+  .see-more::before, .see-more::after {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+  .see-more:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-2px);
+  }
+  .see-more:hover::before, .see-more:hover::after { background: var(--bg); }
+  .see-more .arrow {
+    display: inline-block;
+    transition: transform .3s ease;
+  }
+  .see-more.expanded .arrow {
+    transform: rotate(180deg);
+  }
+
+  /* ============================
+     SECCIÓN ROPA FITNESS con TABS
+     ============================ */
+  #ropa-fitness { padding: 100px 0; }
+  .tabs {
+    display: inline-flex;
+    border: 1.5px solid var(--accent);
+    margin-top: 22px;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .tab-btn {
+    padding: 14px 42px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--ink);
+    font-style: italic;
+    transition: color .3s;
+    position: relative;
+    z-index: 2;
+  }
+  .tab-indicator {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    width: 50%;
+    background: var(--accent);
+    transition: transform .4s cubic-bezier(.2,.8,.2,1);
+    z-index: 1;
+  }
+  .tabs.women .tab-indicator { transform: translateX(100%); }
+  .tabs.women .tab-btn[data-tab="women"],
+  .tabs:not(.women) .tab-btn[data-tab="men"] {
+    color: var(--bg);
+  }
+  .tab-panel {
+    display: none;
+    animation: panelIn .5s ease;
+  }
+  .tab-panel.active { display: block; }
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============================
+     PRODUCTOS DESTACADOS (cabecera distinta)
+     ============================ */
+  .featured-section { padding: 80px 0 100px; }
+  .featured-title-block {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .featured-title-block .section-tag {
+    justify-content: center;
+  }
+  .featured-title-block .section-tag::before {
+    margin-right: 12px;
+  }
+  .featured-title-block .section-tag::after {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--accent);
+    margin-left: 12px;
+  }
+  .featured-title-block h2 {
+    font-size: clamp(46px, 7vw, 90px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -1px;
+  }
+  .featured-title-block h2 .italic { font-style: italic; color: var(--accent-strong); }
+
+  /* ============================
+     MANIFESTO
+     ============================ */
+  .manifesto {
+    padding: 120px 28px;
+    text-align: center;
+    background: var(--bg-soft);
+  }
+  .manifesto h2 {
+    font-size: clamp(36px, 6vw, 80px);
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: -1px;
+    max-width: 950px;
+    margin: 0 auto;
+  }
+  .manifesto h2 .italic { font-style: italic; color: var(--accent-strong); }
+
+  /* ============================
+     CTA + FOOTER
+     ============================ */
+  .cta-final {
+    padding: 130px 28px;
+    text-align: center;
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .cta-final h2 {
+    font-size: clamp(42px, 6.5vw, 90px);
+    line-height: 1;
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+  .cta-final h2 .italic { font-style: italic; }
+  .cta-final p {
+    color: rgba(245,240,230,.85);
+    max-width: 560px;
+    margin: 0 auto 36px;
+    font-size: 18px;
+    font-style: italic;
+  }
+  .cta-final .btn-primary {
+    background: var(--bg);
+    color: var(--accent-strong);
+  }
+  .cta-final .btn-primary:hover { background: var(--bg-soft); }
+
+  footer {
+    background: var(--bg);
+    padding: 70px 28px 28px;
+    border-top: 1px solid var(--line);
+  }
+  .footer-grid {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 50px;
+  }
+  .footer-col img { height: 50px; margin-bottom: 18px; mix-blend-mode: multiply; }
+  .footer-col p { color: var(--ink-soft); font-size: 15px; max-width: 300px; line-height: 1.7; font-style: italic; }
+  .footer-col h4 {
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 8px;
+    transition: color .2s;
+    font-style: italic;
+  }
+  .footer-col a:hover { color: var(--accent-strong); }
+  .footer-bottom {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 14px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .9s cubic-bezier(.2,.8,.2,1),
+                transform .9s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal.delay-1 { transition-delay: .1s; }
+  .reveal.delay-2 { transition-delay: .2s; }
+
+  @media (max-width: 760px) {
+    section.collection { padding: 60px 0 70px; }
+    .hero { min-height: 65vh; padding: 80px 22px; background-attachment: scroll; }
+    .section-head { flex-direction: column; align-items: flex-start; margin-bottom: 35px; }
+    .product-img-wrap { height: 220px; }
+    .product-img { max-height: 200px; }
+    .footer-grid { gap: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="annc">Bienvenidos a Calyra — Donde el estilo se une al rendimiento.</div>
+
+<!-- HEADER: nav izquierda / LOGO centro / iconos derecha -->
+<header class="header" id="header">
+  <div class="header__top">
+    <nav class="header__nav-left">
+      <ul class="nav-left-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Catálogo</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+      <div class="burger"><span></span><span></span><span></span></div>
+    </nav>
+    <a href="#" class="header__logo">
+      <img src="https://www.calyrashop.com/cdn/shop/files/calyrashop_logo.jpg?height=200&v=1774752813" alt="CALYRA Shop">
+    </a>
+    <div class="header__icons">
+      <span style="font-style:italic;">EUR €</span>
+      <a href="#" class="icon" aria-label="Buscar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+          <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/>
+        </svg>
+      </a>
+      <a href="#" class="icon" aria-label="Cuenta">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+          <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+        </svg>
+      </a>
+      <a href="#" class="icon" aria-label="Carrito" style="position:relative;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M6 7h12l-1.5 12h-9z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/>
+        </svg>
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+  <!-- Fila inferior del header: categorías de producto -->
+  <nav>
+    <ul class="header__categories">
+      <li><a href="#ropa-fitness">Ropa Fitness</a></li>
+      <li><a href="#maquinas">Máquinas</a></li>
+      <li><a href="#accesorios">Accesorios</a></li>
+      <li><a href="#suplementos">Suplementos</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO con la imagen real del original -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Donde el estilo se une al rendimiento</div>
+    <h1>
+      <span class="line"><span>Train With</span></span>
+      <span class="line"><span>Intention.</span></span>
+    </h1>
+    <p class="hero-sub">Entrena con propósito. Cuídate con consciencia. Vive en movimiento.</p>
+    <div class="hero-ctas">
+      <a href="#destacados" class="btn btn-primary">Ver destacados</a>
+      <a href="#ropa-fitness" class="btn btn-ghost">Ropa Fitness</a>
+    </div>
+  </div>
+</section>
+
+<!-- RICH TEXT debajo del hero -->
+<section class="rich-text">
+  <div class="rich-text-inner">
+    <p>
+      <span class="emoji">📦</span>
+      <strong>Envíos:</strong> Desde 24/48h hasta 21 días — cada producto tiene indicado su tiempo de entrega estimado.
+    </p>
+    <p>
+      <span class="emoji">💳</span>
+      <strong>Contra reembolso:</strong> Próximamente disponible en productos seleccionados.
+    </p>
+  </div>
+</section>
+
+<!-- ============================
+     PRODUCTOS DESTACADOS (arriba)
+     ============================ -->
+<section class="collection featured-section" id="destacados">
+  <div class="container">
+    <div class="featured-title-block reveal">
+      <div class="section-tag">Productos destacados</div>
+      <h2>Los más <span class="italic">vendidos</span></h2>
+    </div>
+
+    <div class="product-grid" data-grid="destacados">
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/H290257b950b540f9bbaae3ca2a1bf3a2b.webp?v=1779562645" alt="Jumpsuit Push Up">
+        </div>
+        <div class="product-cat">Mujer</div>
+        <div class="product-name">Jumpsuit Espalda Descubierta Push Up</div>
+        <div class="product-price">25,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S6f7b7490e359421188b25ea264c31653o.webp?v=1779650866" alt="Conjunto Compresión">
+        </div>
+        <div class="product-cat">Hombre</div>
+        <div class="product-name">Conjunto de Compresión Manga Larga</div>
+        <div class="product-price">19,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/2024-04-0518_2024-04-05-18-59-45.43.png?v=1773683556" alt="Leggings">
+        </div>
+        <div class="product-cat">Mujer</div>
+        <div class="product-name">Leggins Push Up Negro</div>
+        <div class="product-price">21,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/smarplata_2024-11-12-18-24-12.jpg?v=1775230939" alt="Smartwatch">
+        </div>
+        <div class="product-cat">Accesorios</div>
+        <div class="product-name">Smartwatch Plata Acero Inoxidable</div>
+        <div class="product-price">30,51 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/EVOPOWER3.png?v=1778957597" alt="Evo Power">
+        </div>
+        <div class="product-cat">Suplementos</div>
+        <div class="product-name">Evo Power Energía & Enfoque</div>
+        <div class="product-price">35,00 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_8c4bdbf4-85b9-4eb4-b804-e89e54beea77.png?v=1778869470" alt="Ab Booster">
+        </div>
+        <div class="product-cat">Máquinas</div>
+        <div class="product-name">Ab Booster Plus Plegable</div>
+        <div class="product-price">65,00 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/Ha995d463c7db4656b749ee462d725538J.webp?v=1779559607" alt="Jumpsuit Scrunch">
+        </div>
+        <div class="product-cat">Mujer</div>
+        <div class="product-name">Jumpsuit Scrunch Espalda Abierta</div>
+        <div class="product-price">31,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/417tlrQNvsL_2023-05-30-13-24-36.jpg?v=1775302070" alt="Auriculares">
+        </div>
+        <div class="product-cat">Accesorios</div>
+        <div class="product-name">Auriculares PRO Max ANC Negros</div>
+        <div class="product-price">21,99 €</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     ROPA FITNESS · TABS Hombre / Mujer
+     ============================ -->
+<section class="collection" id="ropa-fitness">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-tag reveal">Colección</div>
+        <h2 class="section-title reveal delay-1">Ropa <span class="italic">Fitness</span></h2>
+      </div>
+      <p class="section-desc reveal delay-2">Tejidos técnicos, cortes estudiados. Diseñado para cada repetición, cada paso, cada decisión.</p>
+    </div>
+
+    <div class="tabs reveal" id="tabs" role="tablist">
+      <div class="tab-indicator"></div>
+      <button class="tab-btn" data-tab="men" role="tab">Hombre</button>
+      <button class="tab-btn" data-tab="women" role="tab">Mujer</button>
+    </div>
+
+    <!-- PANEL HOMBRE -->
+    <div class="tab-panel active men" data-panel="men">
+      <div class="product-grid" data-grid="men">
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S6f7b7490e359421188b25ea264c31653o.webp?v=1779650866" alt="">
+          </div>
+          <div class="product-cat">Ropa deportiva</div>
+          <div class="product-name">Conjunto de Compresión Manga Larga</div>
+          <div class="product-price">19,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S5b899fc2be8b460880b3727fcf0bb214v.webp?v=1779650866" alt="">
+          </div>
+          <div class="product-cat">Camiseta</div>
+          <div class="product-name">Camiseta Sin Mangas de Algodón</div>
+          <div class="product-price">21,49 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S0d0009592cc447b3aa76530fdf83932et.webp?v=1779650865" alt="">
+          </div>
+          <div class="product-cat">Chaqueta</div>
+          <div class="product-name">Chaqueta Deportiva con Cremallera</div>
+          <div class="product-price">31,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S551530357f4a4f6cb8d4379636049ac1d.webp?v=1779650865" alt="">
+          </div>
+          <div class="product-cat">Camiseta</div>
+          <div class="product-name">Camiseta Deportiva Transpirable</div>
+          <div class="product-price">21,49 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S5cbfcb8ca0e8479a81765846ce3b774ev.webp?v=1779650863" alt="">
+          </div>
+          <div class="product-cat">Shorts</div>
+          <div class="product-name">Short Deportivo</div>
+          <div class="product-price">21,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/Sc1ddf3cdf9734868a4b9c14b8b137c1dS.webp?v=1779650864" alt="">
+          </div>
+          <div class="product-cat">Camiseta</div>
+          <div class="product-name">Camiseta Deportiva Manga Corta</div>
+          <div class="product-price">17,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S206d4fbeda9440c6b6e667747e716c8eq.webp?v=1779650864" alt="">
+          </div>
+          <div class="product-cat">Camiseta</div>
+          <div class="product-name">Camiseta de Compresión Manga Larga</div>
+          <div class="product-price">19,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S9a28c9a4bac540f991c0cf276afc5fc0B.webp?v=1779649952" alt="">
+          </div>
+          <div class="product-cat">Pantalones</div>
+          <div class="product-name">Pantalón Jogger</div>
+          <div class="product-price">14,59 €</div>
+        </article>
+        <!-- Productos ocultos (a partir del 9) -->
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/Sf770c2b1bbfb4e03b19d5890d8f7bce1r.webp?v=1779650862" alt="">
+          </div>
+          <div class="product-cat">Camiseta</div>
+          <div class="product-name">Camiseta Deportiva Estampada</div>
+          <div class="product-price">16,95 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S4c3c73827fa748dc81d7096bae07f136K.webp?v=1779649951" alt="">
+          </div>
+          <div class="product-cat">Camiseta</div>
+          <div class="product-name">Camiseta Manga Corta Dry Fit</div>
+          <div class="product-price">14,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S47d781808e3649c7b553e64a82cd10e6I.webp?v=1779559606" alt="">
+          </div>
+          <div class="product-cat">Shorts</div>
+          <div class="product-name">Short Deportivo 2 en 1</div>
+          <div class="product-price">15,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/D_NQ_NP_870851-MLM51138250095_082022-W_2023-04-05-20-34-11.jpg?v=1775302169" alt="">
+          </div>
+          <div class="product-cat">Camiseta</div>
+          <div class="product-name">Camiseta Efecto Sauna</div>
+          <div class="product-price">16,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/camiseta_1739278231.jpg?v=1775302166" alt="">
+          </div>
+          <div class="product-cat">Camiseta</div>
+          <div class="product-name">Camiseta Compresión Blanca</div>
+          <div class="product-price">16,50 €</div>
+        </article>
+      </div>
+      <div class="see-more-wrap">
+        <button class="see-more" data-grid="men">
+          <span class="see-more-text">Ver más</span>
+          <span class="arrow">↓</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- PANEL MUJER -->
+    <div class="tab-panel women" data-panel="women">
+      <div class="product-grid" data-grid="women">
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/H290257b950b540f9bbaae3ca2a1bf3a2b.webp?v=1779562645" alt="">
+          </div>
+          <div class="product-cat">Jumpsuit</div>
+          <div class="product-name">Jumpsuit Espalda Descubierta Push Up</div>
+          <div class="product-price">25,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/H2688a8961ca44810a6dba8a761477a74S.webp?v=1779562644" alt="">
+          </div>
+          <div class="product-cat">Jumpsuit</div>
+          <div class="product-name">Jumpsuit Deportivo Halter</div>
+          <div class="product-price">24,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/Ha995d463c7db4656b749ee462d725538J.webp?v=1779559607" alt="">
+          </div>
+          <div class="product-cat">Jumpsuit</div>
+          <div class="product-name">Jumpsuit Scrunch Espalda Abierta</div>
+          <div class="product-price">31,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/Sa705b73fb1ea486ea99ec90cbe9d3106Q.webp?v=1779559604" alt="">
+          </div>
+          <div class="product-cat">Set 2 Piezas</div>
+          <div class="product-name">Set Deportivo Top Halter y Shorts</div>
+          <div class="product-price">18,49 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/H2a6fc688d10a44bda550533f29699a95M.webp?v=1778862020" alt="">
+          </div>
+          <div class="product-cat">Mono</div>
+          <div class="product-name">Mono Deportivo Espalda Abierta</div>
+          <div class="product-price">38,95 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_d60d4f14-30de-445e-9900-c48996ae6be2.png?v=1775303711" alt="">
+          </div>
+          <div class="product-cat">Pack 3 Sujetadores</div>
+          <div class="product-name">Set 3 Sujetadores Sin Costuras Uplift</div>
+          <div class="product-price">15,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/2024-04-0518_2024-04-05-18-59-45.43.png?v=1773683556" alt="">
+          </div>
+          <div class="product-cat">Leggings</div>
+          <div class="product-name">Leggins Push Up Negro</div>
+          <div class="product-price">21,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/2024-04-0518_2024-04-05-19-49-07.44.png?v=1773683553" alt="">
+          </div>
+          <div class="product-cat">Leggings</div>
+          <div class="product-name">Legging Push Up Rosa</div>
+          <div class="product-price">19,99 €</div>
+        </article>
+        <!-- Ocultos a partir del 9 -->
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/133710943_874609166699005_409935243912883255_n-600x600_480x480_2023-04-05-20-27-48.jpg?v=1775302178" alt="">
+          </div>
+          <div class="product-cat">Camiseta</div>
+          <div class="product-name">Camiseta Efecto Sauna Mujer</div>
+          <div class="product-price">15,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/TOPNG_1748528584.jpg?v=1775301436" alt="">
+          </div>
+          <div class="product-cat">Top</div>
+          <div class="product-name">Top Sin Costuras Nylon</div>
+          <div class="product-price">12,59 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/NEGRO_2024-04-15-18-19-51.jpg?v=1773941315" alt="">
+          </div>
+          <div class="product-cat">Shorts</div>
+          <div class="product-name">Active Shorts Push Up Negro</div>
+          <div class="product-price">17,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/2024-04-0418_2024-04-04-18-42-42.22_de0068d0-eaf7-4ad2-8895-d77b40390bac.png?v=1773941340" alt="">
+          </div>
+          <div class="product-cat">Shorts</div>
+          <div class="product-name">Active Shorts Push Up Rosa</div>
+          <div class="product-price">17,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/2024-04-0418_2024-04-04-18-41-30.16_f5a4aeb9-b60b-47e5-b692-471639b92854.png?v=1773941334" alt="">
+          </div>
+          <div class="product-cat">Shorts</div>
+          <div class="product-name">Active Shorts Push Up Turquesa</div>
+          <div class="product-price">17,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/2024-04-0418_2024-04-04-18-37-51.17_d70476f1-0a61-46f4-9014-1880685a25df.png?v=1773941323" alt="">
+          </div>
+          <div class="product-cat">Shorts</div>
+          <div class="product-name">Active Shorts Push Up Gris</div>
+          <div class="product-price">17,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/2024-04-0518_2024-04-05-19-08-14.43_99573dd8-375a-4ef5-871e-7be8d6fdb208.png?v=1773685076" alt="">
+          </div>
+          <div class="product-cat">Leggings</div>
+          <div class="product-name">Leggins Push Up Azules</div>
+          <div class="product-price">21,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/2024-04-0518_2024-04-05-19-53-39.43.png?v=1773683680" alt="">
+          </div>
+          <div class="product-cat">Leggings</div>
+          <div class="product-name">Leggins Push Up Turquesa</div>
+          <div class="product-price">21,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/2024-04-0518_2024-04-05-19-22-17.45.png?v=1773683550" alt="">
+          </div>
+          <div class="product-cat">Leggings</div>
+          <div class="product-name">Leggins Push Up Morados</div>
+          <div class="product-price">21,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/2024-04-0518_2024-04-05-19-05-15.45.png?v=1773683545" alt="">
+          </div>
+          <div class="product-cat">Leggings</div>
+          <div class="product-name">Leggins Push Up Verdes</div>
+          <div class="product-price">21,99 €</div>
+        </article>
+        <article class="product-card">
+          <div class="product-img-wrap"><div class="product-shadow"></div>
+            <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file.jpg?v=1773680248" alt="">
+          </div>
+          <div class="product-cat">Set 2 Piezas</div>
+          <div class="product-name">Set Deportivo Gris Esencial</div>
+          <div class="product-price">25,99 €</div>
+        </article>
+      </div>
+      <div class="see-more-wrap">
+        <button class="see-more" data-grid="women">
+          <span class="see-more-text">Ver más</span>
+          <span class="arrow">↓</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <h2 class="reveal">
+    Entrena con <span class="italic">propósito</span>.<br>
+    Cuídate con <span class="italic">consciencia</span>.<br>
+    Vive en <span class="italic">movimiento</span>.
+  </h2>
+</section>
+
+<!-- ============================
+     MÁQUINAS
+     ============================ -->
+<section class="collection" id="maquinas">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-tag reveal">Equipamiento</div>
+        <h2 class="section-title reveal delay-1">Máquinas <span class="italic">& Equipo</span></h2>
+      </div>
+      <p class="section-desc reveal delay-2">Tu gimnasio en casa. Equipamiento de calidad pro a precio accesible.</p>
+    </div>
+    <div class="product-grid" data-grid="maquinas">
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_8c4bdbf4-85b9-4eb4-b804-e89e54beea77.png?v=1778869470" alt="">
+        </div>
+        <div class="product-cat">Máquina multifuncional</div>
+        <div class="product-name">Ab Booster Plus Plegable</div>
+        <div class="product-price">65,00 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_b70138b8-d077-4d06-a9ff-407004f78445.jpg?v=1778870206" alt="">
+        </div>
+        <div class="product-cat">Sistema portátil</div>
+        <div class="product-name">Gympak Max Entrenamiento Integral</div>
+        <div class="product-price">53,59 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_df1fec1a-ca5b-4c1e-862d-8df40fd011a1.jpg?v=1779043301" alt="">
+        </div>
+        <div class="product-cat">Boxeo</div>
+        <div class="product-name">Máquina de Boxeo Musical Bluetooth</div>
+        <div class="product-price">48,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_639665bc-43ab-4ff8-922b-40b9719d491b.png?v=1779043719" alt="">
+        </div>
+        <div class="product-cat">Boxeo</div>
+        <div class="product-name">Panel de Boxeo Inteligente + Guantes</div>
+        <div class="product-price">38,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_757bb9a9-0dd3-4b0b-8d3e-12efcde44066.jpg?v=1778868335" alt="">
+        </div>
+        <div class="product-cat">Abdominales</div>
+        <div class="product-name">Set Rodillos Abdominales</div>
+        <div class="product-price">49,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_1ef70b77-91ae-471a-881d-2c6f4920523f.jpg?v=1778869614" alt="">
+        </div>
+        <div class="product-cat">Abdominales</div>
+        <div class="product-name">Rodillo AB Pro Rebote Automático</div>
+        <div class="product-price">29,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/PANELAZ_2024-11-07-13-25-01.jpg?v=1778868189" alt="">
+        </div>
+        <div class="product-cat">Niños</div>
+        <div class="product-name">Máquina de Boxeo Infantil + Guantes</div>
+        <div class="product-price">29,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/GYM_1738952320.jpg?v=1778868196" alt="">
+        </div>
+        <div class="product-cat">Tonificación</div>
+        <div class="product-name">Set Rodillo AB Tonificación</div>
+        <div class="product-price">22,49 €</div>
+      </article>
+      <!-- Ocultos -->
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_aa3096e1-75e8-468c-9899-085af95d1aac.jpg?v=1778869560" alt="">
+        </div>
+        <div class="product-cat">Fuerza</div>
+        <div class="product-name">Resorte Muscular en U</div>
+        <div class="product-price">21,39 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_deb7c214-d079-49b0-a36f-f014454f1dcd.webp?v=1778869944" alt="">
+        </div>
+        <div class="product-cat">Push-up</div>
+        <div class="product-name">Tabla Push-Up Plegable</div>
+        <div class="product-price">19,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file.webp?v=1778869918" alt="">
+        </div>
+        <div class="product-cat">Push-up</div>
+        <div class="product-name">Soportes de Flexiones Push-Up</div>
+        <div class="product-price">19,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/KITPILATES_1765634332.jpg?v=1778868186" alt="">
+        </div>
+        <div class="product-cat">Pilates</div>
+        <div class="product-name">Kit Pilates Portátil</div>
+        <div class="product-price">14,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/CINTA_1733499007.jpg?v=1778868200" alt="">
+        </div>
+        <div class="product-cat">Bandas</div>
+        <div class="product-name">Set Bandas Elásticas 5 Niveles</div>
+        <div class="product-price">9,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/bandas_elascticas_02-11-2022.png?v=1778868193" alt="">
+        </div>
+        <div class="product-cat">Bandas</div>
+        <div class="product-name">Kit Bandas de Resistencia</div>
+        <div class="product-price">14,49 €</div>
+      </article>
+    </div>
+    <div class="see-more-wrap">
+      <button class="see-more" data-grid="maquinas">
+        <span class="see-more-text">Ver más</span>
+        <span class="arrow">↓</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     ACCESORIOS
+     ============================ -->
+<section class="collection" id="accesorios">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-tag reveal">Tech & Accesorios</div>
+        <h2 class="section-title reveal delay-1">Accesorios <span class="italic">esenciales</span></h2>
+      </div>
+      <p class="section-desc reveal delay-2">Smartwatches, auriculares, botellas y los detalles que potencian tu entrenamiento.</p>
+    </div>
+    <div class="product-grid" data-grid="accesorios">
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/smarplata_2024-11-12-18-24-12.jpg?v=1775230939" alt="">
+        </div>
+        <div class="product-cat">Smartwatch</div>
+        <div class="product-name">Smartwatch Plata Acero Inoxidable</div>
+        <div class="product-price">30,51 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/18_2023-06-06-17-57-58.jpg?v=1775230906" alt="">
+        </div>
+        <div class="product-cat">Smartwatch</div>
+        <div class="product-name">Ultra Pro Smartwatch Negro + Correa</div>
+        <div class="product-price">27,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/51PKmnRvi1L_2023-06-06-18-00-00._AC_UF1000_1000_QL80.jpg?v=1775230902" alt="">
+        </div>
+        <div class="product-cat">Smartwatch</div>
+        <div class="product-name">Ultra Pro Smartwatch Gris + Correa</div>
+        <div class="product-price">25,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/WechatIMG1928_1735057615.jpg?v=1775230891" alt="">
+        </div>
+        <div class="product-cat">Smartwatch</div>
+        <div class="product-name">Smartwatch S10 2.2" Negro</div>
+        <div class="product-price">21,50 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/anillon_2024-05-27-13-22-30_ea9f0523-e800-46f7-b2b8-57aef9870657.jpg?v=1775302261" alt="">
+        </div>
+        <div class="product-cat">Wearable</div>
+        <div class="product-name">Anillo Inteligente Tipo Oura</div>
+        <div class="product-price">33,95 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/417tlrQNvsL_2023-05-30-13-24-36.jpg?v=1775302070" alt="">
+        </div>
+        <div class="product-cat">Auriculares</div>
+        <div class="product-name">Auriculares PRO Max ANC Negros</div>
+        <div class="product-price">21,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/61Swlvdf-FS_2024-01-15-12-24-20._AC_SL1000.jpg?v=1775302080" alt="">
+        </div>
+        <div class="product-cat">Auriculares</div>
+        <div class="product-name">Auriculares TWS Sport</div>
+        <div class="product-price">17,59 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file.png?v=1773939735" alt="">
+        </div>
+        <div class="product-cat">Botellas</div>
+        <div class="product-name">Botella Reutilizable 900ML</div>
+        <div class="product-price">19,99 €</div>
+      </article>
+      <!-- Ocultos -->
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/51diBoBoTOL_2023-07-14-18-07-26._AC.jpg?v=1775230900" alt="">
+        </div>
+        <div class="product-cat">Smartwatch</div>
+        <div class="product-name">Ultra Pro Smartwatch Blanco + Correa</div>
+        <div class="product-price">25,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/SMA_1736426595.jpg?v=1775230918" alt="">
+        </div>
+        <div class="product-cat">Smartwatch</div>
+        <div class="product-name">Ultra Pro Smartwatch 2 Colores</div>
+        <div class="product-price">22,49 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/WechatIMG1929_1735057696.jpg?v=1775230893" alt="">
+        </div>
+        <div class="product-cat">Smartwatch</div>
+        <div class="product-name">Smartwatch S10 2.2" Blanco</div>
+        <div class="product-price">21,50 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/WechatIMG1930_1735057721.jpg?v=1775230896" alt="">
+        </div>
+        <div class="product-cat">Smartwatch</div>
+        <div class="product-name">Smartwatch S10 2.2" Rosa</div>
+        <div class="product-price">21,50 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/51aJFxG1wL_2023-05-30-13-28-47.jpg?v=1775302067" alt="">
+        </div>
+        <div class="product-cat">Auriculares</div>
+        <div class="product-name">Auriculares PRO Max ANC Rojos</div>
+        <div class="product-price">21,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/631274026_max_2023-05-30-13-31-36.jpg?v=1775302064" alt="">
+        </div>
+        <div class="product-cat">Auriculares</div>
+        <div class="product-name">Auriculares PRO Max ANC Azules</div>
+        <div class="product-price">21,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/669125485_max_2023-05-30-13-33-04.jpg?v=1775230909" alt="">
+        </div>
+        <div class="product-cat">Auriculares</div>
+        <div class="product-name">Auriculares PRO Max ANC Verdes</div>
+        <div class="product-price">21,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/4c8d65569ecb882dfbafe53d4d01e137_2023-05-30-13-27-14.jpg?v=1775230949" alt="">
+        </div>
+        <div class="product-cat">Auriculares</div>
+        <div class="product-name">Auriculares PRO Max ANC Grises</div>
+        <div class="product-price">23,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/aird_2024-05-30-17-45-19.jpg?v=1775302073" alt="">
+        </div>
+        <div class="product-cat">Auriculares</div>
+        <div class="product-name">Auriculares Inalámbricos 5.0</div>
+        <div class="product-price">14,98 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_141a8035-75a3-4f7d-bb36-24a571869cbe.jpg?v=1773690754" alt="">
+        </div>
+        <div class="product-cat">Botellas</div>
+        <div class="product-name">Botella Essential 900ml</div>
+        <div class="product-price">19,49 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_7f265032-ab34-4cfe-b33e-49b7f98846e4.jpg?v=1773690331" alt="">
+        </div>
+        <div class="product-cat">Botellas</div>
+        <div class="product-name">Botella Térmica 500ml</div>
+        <div class="product-price">22,50 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/WechatIMG1810_2024-11-18-17-14-16.jpg?v=1773941518" alt="">
+        </div>
+        <div class="product-cat">Botellas</div>
+        <div class="product-name">Flex Bottle 500ml</div>
+        <div class="product-price">11,59 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_ddd0a795-58e5-4c56-9cd3-25b0c578c379.jpg?v=1773691238" alt="">
+        </div>
+        <div class="product-cat">Hidratación</div>
+        <div class="product-name">Pack Hidratación 3 Piezas Hexagonales</div>
+        <div class="product-price">21,00 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/product-file_af0b4aca-efb4-49bf-b866-33c53bda6241.jpg?v=1773680761" alt="">
+        </div>
+        <div class="product-cat">Hidratación</div>
+        <div class="product-name">Pack Hidratación 3 Piezas</div>
+        <div class="product-price">19,95 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S920345831fa1488bb21a31345bfaf0a7z.webp?v=1779559606" alt="">
+        </div>
+        <div class="product-cat">Guantes</div>
+        <div class="product-name">Guantes Gym Microfiber</div>
+        <div class="product-price">15,39 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S3ebb4643e7d74fe4aed1d79a2776412eH.webp?v=1779559604" alt="">
+        </div>
+        <div class="product-cat">Guantes</div>
+        <div class="product-name">Guantes Fitness con Muñequera</div>
+        <div class="product-price">14,99 €</div>
+      </article>
+    </div>
+    <div class="see-more-wrap">
+      <button class="see-more" data-grid="accesorios">
+        <span class="see-more-text">Ver más</span>
+        <span class="arrow">↓</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     SUPLEMENTOS
+     ============================ -->
+<section class="collection" id="suplementos">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-tag reveal">Nutrición</div>
+        <h2 class="section-title reveal delay-1">Suplementos <span class="italic">premium</span></h2>
+      </div>
+      <p class="section-desc reveal delay-2">Fórmulas para sostener tu energía y acelerar tu recuperación. Sin compromisos.</p>
+    </div>
+    <div class="product-grid" data-grid="suplementos">
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/EVOPOWER3.png?v=1778957597" alt="">
+        </div>
+        <div class="product-cat">Nootrópico</div>
+        <div class="product-name">Evo Power Energía & Enfoque</div>
+        <div class="product-price">35,00 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/SMARTCOFFE3.png?v=1778956529" alt="">
+        </div>
+        <div class="product-cat">Café funcional</div>
+        <div class="product-name">Smart Coffee Energía Inteligente</div>
+        <div class="product-price">35,00 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/D_NQ_NP_966798-MLM83303387472_042025-O.webp?v=1778958889" alt="">
+        </div>
+        <div class="product-cat">Bienestar mujer</div>
+        <div class="product-name">Evo Woman Balance</div>
+        <div class="product-price">35,00 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/D_NQ_NP_754693-MLM85062179456_052025-O_7d65cd19-4b99-4937-93f0-1d0ec99b170c.webp?v=1778961295" alt="">
+        </div>
+        <div class="product-cat">Detox</div>
+        <div class="product-name">Evo Detox Tea Limpieza Natural</div>
+        <div class="product-price">21,49 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/H3bbc04fcc8b94563885e166ee99ab5e8b.webp?v=1779559607" alt="">
+        </div>
+        <div class="product-cat">Creatina</div>
+        <div class="product-name">Creatina Monohidrato Natualrise 300g</div>
+        <div class="product-price">15,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/S9431b56ea62348c1a6a4156769163ac3i.webp?v=1779559607" alt="">
+        </div>
+        <div class="product-cat">Creatina</div>
+        <div class="product-name">Creatina Monohidrato LyonsBarry 300g</div>
+        <div class="product-price">16,59 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/WechatIMG2378_1763553414.jpg?v=1778866746" alt="">
+        </div>
+        <div class="product-cat">Creatina mujer</div>
+        <div class="product-name">Creatina Women + Colágeno & BCAA</div>
+        <div class="product-price">15,99 €</div>
+      </article>
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/TURKESTERONE_1766407719.jpg?v=1778866749" alt="">
+        </div>
+        <div class="product-cat">Rendimiento</div>
+        <div class="product-name">Turkesterone Pro</div>
+        <div class="product-price">14,99 €</div>
+      </article>
+      <!-- Ocultos -->
+      <article class="product-card">
+        <div class="product-img-wrap"><div class="product-shadow"></div>
+          <img class="product-img" loading="lazy" src="https://cdn.shopify.com/s/files/1/0993/0355/5360/files/res_1d7ecc17f108aaaf20967c68c0b806b4_1775390550.jpg?v=1778866752" alt="">
+        </div>
+        <div class="product-cat">Gummies</div>
+        <div class="product-name">Shilajit Gummies 30 Uds</div>
+        <div class="product-price">13,99 €</div>
+      </article>
+    </div>
+    <div class="see-more-wrap">
+      <button class="see-more" data-grid="suplementos">
+        <span class="see-more-text">Ver más</span>
+        <span class="arrow">↓</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>Comienza tu <span class="italic">camino</span>.</h2>
+  <p>Únete a CALYRA. Equipamiento, ropa y suplementos pensados para que entrenes con propósito.</p>
+  <a href="https://www.calyrashop.com/" target="_blank" class="btn btn-primary">Ir a la tienda</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <img src="https://www.calyrashop.com/cdn/shop/files/calyrashop_logo.jpg?height=120&v=1774752813" alt="CALYRA">
+      <p>Donde el estilo se une al rendimiento. Entrena con propósito. Cuídate con consciencia. Vive en movimiento.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Tienda</h4>
+      <a href="#ropa-fitness">Ropa Fitness</a>
+      <a href="#maquinas">Máquinas</a>
+      <a href="#accesorios">Accesorios</a>
+      <a href="#suplementos">Suplementos</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ayuda</h4>
+      <a href="#">Envíos</a>
+      <a href="#">Devoluciones</a>
+      <a href="#">Tallas</a>
+      <a href="#">Contacto</a>
+    </div>
+    <div class="footer-col">
+      <h4>Síguenos</h4>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">YouTube</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© <span id="year"></span> CALYRA SHOP · Todos los derechos reservados</div>
+    <div>Train With Intention.</div>
+  </div>
+</footer>
+
+<script>
+  // Año footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Header scrolled
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Tabs Hombre / Mujer
+  const tabs = document.getElementById('tabs');
+  const tabBtns = tabs.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      if (target === 'women') tabs.classList.add('women');
+      else tabs.classList.remove('women');
+      panels.forEach(p => p.classList.toggle('active', p.dataset.panel === target));
+    });
+  });
+
+  // Botón "Ver más" — expande/colapsa cada grid
+  document.querySelectorAll('.see-more').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const gridId = btn.dataset.grid;
+      const grid = document.querySelector('.product-grid[data-grid="' + gridId + '"]');
+      if (!grid) return;
+      const expanded = grid.classList.toggle('expanded');
+      btn.classList.toggle('expanded', expanded);
+      btn.querySelector('.see-more-text').textContent = expanded ? 'Ver menos' : 'Ver más';
+    });
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const t = document.querySelector(id);
+        if (t) {
+          e.preventDefault();
+          t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>

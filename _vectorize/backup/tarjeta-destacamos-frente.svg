@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 910 610" width="910" height="610">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&amp;family=Hanken+Grotesk:wght@500;700&amp;display=swap');
+      .lbl{font-family:'Hanken Grotesk',Arial,sans-serif;font-weight:700;letter-spacing:5px;}
+      .brand{font-family:'Bricolage Grotesque',Arial,sans-serif;font-weight:800;letter-spacing:-3px;}
+      .slogan{font-family:'Hanken Grotesk',Arial,sans-serif;font-weight:500;}
+      .dtw{font-family:'Bricolage Grotesque',Arial,sans-serif;font-weight:800;letter-spacing:-1px;}
+    </style>
+    <radialGradient id="g1" cx="100%" cy="105%" r="75%">
+      <stop offset="0%" stop-color="#E0B23C" stop-opacity="0.30"/>
+      <stop offset="60%" stop-color="#E0B23C" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="92%" cy="6%" r="55%">
+      <stop offset="0%" stop-color="#E0B23C" stop-opacity="0.15"/>
+      <stop offset="60%" stop-color="#E0B23C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="910" height="610" fill="#0c0c0f"/>
+  <rect width="910" height="610" fill="url(#g1)"/>
+  <rect width="910" height="610" fill="url(#g2)"/>
+
+  <!-- etiqueta arriba izq -->
+  <text x="80" y="108" class="lbl" font-size="27" fill="#E0B23C">DISEÑO · DESARROLLO · WEB</text>
+
+  <!-- isotipo arriba der -->
+  <g transform="translate(742,72)">
+    <g transform="scale(0.78)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+      <path d="M16 30 L48 6 L80 30" stroke="#E0B23C"/>
+      <path d="M16 52 L48 28 L80 52" stroke="#ffffff" stroke-opacity="0.88"/>
+    </g>
+    <text x="48" y="92" text-anchor="middle" class="dtw" font-size="34" fill="#ffffff">D<tspan fill="#E0B23C">T</tspan>W</text>
+  </g>
+
+  <!-- marca -->
+  <text x="78" y="330" class="brand" font-size="112" fill="#ffffff">Destacamos</text>
+  <text x="78" y="432" class="brand" font-size="112" fill="#E0B23C">Tu Web</text>
+
+  <!-- eslogan abajo izq -->
+  <text x="80" y="520" class="slogan" font-size="30" fill="#9a9aa0">Diseñamos el futuro de tu negocio</text>
+  <text x="80" y="558" class="slogan" font-size="30" fill="#9a9aa0">con webs hechas a medida.</text>
+
+  <!-- est abajo der -->
+  <text x="830" y="518" text-anchor="end" class="lbl" font-size="25" fill="#9a9aa0">EST. 2026</text>
+  <text x="830" y="553" text-anchor="end" class="lbl" font-size="25" fill="#9a9aa0">AGENCIA · ES</text>
+</svg>
