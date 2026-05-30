@@ -96,7 +96,8 @@
   header.scrolled .nav-toprow{display:none}
   nav{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
   .nav-left{display:flex;align-items:center}
-  .nav-logo{font-family:'Bricolage Grotesque';font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:#fff}
+  .nav-logo{display:inline-flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque';font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:#fff}
+  .nav-logo svg{width:23px;height:auto;display:block;flex:0 0 auto}
   .nav-mid{display:flex;gap:30px;justify-content:center}
   .nav-mid a{font-family:'Hanken Grotesk';font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.85;transition:.25s}
   .nav-mid a:hover{opacity:1;color:var(--accent)}
@@ -227,6 +228,7 @@
   .foot-top h2{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(1.8rem,3.4vw,3rem);letter-spacing:-.02em;line-height:1.1;margin-bottom:32px}
   .foot-bottom{max-width:var(--maxw);margin:0 auto;width:100%;padding:0 28px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
   .foot-brand .tag{font-size:1rem;font-weight:500;margin-bottom:12px;max-width:34ch}
+  .foot-brand .foot-chev{width:64px;height:auto;display:block;margin-bottom:18px}
   .foot-brand h2{font-family:'Bricolage Grotesque';font-weight:800;text-transform:uppercase;font-size:clamp(3.4rem,15vw,13rem);line-height:.8;letter-spacing:-.04em}
   .foot-links{display:flex;flex-direction:column;gap:8px;text-align:right}
   .foot-links a{font-family:'Hanken Grotesk';font-weight:700;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;opacity:.65;transition:.25s}
@@ -282,7 +284,7 @@
     </a>
   </div>
   <nav>
-    <div class="nav-left"><a href="#inicio" class="nav-logo">Destacamos Tu Web</a></div>
+    <div class="nav-left"><a href="#inicio" class="nav-logo"><svg viewBox="0 0 96 58" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 30 L48 6 L80 30" stroke="#E0B23C" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 52 L48 28 L80 52" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity=".88"/></svg>Destacamos Tu Web</a></div>
     <div class="nav-mid">
       <a href="#nosotros">Nosotros</a>
       <a href="#servicios">Servicios</a>
@@ -540,6 +542,7 @@
   <div class="foot-bottom">
     <div class="foot-brand">
       <p class="tag">Agencia de diseño y desarrollo web.<br>Diseñamos el futuro de tu negocio.</p>
+      <svg class="foot-chev" viewBox="0 0 96 58" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 30 L48 6 L80 30" stroke="#E0B23C" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 52 L48 28 L80 52" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity=".88"/></svg>
       <h2>Destacamos<br>Tu Web</h2>
     </div>
     <div class="foot-links">
