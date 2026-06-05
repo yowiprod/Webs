@@ -1,0 +1,34 @@
+═══════════════════════════════════════════════
+   CALYRA SHOP — Propuesta de nueva página web
+═══════════════════════════════════════════════
+
+¡Hola! Aquí tienes la propuesta de diseño para la nueva
+web de Calyra Shop.
+
+
+CÓMO VERLA
+──────────
+Haz doble clic en el archivo "index.html".
+Se abrirá en tu navegador (Chrome, Edge, Safari...).
+
+Necesitas conexión a internet para que se vean
+las fotos de los productos.
+
+
+QUÉ ES ESTO
+───────────
+Es una maqueta visual: sirve para que veas cómo
+quedaría el diseño, los colores y la distribución.
+
+Puedes navegar y hacer scroll con normalidad.
+Los botones de "comprar" todavía no están conectados:
+esta versión es solo para enseñar el aspecto final.
+
+
+¿QUIERES CAMBIAR ALGO?
+──────────────────────
+Dime qué te gustaría ajustar (colores, textos,
+orden de las secciones, fotos...) y lo retocamos.
+
+
+═══════════════════════════════════════════════
