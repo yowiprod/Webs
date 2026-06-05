@@ -1,0 +1,65 @@
+{%- comment -%} Banner de consentimiento de cookies YOWIPROD {%- endcomment -%}
+<style>
+#yp-ck{position:fixed;left:16px;bottom:84px;z-index:2147483647;width:min(380px,calc(100vw - 32px));
+  background:rgba(16,13,9,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(207,162,74,.32);border-radius:14px;padding:18px 18px 16px;
+  box-shadow:0 24px 60px -16px rgba(0,0,0,.8);font-family:'Inter',system-ui,sans-serif;
+  color:#ece4d4;transform:translateY(20px);opacity:0;transition:.35s ease;pointer-events:none}
+#yp-ck.show{transform:translateY(0);opacity:1;pointer-events:auto}
+#yp-ck h4{margin:0 0 6px;font-size:14px;font-weight:700;color:#f3d997;letter-spacing:.3px}
+#yp-ck p{margin:0 0 14px;font-size:12.5px;line-height:1.55;color:rgba(236,228,212,.82)}
+#yp-ck a{color:#f3d997;text-decoration:underline}
+#yp-ck .row{display:flex;gap:8px}
+#yp-ck button{flex:1;cursor:pointer;border-radius:8px;font-size:12.5px;font-weight:700;padding:10px 12px;font-family:inherit;transition:.15s;border:1px solid transparent}
+#yp-ck .acc{background:linear-gradient(180deg,#f3d997,#cfa24a);color:#0a0806}
+#yp-ck .acc:hover{filter:brightness(1.07)}
+#yp-ck .rej{background:transparent;border-color:rgba(207,162,74,.4);color:#ece4d4}
+#yp-ck .rej:hover{border-color:#cfa24a;color:#f3d997}
+@media(max-width:600px){#yp-ck{left:12px;right:12px;width:auto;bottom:80px}}
+</style>
+
+<div id="yp-ck" role="dialog" aria-label="Aviso de cookies">
+  <h4>🍪 Cookies</h4>
+  <p>Usamos cookies propias y de terceros (Google, Meta, TikTok) para análisis y publicidad. Puedes aceptarlas o rechazarlas. <a href="/pages/politica-de-cookies">Más información</a>.</p>
+  <div class="row">
+    <button class="rej" id="yp-ck-rej" type="button">Rechazar</button>
+    <button class="acc" id="yp-ck-acc" type="button">Aceptar</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KEY='yp_cookie_consent_v1';
+  var box=document.getElementById('yp-ck'); if(!box) return;
+  function show(){ setTimeout(function(){ box.classList.add('show'); }, 600); }
+  function hide(){ box.classList.remove('show'); }
+  function cp(){ return (window.Shopify && Shopify.customerPrivacy) || null; }
+  function decide(grant){
+    try{
+      var c=cp();
+      if(c && c.setTrackingConsent){
+        c.setTrackingConsent({analytics:grant,marketing:grant,preferences:grant,sale_of_data:grant}, function(){});
+      }
+    }catch(e){}
+    try{ localStorage.setItem(KEY, grant?'accepted':'rejected'); }catch(e){}
+    hide();
+  }
+  document.getElementById('yp-ck-acc').addEventListener('click', function(){ decide(true); });
+  document.getElementById('yp-ck-rej').addEventListener('click', function(){ decide(false); });
+
+  function decideShow(){
+    try{
+      var c=cp();
+      if(c && c.shouldShowBanner){ if(c.shouldShowBanner()) show(); return; }
+    }catch(e){}
+    // Fallback: API de consentimiento no disponible (región sin requerimiento)
+    try{ if(!localStorage.getItem(KEY)) show(); }catch(e){ show(); }
+  }
+  try{
+    if(cp()){ decideShow(); }
+    else if(window.Shopify && Shopify.loadFeatures){
+      Shopify.loadFeatures([{name:'consent-tracking-api',version:'0.1'}], function(){ decideShow(); });
+    } else { decideShow(); }
+  }catch(e){ decideShow(); }
+})();
+</script>

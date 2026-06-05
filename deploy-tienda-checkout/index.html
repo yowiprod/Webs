@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>DISTGAR S.L. — Tienda con checkout (DEMO) · Electrodoméstico en Andorra</title>
+<meta name="description" content="Tienda de electrodoméstico oficial Cecotec en Andorra. Precios con IGI 4,5% — hasta un 14% menos que en España. Bolero, Conga y más. Sant Julià de Lòria.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===================== TOKENS ===================== */
+:root{
+  --navy-950:#070f1f;
+  --navy-900:#0a1628;
+  --navy-850:#0d1d34;
+  --navy-800:#11243f;
+  --navy-700:#16335c;
+  --blue:#2563eb;
+  --blue-bright:#3b82f6;
+  --blue-soft:#60a5fa;
+  --blue-deep:#1d4ed8;
+  --paper:#eef2f8;
+  --paper-2:#f6f9fd;
+  --white:#ffffff;
+  --ink:#0a1628;
+  --ink-soft:#33425c;
+  --muted-light:#5d6e89;
+  --muted-dark:#8ba0bf;
+  --line-light:rgba(10,22,40,.10);
+  --line-dark:rgba(255,255,255,.10);
+  --max:1280px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:#000080;color:var(--white);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.dsp{font-family:'Archivo',sans-serif;line-height:1;letter-spacing:-.02em;font-weight:800}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.blue{color:var(--blue-bright)}
+::selection{background:var(--blue);color:#fff}
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:var(--navy-950)}
+::-webkit-scrollbar-thumb{background:var(--blue-deep);border-radius:8px;border:2px solid var(--navy-950)}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 34px;position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:11px;font-family:'Archivo',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--blue-bright)}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--blue-bright)}
+
+/* ===================== BUTTONS ===================== */
+.btn{display:inline-flex;align-items:center;gap:11px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.86rem;letter-spacing:.02em;padding:16px 30px;border-radius:4px;cursor:pointer;border:1px solid transparent;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,background .3s,color .3s,border-color .3s}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 14px 38px -14px rgba(37,99,235,.8)}
+.btn-blue:hover{transform:translateY(-3px);background:var(--blue-bright);box-shadow:0 20px 50px -14px rgba(59,130,246,.9)}
+.btn-ghost{background:transparent;border-color:rgba(255,255,255,.28);color:#fff}
+.btn-ghost:hover{transform:translateY(-3px);border-color:var(--blue-bright);color:var(--blue-soft)}
+.btn-dark{background:var(--navy-800);color:#fff;border-color:transparent}
+.btn-dark:hover{transform:translateY(-3px);background:var(--navy-700)}
+.btn svg{width:17px;height:17px}
+
+/* ===================== HEADER / NAV ===================== */
+header{position:fixed;inset:0 0 auto 0;z-index:200;background:#fff;border-bottom:1px solid rgba(10,22,40,.08);transition:background .45s ease,border-color .45s ease,backdrop-filter .45s,box-shadow .45s}
+header.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(10,22,40,.12);box-shadow:0 10px 30px -20px rgba(10,22,40,.4)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 40px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{height:42px;width:auto}
+.brand .bn{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.18rem;letter-spacing:.14em}
+.nav-right{display:flex;align-items:center;gap:26px}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-family:'Archivo',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.04em;color:#000080;position:relative;transition:color .25s;text-transform:uppercase}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:2px;background:#000080;transition:width .3s}
+.nav-links a:hover{color:var(--blue)}.nav-links a:hover::after{width:100%}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:9px;z-index:210}
+.burger span{width:26px;height:2px;background:var(--navy-700);transition:.3s;border-radius:2px}
+.burger.open span{background:#fff}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile menu overlay */
+.mobile-menu{position:fixed;inset:0;z-index:205;background:rgba(7,15,31,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.mobile-menu.open{opacity:1;visibility:visible}
+.mobile-menu a{font-family:'Archivo',sans-serif;font-weight:800;font-size:2rem;color:#fff;letter-spacing:-.01em;padding:8px 0;transition:color .25s}
+.mobile-menu a:hover{color:var(--blue-soft)}
+
+/* ===================== SCROLL PROGRESS (right rail, à la Pilar) ===================== */
+.rail{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;align-items:center;gap:9px;mix-blend-mode:difference}
+.rail .tk{width:14px;height:1.5px;background:rgba(255,255,255,.45);transition:.4s}
+.rail .tk.lg{width:26px}
+.rail-prog{position:fixed;right:31px;top:0;height:0;width:2px;background:var(--blue-bright);z-index:91;box-shadow:0 0 14px var(--blue-bright);transition:height .12s linear}
+@media(max-width:1100px){.rail,.rail-prog{display:none}}
+
+/* ===================== HERO (scroll-video scrub + capítulos) ===================== */
+.hero{position:relative;height:420vh;background:var(--navy-950)}
+.hero-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;display:flex;align-items:center}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero .poster{z-index:0}
+.hero-veil{position:absolute;inset:0;z-index:1;background:
+  radial-gradient(120% 90% at 78% 50%,rgba(37,99,235,.16) 0%,transparent 55%),
+  linear-gradient(90deg,rgba(7,15,31,.94) 0%,rgba(7,15,31,.62) 42%,rgba(7,15,31,.20) 100%),
+  linear-gradient(0deg,rgba(7,15,31,.95) 0%,transparent 32%,transparent 72%,rgba(7,15,31,.55) 100%)}
+.hero-ch{position:absolute;inset:0;z-index:3;display:flex;align-items:center;opacity:0;visibility:hidden;transition:opacity .7s cubic-bezier(.4,0,.2,1),visibility .7s}
+.hero-ch.on{opacity:1;visibility:visible}
+.hero-ch .in{max-width:var(--max);margin:0 auto;padding:0 40px;width:100%}
+.hero-ch .in>*{transform:translateY(30px);opacity:0;transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .8s}
+.hero-ch.on .in>*{transform:none;opacity:1}
+.hero-ch.on .in>*:nth-child(2){transition-delay:.08s}
+.hero-ch.on .in>*:nth-child(3){transition-delay:.16s}
+.hero-ch.on .in>*:nth-child(4){transition-delay:.24s}
+.kik{font-family:'Archivo',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--blue-soft);display:block;margin-bottom:22px}
+.hero-ch h1{font-size:clamp(2.8rem,7vw,5.6rem);font-weight:900;max-width:14ch;text-transform:uppercase;letter-spacing:-.02em}
+.hero-ch h1 em{font-style:normal;color:var(--blue-bright)}
+.hero-ch p.lead{font-size:1.18rem;color:#cdd9ec;max-width:500px;margin:26px 0 36px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.scrollcue{position:absolute;left:50%;bottom:46px;transform:translateX(-50%);z-index:4;color:var(--muted-dark);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:9px;font-family:'Archivo',sans-serif;font-weight:600;transition:opacity .4s}
+.scrollcue .ms{width:22px;height:36px;border:2px solid rgba(255,255,255,.3);border-radius:12px;position:relative}
+.scrollcue .ms::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:7px;background:var(--blue-bright);border-radius:2px;animation:cue 1.6s infinite}
+@keyframes cue{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}80%{opacity:0;transform:translate(-50%,12px)}}
+
+/* ===================== STRIP (marcas) ===================== */
+.strip{background:var(--navy-950);padding:46px 0;border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);overflow:hidden}
+.strip .lbl{text-align:center;font-family:'Archivo',sans-serif;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:30px}
+.marquee{display:flex;gap:70px;align-items:center;width:max-content;animation:slide 34s linear infinite}
+.marquee img{height:30px;width:auto;opacity:.55;filter:brightness(0) invert(1);transition:opacity .3s}
+.marquee img:hover{opacity:1}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ===================== FEATURES (sticky scrollytelling) ===================== */
+.features{position:relative;background:var(--paper);color:var(--ink)}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr}
+.feat-text{padding:0 60px 0 max(34px,calc((100vw - var(--max))/2 + 34px))}
+.feat-step{min-height:100vh;display:flex;flex-direction:column;justify-content:center;max-width:520px;padding:90px 0}
+.feat-step .num{font-family:'Archivo',sans-serif;font-weight:800;font-size:.82rem;letter-spacing:.2em;color:var(--blue);margin-bottom:18px}
+.feat-step .topic{font-family:'Archivo',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted-light);margin-bottom:14px}
+.feat-step h2{font-size:clamp(2.1rem,4vw,3.4rem);font-weight:900;text-transform:uppercase;color:var(--ink);margin-bottom:22px;line-height:1.02}
+.feat-step p{color:var(--ink-soft);font-size:1.08rem;margin-bottom:26px}
+.feat-step ul{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:30px}
+.feat-step li{display:flex;gap:13px;align-items:flex-start;color:var(--ink-soft);font-size:1rem}
+.feat-step li svg{width:19px;height:19px;flex:0 0 auto;margin-top:3px;color:var(--blue)}
+/* sticky media panel */
+.feat-media{position:sticky;top:0;height:100vh;background:linear-gradient(160deg,var(--navy-850),var(--navy-950));overflow:hidden;display:flex;align-items:center;justify-content:center}
+.feat-media::before{content:"";position:absolute;width:78%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.35),transparent 65%);filter:blur(20px)}
+.feat-media .grid-tex{position:absolute;inset:0;background-image:linear-gradient(var(--line-dark) 1px,transparent 1px),linear-gradient(90deg,var(--line-dark) 1px,transparent 1px);background-size:54px 54px;opacity:.6;mask-image:radial-gradient(circle at center,#000 30%,transparent 75%)}
+.feat-prod{position:absolute;max-height:74%;max-width:72%;width:auto;object-fit:contain;opacity:0;transform:translateY(40px) scale(.94);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 50px 70px rgba(0,0,0,.6));z-index:2}
+.feat-prod.on{opacity:1;transform:none}
+.feat-tag{position:absolute;bottom:48px;left:0;right:0;text-align:center;font-family:'Archivo',sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--blue-soft);opacity:0;transition:opacity .6s;z-index:3}
+.feat-tag.on{opacity:1}
+
+/* ===================== SHOWREEL (full-bleed cinemático) ===================== */
+.reel{position:relative;height:100vh;overflow:hidden;display:flex;align-items:flex-end;background:var(--navy-950)}
+.reel video,.reel .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.reel-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(7,15,31,.92) 0%,transparent 45%,rgba(7,15,31,.4) 100%)}
+.reel .in{position:relative;z-index:2;width:100%;padding-bottom:90px}
+.reel h2{font-size:clamp(2.4rem,6vw,5rem);font-weight:900;text-transform:uppercase;max-width:18ch;line-height:1;margin:18px 0}
+.reel p{color:#cdd9ec;font-size:1.15rem;max-width:540px}
+
+/* ===================== AMBIENTE (foto real full-bleed) ===================== */
+.ambient{position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--navy-950)}
+.ambient img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:scale(1.04)}
+.ambient .veil{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(90deg,rgba(7,15,31,.92) 0%,rgba(7,15,31,.55) 42%,rgba(7,15,31,.12) 100%),
+  linear-gradient(0deg,rgba(7,15,31,.96) 0%,rgba(7,15,31,.22) 52%,rgba(7,15,31,.55) 100%),
+  radial-gradient(120% 80% at 16% 100%,rgba(37,99,235,.24),transparent 58%)}
+.ambient .in{position:relative;z-index:2;padding:0 0 86px}
+.ambient h2{font-size:clamp(2.2rem,5vw,4.1rem);font-weight:900;text-transform:uppercase;line-height:1;max-width:17ch;margin:18px 0 22px}
+.ambient h2 em{font-style:normal;color:var(--blue-bright)}
+.ambient p{color:#cdd9ec;font-size:1.14rem;max-width:540px;margin-bottom:30px}
+
+/* ===================== CLIENTES (galería horizontal) ===================== */
+.clients{background:var(--paper-2);color:var(--ink);padding:120px 0 130px}
+.clients .head{text-align:center;max-width:760px;margin:0 auto 60px}
+.clients .head h2{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:900;text-transform:uppercase;color:var(--ink)}
+.clients .head h2 em{font-style:normal;color:var(--blue)}
+.clients .head p{color:var(--muted-light);font-size:1.08rem;margin-top:16px}
+.cli-track{display:flex;gap:22px;overflow-x:auto;padding:10px 34px 30px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.cli-track::-webkit-scrollbar{display:none}
+.cli-card{flex:0 0 224px;scroll-snap-align:center;position:relative;border-radius:13px;overflow:hidden;aspect-ratio:4/5;background:linear-gradient(165deg,#ffffff,#dde6f2);box-shadow:0 20px 42px -26px rgba(10,22,40,.5)}
+.cli-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:20px 20px 82px;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.cli-card:hover img{transform:scale(1.05)}
+.cli-card .ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,15,31,.94) 0%,rgba(7,15,31,.6) 16%,transparent 42%);z-index:1}
+.cli-card .cap{position:absolute;left:18px;bottom:18px;right:18px;z-index:2}
+.cli-card .cap .t{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.02rem;text-transform:uppercase;color:#fff;line-height:1.1}
+.cli-card .cap .d{font-size:.78rem;color:var(--blue-soft);margin-top:5px}
+
+/* ===================== DUAL SHOWCASE (à la BLACK / WHITE) ===================== */
+.dual{display:grid;grid-template-columns:1fr 1fr;min-height:84vh}
+.dual .pane{position:relative;display:flex;align-items:flex-end;padding:60px;overflow:hidden;min-height:62vh}
+.dual .pane.dark{background:linear-gradient(160deg,var(--navy-800),var(--navy-950));color:#fff}
+.dual .pane.light{background:linear-gradient(160deg,var(--white),var(--paper));color:var(--ink)}
+.dual .pane img.prod{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);max-height:62%;width:auto;transition:transform .9s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 40px 60px rgba(0,0,0,.45))}
+.dual .pane:hover img.prod{transform:translate(-50%,-58%) scale(1.05)}
+.dual .pane .meta{position:relative;z-index:2}
+.dual .pane .meta .k{font-family:'Archivo',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;opacity:.7}
+.dual .pane .meta h3{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.8rem,3vw,2.6rem);text-transform:uppercase;margin-top:8px}
+.dual .pane.light .meta .k{color:var(--blue)}
+
+/* ===================== CATEGORÍAS ===================== */
+.cats{position:relative;background:var(--navy-950);padding:130px 0;overflow:hidden}
+.cats::before{content:"";position:absolute;width:46%;aspect-ratio:1;left:-12%;top:6%;background:radial-gradient(circle,rgba(37,99,235,.16),transparent 62%);filter:blur(44px);pointer-events:none}
+.cats::after{content:"";position:absolute;width:42%;aspect-ratio:1;right:-10%;bottom:-6%;background:radial-gradient(circle,rgba(96,165,250,.10),transparent 62%);filter:blur(44px);pointer-events:none}
+.cats .head{max-width:760px;margin-bottom:60px}
+.cats .head h2{font-size:clamp(2rem,4.4vw,3.4rem);font-weight:900;text-transform:uppercase}
+.cats .head p{color:var(--muted-dark);font-size:1.08rem;margin-top:16px}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.cat{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:300px;border:1px solid var(--line-dark);border-radius:16px;padding:24px;overflow:hidden;isolation:isolate;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .5s,box-shadow .5s}
+.cat::after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(165deg,var(--navy-800),var(--navy-950))}
+.cat::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;background:linear-gradient(165deg,rgba(37,99,235,.34),rgba(37,99,235,.03));transition:opacity .5s}
+.cat:hover{transform:translateY(-8px);border-color:rgba(96,165,250,.55);box-shadow:0 30px 60px -30px rgba(37,99,235,.75)}
+.cat:hover::before{opacity:1}
+.cat .glow{position:absolute;top:18%;left:50%;transform:translateX(-50%);width:80%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.28),transparent 64%);filter:blur(14px);z-index:0;opacity:.7;transition:opacity .5s}
+.cat:hover .glow{opacity:1}
+.cat .wm{position:absolute;left:22px;top:18px;font-family:'Archivo',sans-serif;font-weight:900;font-size:1.5rem;line-height:1;color:rgba(255,255,255,.14);z-index:2;pointer-events:none;letter-spacing:.04em;transition:color .5s}
+.cat:hover .wm{color:var(--blue-soft)}
+.cat .ar{position:absolute;right:20px;top:20px;z-index:2;color:var(--muted-dark);transition:transform .45s,color .45s}
+.cat:hover .ar{transform:translate(4px,-4px);color:#fff}
+.cat-img{position:absolute;top:48px;left:50%;transform:translateX(-50%);height:160px;width:auto;max-width:80%;object-fit:contain;z-index:1;filter:drop-shadow(0 26px 34px rgba(0,0,0,.55));transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.cat:hover .cat-img{transform:translateX(-50%) scale(1.07)}
+.cat-bot{position:relative;z-index:2}
+.cat h4{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.04rem;text-transform:uppercase;line-height:1.14;letter-spacing:.01em}
+.cat .see{display:inline-flex;align-items:center;gap:7px;margin-top:9px;font-family:'Archivo',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-soft);opacity:0;transform:translateY(7px);transition:opacity .45s,transform .45s}
+.cat .see svg{width:13px;height:13px}
+.cat:hover .see{opacity:1;transform:none}
+
+/* ===================== STATS ===================== */
+.stats{background:var(--navy-900);padding:90px 0;border-top:1px solid var(--line-dark)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+.stat .n{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(2.6rem,5vw,4rem);color:#fff;line-height:1}
+.stat .n em{font-style:normal;color:var(--blue-bright)}
+.stat .l{color:var(--muted-dark);font-size:.92rem;margin-top:10px;letter-spacing:.04em}
+
+/* ===================== CTA / CONTACTO ===================== */
+.cta{position:relative;background:linear-gradient(160deg,var(--navy-800),var(--navy-950));padding:130px 0;overflow:hidden}
+.cta::before{content:"";position:absolute;width:60%;aspect-ratio:1;right:-10%;top:-30%;background:radial-gradient(circle,rgba(37,99,235,.3),transparent 65%);filter:blur(30px)}
+.cta-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.cta h2{font-size:clamp(2.2rem,5vw,4rem);font-weight:900;text-transform:uppercase;line-height:1;margin-bottom:22px}
+.cta p{color:#cdd9ec;font-size:1.12rem;margin-bottom:34px;max-width:480px}
+.cta .acts{display:flex;gap:14px;flex-wrap:wrap}
+.contact-card{background:rgba(255,255,255,.04);border:1px solid var(--line-dark);border-radius:12px;padding:36px;backdrop-filter:blur(8px)}
+.contact-card .row{display:flex;gap:15px;padding:16px 0;border-bottom:1px solid var(--line-dark);align-items:flex-start}
+.contact-card .row:last-child{border-bottom:0;padding-bottom:0}
+.contact-card .row svg{width:20px;height:20px;color:var(--blue-bright);flex:0 0 auto;margin-top:3px}
+.contact-card .row .k{font-family:'Archivo',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-dark)}
+.contact-card .row .v{color:#e8eef8;font-size:1rem;font-weight:500}
+.contact-card .row .v a:hover{color:var(--blue-soft)}
+
+/* ===================== FOOTER ===================== */
+footer{background:var(--navy-950);padding:80px 0 36px;border-top:1px solid var(--line-dark)}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid var(--line-dark)}
+.foot-brand .brand img{height:38px}
+.foot-brand p{color:var(--muted-dark);font-size:.96rem;margin-top:20px;max-width:340px}
+.foot-col h5{font-family:'Archivo',sans-serif;font-weight:800;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin-bottom:20px}
+.foot-col a{display:block;color:var(--muted-dark);font-size:.94rem;padding:7px 0;transition:color .25s}
+.foot-col a:hover{color:var(--blue-soft)}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:14px}
+.foot-bot p{color:var(--muted-dark);font-size:.84rem}
+.foot-bot .official{font-family:'Archivo',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-soft);border:1px solid rgba(59,130,246,.3);border-radius:50px;padding:7px 16px}
+
+/* ===================== REVEAL ===================== */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}
+
+/* ===================== TIENDA (productos con precio) ===================== */
+.shop{position:relative;background:linear-gradient(180deg,var(--navy-950) 0%,var(--navy-850) 55%,var(--navy-950) 100%);color:#fff;padding:120px 0;overflow:hidden}
+.shop::before{content:"";position:absolute;width:60%;aspect-ratio:1;left:-15%;top:-8%;background:radial-gradient(circle,rgba(37,99,235,.20),transparent 60%);filter:blur(50px);pointer-events:none}
+.shop::after{content:"";position:absolute;width:52%;aspect-ratio:1;right:-12%;bottom:-12%;background:radial-gradient(circle,rgba(96,165,250,.13),transparent 60%);filter:blur(50px);pointer-events:none}
+.shop .head{max-width:820px;margin-bottom:14px;position:relative;z-index:1}
+.shop .head h2{font-size:clamp(2rem,4.4vw,3.4rem);font-weight:900;text-transform:uppercase;color:#fff}
+.shop .head h2 em{font-style:normal;color:var(--blue-bright)}
+.shop .head p{color:var(--muted-dark);font-size:1.08rem;margin-top:16px}
+.shop .note{font-size:.82rem;color:var(--muted-dark);margin-bottom:44px;display:flex;gap:10px;align-items:flex-start;max-width:780px;position:relative;z-index:1;background:rgba(255,255,255,.04);border:1px solid var(--line-dark);border-radius:11px;padding:14px 17px}
+.shop .note svg{width:17px;height:17px;color:var(--blue-bright);flex:0 0 auto;margin-top:2px}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:1}
+.prod{position:relative;display:flex;flex-direction:column;border:1px solid var(--line-dark);border-radius:18px;overflow:hidden;isolation:isolate;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .5s,box-shadow .5s}
+.prod::after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(165deg,var(--navy-800),var(--navy-950))}
+.prod::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;background:linear-gradient(165deg,rgba(37,99,235,.26),rgba(37,99,235,.02));transition:opacity .5s}
+.prod:hover{transform:translateY(-8px);border-color:rgba(96,165,250,.6);box-shadow:0 30px 60px -30px rgba(37,99,235,.7)}
+.prod:hover::before{opacity:1}
+.prod-media{position:relative;aspect-ratio:1/.92;display:flex;align-items:center;justify-content:center;padding:26px}
+.prod-media .glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.34),transparent 64%);filter:blur(14px);z-index:0;opacity:.65;transition:opacity .5s}
+.prod:hover .prod-media .glow{opacity:1}
+.prod-media img{position:relative;z-index:1;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 22px 28px rgba(0,0,0,.55));transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.prod:hover .prod-media img{transform:scale(1.07)}
+.badge{position:absolute;top:14px;left:14px;z-index:2;display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--blue-bright),var(--blue-deep));color:#fff;font-family:'Archivo',sans-serif;font-weight:900;font-size:.82rem;padding:6px 12px;border-radius:9px;box-shadow:0 8px 20px -6px rgba(37,99,235,.75)}
+.prod-body{padding:4px 22px 24px;display:flex;flex-direction:column;flex:1;position:relative;z-index:1}
+.prod-fam{font-family:'Archivo',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-soft)}
+.prod-name{font-family:'Archivo',sans-serif;font-weight:700;font-size:1rem;color:#fff;margin:8px 0 16px;line-height:1.22;min-height:2.4em}
+.prod-tag{font-family:'Archivo',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:5px}
+.prod-price{display:flex;align-items:baseline;gap:10px}
+.prod-price .now{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.7rem;color:#fff;letter-spacing:-.01em}
+.prod-price .was{font-size:.92rem;color:var(--muted-dark);text-decoration:line-through}
+.prod-save{display:inline-flex;align-items:center;align-self:flex-start;margin-top:11px;font-size:.75rem;font-weight:700;color:#4ade80;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.28);padding:5px 11px;border-radius:50px}
+.prod-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;padding:13px 16px;border-radius:9px;background:var(--blue);color:#fff;font-family:'Archivo',sans-serif;font-weight:700;font-size:.82rem;transition:background .3s,transform .3s,box-shadow .3s;box-shadow:0 10px 26px -12px rgba(37,99,235,.7)}
+.prod-btn svg{width:15px;height:15px}
+.prod-btn:hover{background:var(--blue-bright);transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(59,130,246,.9)}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:980px){
+  .nav-links{display:none}
+  .burger{display:flex}
+  .hero{height:auto}
+  .hero-sticky{position:relative;height:100vh}
+  .hero-ch{position:relative;height:auto;opacity:1;visibility:visible;padding:120px 0 80px}
+  .hero-ch:not(:first-of-type){display:none}
+  .hero-ch .in>*{transform:none;opacity:1}
+  .feat-grid{grid-template-columns:1fr}
+  .feat-media{display:none}
+  .feat-text{padding:0 28px}
+  .feat-step{min-height:auto;padding:70px 0}
+  .feat-step .feat-prod-m{display:block;max-height:300px;margin:0 auto 30px;width:auto}
+  .dual{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}
+  .cta-grid{grid-template-columns:1fr;gap:40px}
+  .foot-top{grid-template-columns:1fr;gap:34px}
+}
+.feat-prod-m{display:none}
+
+/* ===================== CHECKOUT (modal demo) ===================== */
+body.co-open{overflow:hidden}
+.co{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.co.on{opacity:1;visibility:visible}
+.co-back{position:absolute;inset:0;background:rgba(4,9,18,.80);backdrop-filter:blur(9px)}
+.co-panel{position:relative;z-index:2;width:100%;max-width:940px;max-height:92vh;overflow-y:auto;background:#000080;border:1px solid var(--line-dark);border-radius:20px;box-shadow:0 50px 120px -30px rgba(0,0,0,.85);transform:translateY(26px) scale(.98);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.co.on .co-panel{transform:none}
+.co-panel::-webkit-scrollbar{width:8px}.co-panel::-webkit-scrollbar-thumb{background:var(--blue-deep);border-radius:8px}
+.co-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 26px;border-bottom:1px solid rgba(10,22,40,.12);position:sticky;top:0;background:#fff;backdrop-filter:blur(12px);z-index:5}
+.co-head .ttl{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.05rem;text-transform:uppercase;letter-spacing:.02em;color:#000080}
+.co-demo{display:inline-flex;align-items:center;gap:7px;font-family:'Archivo',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#b45309;background:rgba(251,191,36,.20);border:1px solid rgba(217,119,6,.45);padding:5px 11px;border-radius:50px;margin-left:10px}
+.co-x{width:38px;height:38px;flex:0 0 auto;border:1px solid rgba(10,22,40,.16);background:#eef2f8;border-radius:10px;color:#000080;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .25s,transform .25s}
+.co-x:hover{background:#dbe5f3;transform:rotate(90deg)}
+.co-x svg{width:18px;height:18px}
+.co-body{display:grid;grid-template-columns:1fr 1fr}
+.co-col{padding:24px 26px}
+.co-col.left{border-right:1px solid var(--line-dark)}
+.co-sec-t{font-family:'Archivo',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue-soft);margin:0 0 14px}
+.co-col.left .co-sec-t:not(:first-child){margin-top:26px}
+/* producto */
+.co-prod{display:flex;gap:15px;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--line-dark);border-radius:14px;padding:14px}
+.co-prod img{width:82px;height:82px;flex:0 0 auto;object-fit:contain;background:rgba(255,255,255,.05);border-radius:11px;padding:8px}
+.co-prod .pn{font-family:'Archivo',sans-serif;font-weight:700;font-size:.98rem;line-height:1.2}
+.co-prod .pf{font-size:.74rem;color:var(--blue-soft);margin-bottom:5px;font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.co-prod .pu{color:var(--muted-dark);font-size:.86rem;margin-top:6px}
+.co-prod .pu #coUnit{color:var(--blue-bright);font-weight:800}
+/* cantidad */
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line-dark);border-radius:9px;overflow:hidden;margin-top:14px}
+.qty button{width:38px;height:40px;background:var(--navy-800);color:#fff;border:0;cursor:pointer;font-size:1.2rem;font-family:'Archivo',sans-serif;transition:background .2s}
+.qty button:hover{background:var(--blue-deep)}
+.qty input{width:50px;height:40px;text-align:center;background:transparent;border:0;color:#fff;font-family:'Archivo',sans-serif;font-weight:800;font-size:1rem;-moz-appearance:textfield}
+.qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+/* métodos de pago */
+.pay{display:flex;flex-direction:column;gap:10px}
+.pay label{display:flex;align-items:center;gap:13px;padding:13px 15px;border:1px solid var(--line-dark);border-radius:11px;cursor:pointer;transition:border-color .25s,background .25s}
+.pay label:hover{border-color:rgba(96,165,250,.55)}
+.pay label.sel{border-color:var(--blue-bright);background:rgba(37,99,235,.12)}
+.pay label input{accent-color:var(--blue-bright);width:17px;height:17px;flex:0 0 auto}
+.pay .pi{width:30px;height:30px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border-radius:7px}
+.pay .pi svg{width:18px;height:18px;color:#cdd9ec}
+.pay .pt{font-family:'Archivo',sans-serif;font-weight:700;font-size:.92rem}
+.pay .pd{font-size:.76rem;color:var(--muted-dark)}
+/* --- columna izquierda: cajas en azul del logo con letra blanca --- */
+.co-col.left{background:#fff;border-right:1px solid rgba(10,22,40,.12)}
+.co-col.left .co-sec-t{color:#000080}
+.co-col.left .flbl{color:#5d6e89}
+/* producto */
+.co-prod{background:#000080;border-color:#000080}
+.co-prod img{background:rgba(255,255,255,.14)}
+.co-prod .pf{color:#9db8ff}
+.co-prod .pn{color:#fff}
+.co-prod .pu{color:rgba(255,255,255,.72)}
+.co-prod .pu #coUnit{color:#fff}
+/* cantidad */
+.qty{border-color:#000080;background:#000080}
+.qty button{background:transparent;color:#fff}
+.qty button:hover{background:rgba(255,255,255,.18)}
+.qty input{color:#fff}
+/* métodos de pago */
+.pay label{border-color:#000080;background:#000080}
+.pay label:hover{border-color:#60a5fa}
+.pay label.sel{border-color:#60a5fa;background:#0b1a7a;box-shadow:0 0 0 3px rgba(96,165,250,.25)}
+.pay label input{accent-color:#fff}
+.pay .pi{background:rgba(255,255,255,.14)}
+.pay .pi svg{color:#fff}
+.pay .pt{color:#fff}
+.pay .pd{color:#fff}
+
+/* ===================== TRACKER (seguimiento de pedido) ===================== */
+#trk .co-panel{max-width:600px}
+.trk-hint{font-size:.86rem;color:#9db8ff;margin-bottom:12px}
+.trk-search{display:flex;gap:10px}
+.trk-search input{flex:1;min-width:0;background:#fff;border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:13px 15px;color:#000080;font-weight:700;font-family:'Hanken Grotesk',sans-serif;font-size:1rem;letter-spacing:.04em}
+.trk-search input::placeholder{color:#94a3b8;font-weight:400;letter-spacing:0}
+.trk-search input:focus{outline:none;box-shadow:0 0 0 3px rgba(255,255,255,.28)}
+.trk-search .btn{flex:0 0 auto}
+.trk-last{display:none;margin-top:13px;background:none;border:0;color:#9db8ff;font-size:.84rem;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;padding:0}
+.trk-last strong{color:#fff;letter-spacing:.03em}
+.trk-last:hover{text-decoration:underline}
+.trk-err{display:none;margin-top:14px;color:#fca5a5;font-size:.88rem;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);border-radius:9px;padding:11px 14px}
+.trk-result{display:none;margin-top:26px}
+#trk.found .trk-result{display:block}
+.trk-card{display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.06);border:1px solid var(--line-dark);border-radius:14px;padding:16px 18px;margin-bottom:30px;flex-wrap:wrap}
+.trk-card img{width:60px;height:60px;flex:0 0 auto;object-fit:contain;background:rgba(255,255,255,.12);border-radius:11px;padding:7px}
+.trk-num{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.05rem;color:#fff;letter-spacing:.04em}
+.trk-prod{color:#cdd9ec;font-size:.9rem;margin-top:2px}
+.trk-tot{color:#9db8ff;font-size:.84rem;margin-top:3px}
+.trk-state{margin-left:auto;font-family:'Archivo',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#fbbf24;background:rgba(251,191,36,.14);border:1px solid rgba(251,191,36,.36);padding:7px 13px;border-radius:50px;white-space:nowrap}
+.tl{position:relative}
+.tl-step{position:relative;display:flex;gap:18px;padding-bottom:28px}
+.tl-step:last-child{padding-bottom:0}
+.tl-step::before{content:"";position:absolute;left:17px;top:38px;bottom:-2px;width:2px;background:rgba(255,255,255,.18)}
+.tl-step:last-child::before{display:none}
+.tl-step.done::before{background:#4ade80}
+.tl-ic{width:36px;height:36px;flex:0 0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.25);color:#cdd9ec;z-index:1}
+.tl-ic svg{width:18px;height:18px}
+.tl-step.done .tl-ic{background:#4ade80;border-color:#4ade80;color:#06281a}
+.tl-step.active .tl-ic{background:#fff;border-color:#fff;color:#000080;animation:tlp 1.7s infinite}
+@keyframes tlp{0%,100%{box-shadow:0 0 0 5px rgba(255,255,255,.18)}50%{box-shadow:0 0 0 10px rgba(255,255,255,.04)}}
+.tl-txt{padding-top:5px}
+.tl-txt h5{font-family:'Archivo',sans-serif;font-weight:800;font-size:1rem;color:#fff;margin-bottom:3px}
+.tl-step.pending .tl-txt h5{color:#9db8ff}
+.tl-txt p{font-size:.85rem;color:rgba(255,255,255,.6)}
+.tl-step.active .tl-txt p{color:#fff}
+/* formulario */
+.fld{margin-bottom:13px}
+.fld.row2{display:grid;grid-template-columns:.82fr 1.18fr;gap:12px}
+.fld.row2 select{padding-left:12px;padding-right:8px;text-overflow:ellipsis}
+.fld label,.flbl{display:block;font-family:'Archivo',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:7px}
+.fld input,.fld select{width:100%;background:#fff;border:1px solid rgba(10,22,40,.18);border-radius:9px;padding:12px 13px;color:#000080;font-weight:600;font-family:'Hanken Grotesk',sans-serif;font-size:.94rem;transition:border-color .25s}
+.fld input::placeholder{color:#94a3b8;font-weight:400}
+.fld input:focus,.fld select:focus{outline:none;border-color:#000080;box-shadow:0 0 0 3px rgba(0,0,128,.12)}
+.fld input.err,.fld select.err{border-color:#f87171}
+.lbl-ship{display:flex;align-items:center;gap:7px;color:#bcd0ff}
+.lbl-ship svg{width:14px;height:14px;color:#9db8ff;flex:0 0 auto}
+#wrapAndorra select,#wrapZona select,#wrapCarrier select{border-color:rgba(96,165,250,.65);box-shadow:0 0 0 3px rgba(96,165,250,.18)}
+/* desglose */
+.sum{margin-top:20px;border-top:1px solid var(--line-dark);padding-top:16px}
+.sum .r{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;color:#fff;font-size:.92rem}
+.sum .r .v{color:#e8eef8;font-variant-numeric:tabular-nums}
+.sum .r.tot{border-top:1px solid var(--line-dark);margin-top:10px;padding-top:14px}
+.sum .r.tot .l{font-family:'Archivo',sans-serif;font-weight:800;color:#fff;font-size:1rem;text-transform:uppercase;letter-spacing:.02em}
+.sum .r.tot .v{font-family:'Archivo',sans-serif;font-weight:900;color:#fff;font-size:1.55rem}
+.co-confirm{width:100%;justify-content:center;margin-top:20px;padding:16px;font-size:.92rem}
+#coPay{background:#fff;color:#000080;border:1px solid rgba(0,0,128,.25);box-shadow:0 14px 38px -16px rgba(0,0,0,.55)}
+#coPay #coPayAmt{color:#000080}
+#coPay:hover{background:#000080;color:#fff;border-color:#000080;box-shadow:0 20px 48px -16px rgba(0,0,128,.6)}
+#coPay:hover #coPayAmt{color:#fff}
+.co-foot-note{font-size:.74rem;color:var(--muted-dark);text-align:center;margin-top:13px;display:flex;align-items:center;justify-content:center;gap:7px}
+.co-foot-note svg{width:14px;height:14px;color:#4ade80;flex:0 0 auto}
+/* confirmación */
+.co-done{padding:54px 40px;text-align:center;display:none}
+.co.done .co-done{display:block}
+.co.done .co-body{display:none}
+.co-done .ic{width:88px;height:88px;margin:0 auto 26px;border-radius:50%;background:rgba(74,222,128,.14);border:1px solid rgba(74,222,128,.42);display:flex;align-items:center;justify-content:center;animation:pop .5s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes pop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+.co-done .ic svg{width:44px;height:44px;color:#4ade80}
+.co-done h3{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.9rem;text-transform:uppercase;margin-bottom:12px}
+.co-done .order{display:inline-block;font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.08em;color:var(--blue-bright);background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.34);padding:9px 18px;border-radius:50px;margin:6px 0 22px}
+.co-done p{color:#cdd9ec;font-size:1.02rem;max-width:440px;margin:0 auto 8px}
+.co-done .mail{color:var(--blue-soft);font-weight:600}
+.co-recap{max-width:430px;margin:26px auto 0;text-align:left;background:rgba(255,255,255,.04);border:1px solid var(--line-dark);border-radius:13px;padding:18px 20px}
+.co-recap .rr{display:flex;justify-content:space-between;padding:6px 0;font-size:.9rem;color:var(--muted-light)}
+.co-recap .rr .v{color:#e8eef8;font-variant-numeric:tabular-nums}
+.co-recap .rr.t{border-top:1px solid var(--line-dark);margin-top:8px;padding-top:12px}
+.co-recap .rr.t .l{font-family:'Archivo',sans-serif;font-weight:800;color:#fff}
+.co-recap .rr.t .v{font-family:'Archivo',sans-serif;font-weight:900;color:var(--blue-bright);font-size:1.15rem}
+@media(max-width:760px){
+  .co{padding:0}
+  .co-panel{max-width:100%;max-height:100vh;height:100vh;border-radius:0}
+  .co-body{grid-template-columns:1fr}
+  .co-col.left{border-right:0;border-bottom:1px solid var(--line-dark)}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="hdr">
+  <div class="nav">
+    <a href="#top" class="brand">
+      <img src="assets/distgar/logo.png" alt="Distgar S.L.">
+    </a>
+    <div class="nav-right">
+      <nav class="nav-links">
+        <a href="#empresa">Empresa</a>
+        <a href="#tienda">Tienda</a>
+        <a href="#" id="navTrack">Seguir pedido</a>
+                <a href="#contacto">Contacto</a>
+      </nav>
+      <a href="#contacto" class="btn btn-blue" style="padding:11px 22px;font-size:.78rem">Solicita catálogo</a>
+      <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#empresa">Empresa</a>
+  <a href="#tienda">Tienda</a>
+  <a href="#" id="navTrackM">Seguir pedido</a>
+    <a href="#contacto">Contacto</a>
+</div>
+
+<!-- ===== RIGHT RAIL ===== -->
+<div class="rail-prog" id="railProg"></div>
+<div class="rail">
+  <div class="tk lg"></div><div class="tk"></div><div class="tk"></div>
+  <div class="tk lg"></div><div class="tk"></div><div class="tk"></div>
+  <div class="tk lg"></div><div class="tk"></div><div class="tk"></div><div class="tk lg"></div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-sticky">
+    <img class="poster" src="assets/distgar/video/hero-poster.jpg" alt="" id="heroPoster">
+    <video id="heroVid" muted playsinline preload="auto" poster="assets/distgar/video/hero-poster.jpg">
+      <source src="assets/distgar/video/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-veil"></div>
+
+    <div class="hero-ch on" data-ch="0">
+      <div class="in">
+        <span class="kik">Tienda oficial Cecotec · Andorra</span>
+        <h1>Tu hogar, al <em>precio de Andorra</em></h1>
+        <p class="lead">Electrodoméstico oficial Cecotec a los precios de Distgar, en el corazón del Principat. Frío, lavado, robots y mucho más.</p>
+        <div class="hero-cta">
+          <a href="#tienda" class="btn btn-blue">Ver la tienda
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#empresa" class="btn btn-ghost">Conoce Distgar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-ch" data-ch="1">
+      <div class="in">
+        <span class="kik">Producto oficial</span>
+        <h1>Las marcas que <em>se venden solas</em></h1>
+        <p class="lead">Cecotec, Bolero y Conga: tecnología que reconoces y en la que confías. Siempre con garantía oficial.</p>
+      </div>
+    </div>
+
+    <div class="hero-ch" data-ch="2">
+      <div class="in">
+        <span class="kik">Confianza</span>
+        <h1>Distribuidor <em>oficial</em> Cecotec</h1>
+        <p class="lead">Más de dos décadas siendo el socio logístico de referencia en Andorra. Stock, servicio y marcas que se venden solas.</p>
+        <div class="hero-cta">
+          <a href="#gama" class="btn btn-ghost">Ver la gama</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="scrollcue" id="cue"><span>Scroll</span><span class="ms"></span></div>
+  </div>
+</section>
+
+<!-- ===== STRIP MARCAS ===== -->
+<section class="strip">
+  <div class="lbl">Marcas que distribuimos</div>
+  <div class="marquee">
+    <img src="assets/distgar/marcas/cecotec.png" alt="Cecotec">
+    <img src="assets/distgar/marcas/conga.png" alt="Conga">
+    <img src="assets/distgar/marcas/bomann.png" alt="Bomann">
+    <img src="assets/distgar/marcas/clatronic.png" alt="Clatronic">
+    <img src="assets/distgar/marcas/cecomix.png" alt="Cecomix">
+    <img src="assets/distgar/marcas/cecomixer.png" alt="Cecomixer">
+    <img src="assets/distgar/marcas/cecofry.png" alt="Cecofry">
+    <img src="assets/distgar/marcas/recolax.png" alt="Recolax">
+    <img src="assets/distgar/marcas/fit.png" alt="Fit">
+    <!-- duplicado para loop infinito -->
+    <img src="assets/distgar/marcas/cecotec.png" alt="">
+    <img src="assets/distgar/marcas/conga.png" alt="">
+    <img src="assets/distgar/marcas/bomann.png" alt="">
+    <img src="assets/distgar/marcas/clatronic.png" alt="">
+    <img src="assets/distgar/marcas/cecomix.png" alt="">
+    <img src="assets/distgar/marcas/cecomixer.png" alt="">
+    <img src="assets/distgar/marcas/cecofry.png" alt="">
+    <img src="assets/distgar/marcas/recolax.png" alt="">
+    <img src="assets/distgar/marcas/fit.png" alt="">
+  </div>
+</section>
+
+<!-- ===== FEATURES (sticky scrollytelling) ===== -->
+<section class="features" id="empresa">
+  <div class="feat-grid">
+    <div class="feat-text">
+
+      <div class="feat-step" data-feat="0">
+        <img class="feat-prod-m" src="assets/distgar/productos-cut/robot.png" alt="">
+        <div class="num">01</div>
+        <div class="topic">Trayectoria</div>
+        <h2>Más de 25 años moviendo Andorra</h2>
+        <p>Desde 1999 abastecemos al comercio del Principat. Conocemos el mercado, los tiempos de entrega y lo que cada cliente necesita en su lineal.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Empresa familiar con raíces en Sant Julià de Lòria</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Relaciones estables con los grandes almacenes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Especialistas en venta B2B, no al consumidor final</li>
+        </ul>
+      </div>
+
+      <div class="feat-step" data-feat="1">
+        <img class="feat-prod-m" src="assets/distgar/productos-cut/frigo-inox.png" alt="">
+        <div class="num">02</div>
+        <div class="topic">Catálogo</div>
+        <h2>Diez familias, miles de referencias</h2>
+        <p>Una gama tan amplia que cubre toda la casa: cocina, frío, lavado, cocción, climatización, cuidado personal, fitness y mucho más.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Pequeño y gran electrodoméstico</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Stock real para reposición rápida</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Novedades de temporada cada campaña</li>
+        </ul>
+      </div>
+
+      <div class="feat-step" data-feat="2">
+        <img class="feat-prod-m" src="assets/distgar/productos-cut/robot2.png" alt="">
+        <div class="num">03</div>
+        <div class="topic">Marcas</div>
+        <h2>Distribuidor oficial de Cecotec</h2>
+        <p>Trabajamos con las marcas que el cliente busca y que rotan en el lineal. Garantía oficial y soporte directo del fabricante.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Cecotec, Conga, Bomann, Clatronic y más</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Producto con garantía y recambio asegurado</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Material de apoyo para el punto de venta</li>
+        </ul>
+      </div>
+
+      <div class="feat-step" data-feat="3">
+        <img class="feat-prod-m" src="assets/distgar/productos-cut/lavadora1.png" alt="">
+        <div class="num">04</div>
+        <div class="topic">Servicio</div>
+        <h2>Del almacén a tu lineal</h2>
+        <p>Logística pensada para el comercio andorrano: pedidos ágiles, entregas coordinadas y un trato cercano que entiende tu negocio.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Entrega rápida en todo el Principat</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Asesoramiento de surtido por categoría</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Atención directa, sin intermediarios</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="feat-media">
+      <div class="grid-tex"></div>
+      <img class="feat-prod" data-prod="0" src="assets/distgar/productos-cut/robot.png" alt="Robot aspirador Conga">
+      <img class="feat-prod" data-prod="1" src="assets/distgar/productos-cut/frigo-inox.png" alt="Frigorífico inox">
+      <img class="feat-prod" data-prod="2" src="assets/distgar/productos-cut/robot2.png" alt="Robot aspirador con estación de autovaciado">
+      <img class="feat-prod" data-prod="3" src="assets/distgar/productos-cut/lavadora1.png" alt="Lavadora">
+      <div class="feat-tag" data-tag="0">Robot aspirador · Conga</div>
+      <div class="feat-tag" data-tag="1">Frigorífico · Bolero</div>
+      <div class="feat-tag" data-tag="2">Conga con autovaciado · Cecotec</div>
+      <div class="feat-tag" data-tag="3">Lavadora · Bolero</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SHOWREEL ===== -->
+<section class="reel">
+  <video id="reelVid" muted loop playsinline preload="none" poster="assets/distgar/video/showreel-poster.jpg">
+    <source src="assets/distgar/video/showreel.mp4" type="video/mp4">
+  </video>
+  <div class="reel-veil"></div>
+  <div class="wrap in">
+    <span class="eyebrow rv">Nuestro día a día</span>
+    <h2 class="rv d1">Tecnología que<br>llena tus estantes</h2>
+    <p class="rv d2">Cada referencia que distribuimos está pensada para venderse. Producto que la gente reconoce, busca y compra.</p>
+  </div>
+</section>
+
+<!-- ===== DUAL SHOWCASE ===== -->
+<section class="dual">
+  <div class="pane dark">
+    <img class="prod" src="assets/distgar/productos-cut/frigo-sbs.png" alt="Frigorífico side-by-side">
+    <div class="meta">
+      <div class="k">Gran electrodoméstico</div>
+      <h3>Frío & Lavado</h3>
+    </div>
+  </div>
+  <div class="pane light">
+    <img class="prod" src="assets/distgar/productos-cut/robot.png" alt="Robot aspirador">
+    <div class="meta">
+      <div class="k">Pequeño electrodoméstico</div>
+      <h3>Cocina & Hogar</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AMBIENTE (foto real) ===== -->
+<section class="ambient">
+  <img class="bg" src="assets/distgar/web-ref/banner-cecotec.jpg" alt="Cocina equipada con electrodomésticos Cecotec">
+  <div class="wrap in">
+    <span class="eyebrow rv">El hogar completo</span>
+    <h2 class="rv d1">Una gama para <em>completar tu casa</em></h2>
+    <p class="rv d2">Lavado, cocción, frío y pequeño electrodoméstico de las marcas que tus clientes reconocen. Todo bajo un mismo distribuidor en Andorra.</p>
+    <a href="#gama" class="btn btn-blue rv d3">Ver toda la gama
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<!-- ===== TIENDA ===== -->
+<section class="shop" id="tienda">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow rv">La tienda</span>
+      <h2 class="rv d1">Catálogo a <em>precio de Andorra</em></h2>
+      <p class="rv d2">Producto oficial Cecotec con los precios reales de Distgar. Pregúntanos por disponibilidad y te preparamos tu pedido.</p>
+    </div>
+    <div class="note rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><strong style="color:#fbbf24">DEMO de compra online</strong> — Pulsa «Comprar» para probar el checkout: país, envío, impuestos y pago simulado. No se procesa ningún pago real. Precios reales de Distgar (distgar.com), producto oficial Cecotec.</span></div>
+    <div class="prod-grid">
+      <article class="prod rv ">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/01.png" alt="Bolero CoolMarket SBS 592 WD Dark" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Frigoríficos</div>
+          <h4 class="prod-name">Bolero CoolMarket SBS 592 WD Dark</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">735 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d1">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/02.png" alt="Bolero CoolMarket SBS 559 Inox E" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Frigoríficos</div>
+          <h4 class="prod-name">Bolero CoolMarket SBS 559 Inox E</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">655 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d2">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/03.png" alt="Bolero CoolMarket 356 Inox D" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Frigoríficos</div>
+          <h4 class="prod-name">Bolero CoolMarket 356 Inox D</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">510 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d3">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/04.png" alt="Bolero CoolMarket 322 Glass Black D" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Frigoríficos</div>
+          <h4 class="prod-name">Bolero CoolMarket 322 Glass Black D</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">465 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv ">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/05.png" alt="Bolero CoolMarket Combi 322 Dark D" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Frigoríficos</div>
+          <h4 class="prod-name">Bolero CoolMarket Combi 322 Dark D</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">446 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d1">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/06.png" alt="Bolero CoolMarket 322 Inox E" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Frigoríficos</div>
+          <h4 class="prod-name">Bolero CoolMarket 322 Inox E</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">409 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d2">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/07.png" alt="Bolero CoolMarket Combi 250 Inox D" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Frigoríficos</div>
+          <h4 class="prod-name">Bolero CoolMarket Combi 250 Inox D</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">349,99 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d3">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/08.png" alt="Bolero CoolMarket UF 273 inox E" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Congeladores</div>
+          <h4 class="prod-name">Bolero CoolMarket UF 273 inox E</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">499 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv ">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/09.png" alt="Bolero CoolMarket Chest 142 white E" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Congeladores</div>
+          <h4 class="prod-name">Bolero CoolMarket Chest 142 white E</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">185 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d1">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/10.png" alt="Bolero DressCode 121000" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Lavadoras</div>
+          <h4 class="prod-name">Bolero DressCode 121000</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">465 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d2">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/11.png" alt="Bolero DressCode 8800" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Lavadoras</div>
+          <h4 class="prod-name">Bolero DressCode 8800</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">319 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d3">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/12.png" alt="Bolero DressCode 9500" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Lavadoras</div>
+          <h4 class="prod-name">Bolero DressCode 9500</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">309 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv ">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/13.png" alt="Bolero Aguazero 6600 Inox" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Lavavajillas</div>
+          <h4 class="prod-name">Bolero Aguazero 6600 Inox</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">489 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d1">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/14.png" alt="Bolero Aguazero 6200 Dark D" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Lavavajillas</div>
+          <h4 class="prod-name">Bolero Aguazero 6200 Dark D</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">320 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d2">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/15.png" alt="Bolero Aguazero 4201 Inox E" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Lavavajillas</div>
+          <h4 class="prod-name">Bolero Aguazero 4201 Inox E</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">279 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d3">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/16.png" alt="Bolero Squad I 3200" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Placas de cocina</div>
+          <h4 class="prod-name">Bolero Squad I 3200</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">152 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv ">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/17.png" alt="Bolero Squad I 2100" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Placas de cocina</div>
+          <h4 class="prod-name">Bolero Squad I 2100</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">87,90 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d1">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/18.png" alt="Bolero Flux TM 603500 Inox A" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Campanas</div>
+          <h4 class="prod-name">Bolero Flux TM 603500 Inox A</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">85 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d2">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/19.png" alt="Bolero Flux IM 756500 Inox A" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Campanas</div>
+          <h4 class="prod-name">Bolero Flux IM 756500 Inox A</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">71 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d3">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/20.png" alt="Bolero Flux PM 604300 Black C" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Campanas</div>
+          <h4 class="prod-name">Bolero Flux PM 604300 Black C</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">62,50 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv ">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/21.png" alt="Bolero Flux TLM 603500 Inox A" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Campanas</div>
+          <h4 class="prod-name">Bolero Flux TLM 603500 Inox A</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">58 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d1">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/22.png" alt="Bolero GrandSommelier 36000 Black" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Vinotecas</div>
+          <h4 class="prod-name">Bolero GrandSommelier 36000 Black</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">250 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d2">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/23.png" alt="Bolero GrandSommelier 34030 Inox" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Vinotecas</div>
+          <h4 class="prod-name">Bolero GrandSommelier 34030 Inox</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">239 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d3">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/24.png" alt="Bolero GrandSommelier 34030 Black" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Vinotecas</div>
+          <h4 class="prod-name">Bolero GrandSommelier 34030 Black</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">200 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv ">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/25.png" alt="Bolero GrandSommelier 830 CoolCrystal" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Vinotecas</div>
+          <h4 class="prod-name">Bolero GrandSommelier 830 CoolCrystal</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">119 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d1">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/26.png" alt="Conga 11090 Spin Revolution" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Robots aspiradores</div>
+          <h4 class="prod-name">Conga 11090 Spin Revolution</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">374 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d2">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/27.png" alt="Conga Rockstar 10000 Nebula" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Robots aspiradores</div>
+          <h4 class="prod-name">Conga Rockstar 10000 Nebula</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">356 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d3">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/28.png" alt="Immortal Ultra Power X-Treme" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Robots aspiradores</div>
+          <h4 class="prod-name">Immortal Ultra Power X-Treme</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">182 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv ">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/29.png" alt="Conga Rockstar 8500 Infinity ErgoWet" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Robots aspiradores</div>
+          <h4 class="prod-name">Conga Rockstar 8500 Infinity ErgoWet</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">169 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d1">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/30.png" alt="Conga Carpet&amp;Spot Clean Liberty XL" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Robots aspiradores</div>
+          <h4 class="prod-name">Conga Carpet&amp;Spot Clean Liberty XL</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">131 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d2">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/31.png" alt="Conga 3000 Carpet&amp;Spot Clean L" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Robots aspiradores</div>
+          <h4 class="prod-name">Conga 3000 Carpet&amp;Spot Clean L</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">81 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d3">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/32.png" alt="Conga Rockstar Micro+ Animal" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Robots aspiradores</div>
+          <h4 class="prod-name">Conga Rockstar Micro+ Animal</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">80 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv ">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/33.png" alt="Conga Rockstar Micro+" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Robots aspiradores</div>
+          <h4 class="prod-name">Conga Rockstar Micro+</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">62 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d1">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/34.png" alt="Conga Immortal ExtremeSuction" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Robots aspiradores</div>
+          <h4 class="prod-name">Conga Immortal ExtremeSuction</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">60 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d2">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/35.png" alt="HydroBoost 2500 Home&amp;Car" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Aspiradores</div>
+          <h4 class="prod-name">HydroBoost 2500 Home&amp;Car</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">252 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d3">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/36.png" alt="Triton 5000 UltraClean&amp;Car" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Aspiradores</div>
+          <h4 class="prod-name">Triton 5000 UltraClean&amp;Car</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">146 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv ">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/37.png" alt="Bolero Squad V 3000" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Aspiradores</div>
+          <h4 class="prod-name">Bolero Squad V 3000</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">125 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d1">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/38.png" alt="HydroBoost 2400 AdvanceClean" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Aspiradores</div>
+          <h4 class="prod-name">HydroBoost 2400 AdvanceClean</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">112 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d2">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/39.png" alt="Conga Ash 6000 EasyGo XL" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Aspiradores</div>
+          <h4 class="prod-name">Conga Ash 6000 EasyGo XL</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">60 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv d3">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/40.png" alt="Conga Ash 5000 EasyGo" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Aspiradores</div>
+          <h4 class="prod-name">Conga Ash 5000 EasyGo</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">43 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="prod rv ">
+        <div class="prod-media"><span class="glow"></span><img src="assets/distgar/tienda-cut/41.png" alt="Scoba 2100 Twice" loading="lazy"></div>
+        <div class="prod-body">
+          <div class="prod-fam">Friegasuelos</div>
+          <h4 class="prod-name">Scoba 2100 Twice</h4>
+          <div class="prod-tag">Precio en Andorra</div><div class="prod-price"><span class="now">70 €</span></div>
+          <a class="prod-btn" href="#contacto">Consultar disponibilidad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+        </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat rv"><div class="n">+<em>25</em></div><div class="l">Años distribuyendo</div></div>
+      <div class="stat rv d1"><div class="n"><em>10</em></div><div class="l">Familias de producto</div></div>
+      <div class="stat rv d2"><div class="n"><em>9</em>+</div><div class="l">Marcas representadas</div></div>
+      <div class="stat rv d3"><div class="n"><em>100</em>%</div><div class="l">Producto oficial Cecotec</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA / CONTACTO ===== -->
+<section class="cta" id="contacto">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div>
+        <span class="eyebrow rv">Hablemos</span>
+        <h2 class="rv d1">¿Te interesa<br>un producto?</h2>
+        <p class="rv d2">Escríbenos el modelo que buscas y te confirmamos precio y disponibilidad al momento. Recogida en Sant Julià de Lòria.</p>
+        <div class="acts rv d3">
+          <a href="mailto:info@distgar.com?subject=Solicitud%20de%20catálogo%20profesional" class="btn btn-blue">Solicitar catálogo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="https://wa.me/376841623" target="_blank" rel="noopener" class="btn btn-dark">WhatsApp directo</a>
+        </div>
+      </div>
+      <div class="contact-card rv d2">
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><div class="k">Dirección</div><div class="v">Av. Verge de Canòlich, 101<br>AD600 Sant Julià de Lòria · Andorra</div></div>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div><div class="k">Teléfono</div><div class="v"><a href="tel:+376841823">+376 841 823</a> · <a href="tel:+376841822">+376 841 822</a></div></div>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+          <div><div class="k">Email</div><div class="v"><a href="mailto:info@distgar.com">info@distgar.com</a></div></div>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div><div class="k">Horario</div><div class="v">L–V · 9:00–13:00 y 15:00–19:00</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="#top" class="brand"><img src="assets/distgar/logo.png" alt="Distgar" style="filter:brightness(0) invert(1)"></a>
+        <p>Distribuidores oficiales de pequeño electrodoméstico y artículos del hogar en el Principat d'Andorra desde 1999. Venta a grandes almacenes y profesionales.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Navegación</h5>
+        <a href="#empresa">Empresa</a>
+        <a href="#gama">Gama de producto</a>
+        <a href="#marcas">Marcas</a>
+                <a href="#contacto">Contacto</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <a href="tel:+376841823">+376 841 823</a>
+        <a href="mailto:info@distgar.com">info@distgar.com</a>
+        <a href="https://wa.me/376841623" target="_blank" rel="noopener">WhatsApp +376 841 623</a>
+        <a href="https://facebook.com/distgarimportexport" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© <span id="yr"></span> DISTGAR S.L. · Sant Julià de Lòria, Andorra · Todos los derechos reservados.</p>
+      <span class="official">Distribuidor oficial Cecotec · Andorra</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== Año ===== */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ===== Header scrolled ===== */
+const hdr = document.getElementById('hdr');
+addEventListener('scroll', ()=>{ hdr.classList.toggle('scrolled', scrollY > 40); }, {passive:true});
+
+/* ===== Menú móvil ===== */
+const burger = document.getElementById('burger');
+const mm = document.getElementById('mobileMenu');
+burger.addEventListener('click', ()=>{ burger.classList.toggle('open'); mm.classList.toggle('open'); });
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{ burger.classList.remove('open'); mm.classList.remove('open'); }));
+
+/* ===== Barra de progreso global (right rail) ===== */
+const railProg = document.getElementById('railProg');
+function updRail(){
+  const h = document.documentElement.scrollHeight - innerHeight;
+  const p = h>0 ? scrollY/h : 0;
+  railProg.style.height = (p*100)+'vh';
+}
+addEventListener('scroll', updRail, {passive:true}); updRail();
+
+/* ===== HERO: scrubbing de vídeo + capítulos =====
+   El truco: la sección .hero mide 420vh y el vídeo va "pegado" (sticky).
+   Mapeamos cuánto hemos avanzado dentro de la sección (0→1) al currentTime
+   del vídeo, y partimos ese recorrido en 3 capítulos de texto. */
+const hero = document.querySelector('.hero');
+const vid = document.getElementById('heroVid');
+const poster = document.getElementById('heroPoster');
+const chapters = [...document.querySelectorAll('.hero-ch')];
+const cue = document.getElementById('cue');
+let vidReady = false, duration = 0, ticking = false;
+
+vid.addEventListener('loadedmetadata', ()=>{ duration = vid.duration || 0; vidReady = true; poster.style.opacity = 0; poster.style.transition='opacity .6s'; });
+// Forzamos una primera carga del frame
+vid.load();
+
+function heroScroll(){
+  const rect = hero.getBoundingClientRect();
+  const total = hero.offsetHeight - innerHeight;
+  // progreso 0→1 mientras la sección recorre el viewport
+  let p = Math.min(1, Math.max(0, (-rect.top) / total));
+
+  // scrub de vídeo
+  if(vidReady && duration){
+    const t = p * (duration - 0.05);
+    if(Math.abs(vid.currentTime - t) > 0.02){ try{ vid.currentTime = t; }catch(e){} }
+  }
+
+  // capítulos: 0 → [0,.40) · 1 → [.40,.72) · 2 → [.72,1]
+  let idx = p < 0.40 ? 0 : p < 0.72 ? 1 : 2;
+  chapters.forEach((c,i)=> c.classList.toggle('on', i===idx));
+
+  // ocultar el "scroll" tras empezar
+  cue.style.opacity = p > 0.04 ? 0 : 1;
+  ticking = false;
+}
+addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(heroScroll); ticking = true; } }, {passive:true});
+heroScroll();
+
+/* ===== FEATURES: producto sticky que cambia según el paso activo ===== */
+const prods = [...document.querySelectorAll('.feat-prod')];
+const tags = [...document.querySelectorAll('.feat-tag')];
+function setFeat(i){
+  prods.forEach(p=> p.classList.toggle('on', +p.dataset.prod===i));
+  tags.forEach(t=> t.classList.toggle('on', +t.dataset.tag===i));
+}
+const featObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) setFeat(+e.target.dataset.feat); });
+}, {threshold:0.55});
+document.querySelectorAll('.feat-step').forEach(s=> featObs.observe(s));
+setFeat(0);
+
+/* ===== Showreel: play solo cuando es visible (ahorra batería) ===== */
+const reelVid = document.getElementById('reelVid');
+const reelObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ reelVid.play().catch(()=>{}); } else { reelVid.pause(); }
+  });
+}, {threshold:0.25});
+reelObs.observe(reelVid);
+
+/* ===== Reveal on scroll ===== */
+const rvObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); rvObs.unobserve(e.target); } });
+}, {threshold:0.18});
+document.querySelectorAll('.rv').forEach(el=> rvObs.observe(el));
+</script>
+
+<!-- ===== CHECKOUT MODAL (demo) ===== -->
+<div class="co" id="co" aria-hidden="true">
+  <div class="co-back" data-close></div>
+  <div class="co-panel" role="dialog" aria-modal="true" aria-label="Finalizar compra">
+    <div class="co-head">
+      <div style="display:flex;align-items:center"><span class="ttl">Finalizar compra</span><span class="co-demo">● Demo · sin pago real</span></div>
+      <button class="co-x" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+
+    <div class="co-body">
+      <!-- IZQUIERDA: producto + pago -->
+      <div class="co-col left">
+        <h4 class="co-sec-t">Tu producto</h4>
+        <div class="co-prod">
+          <img id="coImg" src="" alt="">
+          <div>
+            <div class="pf" id="coFam"></div>
+            <div class="pn" id="coName"></div>
+            <div class="pu">Precio unidad · <span id="coUnit"></span></div>
+          </div>
+        </div>
+        <div class="flbl" style="margin-top:16px">Cantidad</div>
+        <div class="qty">
+          <button type="button" id="qMinus" aria-label="Quitar uno">−</button>
+          <input type="number" id="qInput" value="1" min="1" max="99" inputmode="numeric" aria-label="Cantidad">
+          <button type="button" id="qPlus" aria-label="Añadir uno">+</button>
+        </div>
+
+        <h4 class="co-sec-t">Método de pago</h4>
+        <div class="pay" id="payList">
+          <label data-pay="stripe">
+            <input type="radio" name="pay" value="stripe">
+            <span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
+            <span><span class="pt">Tarjeta</span> <span class="pd">· Visa · Mastercard (Stripe)</span></span>
+          </label>
+          <label data-pay="paypal">
+            <input type="radio" name="pay" value="paypal">
+            <span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></span>
+            <span><span class="pt">PayPal</span> <span class="pd">· Paga con tu cuenta</span></span>
+          </label>
+          <label data-pay="transfer">
+            <input type="radio" name="pay" value="transfer">
+            <span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M5 10v11M19 10v11M9 14v3M15 14v3"/></svg></span>
+            <span><span class="pt">Transferencia</span> <span class="pd">· Recibirás los datos por email</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- DERECHA: datos + desglose -->
+      <div class="co-col right">
+        <h4 class="co-sec-t">Datos de envío</h4>
+        <form id="coForm" novalidate autocomplete="off">
+          <div class="fld"><label for="fName">Nombre completo</label><input id="fName" placeholder="Nombre y apellidos"></div>
+          <div class="fld"><label for="fMail">Email</label><input id="fMail" type="email" placeholder="tucorreo@ejemplo.com"></div>
+          <div class="fld"><label for="fAddr">Dirección</label><input id="fAddr" placeholder="Calle, número, piso"></div>
+          <div class="fld">
+            <label for="fCountry">País</label>
+            <select id="fCountry"><option value="andorra">Andorra</option><option value="es">España</option></select>
+          </div>
+          <div class="fld" id="wrapAndorra">
+            <label for="fEntrega" class="lbl-ship"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></svg>Forma de entrega</label>
+            <select id="fEntrega">
+              <option value="recogida">Recogida en tienda · Gratis</option>
+              <option value="domicilio">Envío a domicilio (Andorra) · desde 1,90 €</option>
+            </select>
+          </div>
+          <div class="fld" id="wrapZona" style="display:none">
+            <label for="fZona" class="lbl-ship"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></svg>Zona de envío</label>
+            <select id="fZona">
+              <option value="cercana">Cataluña / Aragón · desde 3,90 €</option>
+              <option value="media">Resto península · desde 3,90 €</option>
+              <option value="lejana">Baleares y Canarias · desde 3,90 €</option>
+            </select>
+          </div>
+          <div class="fld" id="wrapCarrier" style="display:none">
+            <label for="fCarrier" class="lbl-ship"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>Compañía de envío</label>
+            <select id="fCarrier"></select>
+          </div>
+        </form>
+
+        <div class="sum">
+          <div class="r"><span class="l">Subtotal (sin impuestos)</span><span class="v" id="sBase">—</span></div>
+          <div class="r"><span class="l" id="sTaxL">Impuestos</span><span class="v" id="sTax">—</span></div>
+          <div class="r"><span class="l" id="sShipL">Envío</span><span class="v" id="sShip">—</span></div>
+          <div class="r" id="rShipCarrier" style="display:none"><span class="l" id="sCarrierL">Transporte</span><span class="v" id="sCarrier">—</span></div>
+          <div class="r tot"><span class="l">Total</span><span class="v" id="sTot">—</span></div>
+        </div>
+
+        <button class="btn btn-blue co-confirm" id="coPay">Pagar <span id="coPayAmt"></span></button>
+        <div class="co-foot-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Pago simulado · No se cobra nada real</div>
+      </div>
+    </div>
+
+    <!-- CONFIRMACIÓN -->
+    <div class="co-done">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3>¡Pedido confirmado!</h3>
+      <div class="order" id="dOrder"></div>
+      <p>Gracias <span id="dName"></span>, hemos recibido tu pedido y lo estamos preparando.</p>
+      <p>Te hemos enviado la confirmación a <span class="mail" id="dMail"></span></p>
+      <div class="co-recap" id="dRecap"></div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px">
+        <button class="btn btn-blue" id="dTrack">Rastrear mi pedido
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+        <button class="btn btn-ghost" data-close>Seguir comprando</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TRACKER MODAL (seguimiento de pedido, demo) ===== -->
+<div class="co" id="trk" aria-hidden="true">
+  <div class="co-back" data-trkclose></div>
+  <div class="co-panel" role="dialog" aria-modal="true" aria-label="Seguir mi pedido">
+    <div class="co-head">
+      <div style="display:flex;align-items:center"><span class="ttl">Seguir mi pedido</span><span class="co-demo">● Demo</span></div>
+      <button class="co-x" data-trkclose aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="co-col">
+      <div class="trk-hint">Introduce tu número de pedido (lo recibiste al comprar, con el formato <strong>DG-2026-XXXXX</strong>).</div>
+      <div class="trk-search">
+        <input id="trkInput" placeholder="DG-2026-12345" autocomplete="off" spellcheck="false">
+        <button class="btn btn-blue" id="trkBtn">Rastrear
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <button class="trk-last" id="trkLast">Usar mi último pedido: <strong></strong></button>
+      <div class="trk-err" id="trkErr"></div>
+
+      <div class="trk-result" id="trkResult">
+        <div class="trk-card">
+          <img id="trkImg" src="" alt="">
+          <div>
+            <div class="trk-num" id="trkNum"></div>
+            <div class="trk-prod" id="trkProd"></div>
+            <div class="trk-tot" id="trkTot"></div>
+          </div>
+          <div class="trk-state" id="trkState"></div>
+        </div>
+        <div class="tl" id="trkTL"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===================== CHECKOUT DEMO =====================
+   No procesa pagos reales. Calcula impuestos y envío según país:
+   · Andorra → IGI 4,5% (ya incluido en el precio de Distgar), recogida gratis.
+   · España  → se retira el IGI andorrano y se aplica IVA 21% + envío por zona
+               (importación fuera de la unión aduanera de la UE). */
+(function(){
+  const co = document.getElementById('co');
+  const SHIP_ES  = { cercana:0, media:0, lejana:0 };
+  const SHIP_AND = { recogida:0, domicilio:0 };
+  const state = { unit:0, name:'', fam:'', img:'', qty:1, calc:null };
+
+  // "349,99 €" → 349.99  ·  "735 €" → 735
+  const parsePrice = s => parseFloat(String(s).replace(/[^\d.,]/g,'').replace(/\./g,'').replace(',','.')) || 0;
+  const fmt = n => n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €';
+
+  // refs
+  const $ = id => document.getElementById(id);
+  const coImg=$('coImg'), coName=$('coName'), coFam=$('coFam'), coUnit=$('coUnit');
+  const qInput=$('qInput'), payList=$('payList'), coForm=$('coForm');
+  const fName=$('fName'), fMail=$('fMail'), fAddr=$('fAddr');
+  const fCountry=$('fCountry'), fEntrega=$('fEntrega'), fZona=$('fZona'), fCarrier=$('fCarrier');
+  const wrapAndorra=$('wrapAndorra'), wrapZona=$('wrapZona'), wrapCarrier=$('wrapCarrier');
+  const sShipL=$('sShipL');
+  const sBase=$('sBase'), sTaxL=$('sTaxL'), sTax=$('sTax'), sShip=$('sShip'), sTot=$('sTot');
+  const rShipCarrier=$('rShipCarrier'), sCarrierL=$('sCarrierL'), sCarrier=$('sCarrier');
+  const coPay=$('coPay'), coPayAmt=$('coPayAmt');
+  const dOrder=$('dOrder'), dName=$('dName'), dMail=$('dMail'), dRecap=$('dRecap');
+
+  /* ---- Convertir cada botón "Consultar disponibilidad" en "Comprar" ---- */
+  document.querySelectorAll('.prod').forEach(card=>{
+    const btn  = card.querySelector('.prod-btn');
+    const nEl  = card.querySelector('.prod-name');
+    const pEl  = card.querySelector('.prod-price .now');
+    const iEl  = card.querySelector('.prod-media img');
+    const fEl  = card.querySelector('.prod-fam');
+    if(!btn || !nEl || !pEl) return;
+    const data = {
+      name: nEl.textContent.trim(),
+      fam:  fEl ? fEl.textContent.trim() : '',
+      img:  iEl ? iEl.getAttribute('src') : '',
+      unit: parsePrice(pEl.textContent),
+      unitTxt: pEl.textContent.trim()
+    };
+    btn.setAttribute('href','#');
+    btn.innerHTML = 'Comprar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>';
+    btn.addEventListener('click', e=>{ e.preventDefault(); openCheckout(data); });
+  });
+
+  /* ---- Cálculo del desglose ---- */
+  function compute(){
+    const country = fCountry.value, qty = state.qty;
+    const lineAndorra = state.unit * qty;   // precio Distgar (IGI incluido)
+    let base, taxAmt, taxLabel, ship;
+    if(country === 'andorra'){
+      base     = lineAndorra / 1.045;
+      taxAmt   = lineAndorra - base;
+      taxLabel = 'IGI incluido (4,5 %)';
+      ship     = SHIP_AND[fEntrega.value] ?? 0;
+    } else {
+      base     = (state.unit / 1.045) * qty; // quitamos el IGI andorrano
+      taxAmt   = base * 0.21;
+      taxLabel = 'IVA España (21 %)';
+      ship     = SHIP_ES[fZona.value] ?? SHIP_ES.media;
+    }
+    const recogida = (country === 'andorra' && fEntrega.value === 'recogida');
+    // Suplemento de la compañía de transporte (se suma al envío)
+    const carrierVisible = wrapCarrier.style.display !== 'none' && fCarrier.options.length;
+    let carrierPrice = 0, carrierName = '';
+    if(carrierVisible){
+      const opt = fCarrier.options[fCarrier.selectedIndex];
+      carrierPrice = Number(opt.dataset.price || 0);
+      carrierName  = opt.text.split(' · ')[0];
+    }
+    const total = base + taxAmt + ship + carrierPrice;
+    sBase.textContent = fmt(base);
+    sTaxL.textContent = taxLabel;
+    sTax.textContent  = fmt(taxAmt);
+    sShipL.textContent = recogida ? 'Recogida en tienda' : 'Envío';
+    sShip.textContent = ship === 0 ? 'Gratis' : fmt(ship);
+    if(carrierVisible){
+      rShipCarrier.style.display = '';
+      sCarrierL.textContent = 'Transporte · ' + carrierName;
+      sCarrier.textContent  = carrierPrice === 0 ? 'Gratis' : fmt(carrierPrice);
+    } else {
+      rShipCarrier.style.display = 'none';
+    }
+    sTot.textContent  = fmt(total);
+    coPayAmt.textContent = '· ' + fmt(total);
+    state.calc = { base, taxAmt, taxLabel, ship, carrierPrice, carrierName, total, qty, country };
+  }
+
+  /* ---- Compañías de transporte por país (la elección marca el plazo, no el precio) ---- */
+  const CARRIERS = {
+    andorra:[
+      {v:'rapitand',   t:'RapitAnd · 24 h',        d:1, p:5.90},
+      {v:'nagrup',     t:'NaGRUP · 24-48 h',       d:2, p:3.90},
+      {v:'tli',        t:'TLI · 48 h',             d:2, p:2.90},
+      {v:'tradisporta',t:'TradisPorta · 2-3 días', d:3, p:1.90}
+    ],
+    es:[
+      {v:'mrw',    t:'MRW · 24-48 h',      d:2, p:5.90},
+      {v:'correos',t:'Correos · 3-5 días', d:5, p:3.90},
+      {v:'seur',   t:'SEUR · 24 h',        d:1, p:7.90},
+      {v:'gls',    t:'GLS · 48-72 h',      d:3, p:4.90}
+    ]
+  };
+  function populateCarriers(region){
+    if(fCarrier.dataset.region === region) return;
+    fCarrier.innerHTML = CARRIERS[region].map(c =>
+      '<option value="' + c.v + '" data-days="' + c.d + '" data-price="' + c.p + '">' +
+      c.t + ' · +' + c.p.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €</option>'
+    ).join('');
+    fCarrier.dataset.region = region;
+  }
+
+  /* ---- País / entrega → muestra el campo correcto + compañía ---- */
+  function updateShipping(){
+    const es = fCountry.value === 'es';
+    wrapAndorra.style.display = es ? 'none' : '';
+    wrapZona.style.display    = es ? '' : 'none';
+    let showCarrier;
+    if(es){ populateCarriers('es'); showCarrier = true; }
+    else  { populateCarriers('andorra'); showCarrier = (fEntrega.value === 'domicilio'); }
+    wrapCarrier.style.display = showCarrier ? '' : 'none';
+    compute();
+  }
+
+  /* ---- Cantidad ---- */
+  function setQty(q){ q = Math.max(1, Math.min(99, parseInt(q,10) || 1)); state.qty = q; qInput.value = q; compute(); }
+  $('qMinus').onclick = ()=> setQty(state.qty - 1);
+  $('qPlus').onclick  = ()=> setQty(state.qty + 1);
+  qInput.oninput      = ()=> setQty(qInput.value);
+
+  /* ---- Selección visual de método de pago ---- */
+  payList.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click', ()=>{
+      payList.querySelectorAll('label').forEach(x=> x.classList.remove('sel'));
+      l.classList.add('sel');
+      l.querySelector('input').checked = true;
+    });
+  });
+
+  fCountry.addEventListener('change', updateShipping);
+  fEntrega.addEventListener('change', updateShipping);
+  fZona.addEventListener('change', compute);
+  fCarrier.addEventListener('change', compute);
+  [fName,fMail,fAddr].forEach(el=> el.addEventListener('input', ()=> el.classList.remove('err')));
+
+  /* ---- Abrir / cerrar ---- */
+  function openCheckout(p){
+    Object.assign(state, { unit:p.unit, name:p.name, fam:p.fam, img:p.img, qty:1 });
+    coImg.src = p.img; coImg.alt = p.name;
+    coName.textContent = p.name; coFam.textContent = p.fam; coUnit.textContent = p.unitTxt;
+    coForm.reset(); qInput.value = 1;
+    fCountry.value = 'andorra'; fEntrega.value = 'recogida'; fZona.value = 'cercana';
+    payList.querySelectorAll('label').forEach((x,i)=>{ x.classList.toggle('sel', i===0); x.querySelector('input').checked = i===0; });
+    [fName,fMail,fAddr].forEach(el=> el.classList.remove('err'));
+    co.classList.remove('done');
+    updateShipping();
+    co.classList.add('on'); co.setAttribute('aria-hidden','false');
+    document.body.classList.add('co-open');
+    co.querySelector('.co-panel').scrollTop = 0;
+  }
+  function closeCheckout(){ co.classList.remove('on'); co.setAttribute('aria-hidden','true'); document.body.classList.remove('co-open'); }
+  co.querySelectorAll('[data-close]').forEach(b=> b.addEventListener('click', closeCheckout));
+  addEventListener('keydown', e=>{ if(e.key === 'Escape' && co.classList.contains('on')) closeCheckout(); });
+
+  /* ---- Confirmar pedido (simulado) ---- */
+  coPay.addEventListener('click', ()=>{
+    const name = fName.value.trim();
+    const mail = fMail.value.trim();
+    const addr = fAddr.value.trim();
+    const mailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail);
+    let ok = true;
+    if(!name){ fName.classList.add('err'); ok=false; }
+    if(!mailOk){ fMail.classList.add('err'); ok=false; }
+    if(!addr){ fAddr.classList.add('err'); ok=false; }
+    if(!ok){ (!name?fName:!mailOk?fMail:fAddr).focus(); return; }
+
+    compute();
+    const c = state.calc;
+    const order = 'DG-' + new Date().getFullYear() + '-' + Math.floor(10000 + Math.random()*89999);
+    const payTxt = { stripe:'Tarjeta (Stripe)', paypal:'PayPal', transfer:'Transferencia bancaria' }[(payList.querySelector('input:checked')||{}).value || 'stripe'];
+
+    // Guardar el pedido para el rastreador (demo · localStorage)
+    const pickup = (c.country === 'andorra' && fEntrega.value === 'recogida');
+    const carrierShown = (wrapCarrier.style.display !== 'none' && fCarrier.options.length);
+    const carrier = carrierShown ? fCarrier.options[fCarrier.selectedIndex].text.split(' · ')[0] : '';
+    const carrierDays = carrierShown ? Number(fCarrier.options[fCarrier.selectedIndex].dataset.days || 3) : 1;
+    const orderData = { num:order, prod:state.name, img:state.img, total:c.total, qty:c.qty, pickup, carrier, carrierDays, created: Date.now() };
+    try{
+      const all = JSON.parse(localStorage.getItem('distgar_orders') || '{}');
+      all[order] = orderData;
+      localStorage.setItem('distgar_orders', JSON.stringify(all));
+      localStorage.setItem('distgar_last', order);
+    }catch(e){}
+    state.lastOrderData = orderData;
+
+    dOrder.textContent = 'Pedido ' + order;
+    dName.textContent  = name.split(' ')[0];
+    dMail.textContent  = mail;
+    dRecap.innerHTML =
+      '<div class="rr"><span class="l">'+state.name+'</span><span class="v">× '+c.qty+'</span></div>'+
+      '<div class="rr"><span class="l">Subtotal</span><span class="v">'+fmt(c.base)+'</span></div>'+
+      '<div class="rr"><span class="l">'+c.taxLabel+'</span><span class="v">'+fmt(c.taxAmt)+'</span></div>'+
+      '<div class="rr"><span class="l">Envío</span><span class="v">'+(c.ship===0?'Gratis':fmt(c.ship))+'</span></div>'+
+      (c.carrierName ? '<div class="rr"><span class="l">Transporte · '+c.carrierName+'</span><span class="v">'+(c.carrierPrice===0?'Gratis':fmt(c.carrierPrice))+'</span></div>' : '')+
+      '<div class="rr"><span class="l">Pago</span><span class="v">'+payTxt+'</span></div>'+
+      '<div class="rr t"><span class="l">Total</span><span class="v">'+fmt(c.total)+'</span></div>';
+
+    co.classList.add('done');
+    co.querySelector('.co-panel').scrollTop = 0;
+  });
+
+  /* ===================== RASTREADOR DE PEDIDOS ===================== */
+  const trk = $('trk');
+  const trkInput=$('trkInput'), trkBtn=$('trkBtn'), trkErr=$('trkErr'), trkLast=$('trkLast');
+  const trkImg=$('trkImg'), trkNum=$('trkNum'), trkProd=$('trkProd'), trkTot=$('trkTot'), trkState=$('trkState'), trkTL=$('trkTL');
+
+  const getOrders = () => { try{ return JSON.parse(localStorage.getItem('distgar_orders') || '{}'); }catch(e){ return {}; } };
+  const getLast   = () => { try{ return localStorage.getItem('distgar_last'); }catch(e){ return null; } };
+
+  const ICON = {
+    check:'<path d="M20 6 9 17l-5-5"/>',
+    box:'<path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/>',
+    truck:'<path d="M1 3h15v13H1zM16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/>',
+    pin:'<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+    home:'<path d="M3 11 12 3l9 8M5 10v10h14V10"/>',
+    store:'<path d="M4 4h16l-1 5H5L4 4zM5 9v11h14V9"/>'
+  };
+
+  function showTrkErr(msg){ trkErr.textContent = msg; trkErr.style.display = 'block'; trk.classList.remove('found'); }
+
+  function renderTracker(o){
+    trkErr.style.display = 'none';
+    trkNum.textContent  = o.num;
+    trkProd.textContent = (o.qty > 1 ? o.qty + '× ' : '') + o.prod;
+    const meta = [];
+    if(o.total != null) meta.push('Total · ' + fmt(o.total));
+    if(o.carrier) meta.push(o.carrier);
+    trkTot.textContent = meta.join('   ·   ');
+    trkImg.src = o.img || 'assets/distgar/logo.png';
+    const day = 86400000;
+    const fD  = ts => new Date(ts).toLocaleDateString('es-ES',{day:'numeric',month:'long'});
+    const fDT = ts => new Date(ts).toLocaleDateString('es-ES',{day:'numeric',month:'long'}) + ' · ' + new Date(ts).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
+    let steps;
+    if(o.pickup){
+      steps = [
+        {t:'Pedido confirmado', d:'Recibido el ' + fDT(o.created),                       s:'done',    i:'check'},
+        {t:'En preparación',    d:'Estamos preparando tu pedido en el almacén',           s:'active',  i:'box'},
+        {t:'Listo para recoger',d:'Previsto · ' + fD(o.created + day) + ' · Sant Julià de Lòria', s:'pending', i:'store'},
+        {t:'Recogido',          d:'Te esperamos en tienda en horario comercial',          s:'pending', i:'check'}
+      ];
+    } else {
+      const entrega = o.created + (o.carrierDays || 3) * day;
+      steps = [
+        {t:'Pedido confirmado', d:'Recibido el ' + fDT(o.created),                                       s:'done',    i:'check'},
+        {t:'En preparación',    d:'Estamos preparando tu pedido',                                        s:'active',  i:'box'},
+        {t:'Enviado',           d:(o.carrier ? 'Con ' + o.carrier + ' · previsto ' : 'Previsto · ') + fD(o.created + day), s:'pending', i:'truck'},
+        {t:'En reparto',        d:(o.carrier || 'Transportista') + ' · ' + fD(entrega),                  s:'pending', i:'pin'},
+        {t:'Entregado',         d:'Estimado · ' + fD(entrega),                                           s:'pending', i:'home'}
+      ];
+    }
+    trkState.textContent = 'En preparación';
+    trkTL.innerHTML = steps.map(st =>
+      '<div class="tl-step ' + st.s + '"><div class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">' + ICON[st.i] + '</svg></div>' +
+      '<div class="tl-txt"><h5>' + st.t + '</h5><p>' + st.d + '</p></div></div>'
+    ).join('');
+    trk.classList.add('found');
+  }
+
+  function trackLookup(raw){
+    const num = (raw || '').trim().toUpperCase();
+    if(!num){ return showTrkErr('Escribe tu número de pedido.'); }
+    const o = getOrders()[num];
+    if(o){ return renderTracker(o); }
+    if(/^DG-\d{4}-\d{4,6}$/.test(num)){
+      // Pedido no guardado en este navegador → seguimiento de ejemplo
+      return renderTracker({ num, prod:'Pedido Distgar', img:'assets/distgar/logo.png', total:null, qty:1, pickup:false, created: Date.now() - 3600000 });
+    }
+    showTrkErr('No encontramos ese número. Revisa el formato (DG-2026-XXXXX).');
+  }
+
+  function openTracker(prefill){
+    const last = getLast();
+    if(last){ trkLast.style.display = 'block'; trkLast.querySelector('strong').textContent = last; }
+    else { trkLast.style.display = 'none'; }
+    trkErr.style.display = 'none';
+    if(prefill){ trkInput.value = prefill; trackLookup(prefill); }
+    else { trk.classList.remove('found'); trkInput.value = ''; }
+    trk.classList.add('on'); trk.setAttribute('aria-hidden','false');
+    document.body.classList.add('co-open');
+    trk.querySelector('.co-panel').scrollTop = 0;
+  }
+  function closeTracker(){ trk.classList.remove('on'); trk.setAttribute('aria-hidden','true'); document.body.classList.remove('co-open'); }
+
+  trk.querySelectorAll('[data-trkclose]').forEach(b => b.addEventListener('click', closeTracker));
+  trkBtn.addEventListener('click', () => trackLookup(trkInput.value));
+  trkInput.addEventListener('keydown', e => { if(e.key === 'Enter') trackLookup(trkInput.value); });
+  trkLast.addEventListener('click', () => { const n = trkLast.querySelector('strong').textContent; trkInput.value = n; trackLookup(n); });
+  addEventListener('keydown', e => { if(e.key === 'Escape' && trk.classList.contains('on')) closeTracker(); });
+
+  // Aperturas: menú (escritorio + móvil) y botón de la confirmación
+  const navTrack = document.getElementById('navTrack');
+  if(navTrack) navTrack.addEventListener('click', e => { e.preventDefault(); openTracker(); });
+  const navTrackM = document.getElementById('navTrackM');
+  if(navTrackM) navTrackM.addEventListener('click', e => { e.preventDefault(); openTracker(); });
+  const dTrack = document.getElementById('dTrack');
+  if(dTrack) dTrack.addEventListener('click', () => {
+    const n = (state.lastOrderData && state.lastOrderData.num) || dOrder.textContent.replace('Pedido ','').trim();
+    closeCheckout(); openTracker(n);
+  });
+})();
+</script>
+</body>
+</html>

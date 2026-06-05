@@ -1,0 +1,805 @@
+[
+ {
+  "title": "Your Shadow",
+  "handle": "midnight-sexy-drill",
+  "mf": [
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/177934467360\"]"
+   },
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/your_shadow_141bpm_d_m_demo.mp3?v=1770656426"
+   },
+   {
+    "namespace": "shopify",
+    "key": "download-format",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178307334432\",\"gid://shopify/Metaobject/178302124320\",\"gid://shopify/Metaobject/179048022304\"]"
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "Your Shadow Sexy Drill Beat - Sexy Drill 141 BPM Eb Minor"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Beat Sexy Drill profesional 141 BPM en Eb minor. Licencia incluida, descarga inmediata WAV. Ideal para artistas urbanos que escriben desde lo real."
+   }
+  ]
+ },
+ {
+  "title": "CHAOS",
+  "handle": "rnb-emocional",
+  "mf": [
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/177796251936\"]"
+   },
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_CHAOS_90bpm_a_minor.mp3?v=1770819724"
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "CHAOS Beat Afro Emocional - R&B 126 BPM Eb Minor"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Beat Afro emocional profesional 126 BPM en Eb minor. Licencia incluida, descarga WAV inmediata. Para artistas que escriben desde algo real."
+   }
+  ]
+ },
+ {
+  "title": "FROM PAIN TO POWER VOL1",
+  "handle": "from-pain-to-power-vol1",
+  "mf": [
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/177934598432\"]"
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "FROM PAIN TO POWER VOL1 - Drumkit R&B y Urbano"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Drumkit profesional para R&B y urbano. Descarga inmediata. Samples de calidad para crear, sanar y producir beats con identidad."
+   }
+  ]
+ },
+ {
+  "title": "DREAM",
+  "handle": "ngd",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/DREAM_120BPM_Dm.mp3?v=1770651527"
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "DREAM Beat Afro Emocional - 120 BPM D Minor"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Beat Afro emocional 120 BPM en D minor. Descarga WAV inmediata con licencia incluida. Ideal para artistas urbanos y R&B."
+   }
+  ]
+ },
+ {
+  "title": "FANTASMA",
+  "handle": "fantasma",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/SIN_SENAL_194BPM_Bm_DEMO.mp3?v=1770640279"
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "FANTASMA Beat Afro Emocional - 194 BPM B Minor"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Beat Afro emocional 194 BPM en B minor. Descarga WAV con licencia incluida. Para artistas que escriben desde algo real."
+   }
+  ]
+ },
+ {
+  "title": "MIS ASUNTOS",
+  "handle": "mis-asuntos",
+  "mf": [
+   {
+    "namespace": "shopify",
+    "key": "download-format",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178302124320\"]"
+   },
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/DRY_AGUACATE_98BPM_DEMO.mp3?v=1770575862"
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "MIS ASUNTOS Beat Afro Emocional - 98 BPM B Minor"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Beat Afro emocional 98 BPM en B minor. Descarga WAV inmediata con licencia. Ideal para artistas urbanos que escriben desde lo real."
+   }
+  ]
+ },
+ {
+  "title": "DIAMANTES",
+  "handle": "diamantes",
+  "mf": [
+   {
+    "namespace": "shopify",
+    "key": "download-format",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178302124320\",\"gid://shopify/Metaobject/178307334432\"]"
+   },
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178307072288\"]"
+   },
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_DIAMANTES_97BPM_F_MAJOR.mp3?v=1770746113"
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "DIAMANTES Beat Afro Emocional - 126 BPM Eb Minor"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Beat Afro emocional 126 BPM en Eb minor. Descarga WAV con licencia incluida. Para artistas urbanos que escriben desde algo real."
+   }
+  ]
+ },
+ {
+  "title": "RETRO",
+  "handle": "retro",
+  "mf": [
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178301829408\"]"
+   },
+   {
+    "namespace": "shopify",
+    "key": "download-format",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178302124320\",\"gid://shopify/Metaobject/178307334432\"]"
+   },
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_AUDIO.mp3?v=1770732525"
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "RETRO Beat Afro Emocional - 126 BPM Eb Minor"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Beat Afro emocional 126 BPM en Eb minor. Descarga WAV inmediata con licencia. Ideal para artistas urbanos y R&B."
+   }
+  ]
+ },
+ {
+  "title": "AMANTES",
+  "handle": "amantes",
+  "mf": [
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178307072288\"]"
+   },
+   {
+    "namespace": "shopify",
+    "key": "download-format",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178307334432\",\"gid://shopify/Metaobject/178302124320\"]"
+   },
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/AMANTES_122BPM_F_m_PRW.mp3?v=1770740145"
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "AMANTES Beat Afro Emocional - 122 BPM F# Minor"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Beat Afro emocional 122 BPM en F# minor. Descarga WAV con licencia incluida. Para artistas urbanos que escriben desde algo real."
+   }
+  ]
+ },
+ {
+  "title": "Producción personalizada 1:1 desde cero",
+  "handle": "producciona-personalizada",
+  "mf": [
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "Producción Musical Personalizada 1:1 - Crea Tu Canción"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Producción musical personalizada desde cero. Creamos tu canción juntos con dirección artística, mezcla y master. Sonido profesional para artistas."
+   }
+  ]
+ },
+ {
+  "title": "ASESORIA 1:1",
+  "handle": "asesoria",
+  "mf": [
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "Asesoría Musical 1:1 para Artistas y Productores"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Asesoría musical 1:1 personalizada. Feedback profesional, dirección artística y plan de lanzamientos. Mejora tu sonido y estrategia musical."
+   }
+  ]
+ },
+ {
+  "title": "Ghostwriting · Letra personalizada (1:1)",
+  "handle": "ghostwriting-letra-personalizada-1-1",
+  "mf": [
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "Ghostwriter Profesional para Artistas Urbanos"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Servicio de ghostwriting profesional. Letras con alma para artistas urbanos y R&B. Confidencialidad total, revisiones incluidas, derechos 100% tuyos."
+   }
+  ]
+ },
+ {
+  "title": "MILF",
+  "handle": "milf",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_190BPM_AMINOR_MILF_AFRO_DETROIT.mp3?v=1771330692"
+   }
+  ]
+ },
+ {
+  "title": "QUEDAN SEGUNDOS",
+  "handle": "quedan-segundos",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://drive.google.com/file/d/1sR4o4jA3klTijnFFa8zIUybltBDR7Ckw/view?usp=sharing"
+   }
+  ]
+ },
+ {
+  "title": "2006",
+  "handle": "2006",
+  "mf": [
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/177934467360\",\"gid://shopify/Metaobject/178301829408\"]"
+   },
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW.mp3?v=1771412184"
+   }
+  ]
+ },
+ {
+  "title": "BANG",
+  "handle": "bang",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_BANG.mp3?v=1771415841"
+   },
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/177934467360\",\"gid://shopify/Metaobject/178301829408\"]"
+   }
+  ]
+ },
+ {
+  "title": "MI YO",
+  "handle": "mi-yo",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_MIYO.mp3?v=1771422239"
+   }
+  ]
+ },
+ {
+  "title": "CORNER HOUSE",
+  "handle": "corner-house",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_CORNER.mp3?v=1771425590"
+   }
+  ]
+ },
+ {
+  "title": "PERSECUCIÓN",
+  "handle": "persecucion",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_PERSECUCION_135_D_m.mp3?v=1771439431"
+   }
+  ]
+ },
+ {
+  "title": "CONSECUENCIA",
+  "handle": "consecuencia",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_CONSECUENCIA.mp3?v=1771497169"
+   }
+  ]
+ },
+ {
+  "title": "ELLA",
+  "handle": "ella",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_ELLA.mp3?v=1771518829"
+   }
+  ]
+ },
+ {
+  "title": "AMOR Y ROSAS",
+  "handle": "amor-y-rosas",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_AMOR_Y_ROSAS.mp3?v=1771523507"
+   }
+  ]
+ },
+ {
+  "title": "PEGA",
+  "handle": "pega",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_PEGA_BPM127_Aminor.mp3?v=1771527707"
+   }
+  ]
+ },
+ {
+  "title": "MILLONARIO",
+  "handle": "millonario",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_MILLONARIO_101BPM_Gm.mp3?v=1771605365"
+   }
+  ]
+ },
+ {
+  "title": "QUIEN SOY",
+  "handle": "quien-soy",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_QUIEN_SOY.mp3?v=1771612405"
+   }
+  ]
+ },
+ {
+  "title": "ERES MALA",
+  "handle": "eres-mala",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_MALA_95BPM_Fm.mp3?v=1771695406"
+   }
+  ]
+ },
+ {
+  "title": "BABY",
+  "handle": "baby",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_BABY_190.mp3?v=1771784758"
+   },
+   {
+    "namespace": "shopify",
+    "key": "download-format",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178302124320\",\"gid://shopify/Metaobject/178307334432\"]"
+   }
+  ]
+ },
+ {
+  "title": "ANGEL",
+  "handle": "angel",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/RRW-ANGEL-144BPM-Em.mp3?v=1771855552"
+   }
+  ]
+ },
+ {
+  "title": "COMO HIENAS",
+  "handle": "como-hienas",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_hienas_166_BPM.mp3?v=1772029734"
+   }
+  ]
+ },
+ {
+  "title": "ARAÑA",
+  "handle": "arana",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_ARANA_160_BPM.mp3?v=1772038161"
+   },
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178301829408\"]"
+   }
+  ]
+ },
+ {
+  "title": "AMADO",
+  "handle": "amado",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_AMADO.mp3?v=1772112268"
+   },
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178301829408\"]"
+   }
+  ]
+ },
+ {
+  "title": "VAGANDO",
+  "handle": "vagando",
+  "mf": [
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/178301829408\"]"
+   },
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_VAGANDO.mp3?v=1772115445"
+   }
+  ]
+ },
+ {
+  "title": "LUZ EN LA OSCURIDAD",
+  "handle": "luz-en-la-oscuridad",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_DARKNES.mp3?v=1772126446"
+   }
+  ]
+ },
+ {
+  "title": "LA VITA",
+  "handle": "la-vita",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW-LA-VITA-192-BPM.mp3?v=1772534910"
+   }
+  ]
+ },
+ {
+  "title": "ACTUA",
+  "handle": "actua",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_ACTUA_102BPM.mp3?v=1772550943"
+   }
+  ]
+ },
+ {
+  "title": "LEAN AND DROPS",
+  "handle": "lean-and-drops",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_LEAN_AND_DROPS_200BPM_Fm.mp3?v=1772792785"
+   }
+  ]
+ },
+ {
+  "title": "SECRETOS",
+  "handle": "secretos",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_SECRETO_160bpm_Dm.mp3?v=1772977005"
+   }
+  ]
+ },
+ {
+  "title": "DINERO",
+  "handle": "dinero",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_DINERO_126bpm.mp3?v=1772982527"
+   }
+  ]
+ },
+ {
+  "title": "MIDI CREATION KIT VOLUMEN 1",
+  "handle": "midi-creation-kit-volumen-1",
+  "mf": [
+   {
+    "namespace": "shopify",
+    "key": "operating-system",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/185072124192\"]"
+   },
+   {
+    "namespace": "shopify",
+    "key": "license-type",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/185072091424\"]"
+   },
+   {
+    "namespace": "shopify",
+    "key": "user-type",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/185072156960\",\"gid://shopify/Metaobject/185072189728\"]"
+   }
+  ]
+ },
+ {
+  "title": "FREE MIDI CREATION KIT VOLUMEN 1",
+  "handle": "free-midi-creation-kit-volumen-1",
+  "mf": []
+ },
+ {
+  "title": "STILL JURADO",
+  "handle": "still-jurado",
+  "mf": [
+   {
+    "namespace": "custom",
+    "key": "preview_audio",
+    "type": "url",
+    "value": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/STILL_Jurado_preview_Fminor_160bpm.mp3?v=1778847350"
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "STILL JURADO – Griselda Type Beat | 160 BPM | F Minor"
+   },
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Beat de rap oscuro estilo Griselda a 160 BPM en Fa menor. Boom bap cinematográfico con influencias de Westside Gunn y Conway. Licencias disponibles."
+   }
+  ]
+ },
+ {
+  "title": "Beat \"2006\" — GRATIS",
+  "handle": "beat-2006-gratis-lead-magnet",
+  "mf": [
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Beat \"2006\" producido por @yowiprod — Trap R&B oscuro, 127 BPM, Gb minor. Versión untagged sin marca de voz, para que uses en freestyles, demos y promoción. DESCARGA DIRECTA: https://cdn.shopify.com/s/files/1/0988/6852/7392/files/2006.mp3 Licencia: gratuita para uso freestyle, demo o promocional. Para uso comercial compra la licencia premium en el catálogo principal."
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "Beat 2006 GRATIS - Trap R&B Oscuro 127 BPM | YOWIPROD"
+   },
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/177934598432\"]"
+   }
+  ]
+ },
+ {
+  "title": "Beat \"RETRO\" — GRATIS",
+  "handle": "beat-retro-gratis-lead-magnet",
+  "mf": [
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Drumkit profesional para R&B y urbano. Descarga inmediata. Samples de calidad para crear, sanar y producir beats con identidad."
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "Beat RETRO GRATIS - Boom Bap Cassette 174 BPM | YOWIPROD"
+   },
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/177934598432\"]"
+   }
+  ]
+ },
+ {
+  "title": "Beat \"Your Shadow\" — GRATIS",
+  "handle": "beat-your-shadow-gratis-lead-magnet",
+  "mf": [
+   {
+    "namespace": "global",
+    "key": "description_tag",
+    "type": "string",
+    "value": "Drumkit profesional para R&B y urbano. Descarga inmediata. Samples de calidad para crear, sanar y producir beats con identidad."
+   },
+   {
+    "namespace": "global",
+    "key": "title_tag",
+    "type": "string",
+    "value": "Beat Your Shadow GRATIS - Drill 141 BPM 808s | YOWIPROD"
+   },
+   {
+    "namespace": "shopify",
+    "key": "music-genre",
+    "type": "list.metaobject_reference",
+    "value": "[\"gid://shopify/Metaobject/177934598432\"]"
+   }
+  ]
+ }
+]

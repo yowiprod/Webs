@@ -1,0 +1,80 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_liquid_N8aLpF": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  /* Ocultar colecciones específicas de Beats */\n  .collection-list__item:has(a[href*='/collections/beats-trap']),\n  .collection-list__item:has(a[href*='/collections/beats-dark-rap']),\n  .collection-list__item:has(a[href*='/collections/beats-detroit']),\n  .collection-list__item:has(a[href*='/collections/beats-drill']),\n  .collection-list__item:has(a[href*='/collections/beats-dancehall']),\n  .collection-list__item:has(a[href*='/collections/beats-afro']) {\n    display: none !important;\n  }\n  \n  /* Cambiar color del título principal \"Colecciones\" a dorado */\n  .main-list-collections__title {\n    color: #FFD700 !important;\n  }\n  \n  /* Selector específico para h1 dentro de main-list-collections */\n  .main-list-collections h1 {\n    color: #FFD700 !important;\n  }\n  \n  /* Selector para cualquier heading dentro de la sección principal */\n  [data-section-type=\"main-list-collections\"] h1,\n  [data-section-type=\"main-list-collections\"] .main-list-collections__title {\n    color: #FFD700 !important;\n  }\n  \n  /* Selector genérico para el primer h1 de la página de colecciones */\n  .main-list-collections > h1,\n  .main-list-collections > .main-list-collections__title {\n    color: #FFD700 !important;\n  }\n</style>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "main": {
+      "type": "main-list-collections",
+      "disabled": true,
+      "settings": {
+        "title": "Colecciones",
+        "sort": "products_high",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "columns_mobile": "2"
+      }
+    },
+    "collection_list_PJCCKJ": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_kRkWCq": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "beats"
+          }
+        },
+        "featured_collection_mqN6Eh": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "drumkits"
+          }
+        },
+        "featured_collection_FNXdN4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "loops-y-midis"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_kRkWCq",
+        "featured_collection_mqN6Eh",
+        "featured_collection_FNXdN4"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Colecciones",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "custom_liquid_N8aLpF",
+    "main",
+    "collection_list_PJCCKJ"
+  ]
+}

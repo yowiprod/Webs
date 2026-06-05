@@ -1,0 +1,54 @@
+<section class="yp-manifesto" id="yp-manifesto">
+  <div class="yp-section-inner">
+    <h2 class="yp-manifesto-title">{{ section.settings.title }}</h2>
+    <div class="yp-manifesto-statements">
+      {%- for block in section.blocks -%}
+        <div class="yp-statement" {{ block.shopify_attributes }}>
+          <span class="yp-statement-line"></span>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "YP Manifesto",
+  "tag": "div",
+  "class": "yp-manifesto-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titulo",
+      "default": "No es solo sonido. Es identidad."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "statement",
+      "name": "Statement",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "YP Manifesto",
+      "blocks": [
+        {"type": "statement", "settings": {"text": "No packs genericos — material creado desde produccion real."}},
+        {"type": "statement", "settings": {"text": "Calidad profesional, mismos estandares que uso con clientes."}},
+        {"type": "statement", "settings": {"text": "Sonido con identidad — mis beats no suenan a plantilla."}},
+        {"type": "statement", "settings": {"text": "Licencias claras y descarga inmediata, sin letra pequena."}},
+        {"type": "statement", "settings": {"text": "Beat, mezcla, master y direccion: entiendo el proceso completo."}}
+      ]
+    }
+  ]
+}
+{% endschema %}

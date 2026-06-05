@@ -1,0 +1,3 @@
+# Demo / prototipo — no indexar en buscadores
+User-agent: *
+Disallow: /

@@ -1,0 +1,537 @@
+/* ============================================================
+   YOWIPROD 3D CINEMATIC THEME
+   Dark, emotional, premium — gold & black aesthetic
+   VARG BLADEE: metallic dark gold titles
+   Trapped World: chrome/silver body text
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --yp-black: #070707;
+  --yp-charcoal: #141210;
+  --yp-gold: #c9a84c;
+  --yp-gold-light: #dbb85a;
+  --yp-gold-bright: #e8c65a;
+  --yp-amber: #b8922e;
+  --yp-chrome: #c8d0dc;
+  --yp-chrome-soft: rgba(200, 210, 225, 0.85);
+  --yp-chrome-muted: rgba(170, 185, 205, 0.6);
+  --yp-chrome-glow: rgba(180, 210, 255, 0.15);
+  --yp-font-title: 'Bebas Neue', 'Impact', 'Arial Narrow', sans-serif;
+  --yp-font-body: 'Cormorant Garamond', 'Georgia', serif;
+}
+
+/* ============================================================
+   FORCE TRANSPARENT BACKGROUNDS — 3D canvas shows through
+   (excludes header-group and footer-group)
+   ============================================================ */
+body { background: #070707 !important; }
+
+.yp-3d-hero-section,
+.yp-3d-hero-section ~ .shopify-section:not(.shopify-section-group-footer-group):not(.shopify-section-group-header-group),
+.yp-path-section,
+.yp-manifesto-section,
+.yp-artists-section,
+.yp-ht-section {
+  background: transparent !important;
+  --gradient-background: transparent !important;
+}
+
+.yp-3d-hero-section ~ .shopify-section:not(.shopify-section-group-footer-group):not(.shopify-section-group-header-group) .color-scheme-4,
+.yp-3d-hero-section ~ .shopify-section:not(.shopify-section-group-footer-group):not(.shopify-section-group-header-group) [class*="color-"],
+.yp-3d-hero-section ~ .shopify-section:not(.shopify-section-group-footer-group):not(.shopify-section-group-header-group) .gradient {
+  background: transparent !important;
+  --gradient-background: transparent !important;
+}
+
+/* Footer: solid black background, fully visible */
+.shopify-section-group-footer-group,
+.shopify-section-group-footer-group .color-scheme-4,
+.shopify-section-group-footer-group [class*="color-"],
+.shopify-section-group-footer-group .gradient,
+.shopify-section-group-footer-group section {
+  background: #000000 !important;
+  --gradient-background: #000000 !important;
+  position: relative;
+  z-index: 20;
+}
+
+/* Footer text and inputs: clean gold on black — full reset */
+.shopify-section-group-footer-group,
+.shopify-section-group-footer-group *,
+.shopify-section-group-footer-group *::before,
+.shopify-section-group-footer-group *::after {
+  -webkit-text-fill-color: initial !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
+  filter: none !important;
+  text-shadow: none !important;
+  font-style: normal !important;
+}
+.shopify-section-group-footer-group h2,
+.shopify-section-group-footer-group h3,
+.shopify-section-group-footer-group p,
+.shopify-section-group-footer-group a,
+.shopify-section-group-footer-group span,
+.shopify-section-group-footer-group label,
+.shopify-section-group-footer-group li,
+.shopify-section-group-footer-group button,
+.shopify-section-group-footer-group .footer__content-top,
+.shopify-section-group-footer-group .copyright {
+  color: #efb810 !important;
+}
+.shopify-section-group-footer-group input,
+.shopify-section-group-footer-group .field__input {
+  background: transparent !important;
+  border-color: #efb810 !important;
+  color: #efb810 !important;
+  font-family: system-ui, sans-serif !important;
+}
+.shopify-section-group-footer-group input::placeholder,
+.shopify-section-group-footer-group .field__input::placeholder {
+  color: rgba(239,184,16,0.5) !important;
+  opacity: 1 !important;
+}
+.shopify-section-group-footer-group .icon,
+.shopify-section-group-footer-group svg {
+  fill: #efb810 !important;
+  color: #efb810 !important;
+}
+
+.yp-path-selector, .yp-manifesto, .yp-artists, .yp-high-ticket {
+  background: transparent !important;
+  border-top: none !important;
+}
+
+/* Content panels: dark glass over 3D */
+.yp-section-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 80px 24px;
+  background: rgba(7, 7, 7, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* --- LOADER --- */
+#yp-loader {
+  position: fixed; inset: 0; z-index: 99999;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  background: var(--yp-black);
+}
+#yp-loader-wrap {
+  width: 240px; height: 3px;
+  background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden;
+}
+#yp-loader-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--yp-gold), var(--yp-gold-bright));
+  transition: width 0.15s linear;
+}
+.yp-loader-text {
+  margin-top: 12px; color: var(--yp-chrome-muted);
+  font: 11px/1 var(--yp-font-body); letter-spacing: 0.15em; text-transform: uppercase;
+}
+
+/* --- CANVAS BACKGROUND — FULL PAGE --- */
+#yp-bg-wrap {
+  position: fixed !important; inset: 0 !important;
+  width: 100vw !important; height: 100vh !important;
+  z-index: 0 !important; overflow: hidden !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+}
+#yp-bg-canvas {
+  position: absolute !important; inset: 0 !important;
+  width: 100% !important; height: 100% !important;
+  display: block !important;
+}
+#yp-bg-wrap, #yp-bg-canvas, #yp-bg-wrap * {
+  filter: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+}
+
+/* Post-frame backdrop — disabled */
+#yp-post-frame-backdrop { display: none !important; }
+
+/* --- FADE TO BLACK before footer --- */
+#yp-fade-to-black {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 50vh; z-index: 15; pointer-events: none;
+  background: linear-gradient(to bottom, transparent 0%, rgba(7,7,7,0.4) 40%, #070707 100%);
+  opacity: 0; transition: opacity 0.4s;
+}
+
+/* --- FILM GRAIN --- */
+.yp-noise-overlay {
+  position: fixed; inset: 0; z-index: 5; pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* --- HERO OVERLAY — CENTERED FULL SCREEN --- */
+#yp-overlay {
+  position: fixed; inset: 0; z-index: 20;
+  pointer-events: none; padding: 24px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: transparent;
+}
+#yp-overlay * { pointer-events: auto; }
+
+.yp-hero {
+  align-self: center; text-align: center;
+  width: 100%; max-width: min(860px, 92vw);
+  transition: opacity 0.35s cubic-bezier(.25,.46,.45,.94), transform 0.35s cubic-bezier(.25,.46,.45,.94);
+  will-change: opacity, transform;
+}
+
+/* --- VARG BLADEE STYLE TITLES — brutalist steel metal --- */
+.yp-hero-title {
+  font-family: var(--yp-font-title) !important;
+  font-size: clamp(52px, 9vw, 110px) !important;
+  font-weight: 400 !important;
+  line-height: 0.92 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #d0d0d0 0%, #a0a0a0 35%, #707070 65%, #909090 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+  text-shadow: none;
+  margin: 0 0 24px !important;
+  animation: yp-title-in 1.4s cubic-bezier(.25,.46,.45,.94) forwards;
+  opacity: 0;
+}
+
+/* --- TRAPPED WORLD STYLE — chrome silver with blue-white glow --- */
+.yp-hero-subtitle {
+  font-family: var(--yp-font-body) !important;
+  font-size: clamp(18px, 2.2vw, 24px) !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
+  line-height: 1.65 !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  background: none !important;
+  filter: none;
+  text-shadow: none;
+  max-width: 52ch; margin: 0 auto 32px !important;
+  animation: yp-title-in 1.4s 0.15s cubic-bezier(.25,.46,.45,.94) forwards;
+  opacity: 0;
+}
+
+@keyframes yp-title-in {
+  0% { opacity: 0; letter-spacing: 0.35em; transform: translateY(18px); }
+  55% { opacity: 1; letter-spacing: 0.06em; transform: translateY(0); }
+  100% { opacity: 1; letter-spacing: 0.04em; transform: translateY(0); }
+}
+
+/* --- HERO BUTTONS --- */
+.yp-hero-buttons {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  animation: yp-title-in 1.4s 0.25s cubic-bezier(.25,.46,.45,.94) forwards;
+  opacity: 0;
+}
+.yp-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 0px;
+  font-family: var(--yp-font-title); font-size: 15px; letter-spacing: 0.14em;
+  text-transform: uppercase; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  cursor: pointer;
+}
+.yp-cta-primary {
+  background: #000000; color: #efb810;
+  border: 1px solid #efb810;
+}
+.yp-cta-primary:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 40px rgba(239,184,16,0.25);
+  background: #111111;
+}
+.yp-cta-secondary {
+  background: #000000; color: #efb810;
+  border: 1px solid #efb810;
+}
+.yp-cta-secondary:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 32px rgba(239,184,16,0.25);
+  background: #111111;
+}
+
+/* --- HERO SPACER --- */
+#yp-hero-spacer {
+  display: block !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  width: 100% !important;
+  pointer-events: none;
+  position: relative;
+}
+
+/* --- SECTIONS SCROLL OVER THE BACKGROUND --- */
+.yp-3d-hero-section ~ * {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* ============================================================
+   SECTION TITLES — VARG BLADEE metallic gold
+   ============================================================ */
+.yp-section-title {
+  font-family: var(--yp-font-title) !important;
+  font-size: clamp(36px, 5vw, 64px) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  background: linear-gradient(180deg, #d0d0d0 0%, #a0a0a0 40%, #707070 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-align: center !important;
+  margin: 0 0 16px !important;
+  line-height: 1 !important;
+}
+.yp-section-subtitle {
+  font-family: var(--yp-font-body);
+  font-size: 16px; color: var(--yp-chrome-muted);
+  text-align: center; margin: 0 0 48px;
+  font-weight: 300;
+}
+
+/* ============================================================
+   PATH SELECTOR CARDS
+   ============================================================ */
+.yp-cards-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 48px;
+}
+.yp-card {
+  background: rgba(7, 7, 7, 0.6);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px; padding: 40px 28px;
+  text-decoration: none; text-align: center;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.yp-card:hover {
+  border-color: var(--yp-gold);
+  box-shadow: 0 0 40px rgba(201,168,76,0.15), inset 0 0 30px rgba(201,168,76,0.04);
+  transform: translateY(-4px);
+}
+.yp-card-icon { font-size: 36px; margin-bottom: 16px; }
+.yp-card-title {
+  font-family: var(--yp-font-title) !important;
+  font-size: 28px !important; letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  background: linear-gradient(180deg, #e8c65a 0%, #c9a84c 50%, #a8872e 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  margin: 0 0 12px !important;
+}
+.yp-card-desc {
+  font-family: var(--yp-font-body);
+  font-size: 15px; color: var(--yp-chrome-soft); line-height: 1.6;
+  font-style: italic;
+  text-shadow: 0 0 8px var(--yp-chrome-glow);
+  margin: 0;
+}
+
+/* ============================================================
+   MANIFESTO
+   ============================================================ */
+.yp-manifesto-title {
+  font-family: var(--yp-font-title) !important;
+  font-size: clamp(40px, 6vw, 72px) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  background: linear-gradient(180deg, #d0d0d0 0%, #a0a0a0 40%, #707070 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-align: center !important;
+  margin: 0 0 56px !important;
+  line-height: 1 !important;
+}
+.yp-manifesto-statements { max-width: 700px; margin: 0 auto; }
+.yp-statement {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.yp-statement-line {
+  flex-shrink: 0; width: 3px; min-height: 24px; align-self: stretch;
+  background: linear-gradient(180deg, var(--yp-gold), transparent);
+  border-radius: 2px; margin-top: 2px;
+}
+.yp-statement p {
+  font-family: var(--yp-font-body);
+  font-size: 16px; color: var(--yp-chrome-soft); line-height: 1.7;
+  font-style: italic;
+  text-shadow: 0 0 8px var(--yp-chrome-glow);
+  margin: 0; font-weight: 400;
+}
+
+/* ============================================================
+   ARTISTS
+   ============================================================ */
+.yp-artists-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 32px; margin-top: 12px;
+}
+.yp-artist-card { text-align: center; }
+.yp-artist-img-wrap {
+  width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 14px; transition: border-color 0.3s;
+}
+.yp-artist-card:hover .yp-artist-img-wrap { border-color: var(--yp-gold); }
+.yp-artist-img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(0.3); transition: filter 0.4s, transform 0.4s;
+}
+.yp-artist-card:hover .yp-artist-img { filter: grayscale(0); transform: scale(1.05); }
+.yp-artist-img-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(20,18,16,0.9));
+}
+.yp-artist-name {
+  font-family: var(--yp-font-title) !important;
+  font-size: 22px !important; letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  background: linear-gradient(180deg, #d0d0d0, #909090) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  margin: 0 0 4px !important;
+}
+.yp-artist-role {
+  font-family: var(--yp-font-body);
+  font-size: 12px; color: var(--yp-chrome-muted);
+  margin: 0 0 8px; font-weight: 300;
+}
+.yp-artist-link {
+  font-family: var(--yp-font-body);
+  font-size: 12px; color: var(--yp-gold); text-decoration: none;
+  letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s;
+}
+.yp-artist-link:hover { color: var(--yp-gold-light); }
+
+/* ============================================================
+   HIGH TICKET — GOLD ACCENT
+   ============================================================ */
+.yp-ht-section .yp-section-title {
+  background: linear-gradient(180deg, #e8c65a 0%, #c9a84c 50%, #a8872e 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+.yp-ht-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 48px;
+}
+.yp-ht-card {
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 8px; overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  background: rgba(7, 7, 7, 0.6);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.yp-ht-card:hover {
+  border-color: var(--yp-gold);
+  box-shadow: 0 12px 48px rgba(201,168,76,0.15);
+  transform: translateY(-4px);
+}
+.yp-ht-card-inner { padding: 40px 28px; }
+.yp-ht-name {
+  font-family: var(--yp-font-title) !important;
+  font-size: 26px !important; letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  background: linear-gradient(180deg, #e8c65a 0%, #c9a84c 50%, #a8872e 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  margin: 0 0 12px !important;
+}
+.yp-ht-price {
+  font-family: var(--yp-font-title);
+  font-size: 42px;
+  background: linear-gradient(180deg, #e8c65a, #c9a84c);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.02em; margin-bottom: 16px;
+}
+.yp-ht-desc {
+  font-family: var(--yp-font-body);
+  font-size: 15px; color: var(--yp-chrome-soft);
+  font-style: italic;
+  text-shadow: 0 0 8px var(--yp-chrome-glow);
+  line-height: 1.7; margin: 0 0 24px; font-weight: 400;
+}
+.yp-cta-gold {
+  display: inline-flex; padding: 12px 24px;
+  background: transparent; color: var(--yp-gold);
+  border: 1px solid var(--yp-gold); border-radius: 0px;
+  font-family: var(--yp-font-title); font-size: 14px;
+  letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.yp-cta-gold:hover {
+  background: var(--yp-gold); color: var(--yp-black); transform: scale(1.03);
+}
+
+/* ============================================================
+   FLOATING/LEVITATION ANIMATION on sections
+   ============================================================ */
+.yp-path-section .yp-section-inner,
+.yp-manifesto-section .yp-section-inner,
+.yp-artists-section .yp-section-inner,
+.yp-ht-section .yp-section-inner {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  will-change: transform, opacity;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .yp-hero-title { font-size: clamp(40px, 12vw, 64px) !important; }
+  .yp-cards-grid { grid-template-columns: 1fr; }
+  .yp-ht-grid { grid-template-columns: 1fr; }
+  .yp-artists-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .yp-section-inner { padding: 64px 16px; }
+  #yp-overlay { padding: 16px; }
+  .yp-hero-buttons { flex-direction: column; align-items: center; }
+  .yp-cta { width: 100%; justify-content: center; max-width: 280px; }
+}
+
+@media (max-width: 480px) {
+  .yp-artists-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .yp-artist-name { font-size: 16px !important; }
+}
+@media (max-width: 768px) {
+  #yp-overlay {
+    display: none !important;
+  }
+  #yp-hero-spacer {
+    height: 50vh !important;
+    min-height: 50vh !important;
+  }
+}
+/* Levitación productos destacados inicio */
+.yp-3d-hero-section ~ .shopify-section .card-wrapper {
+  animation: yp-float 6s ease-in-out infinite;
+}
+.yp-3d-hero-section ~ .shopify-section .card-wrapper:nth-child(2) { animation-delay: -1.5s; }
+.yp-3d-hero-section ~ .shopify-section .card-wrapper:nth-child(3) { animation-delay: -3s; }
+.yp-3d-hero-section ~ .shopify-section .card-wrapper:nth-child(4) { animation-delay: -4.5s; }
+
+@keyframes yp-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOWIPROD · Beats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0806; --ink:#f4ecdb; --mut:rgba(244,236,219,.6); --mut2:rgba(244,236,219,.34);
+    --gold:#cfa24a; --gold-lt:#f3d997;
+    --glass:rgba(207,162,74,.07); --glass-h:rgba(207,162,74,.13);
+    --panel:rgba(16,13,9,.82); --line:rgba(207,162,74,.2); --line2:rgba(244,236,219,.1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;background:#0a0806;overflow-x:hidden}
+  ::selection{background:var(--gold);color:#0a0806}
+
+  /* fondo demo (en tu web será tu vídeo) */
+  #bg{position:fixed;inset:0;z-index:-2;background-size:cover;background-position:center;filter:blur(80px) brightness(.5) saturate(1.5);transform:scale(1.3);transition:background-image .7s;opacity:.85}
+  #veil{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(130% 100% at 50% -10%,rgba(207,162,74,.1),rgba(10,8,6,.85) 72%)}
+  .demo{position:fixed;top:46%;left:0;right:0;text-align:center;transform:translateY(-50%);padding:0 20px;pointer-events:none}
+  .demo .k{font-family:'Cinzel';color:var(--gold);letter-spacing:4px;font-size:clamp(22px,5vw,40px);text-transform:uppercase}
+  .demo .s{color:var(--mut2);margin-top:14px;font-size:14px}
+  .demo .arrow{margin-top:26px;color:var(--gold);font-size:22px;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+  /* ===== SHEET / PLAYLIST DESPLEGABLE ===== */
+  .scrim{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.45);opacity:0;visibility:hidden;transition:.3s}
+  .scrim.open{opacity:1;visibility:visible}
+  .sheet{position:fixed;left:0;right:0;bottom:66px;z-index:70;max-height:0;overflow:hidden;
+    background:var(--panel);backdrop-filter:blur(26px);border-top:1px solid var(--line);
+    transition:max-height .4s cubic-bezier(.25,.8,.25,1);box-shadow:0 -30px 60px -20px rgba(0,0,0,.7)}
+  .sheet.open{max-height:72vh}
+  .sheet .inner{max-width:1000px;margin:0 auto;padding:16px clamp(16px,5vw,34px) 18px}
+  .sheet-head{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+  .sheet-head h2{font-family:'Cinzel';font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+  .sheet-head .count{color:var(--mut2);font-size:12.5px}
+  .search{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--line);border-radius:9px;padding:8px 12px;width:min(260px,55vw)}
+  .search:focus-within{border-color:var(--gold)}
+  .search svg{flex:none;opacity:.5;color:var(--gold)}
+  .search input{background:none;border:none;outline:none;color:var(--ink);font-size:13.5px;width:100%;font-family:inherit}
+  .search input::placeholder{color:var(--mut2)}
+  .filters{display:flex;gap:6px;flex-wrap:wrap;width:100%}
+  .chip{background:var(--glass);border:1px solid var(--line);color:var(--mut);padding:5px 12px;border-radius:99px;font-size:12px;font-weight:500;cursor:pointer;transition:.18s;white-space:nowrap}
+  .chip:hover{color:var(--ink);border-color:var(--gold)}
+  .chip.on{background:linear-gradient(180deg,var(--gold-lt),var(--gold));color:#0a0806;border-color:transparent;font-weight:600}
+  .list{margin-top:10px;max-height:calc(72vh - 130px);overflow-y:auto;display:flex;flex-direction:column;gap:2px;padding-right:4px}
+  .list::-webkit-scrollbar{width:7px}.list::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+  .row{display:grid;grid-template-columns:24px 42px 1fr auto;align-items:center;gap:13px;padding:8px 10px;border-radius:10px;cursor:pointer;border:1px solid transparent;transition:.12s}
+  .row:hover{background:var(--glass)}
+  .row.active{background:var(--glass-h);border-color:var(--line)}
+  .row.disabled{opacity:.36;cursor:default}.row.disabled:hover{background:transparent}
+  .num{color:var(--mut2);font-size:12.5px;text-align:center}
+  .row.active .num{color:var(--gold)}
+  .rart{width:42px;height:42px;border-radius:7px;object-fit:cover;background:rgba(207,162,74,.07);flex:none}
+  .rmeta{min-width:0}
+  .rmeta .t{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row.active .rmeta .t{color:var(--gold-lt)}
+  .rmeta .s{color:var(--mut);font-size:11.5px;margin-top:1px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .tag{font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;padding:2px 6px;border-radius:5px;font-weight:600}
+  .tag.free{background:rgba(207,162,74,.16);color:var(--gold-lt)}
+  .tag.soon{background:rgba(244,236,219,.08);color:var(--mut)}
+  .rright{color:var(--mut);font-size:12px;font-variant-numeric:tabular-nums}
+
+  /* ===== BARRA / PLAYER ===== */
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:80;height:66px;
+    background:var(--panel);backdrop-filter:blur(26px);border-top:1px solid var(--line)}
+  .prog{position:absolute;top:0;left:0;right:0;height:3px;background:rgba(244,236,219,.14);cursor:pointer}
+  .prog .fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-lt));position:relative}
+  .prog .fill::after{content:'';position:absolute;right:-5px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:var(--gold-lt);box-shadow:0 0 8px var(--gold);opacity:0;transition:.15s}
+  .prog:hover .fill::after{opacity:1}
+  .barin{max-width:1000px;margin:0 auto;height:100%;display:flex;align-items:center;gap:14px;padding:0 clamp(14px,5vw,34px)}
+  .now{display:flex;align-items:center;gap:11px;min-width:0;width:clamp(150px,30vw,280px);cursor:pointer}
+  .now img{width:44px;height:44px;border-radius:8px;object-fit:cover;flex:none;background:rgba(207,162,74,.08)}
+  .now .t{font-weight:600;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .now .s{color:var(--mut);font-size:11.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ctr{display:flex;align-items:center;gap:8px;margin:0 auto}
+  .cbtn{background:none;border:none;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:.15s;border-radius:50%}
+  .cbtn:hover{color:var(--gold);transform:scale(1.1)}
+  .cbtn.main{width:42px;height:42px;background:linear-gradient(180deg,var(--gold-lt),var(--gold));color:#0a0806;box-shadow:0 6px 18px -6px rgba(207,162,74,.6)}
+  .cbtn.main:hover{filter:brightness(1.08);transform:scale(1.06)}
+  .time{font-size:11.5px;color:var(--mut);font-variant-numeric:tabular-nums;width:84px;text-align:right}
+  .vol{display:flex;align-items:center;gap:7px;width:96px;color:var(--mut)}
+  .vol input{width:100%;accent-color:var(--gold);cursor:pointer}
+  .toggle{background:var(--glass);border:1px solid var(--line);color:var(--gold);cursor:pointer;width:38px;height:34px;border-radius:9px;display:grid;place-items:center;transition:.18s}
+  .toggle:hover{background:var(--glass-h)}
+  .toggle svg{transition:transform .35s}
+  .toggle.open svg{transform:rotate(180deg)}
+
+  @media(max-width:720px){
+    .now{width:auto}.now .s{display:none}.time{display:none}.vol{display:none}
+    .search{width:100%;order:5;margin:0}
+  }
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<div id="veil"></div>
+
+<div class="demo">
+  <div class="k">YOWIPROD</div>
+  <div class="s">Aquí va tu web con el vídeo dorado de fondo · el reproductor es la barra de abajo</div>
+  <div class="arrow">↓</div>
+</div>
+
+<!-- SCRIM -->
+<div class="scrim" id="scrim"></div>
+
+<!-- PLAYLIST DESPLEGABLE -->
+<div class="sheet" id="sheet">
+  <div class="inner">
+    <div class="sheet-head">
+      <h2>Beats</h2><span class="count" id="count"></span>
+      <label class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" placeholder="Buscar beat, BPM…" autocomplete="off">
+      </label>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="list" id="list"></div>
+  </div>
+</div>
+
+<!-- BARRA / PLAYER -->
+<div class="bar">
+  <div class="prog" id="prog"><div class="fill" id="fill"></div></div>
+  <div class="barin">
+    <div class="now" id="now" title="Abrir lista">
+      <img id="p-art" alt="">
+      <div style="min-width:0"><div class="t" id="p-title">—</div><div class="s" id="p-sub">Pulsa play</div></div>
+    </div>
+    <div class="ctr">
+      <button class="cbtn" id="prev" title="Anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button>
+      <button class="cbtn main" id="play" title="Play/Pausa"><svg id="ic" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+      <button class="cbtn" id="next" title="Siguiente"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg></button>
+    </div>
+    <div class="time"><span id="cur">0:00</span> / <span id="dur">0:00</span></div>
+    <div class="vol">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" style="opacity:.6;flex:none"><path d="M3 9v6h4l5 5V4L7 9z"/></svg>
+      <input type="range" id="volr" min="0" max="1" step="0.01" value="0.85">
+    </div>
+    <button class="toggle" id="toggle" title="Desplegar lista"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14l5-5 5 5z"/></svg></button>
+  </div>
+</div>
+
+<audio id="audio"></audio>
+
+<script>
+const BEATS = [
+ {
+  "title": "DIAMANTES",
+  "handle": "diamantes",
+  "url": "https://yowiprod.com/products/diamantes",
+  "type": "",
+  "price": 42.5,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/DiamantesCoverArt.png?v=1770324772",
+  "bpm": "97",
+  "key": "Eb minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_DIAMANTES_97BPM_F_MAJOR.mp3?v=1770746113"
+ },
+ {
+  "title": "2006",
+  "handle": "2006",
+  "url": "https://yowiprod.com/products/2006",
+  "type": "Beat",
+  "price": 38.5,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/2006.png?v=1771412019",
+  "bpm": null,
+  "key": "Gb minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW.mp3?v=1771412184"
+ },
+ {
+  "title": "ACTUA",
+  "handle": "actua",
+  "url": "https://yowiprod.com/products/actua",
+  "type": "Beat",
+  "price": 49.95,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/ACTUA.png?v=1772550821",
+  "bpm": "102",
+  "key": "Eb minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_ACTUA_102BPM.mp3?v=1772550943"
+ },
+ {
+  "title": "AMADO",
+  "handle": "amado",
+  "url": "https://yowiprod.com/products/amado",
+  "type": "Beat",
+  "price": 49.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/AAMADO.png?v=1772112181",
+  "bpm": null,
+  "key": "C# minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_AMADO.mp3?v=1772112268"
+ },
+ {
+  "title": "AMANTES",
+  "handle": "amantes",
+  "url": "https://yowiprod.com/products/amantes",
+  "type": "Beat",
+  "price": 49.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/ARTCOVERAMANTES.png?v=1770326174",
+  "bpm": "122",
+  "key": "F# minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/AMANTES_122BPM_F_m_PRW.mp3?v=1770740145"
+ },
+ {
+  "title": "AMOR Y ROSAS",
+  "handle": "amor-y-rosas",
+  "url": "https://yowiprod.com/products/amor-y-rosas",
+  "type": "Beat",
+  "price": 47.5,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/AMORYROSAS.png?v=1771523486",
+  "bpm": null,
+  "key": "Eb minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_AMOR_Y_ROSAS.mp3?v=1771523507"
+ },
+ {
+  "title": "ANGEL",
+  "handle": "angel",
+  "url": "https://yowiprod.com/products/angel",
+  "type": "Beat",
+  "price": 49.9,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/aNGEL.png?v=1771855309",
+  "bpm": "144",
+  "key": "E minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/RRW-ANGEL-144BPM-Em.mp3?v=1771855552"
+ },
+ {
+  "title": "ARAÑA",
+  "handle": "arana",
+  "url": "https://yowiprod.com/products/arana",
+  "type": "Beat",
+  "price": 49.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/ARANAA.png?v=1772037923",
+  "bpm": null,
+  "key": "D# minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_ARANA_160_BPM.mp3?v=1772038161"
+ },
+ {
+  "title": "BABY",
+  "handle": "baby",
+  "url": "https://yowiprod.com/products/baby",
+  "type": "Beat",
+  "price": 44.5,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/baby.png?v=1771784377",
+  "bpm": null,
+  "key": "A minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_BABY_190.mp3?v=1771784758"
+ },
+ {
+  "title": "BANG",
+  "handle": "bang",
+  "url": "https://yowiprod.com/products/bang",
+  "type": "Beat",
+  "price": 42.5,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/BANG.png?v=1771414736",
+  "bpm": null,
+  "key": "A minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_BANG.mp3?v=1771415841"
+ },
+ {
+  "title": "CHAOS",
+  "handle": "rnb-emocional",
+  "url": "https://yowiprod.com/products/rnb-emocional",
+  "type": "Beat",
+  "price": 49.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/RNB.png?v=1770142598",
+  "bpm": "90",
+  "key": "A minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_CHAOS_90bpm_a_minor.mp3?v=1770819724"
+ },
+ {
+  "title": "COMO HIENAS",
+  "handle": "como-hienas",
+  "url": "https://yowiprod.com/products/como-hienas",
+  "type": "Beat",
+  "price": 49.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/COMOHIENAS_ca8ed396-1439-442f-9e0b-50071c457610.png?v=1772030824",
+  "bpm": null,
+  "key": "C# minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_hienas_166_BPM.mp3?v=1772029734"
+ },
+ {
+  "title": "CONSECUENCIA",
+  "handle": "consecuencia",
+  "url": "https://yowiprod.com/products/consecuencia",
+  "type": "Beat",
+  "price": 44.95,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/consecuencia.png?v=1771494491",
+  "bpm": null,
+  "key": "A# MAJOR",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_CONSECUENCIA.mp3?v=1771497169"
+ },
+ {
+  "title": "CORNER HOUSE",
+  "handle": "corner-house",
+  "url": "https://yowiprod.com/products/corner-house",
+  "type": "Beat",
+  "price": 49.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/corner.png?v=1771424989",
+  "bpm": null,
+  "key": "Ab minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_CORNER.mp3?v=1771425590"
+ },
+ {
+  "title": "DINERO",
+  "handle": "dinero",
+  "url": "https://yowiprod.com/products/dinero",
+  "type": "Beat",
+  "price": 48.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/MNY.png?v=1772983335",
+  "bpm": "126",
+  "key": "D# minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_DINERO_126bpm.mp3?v=1772982527"
+ },
+ {
+  "title": "DREAM",
+  "handle": "ngd",
+  "url": "https://yowiprod.com/products/ngd",
+  "type": "Beat",
+  "price": 25.5,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/DREAM.png?v=1770303610",
+  "bpm": "120",
+  "key": "D minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/DREAM_120BPM_Dm.mp3?v=1770651527"
+ },
+ {
+  "title": "ELLA",
+  "handle": "ella",
+  "url": "https://yowiprod.com/products/ella",
+  "type": "Beat",
+  "price": 45.5,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/ellaart.png?v=1771518372",
+  "bpm": null,
+  "key": "Gb minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_ELLA.mp3?v=1771518829"
+ },
+ {
+  "title": "ERES MALA",
+  "handle": "eres-mala",
+  "url": "https://yowiprod.com/products/eres-mala",
+  "type": "Beat",
+  "price": 48.95,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/ERESMALA.png?v=1771695249",
+  "bpm": "95",
+  "key": "F minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_MALA_95BPM_Fm.mp3?v=1771695406"
+ },
+ {
+  "title": "FANTASMA",
+  "handle": "fantasma",
+  "url": "https://yowiprod.com/products/fantasma",
+  "type": "Beat",
+  "price": 49.9,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/COVERARTFANTASMA.png?v=1770321392",
+  "bpm": "194",
+  "key": "B minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/SIN_SENAL_194BPM_Bm_DEMO.mp3?v=1770640279"
+ },
+ {
+  "title": "LA VITA",
+  "handle": "la-vita",
+  "url": "https://yowiprod.com/products/la-vita",
+  "type": "Beat",
+  "price": 46.85,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/LAVITA.png?v=1772534366",
+  "bpm": null,
+  "key": "A minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW-LA-VITA-192-BPM.mp3?v=1772534910"
+ },
+ {
+  "title": "LEAN AND DROPS",
+  "handle": "lean-and-drops",
+  "url": "https://yowiprod.com/products/lean-and-drops",
+  "type": "Beat",
+  "price": 48.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/LEANANDDROPS.png?v=1772792032",
+  "bpm": "200",
+  "key": "F minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_LEAN_AND_DROPS_200BPM_Fm.mp3?v=1772792785"
+ },
+ {
+  "title": "LUZ EN LA OSCURIDAD",
+  "handle": "luz-en-la-oscuridad",
+  "url": "https://yowiprod.com/products/luz-en-la-oscuridad",
+  "type": "Beat",
+  "price": 16.9,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/LUZENLAOSCURIDAD.png?v=1772126472",
+  "bpm": null,
+  "key": "B minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_DARKNES.mp3?v=1772126446"
+ },
+ {
+  "title": "MI YO",
+  "handle": "mi-yo",
+  "url": "https://yowiprod.com/products/mi-yo",
+  "type": "Beat",
+  "price": 49.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/MIYO.png?v=1771422234",
+  "bpm": null,
+  "key": "G minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_MIYO.mp3?v=1771422239"
+ },
+ {
+  "title": "MILF",
+  "handle": "milf",
+  "url": "https://yowiprod.com/products/milf",
+  "type": "Beat",
+  "price": 40.5,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/MILF.png?v=1771330480",
+  "bpm": "190",
+  "key": "A minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_190BPM_AMINOR_MILF_AFRO_DETROIT.mp3?v=1771330692"
+ },
+ {
+  "title": "MILLONARIO",
+  "handle": "millonario",
+  "url": "https://yowiprod.com/products/millonario",
+  "type": "Beat",
+  "price": 49.9,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/MILLONARIO.png?v=1771605005",
+  "bpm": "101",
+  "key": "G minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_MILLONARIO_101BPM_Gm.mp3?v=1771605365"
+ },
+ {
+  "title": "MIS ASUNTOS",
+  "handle": "mis-asuntos",
+  "url": "https://yowiprod.com/products/mis-asuntos",
+  "type": "Beat",
+  "price": 41.95,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/CoverArtworkMASASUNTOS.png?v=1770322581",
+  "bpm": "98",
+  "key": "B minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/DRY_AGUACATE_98BPM_DEMO.mp3?v=1770575862"
+ },
+ {
+  "title": "PEGA",
+  "handle": "pega",
+  "url": "https://yowiprod.com/products/pega",
+  "type": "Beat",
+  "price": 49.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PEGA.png?v=1771527420",
+  "bpm": "127",
+  "key": "A minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_PEGA_BPM127_Aminor.mp3?v=1771527707"
+ },
+ {
+  "title": "PERSECUCIÓN",
+  "handle": "persecucion",
+  "url": "https://yowiprod.com/products/persecucion",
+  "type": "Beat",
+  "price": 49.9,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/persecucion.png?v=1771438377",
+  "bpm": null,
+  "key": "D# minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_PERSECUCION_135_D_m.mp3?v=1771439431"
+ },
+ {
+  "title": "QUEDAN SEGUNDOS",
+  "handle": "quedan-segundos",
+  "url": "https://yowiprod.com/products/quedan-segundos",
+  "type": "Beat",
+  "price": 48.9,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/quedansegundosdetroit.png?v=1771334159",
+  "bpm": "172",
+  "key": "D# minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_QUEDAN_SEGUNDOS_172BPM_Ebm.mp3?v=1780309412"
+ },
+ {
+  "title": "QUIEN SOY",
+  "handle": "quien-soy",
+  "url": "https://yowiprod.com/products/quien-soy",
+  "type": "Beat",
+  "price": 45.44,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/QUIENSOY.png?v=1771611855",
+  "bpm": null,
+  "key": "F minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_QUIEN_SOY.mp3?v=1771612405"
+ },
+ {
+  "title": "RETRO",
+  "handle": "retro",
+  "url": "https://yowiprod.com/products/retro",
+  "type": "Beat",
+  "price": 37.5,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/ARTCoverRETRO.png?v=1770325431",
+  "bpm": null,
+  "key": "Eb minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_AUDIO.mp3?v=1770732525"
+ },
+ {
+  "title": "SECRETOS",
+  "handle": "secretos",
+  "url": "https://yowiprod.com/products/secretos",
+  "type": "Beat",
+  "price": 52.5,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/secretos.png?v=1772976298",
+  "bpm": "160",
+  "key": "D minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_SECRETO_160bpm_Dm.mp3?v=1772977005"
+ },
+ {
+  "title": "STILL JURADO",
+  "handle": "still-jurado",
+  "url": "https://yowiprod.com/products/still-jurado",
+  "type": "Beat",
+  "price": 45.5,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/Stilljurado.png?v=1778847328",
+  "bpm": "160",
+  "key": "F minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/STILL_Jurado_preview_Fminor_160bpm.mp3?v=1778847350"
+ },
+ {
+  "title": "VAGANDO",
+  "handle": "vagando",
+  "url": "https://yowiprod.com/products/vagando",
+  "type": "Beat",
+  "price": 49.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/VAGANDO.png?v=1772115134",
+  "bpm": null,
+  "key": "D minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRW_VAGANDO.mp3?v=1772115445"
+ },
+ {
+  "title": "Your Shadow",
+  "handle": "midnight-sexy-drill",
+  "url": "https://yowiprod.com/products/midnight-sexy-drill",
+  "type": "Beat",
+  "price": 39.99,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/yoirshadow.png?v=1770197552",
+  "bpm": "141",
+  "key": "Eb minor",
+  "mp3": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/your_shadow_141bpm_d_m_demo.mp3?v=1770656426"
+ },
+ {
+  "title": "Beat \"2006\" — GRATIS",
+  "handle": "beat-2006-gratis-lead-magnet",
+  "url": "https://yowiprod.com/products/beat-2006-gratis-lead-magnet",
+  "type": "Beat",
+  "price": 0.0,
+  "free": true,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/2006_7acb3ef6-be9c-4141-8fa5-29b1d5616088.png?v=1779706018",
+  "bpm": "127",
+  "key": "Gb minor",
+  "mp3": null
+ },
+ {
+  "title": "Beat \"RETRO\" — GRATIS",
+  "handle": "beat-retro-gratis-lead-magnet",
+  "url": "https://yowiprod.com/products/beat-retro-gratis-lead-magnet",
+  "type": "Beat",
+  "price": 0.0,
+  "free": true,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/retro.png?v=1779706483",
+  "bpm": "174",
+  "key": "C# minor",
+  "mp3": null
+ },
+ {
+  "title": "Beat \"Your Shadow\" — GRATIS",
+  "handle": "beat-your-shadow-gratis-lead-magnet",
+  "url": "https://yowiprod.com/products/beat-your-shadow-gratis-lead-magnet",
+  "type": "Beat",
+  "price": 0.0,
+  "free": true,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/your-shadow.png?v=1779706706",
+  "bpm": "141",
+  "key": "D# minor",
+  "mp3": null
+ },
+ {
+  "title": "FROM PAIN TO POWER VOL1",
+  "handle": "from-pain-to-power-vol1",
+  "url": "https://yowiprod.com/products/from-pain-to-power-vol1",
+  "type": "DRUMKITS",
+  "price": 0.0,
+  "free": true,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/FROMPAINTOPOWEVOL.1.png?v=1770143140",
+  "bpm": null,
+  "key": null,
+  "mp3": null
+ },
+ {
+  "title": "ASESORIA 1:1",
+  "handle": "asesoria",
+  "url": "https://yowiprod.com/products/asesoria",
+  "type": "HIGH TICKET",
+  "price": 100.0,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/asesoria_1d686b75-04af-4265-9652-6c05760f839c.png?v=1770375048",
+  "bpm": null,
+  "key": null,
+  "mp3": null
+ },
+ {
+  "title": "Ghostwriting · Letra personalizada (1:1)",
+  "handle": "ghostwriting-letra-personalizada-1-1",
+  "url": "https://yowiprod.com/products/ghostwriting-letra-personalizada-1-1",
+  "type": "HIGH TICKET",
+  "price": 150.0,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/Letrapersonalizada_11.png?v=1770903692",
+  "bpm": null,
+  "key": null,
+  "mp3": null
+ },
+ {
+  "title": "Producción personalizada 1:1 desde cero",
+  "handle": "producciona-personalizada",
+  "url": "https://yowiprod.com/products/producciona-personalizada",
+  "type": "HIGH TICKET",
+  "price": 500.0,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/PRODPERSONLAIZADA.png?v=1770374167",
+  "bpm": null,
+  "key": null,
+  "mp3": null
+ },
+ {
+  "title": "FREE MIDI CREATION KIT VOLUMEN 1",
+  "handle": "free-midi-creation-kit-volumen-1",
+  "url": "https://yowiprod.com/products/free-midi-creation-kit-volumen-1",
+  "type": "Loops y Midis",
+  "price": 0.0,
+  "free": true,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/FREEMIDICREATIONKITVOLUMEN1IMG_3257f05e-bb8b-48b1-b2bf-3068be52ee80.png?v=1773312160",
+  "bpm": null,
+  "key": null,
+  "mp3": null
+ },
+ {
+  "title": "MIDI CREATION KIT VOLUMEN 1",
+  "handle": "midi-creation-kit-volumen-1",
+  "url": "https://yowiprod.com/products/midi-creation-kit-volumen-1",
+  "type": "Loops y Midis",
+  "price": 8.9,
+  "free": false,
+  "img": "https://cdn.shopify.com/s/files/1/0988/6852/7392/files/MIDICREATIONKITVOLUMEN1IMG.png?v=1773312183",
+  "bpm": null,
+  "key": null,
+  "mp3": null
+ }
+];
+const $=s=>document.querySelector(s);
+const audio=$('#audio'), bg=$('#bg'), sheet=$('#sheet'), scrim=$('#scrim'), toggle=$('#toggle');
+let queue=[], cur=-1, filter='all', search='';
+
+const types=[...new Set(BEATS.map(b=>b.type).filter(Boolean))];
+const fdefs=[{k:'all',l:'Todos'},{k:'play',l:'Con audio'},{k:'free',l:'Gratis'},...types.map(t=>({k:'type:'+t,l:t}))];
+$('#filters').innerHTML=fdefs.map(f=>`<button class="chip ${f.k==='all'?'on':''}" data-k="${f.k}">${f.l}</button>`).join('');
+$('#filters').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;
+  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');filter=c.dataset.k;render();});
+$('#q').addEventListener('input',e=>{search=e.target.value.toLowerCase().trim();render();});
+
+function visible(){return BEATS.filter(b=>{
+  if(filter==='play'&&!b.mp3)return false;
+  if(filter==='free'&&!b.free)return false;
+  if(filter.startsWith('type:')&&b.type!==filter.slice(5))return false;
+  if(search){const hay=(b.title+' '+(b.bpm||'')+' '+(b.key||'')+' '+b.type).toLowerCase();if(!hay.includes(search))return false;}
+  return true;});}
+function render(){
+  queue=visible();
+  $('#count').textContent=`${queue.filter(b=>b.mp3).length} con audio · ${queue.length}`;
+  $('#list').innerHTML=queue.map((b,i)=>{
+    const tags=[b.free?'<span class="tag free">GRATIS</span>':'', !b.mp3?'<span class="tag soon">sin preview</span>':''].filter(Boolean).join('');
+    const sub=[tags,b.type?`<span>${b.type}</span>`:''].filter(Boolean).join('');
+    const bpm=b.bpm?`${b.bpm} BPM`:''; const key=b.key?` · ${b.key}`:'';
+    const art=b.img?`<img class="rart" src="${b.img}" loading="lazy" alt="">`:`<div class="rart"></div>`;
+    return `<div class="row ${b.mp3?'':'disabled'} ${cur>-1&&queue[cur]===b?'active':''}" data-i="${i}">
+      <div class="num">${i+1}</div>${art}
+      <div class="rmeta"><div class="t">${b.title}</div><div class="s">${sub}</div></div>
+      <div class="rright">${bpm}${key}</div></div>`;
+  }).join('')||`<div style="color:var(--mut);padding:24px;text-align:center">Sin resultados.</div>`;
+}
+$('#list').addEventListener('click',e=>{const r=e.target.closest('.row');if(!r||r.classList.contains('disabled'))return;load(parseInt(r.dataset.i),true);});
+
+function openSheet(o){sheet.classList.toggle('open',o);scrim.classList.toggle('open',o);toggle.classList.toggle('open',o);}
+toggle.onclick=()=>openSheet(!sheet.classList.contains('open'));
+$('#now').onclick=()=>openSheet(!sheet.classList.contains('open'));
+scrim.onclick=()=>openSheet(false);
+
+function load(i,playNow){
+  const b=queue[i]; if(!b||!b.mp3)return;
+  cur=i;
+  $('#p-art').src=b.img||''; if(b.img) bg.style.backgroundImage=`url("${b.img}")`;
+  $('#p-title').textContent=b.title;
+  $('#p-sub').textContent=[b.free?'GRATIS':'Premium',b.bpm?b.bpm+' BPM':'',b.key||''].filter(Boolean).join(' · ');
+  audio.src=b.mp3; if(playNow) audio.play().catch(()=>{});
+  render();
+}
+$('#play').onclick=()=>{if(!audio.src){const f=queue.findIndex(b=>b.mp3);if(f>=0)load(f,true);return;}audio.paused?audio.play():audio.pause();};
+function setIc(p){$('#ic').innerHTML=p?'<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>':'<path d="M8 5v14l11-7z"/>';}
+audio.onplay=()=>setIc(true); audio.onpause=()=>setIc(false);
+function step(d){let n=cur;for(let k=0;k<queue.length;k++){n=(n+d+queue.length)%queue.length;if(queue[n].mp3){load(n,true);return;}}}
+$('#next').onclick=()=>step(1);
+$('#prev').onclick=()=>{if(audio.currentTime>3){audio.currentTime=0;return;}step(-1);};
+audio.onended=()=>step(1);
+
+const fmt=s=>isNaN(s)?'0:00':Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+const prog=$('#prog');
+audio.ontimeupdate=()=>{$('#fill').style.width=(audio.currentTime/audio.duration*100||0)+'%';$('#cur').textContent=fmt(audio.currentTime);};
+audio.onloadedmetadata=()=>$('#dur').textContent=fmt(audio.duration);
+prog.onclick=e=>{const r=prog.getBoundingClientRect();if(audio.duration)audio.currentTime=(e.clientX-r.left)/r.width*audio.duration;};
+$('#volr').oninput=e=>audio.volume=e.target.value; audio.volume=0.85;
+
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;
+  if(e.code==='Space'){e.preventDefault();$('#play').click();}
+  if(e.code==='ArrowRight')$('#next').click(); if(e.code==='ArrowLeft')$('#prev').click();
+  if(e.code==='Escape')openSheet(false);});
+
+render();
+const first=queue.findIndex(b=>b.mp3);
+if(first>=0) load(first,false);
+</script>
+</body>
+</html>

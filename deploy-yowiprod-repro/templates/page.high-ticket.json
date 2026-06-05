@@ -1,0 +1,1065 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        "h1 {text-align: center !important; width: 100% !important; color: #efb810 !important; -webkit-text-fill-color: #efb810 !important; background: none !important;}",
+        ".main-page {width: 100% !important; max-width: 100% !important; padding-left: 0 !important; padding-right: 0 !important; margin: 0 !important;}",
+        ".page-width {max-width: 100% !important; padding-left: 0 !important; padding-right: 0 !important;}"
+      ],
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 8
+      }
+    },
+    "custom_liquid_6Lkdbq": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div style=\"text-align:center;background:#0a0a0a;border:2px solid #efb810;border-radius:12px;padding:32px;margin:30px auto;max-width:680px;\">\n  <p style=\"color:#efb810;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:0 0 12px;font-weight:700;\">Antes de pagar nada</p>\n  <h2 style=\"color:#fff;font-size:26px;margin:0 0 12px;\">Reserva 15 min gratis conmigo</h2>\n  <p style=\"color:#ccc;font-size:15px;margin:0 0 22px;\">Cuéntame tu proyecto y vemos si tiene sentido trabajar juntos. Sin compromiso de pago, sin venta dura.</p>\n  <a href=\"https://calendly.com/prodkillingme/nueva-reunion\" style=\"display:inline-block;background:#efb810;color:#000;padding:18px 36px;border-radius:8px;text-decoration:none;font-weight:800;font-size:16px;letter-spacing:0.5px;\">📅 Reservar mi llamada gratis</a>\n</div>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "image_with_text_xgbBhp": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_8k94Dc": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Producción personalizada 1:1 contigo",
+            "heading_size": "h2"
+          }
+        },
+        "text_fBaMJk": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>No es un beat.<br/>No es una plantilla.<br/>Es crear tu canción desde cero, juntos.</p><p>Esta producción no parte de nada ya hecho.<br/><br/>Se crea desde cero según tu voz, tu estilo y tu idea.</p><p>Trabajamos juntos en cada decisión hasta que la canción suene exactamente como debe sonar.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_AhhHUF": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "AGENDAR LLAMADA",
+            "button_link": "shopify://products/producciona-personalizada",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_8k94Dc",
+        "text_fBaMJk",
+        "button_AhhHUF"
+      ],
+      "custom_css": [],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/PRODPERSONLAIZADA.png",
+        "height": "adapt",
+        "desktop_image_width": "large",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-4",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_QJKxiM": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_7pM9eb": {
+          "type": "heading",
+          "settings": {
+            "heading": "¿Qué incluye esta producción?",
+            "heading_size": "h1"
+          }
+        },
+        "text_bgmLam": {
+          "type": "text",
+          "settings": {
+            "text": "<p>✔ Beat exclusivo creado para tu voz<br/>(no reutilizado ni reciclado: 100% tu sonido)<br/><br/>✔ Dirección artística durante todo el proceso<br/>(no grabas solo, trabajamos cada decisión juntos)<br/><br/>✔ Arreglos, estructura y sonido profesional<br/>(la canción evoluciona, no se queda en maqueta)<br/><br/>✔ Edición vocal profesional<br/>(nadie sale sin que su voz brille)<br/><br/>✔ Mezcla y máster final listos para plataformas<br/>(suena competitivo desde el primer play)<br/><br/>✔ Stems incluidos<br/>(libertad total para el futuro)<br/><br/></p>"
+          }
+        },
+        "button_At9kjp": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_7pM9eb",
+        "text_bgmLam",
+        "button_At9kjp"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "rich_text_XKBgVf": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_akEgz4": {
+          "type": "heading",
+          "settings": {
+            "heading": "¿Cómo trabajamos?",
+            "heading_size": "h1"
+          }
+        },
+        "text_J4Fdap": {
+          "type": "text",
+          "settings": {
+            "text": "<p>1. Videollamada estratégica de inicio<br/>Analizo tus referencias, tu estilo y lo que quieres transmitir antes de producir nada.<br/><br/>2. Definimos la visión sonora juntos<br/>No improvisamos. Desde el primer día sabemos hacia dónde va la canción.<br/></p><p> 3. Producción personalizada en contacto contigo<br/>Voy creando la base mientras mantenemos comunicación directa.<br/><br/>4. Ajustes y decisiones en conjunto<br/>Nada se da por terminado hasta que ambos sentimos que está perfecto.<br/><br/>5. Entrega final con mezcla y máster profesional<br/>Te llevas tu canción lista para publicar en cualquier plataforma.<br/></p>"
+          }
+        },
+        "button_FGTaBQ": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_akEgz4",
+        "text_J4Fdap",
+        "button_FGTaBQ"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "image_banner_NkdFti": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_tgd887": {
+          "type": "heading",
+          "settings": {
+            "heading": "Producción personalizada 1:1 desde cero",
+            "heading_size": "h2"
+          }
+        },
+        "text_WfLEWY": {
+          "type": "text",
+          "settings": {
+            "text": "Creamos tu canción contigo. Sonido profesional, dirección artística y acabado listo para publicar.",
+            "text_style": "body"
+          }
+        },
+        "buttons_W6tMLi": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "QUIERO MI PRODUCCION",
+            "button_link_1": "shopify://products/producciona-personalizada",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_tgd887",
+        "text_WfLEWY",
+        "buttons_W6tMLi"
+      ],
+      "disabled": true,
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/high_ticket_d0215c6c-1aa4-4dce-bae9-8e1af49b3445.png",
+        "image_overlay_opacity": 50,
+        "image_height": "small",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-4",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_DmxhBX": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_EgwkGd": {
+          "type": "heading",
+          "settings": {
+            "heading": "¿Cómo trabajamos?",
+            "heading_size": "h1"
+          }
+        },
+        "text_Rm3iAx": {
+          "type": "text",
+          "settings": {
+            "text": "<p>1. Hacemos una videollamada inicial<br/><br/>2. Definimos sonido, referencias y dirección<br/><br/>3. Produzco la base mientras estamos en contacto<br/><br/>4. Ajustamos juntos hasta que esté perfecta<br/><br/>5. Entrego mezcla y máster final<br/></p>"
+          }
+        },
+        "button_fQmD3q": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_EgwkGd",
+        "text_Rm3iAx",
+        "button_fQmD3q"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_YV8g9A": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_imkKeM": {
+          "type": "heading",
+          "settings": {
+            "heading": "ESTO ES PARA TI SI...",
+            "heading_size": "h1"
+          }
+        },
+        "text_7zcpfP": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Quieres dejar de sonar amateur<br/><br/>Quieres una canción que realmente te represente<br/><br/>Estás dispuesto a trabajar tu música en serio<br/><br/>Buscas calidad real, no algo rápido<br/></p>"
+          }
+        },
+        "heading_CE8XH8": {
+          "type": "heading",
+          "settings": {
+            "heading": "ESTO NO ES PARA TI SI...",
+            "heading_size": "h1"
+          }
+        },
+        "text_CJgJyc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Solo quieres un beat barato y rápido<br/><br/>No quieres involucrarte en el proceso<br/><br/>Buscas algo genérico sin dirección artística<br/></p>"
+          }
+        },
+        "button_HUjKyc": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_imkKeM",
+        "text_7zcpfP",
+        "heading_CE8XH8",
+        "text_CJgJyc",
+        "button_HUjKyc"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_N3BCRW": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_dLmygh": {
+          "type": "heading",
+          "settings": {
+            "heading": "Tiempos y forma de trabajo",
+            "heading_size": "h1"
+          }
+        },
+        "text_BTP3g4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>* Este servicio no es inmediato ni automático.<br/><br/>* Cada producción requiere tiempo, comunicación y dedicación para que el resultado esté a la altura.<br/><br/>* Desde la primera llamada hasta la entrega final, trabajamos con calma y detalle para que la canción tenga identidad real y nivel profesional.<br/><br/>* Normalmente el proceso completo se realiza en pocos días, dependiendo del artista y la complejidad del tema.<br/></p>"
+          }
+        },
+        "button_V3rikq": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_dLmygh",
+        "text_BTP3g4",
+        "button_V3rikq"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_eQ8YyR": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_JTjar4": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_EFimbK": {
+          "type": "text",
+          "settings": {
+            "text": "<p>No estás comprando un beat.<br/><br/>Estás creando una canción contigo, desde cero, con dirección, intención y sonido profesional.<br/><br/>Si quieres hacer música en serio, este es tu sitio.<br/></p>"
+          }
+        },
+        "button_Y4rhj4": {
+          "type": "button",
+          "settings": {
+            "button_label": "Quiero empezar mi canción",
+            "button_link": "shopify://products/producciona-personalizada",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_JTjar4",
+        "text_EFimbK",
+        "button_Y4rhj4"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 36
+      }
+    },
+    "featured_product_QEFqBY": {
+      "type": "featured-product",
+      "blocks": {
+        "text_n3Mn3e": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_3z3tkM": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_6itbxg": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_3xqCUq": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_q3GcG9": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_NxwiNm": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_jbL7rM": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "text_n3Mn3e",
+        "title_3z3tkM",
+        "price_6itbxg",
+        "variant_picker_3xqCUq",
+        "quantity_selector_q3GcG9",
+        "buy_buttons_NxwiNm",
+        "share_jbL7rM"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "producciona-personalizada",
+        "color_scheme": "scheme-4",
+        "secondary_background": false,
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 100,
+        "padding_bottom": 80
+      }
+    },
+    "image_with_text_6yEBHk": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_TW9rVw": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image with text",
+            "heading_size": "h1"
+          }
+        },
+        "text_y9TrJL": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_dLmkd4": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_TW9rVw",
+        "text_y9TrJL",
+        "button_dLmkd4"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/asesoria_1d686b75-04af-4265-9652-6c05760f839c.png",
+        "height": "adapt",
+        "desktop_image_width": "large",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "center",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-4",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_Lc7CzX": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_a4GxgR": {
+          "type": "heading",
+          "settings": {
+            "heading": "Asesoría 1:1 para artistas y productores",
+            "heading_size": "h1"
+          }
+        },
+        "text_PJxHit": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Una videollamada de 1 hora donde revisamos tu música, resolvemos tus dudas y trazamos un plan claro para que tu sonido y tus lanzamientos suban de nivel.<br/></p>"
+          }
+        },
+        "button_wn8cBf": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "VAMOS A ELLO",
+            "button_link": "shopify://products/asesoria",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_a4GxgR",
+        "text_PJxHit",
+        "button_wn8cBf"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_peKF3L": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_7izEFw": {
+          "type": "heading",
+          "settings": {
+            "heading": "Qué te llevas en esta sesión",
+            "heading_size": "h1"
+          }
+        },
+        "text_kRe7aC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>✔ Feedback real sobre tus canciones<br/><br/>✔ Ideas claras para mejorar tu sonido<br/><br/>✔ Plan de lanzamientos concreto<br/><br/>✔ Dirección artística personalizada<br/><br/>✔ Respuestas a todas tus dudas técnicas y estratégicas<br/></p>"
+          }
+        },
+        "button_agYmQa": {
+          "type": "button",
+          "settings": {
+            "button_label": "Reservar mi asesoría",
+            "button_link": "shopify://products/asesoria",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_7izEFw",
+        "text_kRe7aC",
+        "button_agYmQa"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "featured_product_WbYizc": {
+      "type": "featured-product",
+      "blocks": {
+        "text_xCaKFz": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_mCyYbM": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_XjmCYW": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_WhdLTX": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_dzr3QQ": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_atxGGC": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_kXhNJp": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "text_xCaKFz",
+        "title_mCyYbM",
+        "price_XjmCYW",
+        "variant_picker_WhdLTX",
+        "quantity_selector_dzr3QQ",
+        "buy_buttons_atxGGC",
+        "share_kXhNJp"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "asesoria",
+        "color_scheme": "scheme-4",
+        "secondary_background": false,
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_rDAkUP": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_r8iEiP": {
+          "type": "heading",
+          "settings": {
+            "heading": "Esta asesoría es ideal si todavía no estás listo para una producción completa,pero quieres empezar a mejorar tu música desde ya.",
+            "heading_size": "h1"
+          }
+        },
+        "text_tjNtPW": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_dWWBqG": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_r8iEiP",
+        "text_tjNtPW",
+        "button_dWWBqG"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "image_with_text_aGYxgy": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_XaA3XP": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Imagen con texto",
+            "heading_size": "h1"
+          }
+        },
+        "text_bdytgM": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Vincula un texto con una imagen para atraer la atención hacia tu producto, colección o artículo de blog seleccionados. Agrega detalles sobre disponibilidad y estilo, o incluso ofrece una reseña.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_PPQ6dg": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Etiqueta de botón",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_XaA3XP",
+        "text_bdytgM",
+        "button_PPQ6dg"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Letrapersonalizada_11.png",
+        "height": "adapt",
+        "desktop_image_width": "large",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-4",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_VxpFiy": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_EzQmpr": {
+          "type": "heading",
+          "settings": {
+            "heading": "Letras con identidad, no genéricas.Servicio de <strong>ghostwriting y colaboración creativa 1:1</strong> para artistas que quieren canciones con verdad, coherencia y peso emocional.Trabajo contigo el concepto, la narrativa y la letra para que encaje <strong>con tu sonido, tu beat y tu forma de cantar</strong>, sin plantillas ni fórmulas vacías.Esto no es escribir por escribir.Es transformar una idea, emoción o bloqueo en una <strong>canción lista para grabar</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_NWizRA": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Comparte información sobre tu marca con los clientes. Describe un producto, comparte anuncios o da la bienvenida a los clientes a tu tienda.</p>"
+          }
+        },
+        "button_UcmaGj": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Etiqueta de botón",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_EzQmpr",
+        "text_NWizRA",
+        "button_UcmaGj"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_QPHF4e": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_tDmNJG": {
+          "type": "heading",
+          "settings": {
+            "heading": "Un proceso creativo real, 1:1Cada letra se trabaja de forma <strong>personalizada y directa</strong>, sin intermediarios ni automatismos.Partimos de tu beat, tus referencias y el mood que quieras transmitir.A partir de ahí se construye el concepto, la narrativa y la estructura de la canción, cuidando métrica, flow y coherencia artística.El objetivo no es solo que la letra “suene bien”,sino que <strong>te represente y funcione al grabarla</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_fWr8DR": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Comparte información sobre tu marca con los clientes. Describe un producto, comparte anuncios o da la bienvenida a los clientes a tu tienda.</p>"
+          }
+        },
+        "button_ACLWrL": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Etiqueta de botón",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_tDmNJG",
+        "text_fWr8DR",
+        "button_ACLWrL"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_am9GXc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_xhmjgx": {
+          "type": "heading",
+          "settings": {
+            "heading": "¿Para quién es este servicio?Este servicio es para artistas que:Quieren canciones con <strong>identidad y coherencia.</strong>Tienen un sonido definido o están construyéndolo. Valoran el proceso creativo y el detalle.Prefieren <strong>calidad y verdad</strong> antes que volumenNo es para quien busca letras genéricas, rápidas o sin implicación creativa.Aquí se trabaja con intención.",
+            "heading_size": "h1"
+          }
+        },
+        "text_3iEDbt": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Comparte información sobre tu marca con los clientes. Describe un producto, comparte anuncios o da la bienvenida a los clientes a tu tienda.</p>"
+          }
+        },
+        "button_Ci3XCh": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Etiqueta de botón",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_xhmjgx",
+        "text_3iEDbt",
+        "button_Ci3XCh"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_D9h8zg": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_CWk3yX": {
+          "type": "heading",
+          "settings": {
+            "heading": "Confianza, criterio y confidencialidad.Cada proyecto se trata con <strong>respeto, criterio creativo y discreción</strong>.La letra se trabaja en exclusiva y el enfoque se define contigo antes de empezar.Tanto si eliges ghostwriting como colaboración creativa,el proceso es claro, profesional y orientado a que el resultado funcione <strong>en estudio y en lanzamiento</strong>.Si estás listo para tomarte tu música en serio, este servicio es para ti..",
+            "heading_size": "h1"
+          }
+        },
+        "text_JgdRnN": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Comparte información sobre tu marca con los clientes. Describe un producto, comparte anuncios o da la bienvenida a los clientes a tu tienda.</p>"
+          }
+        },
+        "button_dkCr8y": {
+          "type": "button",
+          "settings": {
+            "button_label": "Empezar el proceso creativo",
+            "button_link": "shopify://products/ghostwriting-letra-personalizada-1-1",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_CWk3yX",
+        "text_JgdRnN",
+        "button_dkCr8y"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "featured_product_PByJNq": {
+      "type": "featured-product",
+      "blocks": {
+        "text_TigFpN": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_i4QgqA": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "price_X6zDFy": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_B4WFAX": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_xwpNeR": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons_LyiTXV": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_aT6rdN": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartir"
+          }
+        }
+      },
+      "block_order": [
+        "text_TigFpN",
+        "title_i4QgqA",
+        "price_X6zDFy",
+        "variant_picker_B4WFAX",
+        "quantity_selector_xwpNeR",
+        "buy_buttons_LyiTXV",
+        "share_aT6rdN"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "ghostwriting-letra-personalizada-1-1",
+        "color_scheme": "scheme-4",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_6Lkdbq",
+    "image_with_text_xgbBhp",
+    "rich_text_QJKxiM",
+    "rich_text_XKBgVf",
+    "image_banner_NkdFti",
+    "rich_text_DmxhBX",
+    "rich_text_YV8g9A",
+    "rich_text_N3BCRW",
+    "rich_text_eQ8YyR",
+    "featured_product_QEFqBY",
+    "image_with_text_6yEBHk",
+    "rich_text_Lc7CzX",
+    "rich_text_peKF3L",
+    "featured_product_WbYizc",
+    "rich_text_rDAkUP",
+    "image_with_text_aGYxgy",
+    "rich_text_VxpFiy",
+    "rich_text_QPHF4e",
+    "rich_text_am9GXc",
+    "rich_text_D9h8zg",
+    "featured_product_PByJNq"
+  ]
+}

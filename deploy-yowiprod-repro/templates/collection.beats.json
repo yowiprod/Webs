@@ -1,0 +1,131 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "scheme-4"
+      }
+    },
+    "collection_list_j7YiP8": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_cHg9af": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "beats-trap"
+          }
+        },
+        "featured_collection_BmRNgc": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "beats-rap"
+          }
+        },
+        "featured_collection_4PeFwW": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "beats-dancehall"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_cHg9af",
+        "featured_collection_BmRNgc",
+        "featured_collection_4PeFwW"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Explora nuestros Beats",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-4",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_jnqGD3": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_XcTB33": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "beats-afro"
+          }
+        },
+        "featured_collection_pDQRJb": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "beats-detroit"
+          }
+        },
+        "featured_collection_VQBm4d": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "beat-drill"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_XcTB33",
+        "featured_collection_pDQRJb",
+        "featured_collection_VQBm4d"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-4",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-4",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "collection_list_j7YiP8",
+    "collection_list_jnqGD3",
+    "product-grid"
+  ]
+}

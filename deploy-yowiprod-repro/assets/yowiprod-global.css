@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+body:not(.template-index) {
+  background: #070707;
+}
+
+body:not(.template-index) .yp-global-grain {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+body:not(.template-index) .shopify-section,
+body:not(.template-index) main,
+body:not(.template-index) #MainContent {
+  position: relative;
+  z-index: 5;
+}
+
+/* VARG BLADEE — títulos acero metálico */
+body:not(.template-index) h1,
+body:not(.template-index) h2,
+body:not(.template-index) .h1,
+body:not(.template-index) .h2 {
+  font-family: 'Bebas Neue', 'Impact', 'Arial Narrow', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  background: linear-gradient(180deg, #d0d0d0 0%, #a0a0a0 35%, #707070 65%, #909090 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* TRAPPED WORLD — cuerpo chrome */
+body:not(.template-index) p,
+body:not(.template-index) .rte,
+body:not(.template-index) .product__description,
+body:not(.template-index) li:not(.list-menu__item) {
+  font-family: 'Cormorant Garamond', 'Georgia', serif !important;
+  font-style: italic !important;
+  color: rgba(200, 210, 225, 0.85) !important;
+  text-shadow: 0 0 6px rgba(180, 210, 255, 0.08);
+}
+
+/* Botones — negro + dorado */
+body:not(.template-index) .button,
+body:not(.template-index) .shopify-payment-button__button,
+body:not(.template-index) .btn,
+body:not(.template-index) button.button,
+body:not(.template-index) a.button {
+  background: #000000 !important;
+  color: #efb810 !important;
+  border: 1px solid #efb810 !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+body:not(.template-index) .button:hover,
+body:not(.template-index) a.button:hover {
+  background: #111111 !important;
+  box-shadow: 0 6px 30px rgba(239,184,16,0.2) !important;
+}
+
+/* Links dorados */
+body:not(.template-index) a:not(.button):not(.header__icon):not([class*="header"]):not([class*="footer"]) {
+  color: #efb810;
+}
+
+/* Cards producto — vidrio oscuro */
+body:not(.template-index) .card-wrapper,
+body:not(.template-index) .card {
+  background: rgba(7, 7, 7, 0.7) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 8px !important;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+body:not(.template-index) .card-wrapper:hover,
+body:not(.template-index) .card:hover {
+  border-color: rgba(201,168,76,0.3) !important;
+  box-shadow: 0 8px 32px rgba(201,168,76,0.1) !important;
+  transform: translateY(-2px);
+}
+
+body:not(.template-index) .card__heading a,
+body:not(.template-index) .full-unstyled-link {
+  font-family: 'Bebas Neue', sans-serif !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+
+/* Precios dorados */
+body:not(.template-index) .price-item,
+body:not(.template-index) .price,
+body:not(.template-index) .money {
+  color: #efb810 !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+}
+
+/* Inputs — negro con borde dorado */
+body:not(.template-index) input:not([type="checkbox"]):not([type="radio"]),
+body:not(.template-index) textarea,
+body:not(.template-index) .field__input {
+  background: rgba(7,7,7,0.8) !important;
+  border-color: rgba(239,184,16,0.3) !important;
+  color: #efb810 !important;
+}
+
+/* Secciones — vidrio oscuro sobre fondo 3D */
+body:not(.template-index) .shopify-section:not(.shopify-section-group-header-group):not(.shopify-section-group-footer-group) > * {
+  background: rgba(7, 7, 7, 0.4) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+body:not(.template-index) .collection-list,
+body:not(.template-index) .collection {
+  background: transparent !important;
+}
+
+body:not(.template-index) .badge {
+  background: #efb810 !important;
+  color: #000000 !important;
+}
+
+/* Centrar banner de colección */
+.collection-banner__inner,
+.collection-hero__inner,
+.main-collection-banner,
+.collection-banner {
+  text-align: center !important;
+}
+.collection-banner__inner h1,
+.collection-hero__inner h1,
+.main-collection-banner h1 {
+  width: 100%;
+  text-align: center !important;
+}
+.collection-banner__inner .rte,
+.collection-hero__inner .rte,
+.main-collection-banner .rte {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+/* Header transparente */
+body:not(.template-index) .shopify-section-group-header-group,
+body:not(.template-index) .shopify-section-group-header-group .color-scheme-4,
+body:not(.template-index) .shopify-section-group-header-group [class*="color-"],
+body:not(.template-index) .header-wrapper {
+  background: transparent !important;
+  --gradient-background: transparent !important;
+}
+
+/* Centrar botones */
+.rich-text__buttons,
+.button-wrapper,
+.rich-text__block,
+[class*="rich-text"] .button,
+[class*="rich-text"] a.button {
+  display: flex !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Centrar nombres en cards */
+.card__information,
+.card__content,
+.card__heading,
+.card__caption {
+  text-align: center !important;
+}
+.card__heading a,
+.card__information a {
+  justify-content: center !important;
+  display: flex !important;
+}
+
+/* ============================================================
+   CUSTOM DROPDOWN — estilo manifesto
+   ============================================================ */
+.yp-dropdown {
+  position: relative;
+  display: inline-block;
+  min-width: 200px;
+}
+.yp-dropdown__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(7, 7, 7, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  color: rgba(200, 200, 200, 0.7);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+.yp-dropdown__trigger:hover {
+  border-color: rgba(255,255,255,0.12);
+}
+.yp-dropdown__arrow {
+  margin-left: 10px;
+  font-size: 10px;
+  opacity: 0.4;
+  font-style: normal;
+  transition: transform 0.3s;
+}
+.yp-dropdown--open .yp-dropdown__arrow {
+  transform: rotate(180deg);
+}
+.yp-dropdown__list {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(7, 7, 7, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+  padding: 6px 0;
+  max-height: 320px;
+  overflow-y: auto;
+}
+.yp-dropdown--open .yp-dropdown__list {
+  display: block;
+  animation: yp-dropdown-in 0.25s ease;
+}
+@keyframes yp-dropdown-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.yp-dropdown__item {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  color: rgba(200, 200, 200, 0.6);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border-left: 3px solid transparent;
+}
+.yp-dropdown__item:hover {
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.85);
+  border-left-color: rgba(201,168,76,0.3);
+}
+.yp-dropdown__item--active {
+  color: rgba(255,255,255,0.9);
+  border-left-color: #c9a84c;
+  background: rgba(201,168,76,0.05);
+}
+
+/* ============================================================
+   LEVITACIÓN — productos y secciones flotan
+   ============================================================ */
+body:not(.template-index) .card-wrapper {
+  animation: yp-float 6s ease-in-out infinite;
+}
+body:not(.template-index) .card-wrapper:nth-child(2) { animation-delay: -1.5s; }
+body:not(.template-index) .card-wrapper:nth-child(3) { animation-delay: -3s; }
+body:not(.template-index) .card-wrapper:nth-child(4) { animation-delay: -4.5s; }
+
+body:not(.template-index) .shopify-section:not(.shopify-section-group-header-group):not(.shopify-section-group-footer-group) > * {
+  animation: yp-float 6s ease-in-out infinite;
+}
+body:not(.template-index) .shopify-section:nth-child(even) > * {
+  animation-delay: -3s;
+}
+
+@keyframes yp-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+/* CUSTOM DROPDOWN — panel estilo manifesto */
+.yp-dropdown {
+  position: relative;
+  display: inline-block;
+  min-width: 200px;
+}
+.yp-dropdown__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(7, 7, 7, 0.6);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  color: rgba(200, 200, 200, 0.7);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+.yp-dropdown__trigger:hover {
+  border-color: rgba(255,255,255,0.12);
+}
+.yp-dropdown__arrow {
+  margin-left: 10px;
+  font-size: 10px;
+  opacity: 0.4;
+  font-style: normal;
+  transition: transform 0.3s;
+}
+.yp-dropdown--open .yp-dropdown__arrow {
+  transform: rotate(180deg);
+}
+.yp-dropdown__list {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  width: 90vw;
+  max-width: 600px;
+  background: rgba(7, 7, 7, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+  padding: 40px 32px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.yp-dropdown--open .yp-dropdown__list {
+  display: block;
+  animation: yp-dropdown-in 0.3s ease;
+}
+.yp-dropdown--open::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(0,0,0,0.5);
+}
+@keyframes yp-dropdown-in {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+.yp-dropdown__item {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  color: rgba(200, 200, 200, 0.55);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border-left: 3px solid transparent;
+  margin-bottom: 4px;
+}
+.yp-dropdown__item:hover {
+  background: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.85);
+  border-left-color: rgba(201,168,76,0.3);
+}
+.yp-dropdown__item--active {
+  color: rgba(255,255,255,0.9);
+  border-left-color: #c9a84c;
+  background: rgba(201,168,76,0.04);
+}
+
+/* ============================================================
+   FIX: boton "Ver todos los productos" — hitbox tapado por cards animadas
+   Las cards llevan animation yp-float (transform) creando stacking contexts
+   que solapaban el hitbox del <a>. Elevamos el boton a su propia capa.
+   ============================================================ */
+.collection__view-all {
+  position: relative;
+  z-index: 30 !important;
+  isolation: isolate;
+  margin-top: 3rem;
+}
+.collection__view-all > a {
+  position: relative;
+  z-index: 31;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.collection .grid > .grid__item:nth-last-child(-n+4) .card-wrapper {
+  animation: none !important;
+  transform: none !important;
+}
