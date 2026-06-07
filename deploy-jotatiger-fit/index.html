@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JOTATIGER.FIT — Suplementos con Juan Fit</title>
+<meta name="description" content="Suplementos premium de Juan Fit: creatina, energía, detox y rendimiento. Fitness, salud y entrenamiento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --bg-2:#121215;
+    --card:#16161a;
+    --line:#26262c;
+    --txt:#f4f4f5;
+    --muted:#9a9aa3;
+    --red:#e63946;
+    --red-2:#ff5864;
+    --glow:rgba(230,57,70,.45);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--txt);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* Scrollbar */
+  ::-webkit-scrollbar{width:11px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--red);border-radius:10px;border:3px solid var(--bg)}
+
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  .display{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.5px;line-height:.95}
+  .accent{color:var(--red)}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--red);margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--red)}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    padding:18px 0;transition:.35s ease;
+  }
+  nav.scrolled{
+    background:rgba(10,10,11,.82);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);padding:12px 0;
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:1px;text-transform:uppercase;color:#fff;text-decoration:none}
+  .logo .accent{color:var(--red)}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:600;transition:.25s}
+  .nav-links a:hover{color:#fff}
+  .nav-cta{
+    background:var(--red);color:#fff !important;padding:10px 20px;border-radius:40px;
+    font-weight:700 !important;transition:.25s;box-shadow:0 6px 20px -6px var(--glow);
+  }
+  .nav-cta:hover{background:var(--red-2);transform:translateY(-2px)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0}
+  .burger span{width:26px;height:2px;background:#fff;transition:.3s}
+  /* logo isotipo */
+  .logo{display:inline-flex;align-items:center;gap:11px}
+  .tiger-ico{width:38px;height:38px;flex:0 0 38px;filter:drop-shadow(0 3px 8px var(--glow))}
+  .logo-word{font-family:'Anton',sans-serif;font-size:1.35rem;letter-spacing:1px;text-transform:uppercase;color:#fff}
+  .logo-word .accent{color:var(--red)}
+  /* nav derecha + carrito */
+  .nav-right{display:flex;align-items:center;gap:16px}
+  .cart-btn{position:relative;background:none;border:0;color:#fff;cursor:pointer;display:grid;place-items:center;padding:6px;transition:.25s}
+  .cart-btn:hover{color:var(--red);transform:translateY(-2px)}
+  .cart-count{position:absolute;top:-4px;right:-6px;background:var(--red);color:#fff;font-size:.66rem;font-weight:800;min-width:18px;height:18px;padding:0 4px;border-radius:20px;display:grid;place-items:center;border:2px solid var(--bg);transition:.25s;transform:scale(0)}
+  .cart-count.show{transform:scale(1)}
+
+  /* ===== CART DRAWER ===== */
+  .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:.3s;z-index:200}
+  .cart-overlay.open{opacity:1;visibility:visible}
+  .cart-drawer{position:fixed;top:0;right:0;height:100%;width:400px;max-width:90vw;background:var(--bg-2);border-left:1px solid var(--line);z-index:201;transform:translateX(100%);transition:transform .38s cubic-bezier(.2,.7,.3,1);display:flex;flex-direction:column}
+  .cart-drawer.open{transform:none}
+  .cart-head{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid var(--line)}
+  .cart-head h3{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:1px;color:#fff;font-size:1.25rem}
+  .cart-close{background:none;border:0;color:var(--muted);font-size:1.6rem;cursor:pointer;line-height:1;transition:.2s}
+  .cart-close:hover{color:var(--red);transform:rotate(90deg)}
+  .cart-items{flex:1;overflow-y:auto;padding:14px 24px}
+  .cart-empty{color:var(--muted);text-align:center;margin-top:60px}
+  .ci{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .ci img{width:62px;height:62px;border-radius:10px;object-fit:cover;background:#fff;flex:0 0 62px}
+  .ci-info{flex:1;min-width:0}
+  .ci-info h5{font-size:.86rem;color:#fff;font-weight:700;margin-bottom:4px;line-height:1.3}
+  .ci-info .ci-price{color:var(--red);font-weight:700;font-size:.9rem}
+  .qty{display:inline-flex;align-items:center;gap:10px;margin-top:8px;background:var(--bg);border:1px solid var(--line);border-radius:30px;padding:3px 6px}
+  .qty button{background:none;border:0;color:#fff;cursor:pointer;font-size:1rem;width:22px;height:22px;border-radius:50%;transition:.2s}
+  .qty button:hover{background:var(--red)}
+  .qty span{min-width:18px;text-align:center;font-weight:700;font-size:.85rem}
+  .ci-remove{background:none;border:0;color:var(--muted);cursor:pointer;font-size:.75rem;align-self:flex-start;transition:.2s}
+  .ci-remove:hover{color:var(--red)}
+  .cart-foot{padding:22px 24px;border-top:1px solid var(--line)}
+  .cart-total{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
+  .cart-total span{color:var(--muted);font-size:.95rem}
+  .cart-total b{font-family:'Anton',sans-serif;font-size:1.8rem;color:#fff}
+  .cart-foot .btn-primary{width:100%;justify-content:center;border:0}
+  .cart-note{color:var(--muted);font-size:.72rem;text-align:center;margin-top:12px}
+
+  /* toast */
+  .toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,140%);background:var(--card);border:1px solid var(--red);color:#fff;padding:14px 24px;border-radius:50px;font-weight:600;font-size:.9rem;z-index:300;transition:transform .4s cubic-bezier(.2,.7,.3,1);box-shadow:0 14px 40px -12px var(--glow)}
+  .toast.show{transform:translate(-50%,0)}
+
+  /* ===== HERO ===== */
+  header.hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;
+    overflow:hidden;
+    background:
+      radial-gradient(900px 500px at 78% 18%, rgba(230,57,70,.22), transparent 60%),
+      radial-gradient(700px 600px at 8% 90%, rgba(230,57,70,.10), transparent 60%),
+      var(--bg);
+  }
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.18;mask-image:radial-gradient(circle at 50% 40%,#000,transparent 75%)}
+  .hero-content{position:relative;z-index:3;padding-top:90px}
+  .hero h1{font-size:clamp(3rem,9vw,7.4rem);color:#fff;margin:6px 0 22px}
+  .hero h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--red)}
+  .hero p.lead{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--muted);max-width:560px;margin-bottom:36px}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+    font-weight:700;font-size:1rem;padding:16px 30px;border-radius:48px;
+    text-decoration:none;transition:.28s;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--red);color:#fff;box-shadow:0 12px 34px -10px var(--glow)}
+  .btn-primary:hover{background:var(--red-2);transform:translateY(-3px);box-shadow:0 18px 40px -10px var(--glow)}
+  .btn-ghost{border-color:var(--line);color:#fff}
+  .btn-ghost:hover{border-color:var(--red);color:var(--red)}
+  .scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:3;color:var(--muted);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px}
+  .scroll-hint .dot{width:5px;height:9px;border-radius:3px;background:var(--red);animation:fall 1.5s infinite}
+  @keyframes fall{0%{transform:translateY(0);opacity:1}70%{transform:translateY(16px);opacity:0}100%{opacity:0}}
+
+  /* ===== STATS ===== */
+  .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2)}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+  .stat{padding:44px 20px;text-align:center;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat .num{font-family:'Anton',sans-serif;font-size:clamp(2.6rem,5vw,3.6rem);color:#fff;line-height:1}
+  .stat .num .accent{color:var(--red)}
+  .stat .label{color:var(--muted);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
+
+  /* ===== SECTION base ===== */
+  section{padding:110px 0;position:relative}
+  .section-head{max-width:640px;margin-bottom:60px}
+  .section-head h2{font-size:clamp(2.2rem,5vw,3.6rem);color:#fff;margin-bottom:16px}
+  .section-head p{color:var(--muted);font-size:1.05rem}
+
+  /* ===== ABOUT ===== */
+  .about{background:var(--bg)}
+  .about-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+  .about-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:38px;position:relative;overflow:hidden}
+  .about-card::before{content:"🐯";position:absolute;top:-14px;right:10px;font-size:7rem;opacity:.07}
+  .about-card h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.5rem;color:#fff;margin-bottom:14px}
+  .pill-list{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:14px}
+  .pill-list li{display:flex;gap:14px;align-items:flex-start;color:var(--muted)}
+  .pill-list li b{color:#fff;font-weight:700}
+  .check{flex:0 0 24px;height:24px;border-radius:50%;background:rgba(230,57,70,.15);color:var(--red);display:grid;place-items:center;font-size:.8rem;font-weight:800;margin-top:3px}
+
+  /* ===== PRODUCTS ===== */
+  .products{background:var(--bg-2)}
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    transition:.35s cubic-bezier(.2,.7,.3,1);position:relative;display:flex;flex-direction:column;
+  }
+  .card:hover{transform:translateY(-8px);border-color:var(--red);box-shadow:0 24px 50px -20px var(--glow)}
+  .card .tag{position:absolute;top:14px;left:14px;z-index:2;background:rgba(10,10,11,.7);backdrop-filter:blur(6px);color:var(--red);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:30px;border:1px solid var(--line)}
+  .card .img{aspect-ratio:1/1;background:#0a0a0b;display:grid;place-items:center;overflow:hidden}
+  .card .img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+  .card:hover .img img{transform:scale(1.07)}
+  .card .body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+  .card h4{font-size:1.02rem;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3}
+  .card .desc{color:var(--muted);font-size:.86rem;margin-bottom:18px;flex:1}
+  .card .row{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+  .card .price{font-family:'Anton',sans-serif;font-size:1.5rem;color:#fff}
+  .card .price span{font-size:.85rem;color:var(--muted);font-family:'Inter';font-weight:600}
+  .buy{background:var(--red);color:#fff;border:0;cursor:pointer;font-weight:700;font-size:.85rem;padding:11px 18px;border-radius:40px;transition:.25s;text-decoration:none}
+  .buy:hover{background:var(--red-2);transform:scale(1.05)}
+
+  /* ===== BANNER / PARALLAX ===== */
+  .banner{position:relative;padding:130px 0;text-align:center;overflow:hidden;background:var(--bg)}
+  .banner .bg-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Anton',sans-serif;font-size:clamp(8rem,26vw,22rem);color:rgba(230,57,70,.06);white-space:nowrap;z-index:0;pointer-events:none}
+  .banner-content{position:relative;z-index:2}
+  .banner h2{font-size:clamp(2rem,6vw,4.2rem);color:#fff;max-width:900px;margin:0 auto 26px}
+
+  /* ===== CONTACT ===== */
+  .contact{background:var(--bg-2)}
+  .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .contact-info .line{display:flex;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+  .contact-info .line .ico{flex:0 0 44px;height:44px;border-radius:12px;background:rgba(230,57,70,.12);color:var(--red);display:grid;place-items:center;font-size:1.1rem}
+  .contact-info .line a,.contact-info .line span{color:#fff;text-decoration:none;font-weight:600}
+  .contact-info .line small{display:block;color:var(--muted);font-weight:500}
+  .socials{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+  .socials a{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);color:#fff;text-decoration:none;padding:11px 18px;border-radius:40px;font-weight:600;font-size:.9rem;transition:.25s}
+  .socials a:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px)}
+  form{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px}
+  form label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin:0 0 7px 4px}
+  form input,form textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:#fff;font-family:inherit;font-size:.95rem;margin-bottom:18px;transition:.2s}
+  form input:focus,form textarea:focus{outline:none;border-color:var(--red)}
+  form textarea{resize:vertical;min-height:120px}
+  form .btn-primary{width:100%;justify-content:center;border:0}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--bg);border-top:1px solid var(--line);padding:50px 0 36px}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .foot-inner .logo{font-size:1.3rem}
+  .foot-links{display:flex;gap:24px;flex-wrap:wrap}
+  .foot-links a{color:var(--muted);text-decoration:none;font-size:.88rem;transition:.2s}
+  .foot-links a:hover{color:var(--red)}
+  .copy{color:var(--muted);font-size:.82rem;margin-top:24px;text-align:center;border-top:1px solid var(--line);padding-top:24px}
+
+  /* ===== REVEAL ===== */
+  .reveal{opacity:0;transform:translateY(38px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal[data-d="1"]{transition-delay:.08s}
+  .reveal[data-d="2"]{transition-delay:.16s}
+  .reveal[data-d="3"]{transition-delay:.24s}
+  .reveal[data-d="4"]{transition-delay:.32s}
+  .reveal[data-d="5"]{transition-delay:.40s}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:900px){
+    .about-inner,.contact-inner{grid-template-columns:1fr;gap:40px}
+    .prod-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:760px){
+    .nav-links{position:fixed;inset:0 0 0 auto;width:74%;max-width:320px;background:var(--bg-2);flex-direction:column;justify-content:center;gap:30px;transform:translateX(100%);transition:.4s;border-left:1px solid var(--line)}
+    .nav-links.open{transform:none}
+    .burger{display:flex}
+    .stats-grid{grid-template-columns:1fr;}
+    .stat{border-right:0;border-bottom:1px solid var(--line)}
+    .stat:last-child{border-bottom:0}
+    .prod-grid{grid-template-columns:1fr}
+    section{padding:80px 0}
+    .cart-drawer{width:100%}
+  }
+  @media(max-width:430px){
+    .logo-word{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.scroll-hint .dot{animation:none}}
+</style>
+</head>
+<body>
+
+<!-- ===== ISOTIPO TIGRE (sprite SVG reutilizable) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="tigerMark" viewBox="0 0 100 100">
+    <!-- orejas -->
+    <path d="M31 40 L19 13 L47 31 Z" fill="#e63946"/>
+    <path d="M69 40 L81 13 L53 31 Z" fill="#e63946"/>
+    <path d="M33 34 L26 19 L42 31 Z" fill="#0a0a0b"/>
+    <path d="M67 34 L74 19 L58 31 Z" fill="#0a0a0b"/>
+    <!-- cabeza -->
+    <path d="M50 24 C35 24 27 33 27 45 C25 47 23 51 25 55 C26 58 29 59 31 60 C34 73 41 81 50 81 C59 81 66 73 69 60 C71 59 74 58 75 55 C77 51 75 47 73 45 C73 33 65 24 50 24 Z" fill="#e63946"/>
+    <!-- rayas frente -->
+    <path d="M50 27 L47 39 M50 27 L53 39" stroke="#0a0a0b" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M40 30 L39 40 M60 30 L61 40" stroke="#0a0a0b" stroke-width="2.6" stroke-linecap="round"/>
+    <!-- rayas mejillas -->
+    <path d="M31 50 L38 51 M32 56 L38 57" stroke="#0a0a0b" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M69 50 L62 51 M68 56 L62 57" stroke="#0a0a0b" stroke-width="2.6" stroke-linecap="round"/>
+    <!-- ojos -->
+    <path d="M37 47 L48 50 L45 55 L36 52 Z" fill="#0a0a0b"/>
+    <path d="M63 47 L52 50 L55 55 L64 52 Z" fill="#0a0a0b"/>
+    <!-- hocico -->
+    <ellipse cx="50" cy="64" rx="13" ry="10" fill="#fff"/>
+    <path d="M44 60 L56 60 L50 67 Z" fill="#0a0a0b"/>
+    <path d="M50 67 L50 72 M50 72 C47 75 43 74 41 71 M50 72 C53 75 57 74 59 71" stroke="#0a0a0b" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo" aria-label="JotaTiger Fit — inicio">
+      <svg class="tiger-ico"><use href="#tigerMark"/></svg>
+      <span class="logo-word">JOTA<span class="accent">TIGER</span>.FIT</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#productos">Suplementos</a>
+      <a href="#filosofia">Filosofía</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" id="cartBtn" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="wrap hero-content">
+    <span class="eyebrow reveal">Fitness · Salud · Entrenamiento</span>
+    <h1 class="display reveal" data-d="1">ENTRENA<br><span class="stroke">COMO UN</span> <span class="accent">TIGRE</span></h1>
+    <p class="lead reveal" data-d="2">Suplementos premium seleccionados por <b style="color:#fff">Juan Fit</b> para llevar tu energía, fuerza y rendimiento al siguiente nivel.</p>
+    <div class="hero-cta reveal" data-d="3">
+      <a href="#productos" class="btn btn-primary">Ver suplementos →</a>
+      <a href="#filosofia" class="btn btn-ghost">Conoce a Juan Fit</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><span class="dot"></span></div>
+</header>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><div class="num"><span class="counter" data-to="9">0</span></div><div class="label">Suplementos premium</div></div>
+    <div class="stat reveal" data-d="1"><div class="num"><span class="counter" data-to="3">0</span></div><div class="label">Canales de comunidad</div></div>
+    <div class="stat reveal" data-d="2"><div class="num"><span class="counter" data-to="100">0</span><span class="accent">%</span></div><div class="label">Pago seguro</div></div>
+  </div>
+</div>
+
+<!-- FILOSOFIA / ABOUT -->
+<section class="about" id="filosofia">
+  <div class="wrap about-inner">
+    <div class="reveal">
+      <span class="eyebrow">Quién está detrás</span>
+      <h2 class="section-head" style="margin-bottom:20px;font-size:clamp(2.2rem,5vw,3.4rem);color:#fff" >La marca de <span class="accent">Juan Fit</span></h2>
+      <p style="color:var(--muted);font-size:1.08rem;margin-bottom:18px">Contenido práctico de fitness centrado en <b style="color:#fff">entrenamiento, nutrición y pérdida de grasa</b>. Ahora también con su propia línea de suplementos: lo que Juan usa y recomienda, sin humo.</p>
+      <p style="color:var(--muted)">Cada producto está elegido para encajar en una rutina real: energía para entrenar, recuperación para crecer y bienestar para el día a día.</p>
+    </div>
+    <div class="about-card reveal" data-d="1">
+      <h3>Por qué elegirnos</h3>
+      <ul class="pill-list">
+        <li><span class="check">✓</span><span><b>Selección de Juan Fit</b> — productos probados, no catálogos infinitos.</span></li>
+        <li><span class="check">✓</span><span><b>Para cada objetivo</b> — fuerza, energía, detox y equilibrio.</span></li>
+        <li><span class="check">✓</span><span><b>Comunidad real</b> — miles te acompañan en YouTube, TikTok e Instagram.</span></li>
+        <li><span class="check">✓</span><span><b>Pago seguro</b> y atención directa por email.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="products" id="productos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">La tienda</span>
+      <h2>Suplementos <span class="accent">JotaTiger</span></h2>
+      <p>Creatina, energía, detox y rendimiento. Todo lo que necesitas para entrenar con propósito.</p>
+    </div>
+    <div class="prod-grid">
+
+      <article class="card reveal">
+        <span class="tag">Creatina</span>
+        <div class="img"><img loading="lazy" src="assets/productos/creatina-natualrise.jpg" alt="Creatina Monohidrato Natualrise"></div>
+        <div class="body">
+          <h4>Creatina Monohidrato Pura 300g · Natualrise</h4>
+          <p class="desc">Fuerza y volumen. Monohidrato puro en polvo, sin aditivos.</p>
+          <div class="row"><div class="price">15,99<span> €</span></div><button type="button" class="buy">Añadir +</button></div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-d="1">
+        <span class="tag">Creatina</span>
+        <div class="img"><img loading="lazy" src="assets/productos/creatina-lyonsbarry.jpg" alt="Creatina Monohidrato LyonsBarry"></div>
+        <div class="body">
+          <h4>Creatina Monohidrato Pura 300g · LyonsBarry</h4>
+          <p class="desc">300g de creatina pura para rendimiento y recuperación.</p>
+          <div class="row"><div class="price">16,59<span> €</span></div><button type="button" class="buy">Añadir +</button></div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-d="2">
+        <span class="tag">Mujer</span>
+        <div class="img"><img loading="lazy" src="assets/productos/creatina-women.jpg" alt="Creatina Women + Colágeno & BCAA"></div>
+        <div class="body">
+          <h4>Creatina Women + Colágeno &amp; BCAA</h4>
+          <p class="desc">Fórmula femenina con colágeno y aminoácidos esenciales.</p>
+          <div class="row"><div class="price">15,99<span> €</span></div><button type="button" class="buy">Añadir +</button></div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <span class="tag">Energía</span>
+        <div class="img"><img loading="lazy" src="assets/productos/evo-power.jpg" alt="Evo Power"></div>
+        <div class="body">
+          <h4>Evo Power · Energía y Enfoque Total</h4>
+          <p class="desc">Energía sostenida y concentración para entrenar al máximo.</p>
+          <div class="row"><div class="price">35,00<span> €</span></div><button type="button" class="buy">Añadir +</button></div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-d="1">
+        <span class="tag">Energía</span>
+        <div class="img"><img loading="lazy" src="assets/productos/smart-coffee.jpg" alt="Smart Coffee"></div>
+        <div class="body">
+          <h4>Smart Coffee · Energía Inteligente</h4>
+          <p class="desc">Café funcional para enfoque y energía sin bajón.</p>
+          <div class="row"><div class="price">35,00<span> €</span></div><button type="button" class="buy">Añadir +</button></div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-d="2">
+        <span class="tag">Mujer</span>
+        <div class="img"><img loading="lazy" src="assets/productos/evo-woman-balance.jpg" alt="Evo Woman Balance"></div>
+        <div class="body">
+          <h4>Evo Woman Balance · Equilibrio Femenino</h4>
+          <p class="desc">Bienestar y equilibrio hormonal para el día a día.</p>
+          <div class="row"><div class="price">35,00<span> €</span></div><button type="button" class="buy">Añadir +</button></div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <span class="tag">Detox</span>
+        <div class="img"><img loading="lazy" src="assets/productos/evo-detox-tea.jpg" alt="Evo Detox Tea"></div>
+        <div class="body">
+          <h4>Evo Detox Tea · Limpieza Natural</h4>
+          <p class="desc">Té depurativo para bienestar digestivo y ligereza.</p>
+          <div class="row"><div class="price">21,49<span> €</span></div><button type="button" class="buy">Añadir +</button></div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-d="1">
+        <span class="tag">Rendimiento</span>
+        <div class="img"><img loading="lazy" src="assets/productos/turkesterone.jpg" alt="Turkesterone Pro"></div>
+        <div class="body">
+          <h4>Turkesterone Pro · Fuerza &amp; Rendimiento</h4>
+          <p class="desc">Soporte natural para fuerza y recuperación muscular.</p>
+          <div class="row"><div class="price">14,99<span> €</span></div><button type="button" class="buy">Añadir +</button></div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-d="2">
+        <span class="tag">Energía</span>
+        <div class="img"><img loading="lazy" src="assets/productos/shilajit-gummies.jpg" alt="Shilajit Gummies"></div>
+        <div class="body">
+          <h4>Shilajit Gummies 30 Uds · Energía Natural</h4>
+          <p class="desc">Gomitas de shilajit para energía y vitalidad diaria.</p>
+          <div class="row"><div class="price">13,99<span> €</span></div><button type="button" class="buy">Añadir +</button></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- BANNER PARALLAX -->
+<div class="banner">
+  <div class="bg-word" id="bgWord">RENDIMIENTO</div>
+  <div class="wrap banner-content reveal">
+    <h2 class="display">ENTRENA CON <span class="accent">PROPÓSITO</span></h2>
+    <a href="#productos" class="btn btn-primary">Empieza hoy →</a>
+  </div>
+</div>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="wrap contact-inner">
+    <div class="reveal">
+      <span class="eyebrow">Hablemos</span>
+      <h2 style="font-size:clamp(2rem,5vw,3rem);color:#fff;margin-bottom:14px">¿Dudas con tu pedido?</h2>
+      <p style="color:var(--muted);margin-bottom:28px">Escríbenos directamente o síguenos en redes. Juan Fit y su equipo te responden.</p>
+      <div class="contact-info">
+        <div class="line"><div class="ico">✉</div><div><a href="mailto:info.juanfit@gmail.com">info.juanfit@gmail.com</a><small>Atención al cliente</small></div></div>
+        <div class="line"><div class="ico">▶</div><div><a href="https://youtube.com/@jotatiger.fit" target="_blank" rel="noopener">YouTube · @jotatiger.fit</a><small>Entrenamientos y consejos</small></div></div>
+      </div>
+      <div class="socials">
+        <a href="https://youtube.com/@jotatiger.fit" target="_blank" rel="noopener">▶ YouTube</a>
+        <a href="https://tiktok.com/@juan.fit.tiger" target="_blank" rel="noopener">♪ TikTok</a>
+        <a href="https://instagram.com/juan.fit.tiger" target="_blank" rel="noopener">◎ Instagram</a>
+      </div>
+    </div>
+    <form class="reveal" data-d="1" onsubmit="event.preventDefault();this.querySelector('.btn-primary').textContent='¡Gracias! Te respondemos pronto ✓';">
+      <label for="n">Nombre</label>
+      <input id="n" type="text" placeholder="Tu nombre" required>
+      <label for="e">Email</label>
+      <input id="e" type="email" placeholder="tucorreo@email.com" required>
+      <label for="m">Mensaje</label>
+      <textarea id="m" placeholder="¿En qué te ayudamos?" required></textarea>
+      <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <a href="#top" class="logo" aria-label="JotaTiger Fit — inicio">
+        <svg class="tiger-ico"><use href="#tigerMark"/></svg>
+        <span class="logo-word">JOTA<span class="accent">TIGER</span>.FIT</span>
+      </a>
+      <div class="foot-links">
+        <a href="#productos">Suplementos</a>
+        <a href="#filosofia">Filosofía</a>
+        <a href="#contacto">Contacto</a>
+        <a href="mailto:info.juanfit@gmail.com">Email</a>
+      </div>
+    </div>
+    <p class="copy">© <span id="year"></span> JOTATIGER.FIT — Juan Fit · Fitness, salud y entrenamiento. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- CARRITO -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compra">
+  <div class="cart-head">
+    <h3>Tu carrito</h3>
+    <button class="cart-close" id="cartClose" aria-label="Cerrar">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>Total</span><b id="cartTotal">0,00 €</b></div>
+    <button class="btn btn-primary" id="checkoutBtn">Finalizar pedido →</button>
+    <p class="cart-note">Recibimos tu pedido por email y te contestamos para el pago y envío.</p>
+  </div>
+</aside>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // Año
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Nav scrolled
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+
+  // Menú móvil
+  const burger = document.getElementById('burger'), navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Reveal con Intersection Observer
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Counters
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, to = +el.dataset.to; let cur = 0;
+      const step = Math.max(1, Math.round(to/40));
+      const t = setInterval(() => {
+        cur += step;
+        if (cur >= to){ cur = to; clearInterval(t); }
+        el.textContent = cur;
+      }, 28);
+      cio.unobserve(el);
+    });
+  }, {threshold:.6});
+  document.querySelectorAll('.counter').forEach(el => cio.observe(el));
+
+  // Parallax palabra de fondo
+  const bgWord = document.getElementById('bgWord');
+  addEventListener('scroll', () => {
+    if (!bgWord) return;
+    const r = bgWord.closest('.banner').getBoundingClientRect();
+    const off = (r.top - innerHeight/2) * -0.12;
+    bgWord.style.transform = `translate(-50%,-50%) translateX(${off}px)`;
+  }, {passive:true});
+
+  /* ===================== CARRITO ===================== */
+  const EMAIL = 'info.juanfit@gmail.com';
+  let cart = [];
+  try { cart = JSON.parse(localStorage.getItem('jt_cart') || '[]'); } catch(e){ cart = []; }
+
+  const $items = document.getElementById('cartItems');
+  const $total = document.getElementById('cartTotal');
+  const $count = document.getElementById('cartCount');
+  const $drawer = document.getElementById('cartDrawer');
+  const $overlay = document.getElementById('cartOverlay');
+  const $toast = document.getElementById('toast');
+
+  const eur = n => n.toFixed(2).replace('.', ',') + ' €';
+  const save = () => localStorage.setItem('jt_cart', JSON.stringify(cart));
+
+  function parsePrice(txt){
+    // "15,99 €" -> 15.99
+    return parseFloat(txt.replace(/[^\d,]/g,'').replace(',', '.')) || 0;
+  }
+
+  let toastTimer;
+  function toast(msg){
+    $toast.textContent = msg;
+    $toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => $toast.classList.remove('show'), 2200);
+  }
+
+  function openCart(){ $drawer.classList.add('open'); $overlay.classList.add('open'); }
+  function closeCart(){ $drawer.classList.remove('open'); $overlay.classList.remove('open'); }
+
+  function render(){
+    const qty = cart.reduce((s,i) => s + i.q, 0);
+    $count.textContent = qty;
+    $count.classList.toggle('show', qty > 0);
+
+    if (!cart.length){
+      $items.innerHTML = '<p class="cart-empty">Tu carrito está vacío.<br>Añade tus suplementos 🐯</p>';
+    } else {
+      $items.innerHTML = cart.map((i, idx) => `
+        <div class="ci">
+          <img src="${i.img}" alt="">
+          <div class="ci-info">
+            <h5>${i.name}</h5>
+            <div class="ci-price">${eur(i.price)}</div>
+            <div class="qty">
+              <button data-act="dec" data-i="${idx}" aria-label="Quitar uno">−</button>
+              <span>${i.q}</span>
+              <button data-act="inc" data-i="${idx}" aria-label="Añadir uno">+</button>
+            </div>
+          </div>
+          <button class="ci-remove" data-act="del" data-i="${idx}">Eliminar</button>
+        </div>`).join('');
+    }
+    const total = cart.reduce((s,i) => s + i.price * i.q, 0);
+    $total.textContent = eur(total);
+    save();
+  }
+
+  // Añadir al carrito desde cada tarjeta
+  document.querySelectorAll('.card .buy').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.card');
+      const name = card.querySelector('h4').textContent.trim();
+      const price = parsePrice(card.querySelector('.price').textContent);
+      const img = card.querySelector('img').src;
+      const found = cart.find(i => i.name === name);
+      if (found) found.q++; else cart.push({name, price, img, q:1});
+      render();
+      toast('✓ Añadido al carrito');
+    });
+  });
+
+  // Controles dentro del carrito (delegación de eventos)
+  $items.addEventListener('click', e => {
+    const b = e.target.closest('button[data-act]');
+    if (!b) return;
+    const i = +b.dataset.i, act = b.dataset.act;
+    if (act === 'inc') cart[i].q++;
+    else if (act === 'dec'){ cart[i].q--; if (cart[i].q <= 0) cart.splice(i,1); }
+    else if (act === 'del') cart.splice(i,1);
+    render();
+  });
+
+  document.getElementById('cartBtn').addEventListener('click', openCart);
+  document.getElementById('cartClose').addEventListener('click', closeCart);
+  $overlay.addEventListener('click', closeCart);
+
+  // Finalizar pedido -> email con el resumen
+  document.getElementById('checkoutBtn').addEventListener('click', () => {
+    if (!cart.length){ toast('Tu carrito está vacío'); return; }
+    const lines = cart.map(i => `• ${i.q} x ${i.name} — ${eur(i.price * i.q)}`).join('\n');
+    const total = cart.reduce((s,i) => s + i.price * i.q, 0);
+    const body =
+`¡Hola Juan Fit! Quiero hacer este pedido:\n\n${lines}\n\nTOTAL: ${eur(total)}\n\nMis datos:\nNombre:\nDirección de envío:\nTeléfono:\n\nGracias.`;
+    const url = `mailto:${EMAIL}?subject=${encodeURIComponent('Nuevo pedido — JOTATIGER.FIT')}&body=${encodeURIComponent(body)}`;
+    window.location.href = url;
+  });
+
+  render();
+</script>
+</body>
+</html>
