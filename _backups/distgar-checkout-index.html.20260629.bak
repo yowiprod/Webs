@@ -59,7 +59,7 @@ img{max-width:100%;display:block}
 .btn svg{width:17px;height:17px}
 
 /* ===================== HEADER / NAV ===================== */
-header{position:fixed;inset:0 0 auto 0;z-index:260;background:#fff;border-bottom:1px solid rgba(10,22,40,.08);transition:background .45s ease,border-color .45s ease,backdrop-filter .45s,box-shadow .45s}
+header{position:fixed;inset:0 0 auto 0;z-index:200;background:#fff;border-bottom:1px solid rgba(10,22,40,.08);transition:background .45s ease,border-color .45s ease,backdrop-filter .45s,box-shadow .45s}
 header.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(10,22,40,.12);box-shadow:0 10px 30px -20px rgba(10,22,40,.4)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 40px}
 .brand{display:flex;align-items:center;gap:14px}
@@ -72,7 +72,7 @@ header.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(18px);bord
 .nav-links a:hover{color:var(--blue)}.nav-links a:hover::after{width:100%}
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:9px;z-index:210}
 .burger span{width:26px;height:2px;background:var(--navy-700);transition:.3s;border-radius:2px}
-.burger.open span{background:var(--navy-700)}
+.burger.open span{background:#fff}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
@@ -161,7 +161,7 @@ header.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(18px);bord
   linear-gradient(90deg,rgba(7,15,31,.92) 0%,rgba(7,15,31,.55) 42%,rgba(7,15,31,.12) 100%),
   linear-gradient(0deg,rgba(7,15,31,.96) 0%,rgba(7,15,31,.22) 52%,rgba(7,15,31,.55) 100%),
   radial-gradient(120% 80% at 16% 100%,rgba(37,99,235,.24),transparent 58%)}
-.ambient .in{position:relative;z-index:2;padding-bottom:86px}
+.ambient .in{position:relative;z-index:2;padding:0 0 86px}
 .ambient h2{font-size:clamp(2.2rem,5vw,4.1rem);font-weight:900;text-transform:uppercase;line-height:1;max-width:17ch;margin:18px 0 22px}
 .ambient h2 em{font-style:normal;color:var(--blue-bright)}
 .ambient p{color:#cdd9ec;font-size:1.14rem;max-width:540px;margin-bottom:30px}
@@ -301,7 +301,7 @@ footer{background:var(--navy-950);padding:80px 0 36px;border-top:1px solid var(-
   .hero{height:auto}
   .hero-sticky{position:relative;height:100vh}
   .hero-ch{position:relative;height:auto;opacity:1;visibility:visible;padding:120px 0 80px}
-  .hero-ch[data-ch="1"],.hero-ch[data-ch="2"]{display:none}
+  .hero-ch:not(:first-of-type){display:none}
   .hero-ch .in>*{transform:none;opacity:1}
   .feat-grid{grid-template-columns:1fr}
   .feat-media{display:none}
@@ -543,7 +543,7 @@ body.co-open{overflow:hidden}
         <h1>Distribuidor <em>oficial</em> Cecotec</h1>
         <p class="lead">Más de dos décadas siendo el socio logístico de referencia en Andorra. Stock, servicio y marcas que se venden solas.</p>
         <div class="hero-cta">
-          <a href="#tienda" class="btn btn-ghost">Ver la gama</a>
+          <a href="#gama" class="btn btn-ghost">Ver la gama</a>
         </div>
       </div>
     </div>
@@ -553,7 +553,7 @@ body.co-open{overflow:hidden}
 </section>
 
 <!-- ===== STRIP MARCAS ===== -->
-<section class="strip" id="marcas">
+<section class="strip">
   <div class="lbl">Marcas que distribuimos</div>
   <div class="marquee">
     <img src="assets/distgar/marcas/cecotec.png" alt="Cecotec">
@@ -689,7 +689,7 @@ body.co-open{overflow:hidden}
     <span class="eyebrow rv">El hogar completo</span>
     <h2 class="rv d1">Una gama para <em>completar tu casa</em></h2>
     <p class="rv d2">Lavado, cocción, frío y pequeño electrodoméstico de las marcas que tus clientes reconocen. Todo bajo un mismo distribuidor en Andorra.</p>
-    <a href="#tienda" class="btn btn-blue rv d3">Ver toda la gama
+    <a href="#gama" class="btn btn-blue rv d3">Ver toda la gama
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </section>
@@ -1177,7 +1177,7 @@ body.co-open{overflow:hidden}
       <div class="foot-col">
         <h5>Navegación</h5>
         <a href="#empresa">Empresa</a>
-        <a href="#tienda">Gama de producto</a>
+        <a href="#gama">Gama de producto</a>
         <a href="#marcas">Marcas</a>
                 <a href="#contacto">Contacto</a>
       </div>
@@ -1238,7 +1238,7 @@ function heroScroll(){
   const rect = hero.getBoundingClientRect();
   const total = hero.offsetHeight - innerHeight;
   // progreso 0→1 mientras la sección recorre el viewport
-  let p = total > 0 ? Math.min(1, Math.max(0, (-rect.top) / total)) : 0;
+  let p = Math.min(1, Math.max(0, (-rect.top) / total));
 
   // scrub de vídeo
   if(vidReady && duration){
@@ -1510,8 +1510,6 @@ document.querySelectorAll('.rv').forEach(el=> rvObs.observe(el));
     sTax.textContent  = fmt(taxAmt);
     sShipL.textContent = recogida ? 'Recogida en tienda' : 'Envío';
     sShip.textContent = ship === 0 ? 'Gratis' : fmt(ship);
-    // Si hay compañía de transporte, ese es el coste real del envío: ocultamos la línea "Envío: Gratis" redundante
-    sShipL.closest('.r').style.display = carrierVisible ? 'none' : '';
     if(carrierVisible){
       rShipCarrier.style.display = '';
       sCarrierL.textContent = 'Transporte · ' + carrierName;
