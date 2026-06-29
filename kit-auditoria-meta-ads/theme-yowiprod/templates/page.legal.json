@@ -1,0 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "legal_css": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>.page-width--narrow{background:rgba(12,10,7,.92);border:1px solid rgba(207,162,74,.25);border-radius:16px;padding:44px clamp(20px,4vw,56px);margin:34px auto 64px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);position:relative;z-index:3;box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}.main-page-title{color:#f3d997 !important;text-align:left;margin-bottom:22px}.rte,.rte p,.rte li,.rte ul,.rte ol,.rte span,.rte td,.rte h2,.rte h3,.rte h4{color:#ece4d4 !important;line-height:1.7}.rte h2,.rte h3,.rte h4{color:#f3d997 !important;margin-top:28px}.rte strong{color:#f7e6bd !important}.rte a{color:#f3d997 !important;text-decoration:underline}</style>",
+        "color_scheme": ""
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 24,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": ["legal_css", "main"]
+}

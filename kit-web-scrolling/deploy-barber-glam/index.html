@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glamur Estudi · Barber Shop · Sant Julià de Lòria, Andorra</title>
+<meta name="description" content="Barbería en Sant Julià de Lòria, Andorra. Fades, arreglo de barba, cortes clásicos y asesoría de estilo. Reserva tu cita online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0d0f;
+    --bg-2:#141417;
+    --bg-3:#1b1b1f;
+    --red:#c8202e;
+    --red-soft:#e1313f;
+    --gold:#c9a14a;
+    --cream:#f3ece1;
+    --muted:#8c8c92;
+    --line:rgba(255,255,255,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--red);color:#fff}
+
+  /* Scrollbar */
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--bg-3);border-radius:5px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--red)}
+
+  h1,h2,h3,h4{font-family:'Oswald',sans-serif;font-weight:600;line-height:1.05;text-transform:uppercase}
+  .display{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.02em}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+
+  .eyebrow{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.42em;
+    font-size:.78rem;
+    color:var(--red-soft);
+    font-weight:500;
+    display:inline-block;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:"✶  "}
+
+  /* ===== Barber pole divider ===== */
+  .pole{
+    height:6px;
+    width:100%;
+    background:repeating-linear-gradient(115deg,var(--red) 0 22px,#fff 22px 44px,#16161a 44px 66px);
+    opacity:.85;
+  }
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 32px;
+    transition:transform .75s cubic-bezier(.16,.8,.3,1), background .5s ease, padding .5s ease, box-shadow .5s ease;
+  }
+  nav.scrolled{
+    background:rgba(13,13,15,.96);
+    backdrop-filter:blur(14px);
+    padding:11px 32px;
+    border-bottom:2px solid var(--red);
+    box-shadow:0 12px 30px rgba(0,0,0,.55);
+  }
+  nav.scrolled .logo{font-size:1.45rem}
+  /* al volverse fija entra deslizándose desde arriba y se queda */
+  nav.tuck{transform:translateY(-110%);transition:none}
+  /* barra de progreso de scroll (arriba del todo) */
+  .scroll-bar{
+    position:fixed;top:0;left:0;height:4px;width:0;z-index:200;
+    background:linear-gradient(90deg,var(--red),var(--gold));
+    box-shadow:0 0 12px rgba(200,32,46,.7);
+  }
+
+  /* ===== WHATSAPP FLOTANTE ===== */
+  .wa-float{
+    position:fixed;right:22px;bottom:22px;z-index:150;
+    width:58px;height:58px;border-radius:50%;
+    background:#25d366;color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 28px rgba(37,211,102,.45);
+    transition:transform .3s ease, box-shadow .3s ease;
+    animation:waPulse 2.6s infinite;
+  }
+  .wa-float:hover{transform:scale(1.08);box-shadow:0 14px 34px rgba(37,211,102,.6)}
+  @keyframes waPulse{
+    0%{box-shadow:0 10px 28px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.5)}
+    70%{box-shadow:0 10px 28px rgba(37,211,102,.45),0 0 0 16px rgba(37,211,102,0)}
+    100%{box-shadow:0 10px 28px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,0)}
+  }
+  @media(prefers-reduced-motion:reduce){ .wa-float{animation:none} }
+  @media(max-width:680px){ .wa-float{width:52px;height:52px;right:16px;bottom:16px} }
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.06em;color:#fff;display:flex;align-items:center;gap:10px}
+  .logo b{color:var(--red)}
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 14px var(--red)}
+  .logo img{height:46px;width:auto;display:block;border-radius:8px;transition:height .35s ease}
+  nav.scrolled .logo img{height:38px}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:.82rem;color:#cfcfd4;transition:.25s}
+  .nav-links a:hover{color:var(--red-soft)}
+  .nav-cta{
+    border:1px solid var(--red);color:#fff;padding:9px 20px;border-radius:2px;
+    font-family:'Oswald',sans-serif;letter-spacing:.14em;font-size:.8rem;
+    transition:.3s;
+  }
+  .nav-cta:hover{background:var(--red);box-shadow:0 8px 26px rgba(200,32,46,.4)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+  .burger span{width:26px;height:2px;background:#fff;transition:.3s}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background:url('assets/barber/post-8.jpg') center 28%/cover no-repeat;
+    transform:scale(1);
+    will-change:transform;
+    filter:grayscale(.25) contrast(1.05);
+  }
+  .hero-bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(105deg,rgba(13,13,15,.96) 0%,rgba(13,13,15,.82) 38%,rgba(13,13,15,.45) 75%,rgba(13,13,15,.7) 100%);
+  }
+  .hero-grain{
+    position:absolute;inset:0;z-index:1;opacity:.05;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .hero-inner{position:relative;z-index:3;width:100%}
+  .hero h1{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(3.4rem,11vw,9.5rem);
+    color:#fff;line-height:.86;letter-spacing:.01em;
+    text-shadow:0 6px 40px rgba(0,0,0,.5);
+  }
+  .hero h1 .accent{color:var(--red);display:block}
+  .hero .tagline{
+    font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.3em;
+    color:var(--cream);font-size:clamp(.85rem,2vw,1.1rem);margin:8px 0 26px;font-weight:300;
+  }
+  .hero p.lead{max-width:480px;color:#d4d4d8;font-size:1.05rem;margin-bottom:36px}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{
+    font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.14em;
+    padding:15px 34px;border-radius:2px;font-size:.92rem;font-weight:500;cursor:pointer;
+    transition:.3s;display:inline-flex;align-items:center;gap:10px;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--red);color:#fff}
+  .btn-primary:hover{background:var(--red-soft);transform:translateY(-3px);box-shadow:0 14px 34px rgba(200,32,46,.42)}
+  .btn-ghost{border-color:rgba(255,255,255,.28);color:#fff}
+  .btn-ghost:hover{border-color:var(--red);color:var(--red-soft)}
+  /* movimiento suave (3,3 s en bucle) solo en botones de reservar cita e Instagram */
+  .btn-move{animation:btnFloat 3.3s ease-in-out infinite}
+  .btn-move:hover{animation-play-state:paused}
+  @keyframes btnFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @media(prefers-reduced-motion:reduce){.btn-move{animation:none}}
+  .hero-meta{
+    position:absolute;bottom:34px;left:32px;right:32px;z-index:3;
+    display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;
+    color:var(--muted);font-family:'Oswald',sans-serif;letter-spacing:.18em;font-size:.78rem;text-transform:uppercase;
+  }
+  .scroll-cue{display:flex;align-items:center;gap:10px}
+  .scroll-cue .bar{width:1px;height:42px;background:linear-gradient(var(--red),transparent);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+  /* ===== reveal ===== */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+  .reveal.d4{transition-delay:.4s}.reveal.d5{transition-delay:.5s}
+
+  section{position:relative;scroll-margin-top:84px}
+  .section-pad{padding:120px 0}
+  .section-head{margin-bottom:60px;max-width:640px}
+  .section-head h2{font-size:clamp(2.2rem,5.5vw,4rem);color:#fff}
+  .section-head h2 em{color:var(--red);font-style:normal}
+  .section-head p{color:var(--muted);margin-top:16px;font-size:1.05rem}
+
+  /* ===== ABOUT ===== */
+  .about{background:var(--bg-2)}
+  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+  .about-text h2{font-size:clamp(2rem,5vw,3.4rem);color:#fff;margin-bottom:22px}
+  .about-text h2 span{color:var(--red);display:block}
+  .about-text p{color:#cfcfd4;margin-bottom:18px;font-size:1.05rem}
+  .about-photo{position:relative}
+  .about-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;filter:grayscale(.15)}
+  .about-photo .frame{position:absolute;inset:18px -18px -18px 18px;border:1px solid var(--red);border-radius:4px;z-index:-1}
+  .about-photo .badge{
+    position:absolute;bottom:-22px;left:-22px;background:var(--red);color:#fff;
+    padding:18px 24px;border-radius:3px;font-family:'Bebas Neue';font-size:1.6rem;line-height:1;
+    box-shadow:0 16px 40px rgba(0,0,0,.5);
+  }
+  .about-photo .badge small{display:block;font-family:'Oswald';font-size:.62rem;letter-spacing:.2em;font-weight:300;margin-top:6px}
+
+  /* ===== STATS ===== */
+  .stats{background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+  .stat .num{font-family:'Bebas Neue';font-size:clamp(2.8rem,6vw,4.4rem);color:#fff;line-height:1;display:block}
+  .stat .num b{color:var(--red)}
+  .stat .lbl{color:var(--muted);font-family:'Oswald';text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;margin-top:8px;display:block}
+
+  /* ===== SERVICES ===== */
+  .services{background:var(--bg-2)}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .svc{
+    background:var(--bg-3);border:1px solid var(--line);border-radius:4px;padding:0;
+    transition:.35s ease;position:relative;overflow:hidden;
+  }
+  .svc-photo{position:relative;aspect-ratio:1/1;overflow:hidden}
+  .svc-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:grayscale(.3) brightness(.92);transition:.6s ease}
+  .svc-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(27,27,31,.95))}
+  .svc-photo .ic{position:absolute;top:14px;left:16px;z-index:2;font-size:1.5rem;width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:rgba(200,32,46,.92);border-radius:3px;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+  .svc-body{padding:24px 28px 30px;position:relative}
+  .svc-body::before{content:"";position:absolute;left:0;top:0;height:100%;width:3px;background:var(--red);transform:scaleY(0);transform-origin:bottom;transition:.35s}
+  .svc:hover{transform:translateY(-8px);border-color:rgba(200,32,46,.45);box-shadow:0 20px 44px rgba(0,0,0,.45)}
+  .svc:hover .svc-body::before{transform:scaleY(1)}
+  .svc:hover .svc-photo img{transform:scale(1.09);filter:grayscale(0) brightness(1)}
+  .svc h3{font-size:1.4rem;color:#fff;margin-bottom:10px}
+  .svc p{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+  .svc .tag{font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--red-soft)}
+
+  /* ===== PRODUCTS ===== */
+  .products{background:var(--bg)}
+  .prod-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center}
+  .prod-photo{position:relative}
+  .prod-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;filter:grayscale(.1)}
+  .prod-photo .frame{position:absolute;inset:-16px 16px 16px -16px;border:1px solid var(--gold);border-radius:4px;z-index:-1}
+  .prod-photo .stamp{position:absolute;top:-18px;right:-12px;background:var(--gold);color:#15150f;font-family:'Bebas Neue';font-size:1.15rem;letter-spacing:.06em;padding:10px 16px;border-radius:3px;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+  .prod-visual{
+    position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;
+    background:radial-gradient(130% 120% at 28% 18%,#27272c 0%,#121214 62%,#0c0c0e 100%);
+    border:1px solid var(--line);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;
+  }
+  .prod-visual::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(125deg,transparent 0 40px,rgba(255,255,255,.022) 40px 42px)}
+  .prod-visual .pin{position:absolute;top:22px;left:24px;color:var(--red);font-size:1.5rem}
+  .prod-visual .wm{position:relative;font-family:'Bebas Neue';font-size:clamp(3.4rem,10vw,6.5rem);letter-spacing:.07em;color:#fff;line-height:.85}
+  .prod-visual .wm b{color:var(--gold)}
+  .prod-visual .gg{position:relative;font-family:'Oswald';text-transform:uppercase;letter-spacing:.4em;color:var(--gold);font-size:.78rem;margin-top:16px}
+  .prod-visual .edition{position:relative;margin-top:30px;border:1px solid rgba(201,161,74,.45);color:var(--cream);font-family:'Oswald';letter-spacing:.22em;text-transform:uppercase;font-size:.7rem;padding:9px 18px;border-radius:2px}
+  .prod-text h2{font-size:clamp(2rem,5vw,3.4rem);color:#fff;margin-bottom:14px}
+  .prod-text h2 span{color:var(--red)}
+  .prod-text .sub{color:var(--gold);font-family:'Oswald';text-transform:uppercase;letter-spacing:.2em;font-size:.82rem;margin-bottom:18px}
+  .prod-text p{color:#cfcfd4;margin-bottom:24px;font-size:1.05rem}
+  .prod-feats{list-style:none;margin-bottom:30px}
+  .prod-feats li{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line);color:#e3e3e7}
+  .prod-feats li b{color:#fff;font-family:'Oswald';letter-spacing:.04em}
+  .prod-feats .ck{color:var(--red);flex:0 0 auto;font-size:1.1rem}
+
+  /* ===== PARALLAX QUOTE BANNER ===== */
+  .banner{
+    position:relative;min-height:62vh;display:flex;align-items:center;justify-content:center;
+    text-align:center;overflow:hidden;
+  }
+  .banner-bg{
+    position:absolute;inset:0;background:url('assets/barber/post-11.jpg') center/cover no-repeat;
+    filter:grayscale(.5) brightness(.4);will-change:transform;transform:scale(1.18);
+  }
+  .banner .wrap{position:relative;z-index:2}
+  .banner blockquote{font-family:'Bebas Neue';font-size:clamp(2.2rem,6vw,4.4rem);color:#fff;line-height:.95;letter-spacing:.01em}
+  .banner blockquote .red{color:var(--red)}
+  .banner cite{display:block;margin-top:18px;color:var(--gold);font-family:'Oswald';letter-spacing:.24em;text-transform:uppercase;font-size:.85rem;font-style:normal}
+
+  /* ===== GALLERY ===== */
+  .gallery{background:var(--bg)}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .gal-item{position:relative;overflow:hidden;border-radius:4px;aspect-ratio:1;background:var(--bg-3)}
+  .gal-item img{width:100%;height:100%;object-fit:cover;transition:.6s ease;filter:grayscale(.2)}
+  .gal-item::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(200,32,46,.65));opacity:0;transition:.4s}
+  .gal-item:hover img{transform:scale(1.1);filter:grayscale(0)}
+  .gal-item:hover::after{opacity:1}
+  .gal-item .ig{position:absolute;bottom:12px;left:14px;color:#fff;font-family:'Oswald';font-size:.8rem;letter-spacing:.1em;opacity:0;transform:translateY(8px);transition:.4s;z-index:2}
+  .gal-item:hover .ig{opacity:1;transform:none}
+  .gal-tall{grid-row:span 2;aspect-ratio:auto}
+  .gal-cta{text-align:center;margin-top:44px}
+
+  /* ===== CTA ===== */
+  .cta-final{position:relative;text-align:center;overflow:hidden}
+  .cta-final-bg{position:absolute;inset:0;background:url('assets/barber/post-2.jpg') center/cover no-repeat;filter:grayscale(.5) brightness(.32);transform:scale(1.12);will-change:transform}
+  .cta-final .wrap{position:relative;z-index:2;padding:130px 28px}
+  .cta-final h2{font-family:'Bebas Neue';font-size:clamp(2.6rem,8vw,6rem);color:#fff;line-height:.9}
+  .cta-final h2 span{color:var(--red)}
+  .cta-final p{color:#d4d4d8;max-width:520px;margin:22px auto 38px;font-size:1.08rem}
+
+  /* ===== CONTACT / FOOTER ===== */
+  .contact{background:var(--bg-2)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+  .contact-info .row{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+  .contact-info .row:last-child{border-bottom:none}
+  .contact-info .ic{color:var(--red);font-size:1.3rem;width:30px;flex:0 0 30px}
+  .contact-info .row .k{font-family:'Oswald';text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--muted);display:block;margin-bottom:4px}
+  .contact-info .row .v{color:#fff;font-size:1.05rem}
+  .contact-info .row a.v:hover{color:var(--red-soft)}
+  .map-card{background:var(--bg-3);border:1px solid var(--line);border-radius:4px;padding:34px;display:flex;flex-direction:column;justify-content:center}
+  .map-card h3{font-size:1.7rem;color:#fff;margin-bottom:10px}
+  .map-card p{color:var(--muted);margin-bottom:24px}
+  .hours{list-style:none;margin-bottom:26px}
+  .hours li{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--line);font-size:.95rem}
+  .hours li span:first-child{color:#cfcfd4;font-family:'Oswald';letter-spacing:.06em}
+  .hours li span:last-child{color:var(--gold)}
+  .note{color:var(--muted);font-size:.8rem;margin-top:8px}
+
+  footer{background:var(--bg);padding:46px 0 30px;border-top:1px solid var(--line)}
+  .foot-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  .foot-social{display:flex;gap:16px}
+  .foot-social a{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.3s;color:#cfcfd4}
+  .foot-social a:hover{background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-3px)}
+  .copy{color:var(--muted);font-size:.82rem;text-align:center;margin-top:30px;font-family:'Oswald';letter-spacing:.1em}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:980px){
+    .about-grid{grid-template-columns:1fr;gap:60px}
+    .prod-grid{grid-template-columns:1fr;gap:50px}
+    .svc-grid{grid-template-columns:repeat(2,1fr)}
+    .stats-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}
+    .gal-grid{grid-template-columns:repeat(3,1fr)}
+    .contact-grid{grid-template-columns:1fr;gap:40px}
+  }
+  @media(max-width:680px){
+    .nav-links{
+      position:fixed;top:0;right:0;height:100vh;width:74%;max-width:320px;
+      background:rgba(13,13,15,.98);backdrop-filter:blur(16px);
+      flex-direction:column;justify-content:center;gap:30px;
+      transform:translateX(100%);transition:.4s;border-left:1px solid var(--line);
+    }
+    .nav-links.open{transform:none}
+    .nav-links a{font-size:1.1rem}
+    .burger{display:flex;z-index:101}
+    .burger.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .burger.x span:nth-child(2){opacity:0}
+    .burger.x span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .section-pad{padding:80px 0}
+    .svc-grid{grid-template-columns:1fr}
+    .gal-grid{grid-template-columns:repeat(2,1fr)}
+    .gal-tall{grid-row:span 1;aspect-ratio:1}
+    .hero-meta{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-bar" id="scrollBar"></div>
+
+<!-- WHATSAPP FLOTANTE -->
+<a class="wa-float" href="https://wa.me/376869988?text=Hola%20Glamur%20Estudi%2C%20quer%C3%ADa%20reservar%20una%20cita" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="currentColor" d="M16.001 3.2C8.93 3.2 3.2 8.93 3.2 16c0 2.26.6 4.46 1.74 6.4L3.2 28.8l6.57-1.72A12.74 12.74 0 0 0 16 28.8C23.07 28.8 28.8 23.07 28.8 16S23.07 3.2 16.001 3.2Zm0 23.04c-1.97 0-3.9-.53-5.59-1.53l-.4-.24-3.9 1.02 1.04-3.8-.26-.41A10.6 10.6 0 0 1 5.44 16c0-5.83 4.73-10.56 10.56-10.56 5.82 0 10.56 4.73 10.56 10.56 0 5.82-4.74 10.56-10.56 10.56Zm5.8-7.9c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.56-1.58-.95-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.15-.14.32-.37.48-.56.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.72-.98-2.35-.26-.62-.52-.54-.71-.55l-.6-.01c-.21 0-.55.08-.84.4-.29.32-1.1 1.08-1.1 2.64 0 1.56 1.13 3.06 1.29 3.27.16.21 2.22 3.39 5.38 4.76.75.32 1.34.51 1.8.66.76.24 1.44.21 1.98.13.6-.09 1.88-.77 2.14-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="logo"><img src="assets/barber/logo.jpg" alt="Glamur Estudi · Barber Glam"></a>
+  <div class="nav-links" id="navLinks">
+    <a href="#about" class="nav-close-on-click">El estudio</a>
+    <a href="#services" class="nav-close-on-click">Servicios</a>
+    <a href="#products" class="nav-close-on-click">Productos</a>
+    <a href="#gallery" class="nav-close-on-click">Trabajos</a>
+    <a href="#contact" class="nav-close-on-click">Contacto</a>
+    <a href="https://barberglamcita.site.agendapro.com/es" target="_blank" rel="noopener" class="nav-cta btn-move">Reservar</a>
+  </div>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow reveal">Barber Shop · Sant Julià · Andorra</span>
+      <h1 class="reveal d1">Glamur<span class="accent">Estudi</span></h1>
+      <div class="tagline reveal d2">Donde el corte se convierte en estilo</div>
+      <p class="lead reveal d3">Fades de precisión, barba al detalle y cortes clásicos. Sal de la silla con el mejor look y la mejor asesoría.</p>
+      <div class="hero-actions reveal d4">
+        <a href="https://barberglamcita.site.agendapro.com/es" target="_blank" rel="noopener" class="btn btn-primary btn-move">Reserva tu cita ✂</a>
+        <a href="#services" class="btn btn-ghost">Ver servicios</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <span>📍 C/ Doctor Palau, 25 · Sant Julià de Lòria</span>
+    <div class="scroll-cue"><span class="bar"></span><span>Desliza</span></div>
+  </div>
+</header>
+
+<div class="pole"></div>
+
+<!-- ABOUT -->
+<section class="about section-pad" id="about">
+  <div class="wrap about-grid">
+    <div class="about-text">
+      <span class="eyebrow reveal">El estudio</span>
+      <h2 class="reveal d1">Más que un corte,<span>una experiencia</span></h2>
+      <p class="reveal d2">En Glamur Estudi entendemos que tu pelo y tu barba dicen mucho de ti. Por eso no nos limitamos a recortar: te damos la mejor asesoría para encontrar el look que mejor encaja contigo.</p>
+      <p class="reveal d3">Degradados de precisión, half y mid fades, perfilado de barba y cortes clásicos. Trabajamos con productos profesionales premium <strong>STMNT</strong> para que mantengas tu estilo también en casa.</p>
+      <p class="reveal d4">Te esperamos en pleno centro de Sant Julià de Lòria. Reserva online en segundos y deja el resto en nuestras manos.</p>
+      <div class="reveal d5" style="margin-top:30px">
+        <a href="https://barberglamcita.site.agendapro.com/es" target="_blank" rel="noopener" class="btn btn-primary btn-move">Pide tu cita</a>
+      </div>
+    </div>
+    <div class="about-photo reveal d2">
+      <img src="assets/barber/post-6.jpg" alt="Barbero de Glamur Estudi trabajando un corte">
+      <div class="frame"></div>
+      <div class="badge">100%<small>Bajo cita</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap section-pad" style="padding-top:70px;padding-bottom:70px">
+    <div class="stats-grid">
+      <div class="stat reveal"><span class="num" data-count="74">0</span><span class="lbl">Trabajos publicados</span></div>
+      <div class="stat reveal d1"><span class="num" data-count="350">0</span><span class="lbl">Seguidores en IG</span></div>
+      <div class="stat reveal d2"><span class="num" data-count="6" data-suffix="">0</span><span class="lbl">Servicios de barbería</span></div>
+      <div class="stat reveal d3"><span class="num">100<b>%</b></span><span class="lbl">Productos premium</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services section-pad" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Lo que hacemos</span>
+      <h2>Nuestros <em>servicios</em></h2>
+      <p>Cortes y tratamientos pensados para que salgas de la silla con el mejor look. Reserva online en segundos.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="svc-photo"><span class="ic">✂</span><img src="assets/barber/post-2.jpg" alt="Corte de cabello"></div>
+        <div class="svc-body"><h3>Corte de cabello</h3><p>Cortes de tendencia y clásicos adaptados a tu estilo y tipo de pelo.</p><span class="tag">Bajo cita →</span></div>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-photo"><span class="ic">💈</span><img src="assets/barber/post-4.jpg" alt="Fade y mid fade"></div>
+        <div class="svc-body"><h3>Fade & Mid Fade</h3><p>Degradados de precisión: half fade, mid fade y los acabados más actuales.</p><span class="tag">Bajo cita →</span></div>
+      </div>
+      <div class="svc reveal d2">
+        <div class="svc-photo"><span class="ic">🪒</span><img src="assets/barber/post-7.jpg" alt="Arreglo de barba"></div>
+        <div class="svc-body"><h3>Arreglo de barba</h3><p>Perfilado, recorte y diseño de barba para un acabado limpio y con carácter.</p><span class="tag">Bajo cita →</span></div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-photo"><span class="ic">🎩</span><img src="assets/barber/post-10.jpg" alt="Corte clásico"></div>
+        <div class="svc-body"><h3>Corte clásico</h3><p>El estilo de siempre, ejecutado con técnica de barbería tradicional.</p><span class="tag">Bajo cita →</span></div>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-photo"><span class="ic">👦</span><img src="assets/barber/post-9.jpg" alt="Corte infantil"></div>
+        <div class="svc-body"><h3>Corte infantil</h3><p>Cortes para los más pequeños, con paciencia y el mejor resultado.</p><span class="tag">Bajo cita →</span></div>
+      </div>
+      <div class="svc reveal d2">
+        <div class="svc-photo"><span class="ic">🎯</span><img src="assets/barber/post-11.jpg" alt="Asesoría de estilo"></div>
+        <div class="svc-body"><h3>Asesoría de estilo</h3><p>Te ayudamos a elegir el corte y el look que mejor encaja contigo.</p><span class="tag">Bajo cita →</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARALLAX BANNER -->
+<section class="banner">
+  <div class="banner-bg" id="bannerBg"></div>
+  <div class="wrap">
+    <blockquote class="reveal">No solo es recortar,<br>es darte la <span class="red">mejor asesoría</span></blockquote>
+    <cite class="reveal d1">— Glamur Estudi · Barber since 98</cite>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products section-pad" id="products">
+  <div class="wrap prod-grid">
+    <div class="prod-photo reveal">
+      <div class="prod-visual">
+        <span class="pin">💈</span>
+        <div class="wm">STM<b>NT</b></div>
+        <div class="gg">Grooming Goods</div>
+        <div class="edition">Disponible en el estudio</div>
+      </div>
+      <div class="frame"></div>
+    </div>
+    <div class="prod-text">
+      <span class="eyebrow reveal">Novedad en la barbería</span>
+      <h2 class="reveal d1">Productos <span>STMNT</span></h2>
+      <div class="sub reveal d1">Creados por profesionales · Disponibles en tienda</div>
+      <p class="reveal d2">Llegan los nuevos productos <strong>STMNT</strong>, creados por profesionales y pensados para llevar tu estilo al siguiente nivel. Los mismos que usamos en el estudio, ahora para que mantengas tu look en casa.</p>
+      <ul class="prod-feats">
+        <li class="reveal d2"><span class="ck">✓</span><span><b>Buena fijación.</b> Mantiene el peinado todo el día sin apelmazar.</span></li>
+        <li class="reveal d3"><span class="ck">✓</span><span><b>Ingredientes naturales</b> de máxima calidad.</span></li>
+        <li class="reveal d4"><span class="ck">✓</span><span><b>Acabados perfectos</b> para cualquier tipo de look.</span></li>
+      </ul>
+      <a href="https://barberglamcita.site.agendapro.com/es" target="_blank" rel="noopener" class="btn btn-primary reveal d4">Pásate a probarlos</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery section-pad" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Portfolio</span>
+      <h2>Nuestros <em>trabajos</em></h2>
+      <p>Cortes reales de clientes reales. Síguenos en Instagram para no perderte ninguno.</p>
+    </div>
+    <div class="gal-grid">
+      <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" rel="noopener" class="gal-item gal-tall reveal"><img src="assets/barber/post-6.jpg" alt="Fade con diseño"><span class="ig">@barber.glam.ad</span></a>
+      <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" rel="noopener" class="gal-item reveal d1"><img src="assets/barber/post-4.jpg" alt="Mid fade"><span class="ig">Mid fade</span></a>
+      <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" rel="noopener" class="gal-item reveal d2"><img src="assets/barber/post-5.jpg" alt="Color y diseño"><span class="ig">Color & diseño</span></a>
+      <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" rel="noopener" class="gal-item reveal d3"><img src="assets/barber/post-7.jpg" alt="Fade y barba"><span class="ig">Fade & barba</span></a>
+      <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" rel="noopener" class="gal-item reveal"><img src="assets/barber/post-9.jpg" alt="Corte infantil"><span class="ig">Corte infantil</span></a>
+      <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" rel="noopener" class="gal-item gal-tall reveal d1"><img src="assets/barber/post-2.jpg" alt="Cambio de look"><span class="ig">Un buen cambio</span></a>
+      <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" rel="noopener" class="gal-item reveal d2"><img src="assets/barber/post-10.jpg" alt="Texturizado"><span class="ig">Texturizado</span></a>
+      <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" rel="noopener" class="gal-item reveal d3"><img src="assets/barber/post-11.jpg" alt="Diseño con líneas"><span class="ig">Diseño</span></a>
+    </div>
+    <div class="gal-cta">
+      <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" rel="noopener" class="btn btn-ghost btn-move reveal">Ver más en Instagram →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+  <div class="cta-final-bg" id="ctaBg"></div>
+  <div class="wrap">
+    <h2 class="reveal">¿Listo para tu<br><span>próximo corte?</span></h2>
+    <p class="reveal d1">Reserva tu cita online en segundos y deja el resto en nuestras manos. Te esperamos en Sant Julià de Lòria.</p>
+    <a href="https://barberglamcita.site.agendapro.com/es" target="_blank" rel="noopener" class="btn btn-primary btn-move reveal d2">Reserva tu cita ahora ✂</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section-pad" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Contacto</span>
+      <h2>Visita el <em>estudio</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="row reveal"><div class="ic">📍</div><div><span class="k">Dirección</span><span class="v">C/ Doctor Palau, 25 PB Local<br>AD600 Sant Julià de Lòria, Andorra</span></div></div>
+        <div class="row reveal d1"><div class="ic">📲</div><div><span class="k">Teléfono</span><a href="tel:+376869988" class="v">+376 869 988</a></div></div>
+        <div class="row reveal d1"><div class="ic">💬</div><div><span class="k">WhatsApp</span><a href="https://wa.me/376869988?text=Hola%20Glamur%20Estudi%2C%20quer%C3%ADa%20reservar%20una%20cita" target="_blank" rel="noopener" class="v">Escríbenos por WhatsApp</a></div></div>
+        <div class="row reveal d2"><div class="ic">📅</div><div><span class="k">Reservas online</span><a href="https://barberglamcita.site.agendapro.com/es" target="_blank" rel="noopener" class="v">barberglamcita.site.agendapro.com</a></div></div>
+        <div class="row reveal d3"><div class="ic">📸</div><div><span class="k">Instagram</span><a href="https://www.instagram.com/barber.glam.ad/" target="_blank" rel="noopener" class="v">@barber.glam.ad</a></div></div>
+      </div>
+      <div class="map-card reveal d2">
+        <h3>Horario</h3>
+        <p>Atención bajo cita previa. Confirma tu hora reservando online.</p>
+        <ul class="hours">
+          <li><span>Lunes</span><span>9:00–13:30 · 15:00–17:00</span></li>
+          <li><span>Martes</span><span>9:00–13:30 · 15:00–17:00</span></li>
+          <li><span>Miércoles</span><span>9:00–13:30 · 15:00–17:00</span></li>
+          <li><span>Jueves</span><span>9:00–13:30 · 15:00–17:00</span></li>
+          <li><span>Viernes</span><span>9:00–13:30</span></li>
+          <li><span>Sábado</span><span>Cerrado</span></li>
+          <li><span>Domingo</span><span>Cerrado</span></li>
+        </ul>
+        <a href="https://barberglamcita.site.agendapro.com/es" target="_blank" rel="noopener" class="btn btn-primary btn-move">Reservar ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <a href="#hero" class="logo"><img src="assets/barber/logo.jpg" alt="Glamur Estudi · Barber Glam"></a>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a href="https://wa.me/376869988" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+        <a href="tel:+376869988" aria-label="Teléfono">☎</a>
+        <a href="https://barberglamcita.site.agendapro.com/es" target="_blank" rel="noopener" aria-label="Reservar">📅</a>
+      </div>
+    </div>
+    <p class="copy">© <span id="year"></span> Glamur Estudi · Barber Shop · Sant Julià de Lòria, Andorra · Hecho con ✂ y café</p>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Nav + barra de progreso al hacer scroll
+  const nav = document.getElementById('nav');
+  const scrollBar = document.getElementById('scrollBar');
+  let docked = false;
+  let ticking = false;
+  const update = () => {
+    const y = window.scrollY;
+    // barra de progreso
+    if (scrollBar) {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      scrollBar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    }
+    // cabecera: transparente arriba; al bajar entra sólida deslizándose desde arriba y se queda
+    if (y > 60) {
+      if (!docked) {
+        docked = true;
+        nav.classList.add('tuck');      // la colocamos fuera (arriba) sin transición
+        nav.classList.add('scrolled');
+        void nav.offsetWidth;           // forzamos reflow
+        nav.classList.remove('tuck');   // y entra deslizándose hasta su sitio
+      }
+    } else {
+      docked = false;
+      nav.classList.remove('scrolled', 'tuck');
+    }
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, {passive:true});
+  update();
+
+  // Burger
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => { burger.classList.toggle('x'); navLinks.classList.toggle('open'); });
+  document.querySelectorAll('.nav-close-on-click').forEach(a => a.addEventListener('click', () => { burger.classList.remove('x'); navLinks.classList.remove('open'); }));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.14, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Counters
+  const counters = document.querySelectorAll('.num[data-count]');
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || '';
+      const dur = 1600, t0 = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - t0)/dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      cio.unobserve(el);
+    });
+  }, {threshold:0.6});
+  counters.forEach(c => cio.observe(c));
+
+  // Parallax SUAVE de las imágenes de fondo (hero, banner, cta)
+  // Bucle continuo con suavizado -> la foto del fondo se desplaza despacio al hacer scroll
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    const heroBg = document.getElementById('heroBg');
+    const heroEl = document.getElementById('hero');
+    const bannerBg = document.getElementById('bannerBg');
+    const ctaBg = document.getElementById('ctaBg');
+    let cur = window.scrollY;
+    const loop = () => {
+      const y = window.scrollY;
+      cur += (y - cur) * 0.08;                 // suavizado: cuanto más bajo, más lento y suave
+      if (Math.abs(y - cur) < 0.2) cur = y;
+      if (heroBg && heroEl) {
+        // efecto scroll: la foto del hero se encoge de 1 a 0.5 a medida que bajas por el hero
+        const p = Math.min(Math.max(cur / heroEl.offsetHeight, 0), 1);
+        const s = 1 - p * 0.5;     // 1 -> 0.5
+        heroBg.style.transform = `scale(${s})`;
+      }
+      [bannerBg, ctaBg].forEach(el => {
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        const off = (r.top - window.innerHeight) * -0.14;
+        el.style.transform = `scale(1.22) translateY(${off}px)`;
+      });
+      requestAnimationFrame(loop);
+    };
+    loop();
+  }
+</script>
+</body>
+</html>

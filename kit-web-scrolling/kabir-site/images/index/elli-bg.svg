@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" preserveAspectRatio="xMidYMid slice" width="1600" height="1200">
+  <defs>
+    <radialGradient id="spot" cx="50%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="#34302a"/>
+      <stop offset="38%" stop-color="#211e1a"/>
+      <stop offset="100%" stop-color="#0d0c0b"/>
+    </radialGradient>
+
+    <!-- ===== Fine-line coil tattoo machine ===== -->
+    <g id="machine" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="10" y="0" width="92" height="24" rx="12"/>
+      <circle cx="33" cy="40" r="8"/>
+      <circle cx="79" cy="40" r="8"/>
+      <rect x="10" y="40" width="46" height="98" rx="12"/>
+      <rect x="56" y="40" width="46" height="98" rx="12"/>
+      <line x1="10" y1="62" x2="56" y2="62"/><line x1="10" y1="84" x2="56" y2="84"/>
+      <line x1="10" y1="106" x2="56" y2="106"/><line x1="10" y1="128" x2="56" y2="128"/>
+      <line x1="56" y1="62" x2="102" y2="62"/><line x1="56" y1="84" x2="102" y2="84"/>
+      <line x1="56" y1="106" x2="102" y2="106"/><line x1="56" y1="128" x2="102" y2="128"/>
+      <path d="M10 138 Q10 178 44 180 L120 180" stroke-width="4"/>
+      <path d="M112 12 Q172 18 180 86 L180 168"/>
+      <path d="M102 172 L180 168"/>
+      <path d="M120 180 Q176 188 180 244 L180 286" stroke-width="4"/>
+      <rect x="160" y="244" width="40" height="150" rx="20"/>
+      <line x1="160" y1="286" x2="200" y2="286"/>
+      <circle cx="180" cy="330" r="9"/>
+      <path d="M169 394 L180 452 L191 394"/>
+      <line x1="180" y1="452" x2="180" y2="500" stroke-width="2.6"/>
+    </g>
+
+    <g id="ink" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-34" y="-46" width="68" height="92" rx="12"/>
+      <rect x="-16" y="-66" width="32" height="22" rx="5"/>
+      <path d="M-34 10 L34 10 L34 34 Q34 46 22 46 L-22 46 Q-34 46 -34 34 Z"/>
+      <line x1="-34" y1="10" x2="34" y2="10"/>
+    </g>
+
+    <g id="spark" fill="#ffffff">
+      <path d="M0 -12 L2.6 -2.6 L12 0 L2.6 2.6 L0 12 L-2.6 2.6 L-12 0 L-2.6 -2.6Z"/>
+    </g>
+  </defs>
+
+  <rect width="1600" height="1200" fill="url(#spot)"/>
+
+  <!-- subtle symmetric machines, far to the sides framing the portrait -->
+  <g opacity="0.22">
+    <use href="#machine" transform="translate(196,250) scale(1.65) rotate(-5)"/>
+    <use href="#machine" transform="translate(1404,250) scale(-1.65,1.65) rotate(5)"/>
+  </g>
+
+  <g opacity="0.16">
+    <use href="#ink" transform="translate(250,980) scale(1.3)"/>
+    <use href="#ink" transform="translate(1350,980) scale(1.3)"/>
+  </g>
+
+  <g opacity="0.28">
+    <use href="#spark" transform="translate(150,560) scale(1)"/>
+    <use href="#spark" transform="translate(1450,560) scale(1)"/>
+    <use href="#spark" transform="translate(230,800) scale(0.65)"/>
+    <use href="#spark" transform="translate(1370,800) scale(0.65)"/>
+  </g>
+</svg>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BERT® — Specialty Coffee · Matcha · Brunch · Lunchroom</title>
+<meta name="description" content="BERT® — Specialty Coffee, Matcha, Brunch i Lunchroom. Cafè d'especialitat, esmorzars de forquilla i bones estones. @bert.cafe" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --cream:#f4ece0;
+    --cream-2:#efe5d6;
+    --ink:#1c1816;
+    --ink-soft:#2a2522;
+    --rust:#a6432b;
+    --rust-2:#bb4e32;
+    --blush:#e9b9a4;
+    --muted:#7a7066;
+    --line:rgba(28,24,22,.14);
+    --maxw:1320px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--rust);color:var(--cream)}
+  ::-webkit-scrollbar{width:9px}
+  ::-webkit-scrollbar-track{background:var(--cream-2)}
+  ::-webkit-scrollbar-thumb{background:#c8baa6}
+  ::-webkit-scrollbar-thumb:hover{background:var(--rust)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  h1,h2,h3,.display{font-family:'Fraunces',Georgia,serif;font-weight:300;line-height:1.03;letter-spacing:.005em;text-transform:uppercase}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 36px}
+  .label{font-size:.7rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+
+  /* circle "explore" link (estil referència) */
+  .xlink{display:inline-flex;align-items:center;gap:14px;font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:inherit;transition:.3s}
+  .xlink .c{width:34px;height:34px;border:1.4px solid currentColor;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;transition:.35s}
+  .xlink .c svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.7;transition:transform .35s}
+  .xlink:hover .c{transform:scale(1.1)}
+  .xlink:hover .c svg{transform:translateX(2px)}
+
+  /* button (BOOK NOW / Reserva style is in nav; generic) */
+  .btn{display:inline-flex;align-items:center;gap:11px;font-family:'Inter';font-weight:600;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;padding:16px 32px;cursor:pointer;border:1px solid currentColor;background:transparent;color:inherit;transition:.3s}
+  .btn:hover{background:currentColor}
+  .btn:hover span{mix-blend-mode:difference}
+
+  /* ---------- LOADER ---------- */
+  #loader{position:fixed;inset:0;z-index:9999;background:var(--cream);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .8s ease,visibility .8s}
+  #loader.done{opacity:0;visibility:hidden}
+  #loader .lg{font-family:'Fraunces';font-weight:600;font-size:clamp(3rem,9vw,6rem);color:var(--rust);letter-spacing:-.02em}
+  #loader .lg sup{font-size:.32em;vertical-align:top;font-weight:400}
+  #loader .bar{width:min(240px,52vw);height:2px;background:#d8c9b4;overflow:hidden}
+  #loader .bar i{display:block;height:100%;width:0;background:var(--rust);transition:width 1.1s ease}
+
+  /* ---------- NAV (barra flotant centrada, color constant) ---------- */
+  header{position:fixed;top:0;left:0;width:100%;z-index:200;display:flex;justify-content:center;padding:22px 20px;transition:padding .4s cubic-bezier(.2,.7,.2,1)}
+  header.scrolled{padding:13px 20px}
+  .nav{display:grid;grid-template-columns:auto 1fr auto;align-items:stretch;width:min(820px,95vw);height:60px;background:rgba(28,24,22,.30);backdrop-filter:blur(10px);border:1px solid rgba(244,236,224,.34);overflow:hidden;transition:background .4s}
+  header.scrolled .nav{background:rgba(28,24,22,.66)}
+  .book{display:inline-flex;align-items:center;justify-content:center;height:100%;padding:0 clamp(18px,2.4vw,30px);border-right:1px solid rgba(244,236,224,.28);font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);white-space:nowrap;transition:.3s}
+  .book:hover{background:rgba(244,236,224,.13)}
+  .brand{display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:300;font-size:clamp(1.15rem,2.2vw,1.6rem);letter-spacing:.4em;text-transform:uppercase;color:var(--cream);line-height:1;padding-left:.4em}
+  .brand sup{font-size:.3em;letter-spacing:0;vertical-align:top;margin-left:.12em}
+  .menu-btn{display:flex;flex-direction:column;justify-content:center;gap:5px;height:100%;padding:0 clamp(18px,2.4vw,26px);background:none;border:0;border-left:1px solid rgba(244,236,224,.28);cursor:pointer;transition:.3s}
+  .menu-btn:hover{background:rgba(244,236,224,.13)}
+  .menu-btn span{width:24px;height:1.6px;background:var(--cream);transition:.3s}
+  .menu-btn.open span{background:var(--ink)}
+  .menu-btn.open span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+  .menu-btn.open span:nth-child(2){opacity:0}
+  .menu-btn.open span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+  /* drawer */
+  .drawer{position:fixed;inset:0;background:var(--cream);z-index:190;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transform:translateY(-100%);transition:transform .55s cubic-bezier(.7,0,.2,1)}
+  .drawer.open{transform:none}
+  .drawer a{font-family:'Fraunces';font-size:2.4rem;color:var(--ink);font-weight:300;text-transform:uppercase;letter-spacing:.02em}
+  .drawer a:hover{color:var(--rust)}
+  .drawer .d-sub{margin-top:24px;text-align:center}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+  .hero-media{position:absolute;inset:0;z-index:0}
+  .hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .hero-slideshow{position:absolute;inset:0;z-index:1;transition:opacity 1s ease}
+  .hero-slideshow .s{position:absolute;inset:0;opacity:0;transition:opacity 1.8s ease}
+  .hero-slideshow .s.active{opacity:1}
+  .hero-slideshow .s img{width:100%;height:100%;object-fit:cover;animation:kenburns 9s ease-in-out infinite alternate}
+  @keyframes kenburns{0%{transform:scale(1.04)}100%{transform:scale(1.15)}}
+  .hero-media::after{content:"";position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(20,16,14,.42) 0%,rgba(20,16,14,.08) 34%,rgba(20,16,14,.5) 100%)}
+  .hero-inner{position:relative;z-index:4;width:100%}
+  .hero h1{color:var(--cream);font-size:clamp(3rem,11vw,10.5rem);line-height:.98;letter-spacing:.01em}
+  .hero .sub{display:flex;flex-direction:column;align-items:center;gap:22px;margin-top:34px}
+  .hero .sub p{color:rgba(244,236,224,.92);max-width:480px;font-size:1.02rem;font-weight:300;margin:0 auto}
+  .hero .tags{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .hero .tags span{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);border:1px solid rgba(244,236,224,.45);padding:9px 17px;border-radius:40px}
+  .hero-mark{display:block;margin:34px auto 0;width:clamp(44px,5vw,62px)}
+  .hero-mark path,.hero-mark line{stroke:var(--cream);stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(244,236,224,.85);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase}
+  .scroll-hint .mouse{width:21px;height:34px;border:1px solid rgba(244,236,224,.55);border-radius:14px;position:relative}
+  .scroll-hint .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:7px;border-radius:3px;background:var(--cream);animation:wheel 1.8s infinite}
+  @keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}80%{opacity:0;transform:translate(-50%,12px)}}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden;white-space:nowrap;background:var(--cream-2)}
+  .marquee .track{display:inline-flex;gap:38px;animation:scrollx 28s linear infinite}
+  .marquee span{font-family:'Fraunces';font-size:clamp(1.2rem,2.6vw,1.9rem);font-weight:400;font-style:italic;text-transform:none;color:var(--ink)}
+  .marquee b{color:var(--rust);font-style:normal}
+  @keyframes scrollx{to{transform:translateX(-50%)}}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal-d1{transition-delay:.12s}.reveal-d2{transition-delay:.24s}.reveal-d3{transition-delay:.36s}
+
+  /* ---------- FULL-BLEED BAND (imatge + text superposat) ---------- */
+  .band{position:relative;height:90vh;min-height:540px;overflow:hidden;display:flex;align-items:flex-end}
+  .band>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .band::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,16,14,.15) 0%,transparent 35%,rgba(20,16,14,.62) 100%)}
+  .band .band-in{position:relative;z-index:2;color:var(--cream);padding-bottom:clamp(48px,7vw,86px);width:100%}
+  .band .label{color:rgba(244,236,224,.82);display:block;margin-bottom:20px}
+  .band h2{font-size:clamp(2.4rem,7vw,6rem);color:var(--cream);max-width:16ch}
+  .band .xlink{color:var(--cream);margin-top:30px}
+  .band.center{align-items:center;text-align:center}
+  .band.center::after{background:rgba(20,16,14,.5)}
+  .band.center .band-in{padding-bottom:0}
+  .band.center h2{max-width:none;margin:0 auto;font-size:clamp(2.6rem,8vw,7rem)}
+
+  /* ---------- SPLIT COLOR PANEL ---------- */
+  .panel{display:grid;grid-template-columns:1fr 1fr;min-height:86vh}
+  .panel .ph{position:relative;overflow:hidden}
+  .panel .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .panel .txt{display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,7vw,108px)}
+  .panel.rust .txt{background:var(--rust);color:var(--cream)}
+  .panel.ink .txt{background:var(--ink);color:var(--cream)}
+  .panel .txt .label{color:rgba(244,236,224,.72)}
+  .panel .txt h2{font-size:clamp(2rem,4.2vw,3.7rem);color:var(--cream);margin-top:22px}
+  .panel .txt p{margin-top:24px;color:rgba(244,236,224,.82);font-weight:300;font-size:1.05rem;max-width:46ch}
+  .panel .txt .meta{margin-top:32px;display:flex;gap:34px;flex-wrap:wrap;border-top:1px solid rgba(244,236,224,.22);padding-top:26px}
+  .panel .txt .meta .n{font-family:'Fraunces';font-size:1.5rem}
+  .panel .txt .meta .t{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+  .panel .txt .xlink{margin-top:34px;color:var(--cream)}
+  .panel.alt .ph{order:2}
+
+  /* ---------- CENTERED CREAM SECTION ---------- */
+  .center-sec{padding:clamp(90px,13vw,180px) 0;text-align:center}
+  .center-sec .label{display:block;margin-bottom:28px}
+  .center-sec h2{font-size:clamp(2.1rem,5.5vw,4.6rem);max-width:18ch;margin:0 auto}
+  .center-sec p{margin:30px auto 0;max-width:560px;color:var(--ink-soft);font-weight:300;font-size:1.08rem}
+  .center-sec .xlink{margin-top:36px;color:var(--ink)}
+
+  /* ---------- CARDS ROW (full-bleed) ---------- */
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .card{position:relative;overflow:hidden;height:clamp(420px,52vh,620px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:42px 22px}
+  .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .card::after{content:"";position:absolute;inset:0;background:rgba(20,16,14,.42);z-index:1;transition:background .4s}
+  .card:hover img{transform:scale(1.07)}
+  .card:hover::after{background:rgba(20,16,14,.55)}
+  .card h4{position:relative;z-index:2;font-family:'Fraunces';font-weight:300;text-transform:uppercase;letter-spacing:.04em;color:var(--cream);font-size:1.5rem}
+  .card .xlink{position:relative;z-index:2;color:var(--cream);margin-top:auto}
+
+  /* ---------- ABOUT ---------- */
+  .about{padding:clamp(90px,12vw,170px) 0}
+  .about .grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,7vw,110px);align-items:center}
+  .about .ph{position:relative;overflow:hidden;aspect-ratio:4/5}
+  .about .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%)}
+  .about .ph .idx{position:absolute;left:18px;top:18px;font-family:'Fraunces';font-size:.8rem;letter-spacing:.2em;color:var(--cream);text-transform:uppercase}
+  .about h2{font-size:clamp(2rem,4.6vw,3.6rem);max-width:14ch}
+  .about p{margin-top:24px;color:var(--ink-soft);font-weight:300;font-size:1.05rem;max-width:46ch}
+  .about .xlink{margin-top:32px;color:var(--ink)}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{padding:clamp(70px,9vw,130px) 0}
+  .gal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:50px}
+  .gal-head h2{font-size:clamp(2.2rem,6vw,4.6rem)}
+  .gal-head .label{display:block;margin-bottom:16px}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .gal-grid figure{margin:0;overflow:hidden;cursor:pointer;position:relative;background:#e3d6c2;aspect-ratio:1/1}
+  .gal-grid img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+  .gal-grid figure:hover img{transform:scale(1.07)}
+
+  /* ---------- CONTACT (panell sobre imatge) ---------- */
+  .contact{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
+  .contact>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .contact::after{content:"";position:absolute;inset:0;background:rgba(20,16,14,.4);z-index:1}
+  .contact .panel-box{position:relative;z-index:2;background:var(--rust);color:var(--cream);padding:clamp(36px,5vw,68px);max-width:620px;width:100%}
+  .contact .panel-box .label{color:rgba(244,236,224,.72)}
+  .contact .panel-box h2{font-size:clamp(2rem,4.4vw,3.4rem);color:var(--cream);margin:18px 0 30px}
+  .contact .c-row{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-top:1px solid rgba(244,236,224,.24)}
+  .contact .c-row:last-child{border-bottom:1px solid rgba(244,236,224,.24)}
+  .contact .c-row .k{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;opacity:.8}
+  .contact .c-row .v{font-family:'Fraunces';font-size:1.05rem;text-align:right}
+  .contact .c-row .v.ph{font-style:italic;opacity:.75}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--cream-2);padding:90px 0 0}
+  .f-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;align-items:start}
+  .f-about .ph{width:120px;aspect-ratio:4/5;overflow:hidden;margin-bottom:22px}
+  .f-about .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%)}
+  .f-about p{color:var(--ink-soft);max-width:320px;font-weight:300;font-size:.95rem}
+  .f-col h4{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+  .f-col a,.f-col p{display:block;color:var(--ink);margin-bottom:13px;font-weight:300;transition:color .25s}
+  .f-col a:hover{color:var(--rust)}
+  .nl-form{display:flex;flex-direction:column;gap:14px;max-width:300px}
+  .nl-form input{background:transparent;border:0;border-bottom:1px solid var(--line);padding:12px 2px;font-family:'Inter';font-size:.95rem;color:var(--ink);outline:none;transition:border .3s}
+  .nl-form input::placeholder{color:var(--muted)}
+  .nl-form input:focus{border-color:var(--rust)}
+  .nl-form button{align-self:flex-start;margin-top:8px}
+  .nl-form .ok{color:var(--rust);font-weight:500}
+  .f-mark{margin-top:80px;text-align:center;line-height:.74;overflow:hidden}
+  .f-mark .b{font-family:'Fraunces';font-weight:600;font-size:clamp(5rem,24vw,22rem);color:var(--rust);letter-spacing:-.02em}
+  .f-mark .b sup{font-size:.26em;vertical-align:top}
+  .f-bot{padding:26px 0 34px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:10px}
+  .f-bot p{font-size:.78rem;color:var(--muted)}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lb{position:fixed;inset:0;z-index:500;background:rgba(20,16,14,.93);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.4s;padding:30px}
+  .lb.open{opacity:1;visibility:visible}
+  .lb img{max-width:90vw;max-height:88vh;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .lb .x{position:absolute;top:26px;right:30px;color:var(--cream);font-size:2rem;cursor:pointer;line-height:1;background:none;border:none}
+  .lb .nav-a{position:absolute;top:50%;transform:translateY(-50%);background:rgba(244,236,224,.1);border:1px solid rgba(244,236,224,.3);color:var(--cream);width:50px;height:50px;border-radius:50%;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .lb .nav-a:hover{background:var(--rust);border-color:var(--rust)}
+  .lb .prev{left:24px}.lb .next{right:24px}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:980px){
+    .panel{grid-template-columns:1fr}
+    .panel .ph{min-height:60vh}
+    .panel.alt .ph{order:0}
+    .cards{grid-template-columns:1fr 1fr;gap:6px}
+    .gal-grid{grid-template-columns:repeat(3,1fr)}
+    .about .grid{grid-template-columns:1fr;gap:36px}
+    .f-grid{grid-template-columns:1fr 1fr;gap:36px}
+    .f-about{grid-column:1/-1}
+    .contact .panel-box{max-width:none}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 22px}
+    .gal-grid{grid-template-columns:repeat(2,1fr)}
+    .cards{grid-template-columns:1fr}
+    .f-grid{grid-template-columns:1fr}
+    .hero h1{font-size:clamp(2.3rem,11vw,3.4rem);letter-spacing:0;line-height:1.02}
+    .hero .sub{margin-top:26px;gap:18px}
+    .hero .sub p{font-size:.95rem}
+    .hero .tags{display:none}
+    .hero-mark{margin-top:26px;width:46px}
+    .band{height:auto;min-height:72vh}
+    .band h2{font-size:clamp(2rem,9vw,3rem)}
+    .band.center{min-height:64vh}
+    .panel .txt{padding:54px 24px}
+    .panel .txt h2{font-size:clamp(1.9rem,8vw,2.6rem)}
+    .panel .ph{min-height:54vh}
+    .center-sec{padding:80px 0}
+    .center-sec h2{font-size:clamp(1.9rem,8vw,2.8rem)}
+    .card{height:62vh;min-height:380px}
+    .about{padding:80px 0}
+    .about h2{font-size:clamp(1.9rem,8vw,2.6rem)}
+    .contact{min-height:0;padding:70px 0}
+    .contact .c-row .v{font-size:.95rem}
+    .gallery{padding:70px 0}
+    .gal-head h2{font-size:clamp(2rem,9vw,3rem)}
+    .f-mark .b{font-size:30vw}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:.001s!important;transition-duration:.001s!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="lg">BERT<sup>®</sup></div>
+  <div class="bar"><i></i></div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="nav">
+    <a href="https://instagram.com/bert.cafe" target="_blank" rel="noopener" class="book">Reserva</a>
+    <a href="#top" class="brand">BERT<sup>®</sup></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Obrir menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- DRAWER -->
+<div class="drawer" id="drawer">
+  <a href="#cafe">Cafè</a>
+  <a href="#brunch">Brunch</a>
+  <a href="#galeria">Galeria</a>
+  <a href="#contacte">Contacte</a>
+  <a href="https://instagram.com/bert.cafe" target="_blank" rel="noopener">Reserva</a>
+  <div class="d-sub label">Specialty Coffee · Matcha · Brunch</div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-media">
+    <video id="heroVid" autoplay muted loop playsinline preload="auto" poster="assets/bertcafe/post-12.jpg">
+      <source src="assets/bertcafe/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-slideshow" id="heroSlideshow">
+      <div class="s"><img src="assets/bertcafe/post-12.jpg" alt="Interior de BERT" /></div>
+      <div class="s"><img src="assets/bertcafe/post-7.jpg" alt="Cafè de BERT" /></div>
+      <div class="s"><img src="assets/bertcafe/post-16.jpg" alt="Brunch de BERT" /></div>
+      <div class="s"><img src="assets/bertcafe/post-9.jpg" alt="Taula a BERT" /></div>
+    </div>
+  </div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <h1>Cafè<br>d'especialitat</h1>
+      <div class="sub">
+        <p>Un racó on el cafè, el matcha i els esmorzars de forquilla es prenen amb calma. Benvingut a BERT®.</p>
+        <div class="tags"><span>Coffee</span><span>Matcha</span><span>Brunch</span><span>Lunchroom</span></div>
+      </div>
+      <svg class="hero-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M13 27h30v10a13 13 0 0 1-13 13h-4a13 13 0 0 1-13-13V27z"/>
+        <path d="M43 31h6.5a6.5 6.5 0 0 1 0 13H43"/>
+        <line x1="22" y1="9" x2="22" y2="18"/><line x1="31" y1="7" x2="31" y2="18"/><line x1="40" y1="9" x2="40" y2="18"/>
+      </svg>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="mouse"></div><span>Scroll</span></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="track">
+    <span>Specialty Coffee <b>·</b> Matcha <b>·</b> Brunch <b>·</b> Lunchroom <b>·</b> Specialty Coffee <b>·</b> Matcha <b>·</b> Brunch <b>·</b> Lunchroom <b>·</b>&nbsp;</span>
+    <span>Specialty Coffee <b>·</b> Matcha <b>·</b> Brunch <b>·</b> Lunchroom <b>·</b> Specialty Coffee <b>·</b> Matcha <b>·</b> Brunch <b>·</b> Lunchroom <b>·</b>&nbsp;</span>
+  </div>
+</div>
+
+<!-- BAND 1 (full-bleed, text superposat) -->
+<section class="band">
+  <img src="assets/bertcafe/post-12.jpg" alt="Interior càlid de BERT" />
+  <div class="band-in wrap">
+    <span class="label reveal">Specialty Coffee House</span>
+    <h2 class="reveal reveal-d1">BERT, on les bones estones passen soles</h2>
+    <a href="#cafe" class="xlink reveal reveal-d2">Descobreix la casa <span class="c"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
+  </div>
+</section>
+
+<!-- PANEL RUST · CAFÈ -->
+<section class="panel rust" id="cafe">
+  <div class="ph"><img src="assets/bertcafe/post-7.jpg" alt="Cafè gelat i begudes d'especialitat de BERT" /></div>
+  <div class="txt reveal">
+    <span class="label">Cafè & Matcha</span>
+    <h2>Cafè d'especialitat, fet amb cura</h2>
+    <p>Espresso, filtrats, matcha cremós i les nostres begudes fredes de signatura. Treballem el cafè amb mim, des del gra fins a la tassa.</p>
+    <div class="meta">
+      <div><div class="n">Espresso</div><div class="t">& Filtrats</div></div>
+      <div><div class="n">Matcha</div><div class="t">Latte & Iced</div></div>
+      <div><div class="n">Iced</div><div class="t">Signatura</div></div>
+    </div>
+    <a href="#galeria" class="xlink">Veure la carta <span class="c"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
+  </div>
+</section>
+
+<!-- CENTERED CREAM -->
+<section class="center-sec">
+  <div class="wrap">
+    <span class="label reveal">El nostre dia a dia</span>
+    <h2 class="reveal reveal-d1">Producte fresc, cuina de cada dia i temps per gaudir-la</h2>
+    <p class="reveal reveal-d2">A BERT® cuidem cada tassa i cada plat. Ambient acollidor, producte de qualitat i el ritme just per gaudir-ho amb calma.</p>
+    <a href="#galeria" class="xlink reveal reveal-d3">Veure la galeria <span class="c"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
+  </div>
+</section>
+
+<!-- CARDS ROW (full-bleed) -->
+<section class="cards" id="descobreix">
+  <a href="#brunch" class="card"><img src="assets/bertcafe/post-2.jpg" alt="Brunch de BERT" /><h4>Brunch</h4><span class="xlink">Veure més <span class="c"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></span></a>
+  <a href="#cafe" class="card"><img src="assets/bertcafe/post-1.jpg" alt="Matcha i smoothies de BERT" /><h4>Cafè & Matcha</h4><span class="xlink">Veure més <span class="c"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></span></a>
+  <a href="#contacte" class="card"><img src="assets/bertcafe/post-9.jpg" alt="Esdeveniments a BERT" /><h4>Esdeveniments</h4><span class="xlink">Veure més <span class="c"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></span></a>
+  <a href="https://instagram.com/bert.cafe" target="_blank" rel="noopener" class="card"><img src="assets/bertcafe/post-16.jpg" alt="Instagram de BERT" /><h4>@bert.cafe</h4><span class="xlink">Segueix-nos <span class="c"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></span></a>
+</section>
+
+<!-- PANEL INK · BRUNCH -->
+<section class="panel ink alt" id="brunch">
+  <div class="ph"><img src="assets/bertcafe/post-16.jpg" alt="Plat de brunch de BERT" /></div>
+  <div class="txt reveal">
+    <span class="label">Brunch & Lunchroom</span>
+    <h2>Esmorzars de forquilla, fets amb calma</h2>
+    <p>Tostes, ous remenats, alvocat, pernil, formatges i el nostre pa especial. Plats generosos per compartir o per posar-te al dia amb una bona tassa al costat.</p>
+    <div class="meta">
+      <div><div class="n">Tostes</div><div class="t">& Bocates</div></div>
+      <div><div class="n">Brunch</div><div class="t">Complet</div></div>
+      <div><div class="n">Lunchroom</div><div class="t">Migdia</div></div>
+    </div>
+    <a href="#contacte" class="xlink">Reserva una taula <span class="c"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
+  </div>
+</section>
+
+<!-- STATEMENT BAND (centered) -->
+<section class="band center">
+  <img src="assets/bertcafe/post-9.jpg" alt="Taula plena de menjar a BERT" />
+  <div class="band-in wrap">
+    <span class="label reveal">La filosofia BERT®</span>
+    <h2 class="reveal reveal-d1">Aquí passen<br>coses boniques</h2>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="wrap grid">
+    <div class="ph reveal"><span class="idx">BERT®</span><img src="assets/bertcafe/post-5.jpg" alt="Selecció de productes de BERT" /></div>
+    <div class="reveal reveal-d1">
+      <span class="label">La casa</span>
+      <h2 style="margin-top:18px">Hospitalitat que es nota de debò</h2>
+      <p>BERT® neix de les ganes de fer les coses ben fetes: producte de qualitat, un espai acollidor i un tracte proper. Aquí el temps es prèn amb calma — un cafè, una conversa i bona companyia.</p>
+      <a href="#contacte" class="xlink">El nostre horari <span class="c"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="galeria">
+  <div class="wrap">
+    <div class="gal-head">
+      <div class="reveal"><span class="label">El dia a dia</span><h2>La nostra galeria</h2></div>
+      <a href="https://instagram.com/bert.cafe" target="_blank" rel="noopener" class="xlink reveal reveal-d1">Segueix-nos a Instagram <span class="c"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
+    </div>
+    <div class="gal-grid" id="galGrid"></div>
+  </div>
+</section>
+
+<!-- CONTACT (panell sobre imatge) -->
+<section class="contact" id="contacte">
+  <img src="assets/bertcafe/post-12.jpg" alt="Interior de BERT" />
+  <div class="wrap">
+    <div class="panel-box reveal">
+      <span class="label">On som i horari</span>
+      <h2>Un punt de trobada, amb calma</h2>
+      <div class="c-row"><span class="k">Dl — Dv</span><span class="v">8:00–13:30 · 17:00–20:00</span></div>
+      <div class="c-row"><span class="k">Dissabte</span><span class="v">8:00–14:00</span></div>
+      <div class="c-row"><span class="k">Diumenge</span><span class="v ph">Tancat</span></div>
+      <div class="c-row"><span class="k">Adreça</span><span class="v"><a href="https://www.google.com/maps/search/?api=1&query=Avinguda%20Verge%20Can%C3%B2lich%2011%20Sant%20Juli%C3%A0%20de%20L%C3%B2ria%20Andorra" target="_blank" rel="noopener" style="color:inherit">Av. Verge Canòlich, 11<br>Sant Julià de Lòria · AD600</a></span></div>
+      <div class="c-row"><span class="k">Instagram</span><span class="v">@bert.cafe</span></div>
+      <a href="https://instagram.com/bert.cafe" target="_blank" rel="noopener" class="xlink" style="margin-top:28px;color:var(--cream)">Escriu-nos <span class="c"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-about">
+        <div class="ph"><img src="assets/bertcafe/post-7.jpg" alt="BERT®" /></div>
+        <p>Specialty Coffee · Matcha · Brunch · Lunchroom. Cafè de debò i bones estones, a foc lent.</p>
+        <p style="margin-top:16px"><a href="https://www.google.com/maps/search/?api=1&query=Avinguda%20Verge%20Can%C3%B2lich%2011%20Sant%20Juli%C3%A0%20de%20L%C3%B2ria%20Andorra" target="_blank" rel="noopener">Av. Verge Canòlich, 11 · Sant Julià de Lòria · AD600 Andorra</a></p>
+      </div>
+      <div class="f-col">
+        <h4>Navega</h4>
+        <a href="#cafe">Cafè & Matcha</a>
+        <a href="#brunch">Brunch</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#descobreix">Esdeveniments</a>
+        <a href="#contacte">Contacte</a>
+        <a href="https://instagram.com/bert.cafe" target="_blank" rel="noopener">Instagram ↗</a>
+      </div>
+      <div class="f-col">
+        <h4>Newsletter</h4>
+        <form class="nl-form" id="nlForm">
+          <input type="email" placeholder="El teu correu electrònic" required />
+          <button type="submit" class="btn"><span>Apunta'm</span></button>
+        </form>
+      </div>
+    </div>
+    <div class="f-mark"><div class="b">BERT<sup>®</sup></div></div>
+    <div class="f-bot">
+      <p>© <span id="yr"></span> BERT® — Specialty Coffee. Tots els drets reservats.</p>
+      <p><a href="https://instagram.com/bert.cafe" target="_blank" rel="noopener">@bert.cafe · 891 seguidors</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <button class="x" id="lbX" aria-label="Tancar">×</button>
+  <button class="nav-a prev" id="lbPrev" aria-label="Anterior">‹</button>
+  <img id="lbImg" src="" alt="Foto de BERT" />
+  <button class="nav-a next" id="lbNext" aria-label="Següent">›</button>
+</div>
+
+<script>
+  window.addEventListener('load',()=>{
+    const bar=document.querySelector('#loader .bar i');
+    requestAnimationFrame(()=>bar.style.width='100%');
+    setTimeout(()=>document.getElementById('loader').classList.add('done'),1100);
+  });
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  const header=document.getElementById('header');
+  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40));
+  const menuBtn=document.getElementById('menuBtn'),drawer=document.getElementById('drawer');
+  menuBtn.addEventListener('click',()=>{menuBtn.classList.toggle('open');drawer.classList.toggle('open');document.body.style.overflow=drawer.classList.contains('open')?'hidden':''});
+  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menuBtn.classList.remove('open');drawer.classList.remove('open');document.body.style.overflow=''}));
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // gallery
+  const order=[5,9,2,16,7,14,1,13,17,10,6,3,18,8,11,4];
+  const grid=document.getElementById('galGrid');
+  order.forEach(n=>{
+    const fig=document.createElement('figure');
+    fig.innerHTML=`<img src="assets/bertcafe/post-${n}.jpg" loading="lazy" alt="BERT® foto ${n}"/>`;
+    fig.addEventListener('click',()=>openLb(n));
+    grid.appendChild(fig);
+  });
+  const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
+  let cur=0;
+  function openLb(n){cur=order.indexOf(n);show();lb.classList.add('open');document.body.style.overflow='hidden'}
+  function show(){lbImg.src=`assets/bertcafe/post-${order[cur]}.jpg`}
+  function closeLb(){lb.classList.remove('open');document.body.style.overflow=''}
+  document.getElementById('lbX').onclick=closeLb;
+  document.getElementById('lbNext').onclick=()=>{cur=(cur+1)%order.length;show()};
+  document.getElementById('lbPrev').onclick=()=>{cur=(cur-1+order.length)%order.length;show()};
+  lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
+  addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')document.getElementById('lbNext').click();if(e.key==='ArrowLeft')document.getElementById('lbPrev').click()});
+  (function(){
+    const vid=document.getElementById('heroVid');
+    const show=document.getElementById('heroSlideshow');
+    const slides=[...show.querySelectorAll('.s')];
+    let i=0;slides[0].classList.add('active');
+    setInterval(()=>{slides[i].classList.remove('active');i=(i+1)%slides.length;slides[i].classList.add('active')},4200);
+    if(vid){
+      vid.addEventListener('playing',()=>{show.style.opacity='0'});
+      vid.addEventListener('error',()=>{vid.style.display='none'});
+      const s=vid.querySelector('source');
+      if(s)s.addEventListener('error',()=>{vid.style.display='none'});
+      const p=vid.play();if(p&&p.catch)p.catch(()=>{});
+    }
+  })();
+  const nl=document.getElementById('nlForm');
+  if(nl)nl.addEventListener('submit',e=>{e.preventDefault();nl.innerHTML='<p class="ok">Gràcies! T\'hem apuntat. ☕</p>'});
+</script>
+</body>
+</html>

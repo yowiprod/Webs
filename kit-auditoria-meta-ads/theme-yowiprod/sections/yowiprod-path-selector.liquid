@@ -1,0 +1,134 @@
+<section class="yp-path-selector" id="yp-path-selector">
+  <div class="yp-section-inner">
+    <h2 class="yp-section-title">{{ section.settings.title }}</h2>
+    <div class="yp-cards-grid">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link }}" class="yp-card" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <div class="yp-card-image">
+              <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title }}" loading="lazy">
+            </div>
+          {%- else -%}
+            <div class="yp-card-icon">{{ block.settings.icon }}</div>
+          {%- endif -%}
+          <h3 class="yp-card-title">{{ block.settings.title }}</h3>
+          <p class="yp-card-desc">{{ block.settings.description }}</p>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .yp-path-selector .yp-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 320px));
+    justify-content: center;
+    gap: 1.25rem;
+  }
+
+  .yp-path-selector .yp-card {
+    max-width: 320px;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .yp-path-selector .yp-card-image img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .yp-path-selector .yp-card-icon {
+    font-size: 2rem;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "YP Path Selector",
+  "tag": "div",
+  "class": "yp-path-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titulo",
+      "default": "Elige como entrar en el universo YowiProd."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icono emoji",
+          "default": "🎵"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titulo",
+          "default": "Beats"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descripcion",
+          "default": "Instrumentales con atmosfera, caracter y licencias claras."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "YP Path Selector",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "icon": "🎹",
+            "title": "Beats",
+            "description": "Instrumentales con atmosfera, caracter y licencias claras."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "📦",
+            "title": "Packs y Recursos",
+            "description": "MIDIs, loops y herramientas para crear con mas intencion."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "🎯",
+            "title": "Servicios",
+            "description": "Produccion y direccion 1:1 para artistas serios."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

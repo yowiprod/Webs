@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glamur Estudi · Barbería en Sant Julià, Andorra</title>
+<meta name="description" content="Glamur Estudi — Barbería en Sant Julià de Lòria, Andorra. Cortes, fades, arreglo de barba y asesoría de estilo. Reserva tu cita.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0C0C0C;
+  --bg-2:#141414;
+  --bg-3:#1B1B1B;
+  --red:#E11D2A;
+  --red-dark:#B0141F;
+  --red-soft:rgba(225,29,42,.12);
+  --cream:#F4F1EC;
+  --muted:#9A9A9A;
+  --line:rgba(255,255,255,.08);
+  --gold:#C9A24B;
+  --shadow:0 20px 60px rgba(0,0,0,.55);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--cream);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,.display{font-family:'Oswald',sans-serif;text-transform:uppercase;line-height:1.05;letter-spacing:.01em}
+.anton{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.01em;font-weight:400}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+section{position:relative}
+::selection{background:var(--red);color:#fff}
+/* scrollbar */
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:#000}
+::-webkit-scrollbar-thumb{background:var(--red-dark);border-radius:6px}
+::-webkit-scrollbar-thumb:hover{background:var(--red)}
+
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--red);font-family:'Oswald';font-weight:600;letter-spacing:.28em;text-transform:uppercase;font-size:.8rem}
+.eyebrow::before{content:"";width:34px;height:2px;background:var(--red)}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:.85rem;
+  padding:15px 30px;border-radius:2px;cursor:pointer;border:2px solid var(--red);
+  background:var(--red);color:#fff;transition:.3s;
+}
+.btn:hover{background:transparent;color:var(--red);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--cream);border-color:rgba(255,255,255,.25)}
+.btn-ghost:hover{border-color:var(--red);color:var(--red);background:transparent}
+
+/* ===== NAV ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 40px;transition:.4s;
+}
+nav.scrolled{background:rgba(10,10,10,.85);backdrop-filter:blur(14px);padding:14px 40px;border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:12px;font-family:'Anton';font-size:1.5rem;letter-spacing:.04em}
+.logo .pole{width:9px;height:30px;border-radius:5px;background:repeating-linear-gradient(45deg,var(--red) 0 6px,#fff 6px 12px,#1a1a1a 12px 18px);box-shadow:0 0 0 2px rgba(255,255,255,.15)}
+.logo b{color:var(--red)}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{font-family:'Oswald';font-weight:500;text-transform:uppercase;letter-spacing:.12em;font-size:.82rem;color:var(--cream);opacity:.85;transition:.25s;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--red);transition:.3s}
+.nav-links a:hover{opacity:1}
+.nav-links a:hover::after{width:100%}
+.nav-cta{margin-left:6px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:26px;height:2px;background:var(--cream);transition:.3s}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:120%;object-fit:cover;filter:grayscale(.35) brightness(.4) contrast(1.05)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,8,.95) 0%,rgba(8,8,8,.7) 45%,rgba(8,8,8,.45) 100%)}
+.hero-inner{position:relative;z-index:2;padding-top:90px;width:100%}
+.hero h1{font-size:clamp(3rem,8vw,6.6rem);margin:18px 0 10px}
+.hero h1 .accent{color:var(--red);display:block}
+.hero p.lead{max-width:520px;color:#cfcfcf;font-size:1.08rem;margin:18px 0 32px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:40px;margin-top:54px;flex-wrap:wrap}
+.hero-stats .s b{font-family:'Anton';font-size:2.4rem;color:#fff;display:block;line-height:1}
+.hero-stats .s span{font-family:'Oswald';text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--muted)}
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;font-family:'Oswald';letter-spacing:.3em;font-size:.7rem;color:var(--muted);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-cue .dot{width:2px;height:38px;background:linear-gradient(var(--red),transparent);animation:cue 1.8s infinite}
+@keyframes cue{0%{opacity:0;transform:scaleY(.3)}50%{opacity:1}100%{opacity:0;transform:scaleY(1) translateY(10px)}}
+
+/* ===== IG PROFILE CARD ===== */
+.ig-wrap{padding:110px 0 90px;background:var(--bg-2)}
+.ig-card{
+  max-width:560px;margin:0 auto;background:linear-gradient(180deg,#181818,#101010);
+  border:1px solid var(--line);border-radius:22px;padding:34px 30px 30px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.ig-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--gold),var(--red))}
+.ig-top{display:flex;gap:22px;align-items:center}
+.ig-ava{position:relative;flex-shrink:0}
+.ig-ava .ring{position:absolute;inset:-6px;border-radius:50%;background:conic-gradient(from 0deg,var(--red),var(--gold),var(--red),var(--gold),var(--red));animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ig-ava .pic{position:relative;width:92px;height:92px;border-radius:50%;border:4px solid #101010;object-fit:cover;background:#222}
+.ig-meta{flex:1}
+.ig-name{display:flex;align-items:center;gap:8px;font-size:1.5rem;font-family:'Oswald';font-weight:600;text-transform:none}
+.tick{width:21px;height:21px;border-radius:50%;background:linear-gradient(135deg,#1da1f2,#0d6efd);display:inline-flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(13,110,253,.5);flex-shrink:0}
+.tick svg{width:12px;height:12px;fill:#fff}
+.ig-handle{color:var(--red);font-size:.95rem;font-weight:500}
+.ig-cat{color:var(--muted);font-size:.85rem;margin-top:2px}
+.ig-stats{display:flex;justify-content:space-around;margin:24px 0 20px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ig-stats .st{text-align:center}
+.ig-stats .st b{display:block;font-family:'Anton';font-size:1.5rem;color:#fff}
+.ig-stats .st span{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-family:'Oswald'}
+.ig-bio{font-size:.92rem;color:#d6d6d6;white-space:pre-line;margin-bottom:20px}
+.ig-actions{display:flex;gap:10px;margin-bottom:22px}
+.ig-actions a{flex:1;text-align:center;padding:11px;border-radius:8px;font-family:'Oswald';font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;transition:.25s}
+.ig-actions .primary{background:var(--red);color:#fff}
+.ig-actions .primary:hover{background:var(--red-dark)}
+.ig-actions .sec{background:var(--bg-3);color:var(--cream);border:1px solid var(--line)}
+.ig-actions .sec:hover{border-color:var(--red);color:var(--red)}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;border-radius:10px;overflow:hidden}
+.ig-grid img{width:100%;aspect-ratio:1;object-fit:cover;transition:.4s;cursor:pointer}
+.ig-grid img:hover{filter:brightness(1.15);transform:scale(1.04)}
+.ig-mission{text-align:center;max-width:780px;margin:70px auto 0}
+.ig-mission h2{font-size:clamp(2rem,5vw,3.4rem)}
+.ig-mission h2 .red{color:var(--red)}
+.ig-mission p{color:var(--muted);margin-top:18px;font-size:1.05rem}
+
+/* ===== SECTION HEADER ===== */
+.sec-head{text-align:center;max-width:660px;margin:0 auto 60px}
+.sec-head h2{font-size:clamp(2.2rem,5vw,3.6rem);margin:14px 0}
+.sec-head h2 .red{color:var(--red)}
+.sec-head p{color:var(--muted)}
+.pad{padding:110px 0}
+
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.about-text h2{font-size:clamp(2.2rem,5vw,3.4rem);margin:16px 0 22px}
+.about-text h2 .red{color:var(--red)}
+.about-text p{color:#cfcfcf;margin-bottom:18px}
+.about-pills{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 32px}
+.pill{padding:8px 16px;border:1px solid var(--line);border-radius:40px;font-family:'Oswald';font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#ddd;background:var(--bg-2);transition:.25s}
+.pill:hover{border-color:var(--red);color:var(--red)}
+.about-imgs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.about-imgs img{width:100%;height:100%;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+.about-imgs img:nth-child(1){grid-row:span 2;height:100%}
+.about-imgs .tall{aspect-ratio:.66}
+
+/* ===== SERVICES ===== */
+.services{background:var(--bg-2)}
+.serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.serv-card{
+  background:linear-gradient(180deg,#161616,#101010);border:1px solid var(--line);border-radius:14px;
+  padding:34px 28px;transition:.35s;position:relative;overflow:hidden;
+}
+.serv-card::before{content:"";position:absolute;left:0;top:0;width:0;height:3px;background:var(--red);transition:.4s}
+.serv-card:hover{transform:translateY(-8px);border-color:rgba(225,29,42,.4)}
+.serv-card:hover::before{width:100%}
+.serv-card .ico{width:54px;height:54px;border-radius:12px;background:var(--red-soft);display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:20px}
+.serv-card h3{font-size:1.3rem;margin-bottom:10px}
+.serv-card p{color:var(--muted);font-size:.92rem;margin-bottom:18px}
+.serv-card .tag{font-family:'Oswald';color:var(--red);font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem}
+
+/* ===== GALLERY ===== */
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:12px}
+.gal-grid figure{position:relative;overflow:hidden;border-radius:10px;cursor:pointer}
+.gal-grid figure.big{grid-column:span 2;grid-row:span 2}
+.gal-grid img{width:100%;height:100%;object-fit:cover;transition:.6s;filter:grayscale(.2)}
+.gal-grid figure:hover img{transform:scale(1.08);filter:grayscale(0)}
+.gal-grid figcaption{position:absolute;inset:0;display:flex;align-items:flex-end;padding:16px;background:linear-gradient(transparent,rgba(8,8,8,.85));opacity:0;transition:.4s;font-family:'Oswald';text-transform:uppercase;letter-spacing:.1em;font-size:.8rem}
+.gal-grid figure:hover figcaption{opacity:1}
+.gal-grid figcaption .ig-ico{color:var(--red);margin-right:6px}
+
+/* ===== HOURS + CTA banner ===== */
+.banner{position:relative;padding:100px 0;text-align:center;overflow:hidden}
+.banner-bg{position:absolute;inset:0;z-index:0}
+.banner-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.28)}
+.banner-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(8,8,8,.6),rgba(8,8,8,.85))}
+.banner-inner{position:relative;z-index:2}
+.banner h2{font-size:clamp(2.4rem,6vw,4.4rem)}
+.banner h2 .red{color:var(--red)}
+.banner p{color:#ccc;max-width:560px;margin:18px auto 34px}
+
+/* ===== METRICS ===== */
+.metrics{background:var(--bg-2)}
+.metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.metric b{font-family:'Anton';font-size:clamp(2.4rem,5vw,3.6rem);color:var(--red);display:block;line-height:1}
+.metric span{font-family:'Oswald';text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;color:var(--muted);margin-top:8px;display:block}
+
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.contact-info h2{font-size:clamp(2rem,4.5vw,3rem);margin:14px 0 20px}
+.contact-info h2 .red{color:var(--red)}
+.info-row{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px}
+.info-row .ic{width:46px;height:46px;border-radius:10px;background:var(--red-soft);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.info-row b{font-family:'Oswald';text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;color:var(--muted);display:block;margin-bottom:3px}
+.info-row a,.info-row span{color:var(--cream);font-size:1rem}
+.info-row a:hover{color:var(--red)}
+.form{background:var(--bg-2);border:1px solid var(--line);border-radius:16px;padding:34px}
+.form label{font-family:'Oswald';text-transform:uppercase;letter-spacing:.08em;font-size:.74rem;color:var(--muted);display:block;margin-bottom:6px;margin-top:16px}
+.form label:first-child{margin-top:0}
+.form input,.form textarea{width:100%;padding:13px 15px;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--cream);font-family:'Inter';font-size:.95rem;transition:.25s}
+.form input:focus,.form textarea:focus{outline:none;border-color:var(--red)}
+.form textarea{resize:vertical;min-height:110px}
+.form .btn{width:100%;justify-content:center;margin-top:22px}
+
+/* ===== FOOTER ===== */
+footer{background:#070707;border-top:1px solid var(--line);padding:60px 0 30px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-grid p{color:var(--muted);font-size:.92rem;margin-top:14px;max-width:340px}
+.foot-grid h4{font-size:1rem;margin-bottom:16px;color:#fff}
+.foot-grid a{display:block;color:var(--muted);font-size:.92rem;margin-bottom:9px;transition:.2s}
+.foot-grid a:hover{color:var(--red)}
+.socials{display:flex;gap:12px;margin-top:18px}
+.socials a{width:42px;height:42px;border-radius:10px;background:var(--bg-3);display:flex;align-items:center;justify-content:center;transition:.3s}
+.socials a:hover{background:var(--red);transform:translateY(-3px)}
+.socials svg{width:18px;height:18px;fill:var(--cream)}
+.copy{text-align:center;color:var(--muted);font-size:.82rem;padding-top:24px;border-top:1px solid var(--line)}
+.copy .red{color:var(--red)}
+
+/* ===== reveal animations ===== */
+.reveal{opacity:0;transform:translateY(34px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}.reveal.d5{transition-delay:.5s}
+
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+.lb.open{display:flex}
+.lb img{max-width:90%;max-height:88vh;border-radius:8px;box-shadow:var(--shadow)}
+.lb .x{position:absolute;top:24px;right:30px;font-size:2.4rem;color:#fff;cursor:pointer;font-family:'Oswald'}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:880px){
+  .nav-links{position:fixed;top:0;right:-100%;height:100vh;width:75%;max-width:320px;flex-direction:column;justify-content:center;background:rgba(10,10,10,.98);backdrop-filter:blur(14px);transition:.4s;gap:28px}
+  .nav-links.open{right:0}
+  .burger{display:flex;z-index:1100}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .serv-grid{grid-template-columns:1fr 1fr}
+  .metric-row{grid-template-columns:1fr 1fr;gap:34px}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
+  .foot-grid{grid-template-columns:1fr;gap:30px}
+  nav{padding:16px 22px}
+}
+@media(max-width:520px){
+  .serv-grid{grid-template-columns:1fr}
+  .hero-stats{gap:26px}
+  .ig-card{padding:26px 20px}
+  .gal-grid figure.big{grid-column:span 2;grid-row:span 1}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="logo"><span class="pole"></span>GLAMUR<b>·</b>ESTUDI</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#sobre">Estudi</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contacto</a>
+    <a href="https://barberglamcita.site.agendapro.com/es" target="_blank" class="btn nav-cta">Reserva tu cita</a>
+  </div>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="hero-bg"><img src="assets/barber-glam-ad/post-5.jpg" alt="Glamur Estudi barbería"></div>
+  <div class="container hero-inner">
+    <span class="eyebrow reveal">Barbería · Sant Julià de Lòria · Andorra</span>
+    <h1 class="anton reveal d1">Estilo de verdad<span class="accent">para hombres de verdad</span></h1>
+    <p class="lead reveal d2">Cortes de tendencia, fades de precisión, arreglo de barba y asesoría de estilo personalizada. En Glamur Estudi no solo te cortamos el pelo — te damos carácter.</p>
+    <div class="hero-actions reveal d3">
+      <a href="https://barberglamcita.site.agendapro.com/es" target="_blank" class="btn">Reserva tu cita</a>
+      <a href="#galeria" class="btn btn-ghost">Ver trabajos</a>
+    </div>
+    <div class="hero-stats reveal d4">
+      <div class="s"><b>74</b><span>Trabajos</span></div>
+      <div class="s"><b>350</b><span>Seguidores IG</span></div>
+      <div class="s"><b>+25</b><span>Años de oficio</span></div>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll<div class="dot"></div></div>
+</header>
+
+<!-- IG PROFILE CARD -->
+<section class="ig-wrap" id="perfil">
+  <div class="container">
+    <div class="ig-card reveal">
+      <div class="ig-top">
+        <div class="ig-ava">
+          <div class="ring"></div>
+          <img class="pic" src="assets/barber-glam-ad/profile.jpg" alt="Glamur Estudi" onerror="this.src='assets/barber-glam-ad/post-1.jpg'">
+        </div>
+        <div class="ig-meta">
+          <div class="ig-name">Glamur Estudi
+            <span class="tick"><svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/></svg></span>
+          </div>
+          <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" class="ig-handle">@barber.glam.ad</a>
+          <div class="ig-cat">💈 Barbería · Sant Julià de Lòria</div>
+        </div>
+      </div>
+      <div class="ig-stats">
+        <div class="st"><b>74</b><span>Posts</span></div>
+        <div class="st"><b>350</b><span>Seguidores</span></div>
+        <div class="st"><b>909</b><span>Siguiendo</span></div>
+      </div>
+      <div class="ig-bio">📍 C/ Doctor Palau, 25 PB Local
+AD600 Sant Julià
+Reserva la teva cita 👇🏻
+📲 +376 869 988</div>
+      <div class="ig-actions">
+        <a href="https://barberglamcita.site.agendapro.com/es" target="_blank" class="primary">Reservar</a>
+        <a href="#servicios" class="sec">Servicios</a>
+        <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" class="sec">Seguir</a>
+      </div>
+      <div class="ig-grid">
+        <img src="assets/barber-glam-ad/post-1.jpg" alt="" data-lb>
+        <img src="assets/barber-glam-ad/post-2.jpg" alt="" data-lb>
+        <img src="assets/barber-glam-ad/post-3.jpg" alt="" data-lb>
+        <img src="assets/barber-glam-ad/post-4.jpg" alt="" data-lb>
+        <img src="assets/barber-glam-ad/post-6.jpg" alt="" data-lb>
+        <img src="assets/barber-glam-ad/post-7.jpg" alt="" data-lb>
+      </div>
+    </div>
+
+    <div class="ig-mission">
+      <h2 class="reveal">Una comunidad que <span class="red">confía en las tijeras</span></h2>
+      <p class="reveal d1">Más de <strong style="color:#fff">350 seguidores</strong> en Instagram siguen el día a día de Glamur Estudi en el corazón de Sant Julià de Lòria. Cada corte cuenta una historia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="pad" id="sobre">
+  <div class="container about-grid">
+    <div class="about-text">
+      <span class="eyebrow reveal">El estudio</span>
+      <h2 class="reveal d1">No solo cortamos pelo,<br><span class="red">creamos estilo</span></h2>
+      <p class="reveal d2">Glamur Estudi es una barbería en Sant Julià de Lòria, Andorra, especializada en cortes modernos, fades de precisión y diseño de barba. Aquí cada cliente recibe una asesoría personalizada para encontrar el look que mejor encaja con su carácter.</p>
+      <p class="reveal d3">Trabajamos con productos profesionales premium <strong style="color:#fff">STMNT</strong> — buena fijación, ingredientes naturales de máxima calidad y acabados perfectos para cualquier look.</p>
+      <div class="about-pills reveal d4">
+        <span class="pill">Fade</span>
+        <span class="pill">Mid Fade</span>
+        <span class="pill">Arreglo de barba</span>
+        <span class="pill">Corte clásico</span>
+        <span class="pill">Corte infantil</span>
+        <span class="pill">Asesoría de estilo</span>
+        <span class="pill">Productos STMNT</span>
+      </div>
+      <a href="#contacto" class="btn reveal d5">Contáctanos</a>
+    </div>
+    <div class="about-imgs reveal d2">
+      <img src="assets/barber-glam-ad/post-8.jpg" alt="Trabajo Glamur Estudi" class="tall">
+      <img src="assets/barber-glam-ad/post-3.jpg" alt="Trabajo Glamur Estudi">
+      <img src="assets/barber-glam-ad/post-10.jpg" alt="Trabajo Glamur Estudi">
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="pad services" id="servicios">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow reveal">Lo que hacemos</span>
+      <h2 class="reveal d1">Nuestros <span class="red">servicios</span></h2>
+      <p class="reveal d2">Cortes y tratamientos pensados para que salgas de la silla con el mejor look. Reserva online en segundos.</p>
+    </div>
+    <div class="serv-grid">
+      <div class="serv-card reveal d1"><div class="ico">✂️</div><h3>Corte de cabello</h3><p>Cortes de tendencia y clásicos adaptados a tu estilo y tipo de pelo.</p><span class="tag">Bajo cita →</span></div>
+      <div class="serv-card reveal d2"><div class="ico">💈</div><h3>Fade & Mid Fade</h3><p>Degradados de precisión, half fade, mid fade y los acabados más actuales.</p><span class="tag">Bajo cita →</span></div>
+      <div class="serv-card reveal d3"><div class="ico">🧔</div><h3>Arreglo de barba</h3><p>Perfilado, recorte y diseño de barba para un acabado limpio y con carácter.</p><span class="tag">Bajo cita →</span></div>
+      <div class="serv-card reveal d1"><div class="ico">👦</div><h3>Corte infantil</h3><p>Cortes para los más pequeños, con paciencia y el mejor resultado.</p><span class="tag">Bajo cita →</span></div>
+      <div class="serv-card reveal d2"><div class="ico">⭐</div><h3>Asesoría de estilo</h3><p>Te ayudamos a elegir el corte y look que mejor encaja contigo.</p><span class="tag">Bajo cita →</span></div>
+      <div class="serv-card reveal d3"><div class="ico">🧴</div><h3>Productos STMNT</h3><p>Productos profesionales premium para mantener tu estilo en casa.</p><span class="tag">En tienda →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="pad" id="galeria">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow reveal">Portfolio</span>
+      <h2 class="reveal d1">Nuestros <span class="red">trabajos</span></h2>
+      <p class="reveal d2">Cortes reales de clientes reales. Síguenos en Instagram para no perderte ninguno.</p>
+    </div>
+    <div class="gal-grid">
+      <figure class="big reveal d1"><img src="assets/barber-glam-ad/post-4.jpg" data-lb alt="Corte Glamur Estudi"><figcaption><span class="ig-ico">◉</span> Mid fade</figcaption></figure>
+      <figure class="reveal d2"><img src="assets/barber-glam-ad/post-2.jpg" data-lb alt="Corte Glamur Estudi"><figcaption><span class="ig-ico">◉</span> Un buen cambio</figcaption></figure>
+      <figure class="reveal d3"><img src="assets/barber-glam-ad/post-6.jpg" data-lb alt="Corte Glamur Estudi"><figcaption><span class="ig-ico">◉</span> Half faded</figcaption></figure>
+      <figure class="reveal d2"><img src="assets/barber-glam-ad/post-9.jpg" data-lb alt="Corte Glamur Estudi"><figcaption><span class="ig-ico">◉</span> Fade niño</figcaption></figure>
+      <figure class="reveal d3"><img src="assets/barber-glam-ad/post-11.jpg" data-lb alt="Corte Glamur Estudi"><figcaption><span class="ig-ico">◉</span> Clásico</figcaption></figure>
+      <figure class="big reveal d1"><img src="assets/barber-glam-ad/post-5.jpg" data-lb alt="Corte Glamur Estudi"><figcaption><span class="ig-ico">◉</span> Consintiendo al peque</figcaption></figure>
+      <figure class="reveal d2"><img src="assets/barber-glam-ad/post-7.jpg" data-lb alt="Corte Glamur Estudi"><figcaption><span class="ig-ico">◉</span> Asesoría de estilo</figcaption></figure>
+      <figure class="reveal d3"><img src="assets/barber-glam-ad/post-12.jpg" data-lb alt="Corte Glamur Estudi"><figcaption><span class="ig-ico">◉</span> Clàssic</figcaption></figure>
+    </div>
+    <div style="text-align:center;margin-top:44px" class="reveal">
+      <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" class="btn btn-ghost">Ver más en Instagram →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="banner">
+  <div class="banner-bg"><img src="assets/barber-glam-ad/post-10.jpg" alt=""></div>
+  <div class="container banner-inner">
+    <h2 class="anton reveal">¿Listo para tu <span class="red">próximo corte?</span></h2>
+    <p class="reveal d1">Reserva tu cita online en segundos y deja el resto en nuestras manos. Te esperamos en Sant Julià.</p>
+    <a href="https://barberglamcita.site.agendapro.com/es" target="_blank" class="btn reveal d2">Reserva tu cita ahora</a>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="pad metrics">
+  <div class="container">
+    <div class="metric-row">
+      <div class="metric reveal d1"><b data-count="74">0</b><span>Trabajos publicados</span></div>
+      <div class="metric reveal d2"><b data-count="350">0</b><span>Seguidores en IG</span></div>
+      <div class="metric reveal d3"><b data-count="25" data-suffix="+">0</b><span>Años de oficio</span></div>
+      <div class="metric reveal d4"><b data-count="100" data-suffix="%">0</b><span>Productos premium</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="pad" id="contacto">
+  <div class="container contact-grid">
+    <div class="contact-info">
+      <span class="eyebrow reveal">Contacto</span>
+      <h2 class="reveal d1">Pásate por <span class="red">el estudio</span></h2>
+      <div class="info-row reveal d2"><div class="ic">📍</div><div><b>Dirección</b><span>C/ Doctor Palau, 25 PB Local · AD600 Sant Julià de Lòria, Andorra</span></div></div>
+      <div class="info-row reveal d3"><div class="ic">📲</div><div><b>Teléfono</b><a href="tel:+376869988">+376 869 988</a></div></div>
+      <div class="info-row reveal d4"><div class="ic">📅</div><div><b>Reservas online</b><a href="https://barberglamcita.site.agendapro.com/es" target="_blank">barberglamcita.site.agendapro.com</a></div></div>
+      <div class="info-row reveal d5"><div class="ic">◉</div><div><b>Instagram</b><a href="https://www.instagram.com/barber.glam.ad/" target="_blank">@barber.glam.ad</a></div></div>
+    </div>
+    <form class="form reveal d2" onsubmit="event.preventDefault();this.querySelector('.btn').textContent='¡Gracias! Te contactamos pronto';">
+      <label>Nombre</label>
+      <input type="text" placeholder="Tu nombre" required>
+      <label>Teléfono / Email</label>
+      <input type="text" placeholder="Cómo te contactamos" required>
+      <label>¿Qué necesitas?</label>
+      <textarea placeholder="Cuéntanos qué corte o servicio quieres..."></textarea>
+      <button class="btn" type="submit">Enviar mensaje</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#hero" class="logo"><span class="pole"></span>GLAMUR<b>·</b>ESTUDI</a>
+        <p>Barbería en Sant Julià de Lòria, Andorra. Cortes, fades, barba y asesoría de estilo. Real men go to real barbers. 💈</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/barber.glam.ad/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.1.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.1-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.1-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.1 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zM12 0C8.7 0 8.3 0 7 .1 5.7.1 4.8.3 4.1.6c-.8.3-1.4.7-2.1 1.4C1.3 2.7.9 3.3.6 4.1.3 4.8.1 5.7.1 7 0 8.3 0 8.7 0 12s0 3.7.1 5c0 1.3.2 2.2.5 2.9.3.8.7 1.4 1.4 2.1.7.7 1.3 1.1 2.1 1.4.7.3 1.6.5 2.9.5 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3 0 2.2-.2 2.9-.5.8-.3 1.4-.7 2.1-1.4.7-.7 1.1-1.3 1.4-2.1.3-.7.5-1.6.5-2.9.1-1.3.1-1.7.1-5s0-3.7-.1-5c0-1.3-.2-2.2-.5-2.9-.3-.8-.7-1.4-1.4-2.1-.7-.7-1.3-1.1-2.1-1.4-.7-.3-1.6-.5-2.9-.5C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zm0 10.2a4 4 0 110-8 4 4 0 010 8zm6.4-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg></a>
+          <a href="tel:+376869988" aria-label="Teléfono"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <a href="#sobre">El estudio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div>
+        <h4>Visítanos</h4>
+        <a href="https://maps.google.com/?q=C/+Doctor+Palau+25+Sant+Julià+de+Lòria" target="_blank">C/ Doctor Palau, 25 PB</a>
+        <a href="https://maps.google.com/?q=Sant+Julià+de+Lòria" target="_blank">AD600 Sant Julià, Andorra</a>
+        <a href="tel:+376869988">+376 869 988</a>
+        <a href="https://barberglamcita.site.agendapro.com/es" target="_blank">Reserva online</a>
+      </div>
+    </div>
+    <div class="copy">© <span id="year"></span> <span class="red">Glamur Estudi</span> · Barbería en Sant Julià de Lòria, Andorra · Hecho desde su Instagram 💈</div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb"><span class="x">×</span><img id="lbImg" src="" alt=""></div>
+
+<script>
+// year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// nav scroll
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40)});
+
+// burger
+const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+// reveal
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// counters
+const cio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target,t=+el.dataset.count,suf=el.dataset.suffix||'';let n=0;const step=Math.max(1,t/60);const tick=()=>{n+=step;if(n>=t){el.textContent=t+suf}else{el.textContent=Math.floor(n)+suf;requestAnimationFrame(tick)}};tick();cio.unobserve(el)}})},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// parallax hero
+const heroImg=document.querySelector('.hero-bg img');
+addEventListener('scroll',()=>{if(scrollY<800)heroImg.style.transform='translateY('+(scrollY*.25)+'px)'});
+
+// lightbox
+const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
+document.querySelectorAll('[data-lb]').forEach(img=>img.addEventListener('click',()=>{lbImg.src=img.src;lb.classList.add('open')}));
+lb.addEventListener('click',()=>lb.classList.remove('open'));
+</script>
+</body>
+</html>

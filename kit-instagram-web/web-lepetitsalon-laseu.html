@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Petit Salón · Estètica i Perruqueria · La Seu d'Urgell</title>
+<meta name="description" content="Le Petit Salón — estètica i perruqueria a La Seu d'Urgell. Maquillatge professional, tractaments facials, microneedling i molt més.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf4ec;
+    --cream-2:#f3e9dc;
+    --paper:#fffdfa;
+    --wine:#6e2440;
+    --wine-deep:#511730;
+    --wine-soft:#8a3556;
+    --gold:#c2a064;
+    --gold-light:#dcc391;
+    --rose:#d68fa0;
+    --ink:#3a2530;
+    --muted:#8a7682;
+    --line:rgba(110,36,64,.12);
+    --shadow:0 30px 80px -30px rgba(81,23,48,.45);
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Jost',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--cream);
+    line-height:1.6;overflow-x:hidden;font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--wine);color:#fff}
+  ::-webkit-scrollbar{width:11px}
+  ::-webkit-scrollbar-track{background:var(--cream-2)}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(var(--wine),var(--gold));border-radius:10px;border:3px solid var(--cream-2)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .serif{font-family:var(--serif)}
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;
+    font-weight:500;color:var(--gold);display:inline-block;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:22px 0;transition:.4s cubic-bezier(.2,.8,.2,1);
+  }
+  nav.scrolled{
+    padding:13px 0;background:rgba(250,244,236,.82);
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    box-shadow:0 1px 0 var(--line),0 18px 40px -30px rgba(81,23,48,.4);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:1.5rem;letter-spacing:.04em;color:var(--wine)}
+  .brand .mark{
+    width:38px;height:38px;border-radius:50%;flex:none;
+    background:radial-gradient(circle at 35% 30%,var(--gold-light),var(--gold));
+    display:grid;place-items:center;color:#fff;font-size:.95rem;font-weight:600;
+    box-shadow:0 6px 16px -6px var(--gold);font-family:var(--sans);
+  }
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);opacity:.75;transition:.3s;position:relative}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--wine);transition:.3s}
+  .nav-links a:hover{opacity:1}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{
+    padding:11px 22px;border:1px solid var(--wine);border-radius:40px;
+    color:var(--wine)!important;opacity:1!important;transition:.3s;
+  }
+  .nav-cta:hover{background:var(--wine);color:#fff!important}
+  .nav-cta::after{display:none!important}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+  .burger span{width:26px;height:2px;background:var(--wine);transition:.3s}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;
+    padding:140px 0 80px;overflow:hidden;
+  }
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
+  .blob.b1{width:520px;height:520px;background:radial-gradient(circle,rgba(214,143,160,.55),transparent 70%);top:-120px;right:-80px}
+  .blob.b2{width:460px;height:460px;background:radial-gradient(circle,rgba(194,160,100,.4),transparent 70%);bottom:-140px;left:-100px}
+  .hero-grid{
+    position:relative;z-index:2;display:grid;grid-template-columns:1fr 430px;
+    gap:70px;align-items:center;width:100%;
+  }
+  .hero-copy .eyebrow{margin-bottom:22px}
+  .hero-title{
+    font-family:var(--serif);font-weight:500;color:var(--wine-deep);
+    font-size:clamp(2.8rem,6vw,4.7rem);line-height:1.02;letter-spacing:-.01em;
+  }
+  .hero-title em{font-style:italic;color:var(--gold)}
+  .hero-sub{font-size:1.12rem;color:var(--ink);opacity:.8;max-width:430px;margin:26px 0 16px;font-weight:300}
+  .hero-loc{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .community{display:flex;gap:34px;margin:38px 0 34px;flex-wrap:wrap}
+  .community .c{display:flex;flex-direction:column}
+  .community .num{font-family:var(--serif);font-size:2.5rem;color:var(--wine);line-height:1}
+  .community .lbl{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{
+    padding:15px 32px;border-radius:42px;font-size:.84rem;letter-spacing:.14em;
+    text-transform:uppercase;font-weight:500;cursor:pointer;transition:.35s;border:1px solid transparent;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .btn-primary{background:var(--wine);color:#fff;box-shadow:0 16px 34px -16px var(--wine)}
+  .btn-primary:hover{background:var(--wine-deep);transform:translateY(-3px);box-shadow:0 22px 44px -16px var(--wine)}
+  .btn-ghost{border-color:var(--wine);color:var(--wine)}
+  .btn-ghost:hover{background:var(--wine);color:#fff}
+
+  /* ---------- INSTAGRAM CARD (the creative centerpiece) ---------- */
+  .ig-stage{position:relative;perspective:1600px}
+  .ig-card{
+    position:relative;background:var(--paper);border-radius:30px;
+    padding:30px 26px 24px;box-shadow:var(--shadow);
+    border:1px solid rgba(255,255,255,.7);
+    transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1);
+    overflow:hidden;
+  }
+  .ig-card::before{
+    content:"";position:absolute;inset:0;border-radius:30px;padding:1px;
+    background:linear-gradient(140deg,var(--gold-light),transparent 40%,transparent 60%,var(--rose));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+  }
+  .ig-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+  .ig-handle-row{display:flex;align-items:center;gap:7px;font-weight:500;font-size:.95rem;color:var(--ink)}
+  .ig-handle-row svg{width:15px;height:15px;opacity:.55}
+  .ig-live{display:flex;align-items:center;gap:7px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--wine-soft)}
+  .dot-pulse{width:8px;height:8px;border-radius:50%;background:#3ad07a;position:relative}
+  .dot-pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #3ad07a;animation:ping 1.8s infinite}
+  @keyframes ping{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+
+  .ig-profile{display:flex;gap:22px;align-items:center;margin-bottom:20px}
+  .avatar-ring{
+    position:relative;width:96px;height:96px;flex:none;border-radius:50%;padding:4px;
+    background:conic-gradient(from 0deg,var(--gold),var(--rose),var(--wine),var(--gold-light),var(--gold));
+    animation:spin 7s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .avatar-ring::before{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--paper)}
+  .avatar-ring img{position:relative;width:100%;height:100%;border-radius:50%;object-fit:cover;background:#fff;border:3px solid var(--paper)}
+  .ig-stats{display:flex;gap:6px;flex:1;text-align:center}
+  .ig-stats .st{flex:1}
+  .ig-stats .st b{display:block;font-family:var(--serif);font-size:1.45rem;color:var(--wine);line-height:1}
+  .ig-stats .st span{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .ig-name{display:flex;align-items:center;gap:8px;font-weight:600;font-size:1.06rem;margin-bottom:3px}
+  .verified{
+    width:19px;height:19px;flex:none;border-radius:50%;
+    background:linear-gradient(135deg,#4aa3ff,#1877f2);display:grid;place-items:center;
+    box-shadow:0 3px 8px -2px rgba(24,119,242,.6);
+  }
+  .verified svg{width:11px;height:11px;fill:#fff}
+  .ig-cat{font-size:.82rem;color:var(--gold);font-weight:500;letter-spacing:.02em;margin-bottom:8px}
+  .ig-bio{font-size:.86rem;color:var(--ink);opacity:.82;line-height:1.5}
+  .ig-bio a{color:var(--wine);font-weight:500}
+
+  .ig-highlights{display:flex;gap:16px;margin:18px 0 4px;overflow-x:auto;padding-bottom:4px}
+  .hl{display:flex;flex-direction:column;align-items:center;gap:6px;flex:none}
+  .hl-ring{
+    width:54px;height:54px;border-radius:50%;padding:2px;
+    background:linear-gradient(135deg,var(--gold),var(--rose));
+    display:grid;place-items:center;
+  }
+  .hl-ring div{width:100%;height:100%;border-radius:50%;background:var(--cream-2);display:grid;place-items:center;font-size:1.2rem}
+  .hl span{font-size:.62rem;letter-spacing:.04em;color:var(--muted)}
+
+  .ig-actions{display:flex;gap:10px;margin:18px 0}
+  .ig-btn{
+    flex:1;padding:9px;border-radius:10px;text-align:center;font-size:.8rem;font-weight:500;
+    letter-spacing:.04em;cursor:pointer;transition:.3s;
+  }
+  .ig-btn.solid{background:var(--wine);color:#fff}
+  .ig-btn.solid:hover{background:var(--wine-deep)}
+  .ig-btn.soft{background:var(--cream-2);color:var(--ink)}
+  .ig-btn.soft:hover{background:var(--gold-light)}
+  .ig-btn.icon{flex:none;width:38px;background:var(--cream-2);display:grid;place-items:center}
+  .ig-btn.icon:hover{background:var(--gold-light)}
+  .ig-btn.icon svg{width:16px;height:16px}
+
+  .ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;border-radius:14px;overflow:hidden}
+  .ig-grid .cell{position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer}
+  .ig-grid .cell img{width:100%;height:100%;object-fit:cover;transition:.6s}
+  .ig-grid .cell:hover img{transform:scale(1.12)}
+  .ig-grid .cell::after{
+    content:"♥";position:absolute;inset:0;display:grid;place-items:center;
+    color:#fff;font-size:1.6rem;background:rgba(81,23,48,.35);opacity:0;transition:.3s;
+  }
+  .ig-grid .cell:hover::after{opacity:1}
+  .ig-foot{text-align:center;margin-top:16px;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .ig-foot a{color:var(--wine);font-weight:500}
+
+  .floaty{position:absolute;background:var(--paper);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow);z-index:3;display:flex;align-items:center;gap:10px;font-size:.8rem}
+  .floaty .em{font-size:1.3rem}
+  .floaty.f1{top:-22px;left:-30px;animation:float1 5s ease-in-out infinite}
+  .floaty.f2{bottom:30px;right:-34px;animation:float2 6s ease-in-out infinite}
+  @keyframes float1{50%{transform:translateY(-14px)}}
+  @keyframes float2{50%{transform:translateY(12px)}}
+
+  /* ---------- SECTIONS ---------- */
+  section{position:relative}
+  .sec{padding:110px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 60px}
+  .sec-head .eyebrow{margin-bottom:16px}
+  .sec-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.1rem,4.4vw,3.3rem);color:var(--wine-deep);line-height:1.08}
+  .sec-head h2 em{font-style:italic;color:var(--gold)}
+  .sec-head p{margin-top:18px;color:var(--ink);opacity:.78;font-size:1.05rem}
+
+  /* about */
+  .about{background:var(--paper)}
+  .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+  .about-copy h3{font-family:var(--serif);font-size:2rem;color:var(--wine);margin-bottom:20px;font-weight:500}
+  .about-copy p{color:var(--ink);opacity:.82;margin-bottom:18px}
+  .pills{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .pill{padding:10px 20px;border:1px solid var(--line);border-radius:40px;font-size:.82rem;letter-spacing:.04em;color:var(--wine);background:var(--cream);transition:.3s}
+  .pill:hover{background:var(--wine);color:#fff;border-color:var(--wine)}
+  .about-photos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .about-photos img{width:100%;height:100%;object-fit:cover;border-radius:18px;box-shadow:var(--shadow)}
+  .about-photos img:first-child{grid-row:span 2;height:100%}
+
+  /* services */
+  .serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .serv{
+    background:var(--paper);border-radius:22px;padding:38px 30px;border:1px solid var(--line);
+    transition:.4s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden;
+  }
+  .serv::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),var(--rose));transform:scaleX(0);transform-origin:left;transition:.4s}
+  .serv:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+  .serv:hover::before{transform:scaleX(1)}
+  .serv .ico{font-size:2rem;margin-bottom:18px}
+  .serv h3{font-family:var(--serif);font-size:1.5rem;color:var(--wine);margin-bottom:12px;font-weight:600}
+  .serv p{font-size:.92rem;color:var(--ink);opacity:.78}
+
+  /* gallery */
+  .gallery{background:linear-gradient(180deg,var(--cream),var(--cream-2))}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .gal-grid .g{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:1;cursor:pointer;box-shadow:0 14px 34px -22px rgba(81,23,48,.5)}
+  .gal-grid .g.tall{grid-row:span 2;aspect-ratio:auto}
+  .gal-grid .g img{width:100%;height:100%;object-fit:cover;transition:.7s cubic-bezier(.2,.8,.2,1)}
+  .gal-grid .g:hover img{transform:scale(1.1)}
+  .gal-grid .g::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(81,23,48,.55));opacity:0;transition:.4s}
+  .gal-grid .g:hover::after{opacity:1}
+  .gal-tag{position:absolute;left:14px;bottom:12px;color:#fff;font-size:.78rem;letter-spacing:.1em;opacity:0;transform:translateY(8px);transition:.4s;z-index:2}
+  .gal-grid .g:hover .gal-tag{opacity:1;transform:none}
+
+  /* metrics */
+  .metrics{background:var(--wine-deep);color:#fff}
+  .met-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+  .met .n{font-family:var(--serif);font-size:clamp(2.6rem,5vw,3.6rem);color:var(--gold-light);line-height:1}
+  .met .l{margin-top:10px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;opacity:.8}
+  .metrics .sec-head h2{color:#fff}
+  .metrics .sec-head h2 em{color:var(--gold-light)}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .ct-info h3{font-family:var(--serif);font-size:1.8rem;color:var(--wine);margin-bottom:8px;font-weight:500}
+  .ct-line{display:flex;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .ct-line .ci{width:46px;height:46px;border-radius:50%;background:var(--cream-2);display:grid;place-items:center;flex:none;font-size:1.2rem}
+  .ct-line .ct-t{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .ct-line .ct-v{font-size:1.02rem;color:var(--ink)}
+  form{background:var(--paper);padding:36px;border-radius:22px;box-shadow:var(--shadow)}
+  form label{display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:16px 0 7px}
+  form label:first-child{margin-top:0}
+  form input,form textarea{
+    width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:12px;
+    font-family:var(--sans);font-size:.95rem;background:var(--cream);color:var(--ink);transition:.3s;
+  }
+  form input:focus,form textarea:focus{outline:none;border-color:var(--wine);background:#fff}
+  form button{margin-top:24px;width:100%;border:none}
+
+  /* footer */
+  footer{background:var(--wine-deep);color:rgba(255,255,255,.8);padding:60px 0 30px;text-align:center}
+  .foot-brand{font-family:var(--serif);font-size:1.9rem;color:#fff;margin-bottom:8px}
+  .foot-socials{display:flex;justify-content:center;gap:18px;margin:26px 0}
+  .foot-socials a{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;transition:.3s}
+  .foot-socials a:hover{background:var(--gold);border-color:var(--gold);transform:translateY(-3px)}
+  .foot-socials svg{width:18px;height:18px;fill:#fff}
+  .foot-copy{font-size:.78rem;letter-spacing:.08em;opacity:.6;margin-top:18px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(40px);transition:.9s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* responsive */
+  @media(max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:50px}
+    .ig-stage{max-width:430px;margin:0 auto;width:100%}
+    .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+    .serv-grid{grid-template-columns:repeat(2,1fr)}
+    .gal-grid{grid-template-columns:repeat(3,1fr)}
+    .met-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}
+  }
+  @media(max-width:640px){
+    .nav-links{
+      position:fixed;top:0;right:0;height:100vh;width:75%;max-width:300px;
+      flex-direction:column;justify-content:center;gap:30px;background:var(--paper);
+      transform:translateX(100%);transition:.4s;box-shadow:var(--shadow);
+    }
+    .nav-links.open{transform:none}
+    .burger{display:flex;z-index:101}
+    .serv-grid,.gal-grid{grid-template-columns:1fr 1fr}
+    .floaty{display:none}
+    .community{gap:24px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="brand"><span class="mark">LP</span> Le Petit Salón</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">El Saló</a>
+      <a href="#serveis">Serveis</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#contacte" class="nav-cta">Reserva</a>
+    </div>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"><div class="blob b1"></div><div class="blob b2"></div></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">Estètica · Perruqueria · La Seu d'Urgell</span>
+        <h1 class="hero-title">La teva bellesa<br>natural, <em>realçada</em><br>amb cura.</h1>
+        <p class="hero-sub">Maquillatge professional, tractaments facials i cura integral en un espai pensat per a tu. Brilla amb confiança.</p>
+        <span class="hero-loc">📍 Av. Salòria, 99 · La Seu d'Urgell</span>
+        <div class="community">
+          <div class="c"><span class="num" data-count="1715">0</span><span class="lbl">Comunitat IG</span></div>
+          <div class="c"><span class="num" data-count="283">0</span><span class="lbl">Publicacions</span></div>
+          <div class="c"><span class="num" data-count="100" data-suffix="%">0</span><span class="lbl">Cura artesanal</span></div>
+        </div>
+        <div class="hero-btns">
+          <a href="#contacte" class="btn btn-primary">Demana cita</a>
+          <a href="#serveis" class="btn btn-ghost">Veure serveis</a>
+        </div>
+      </div>
+
+      <!-- INSTAGRAM CARD -->
+      <div class="ig-stage reveal">
+        <div class="floaty f1"><span class="em">💄</span> Maquillatge de núvia</div>
+        <div class="floaty f2"><span class="em">✨</span> Pell radiant</div>
+        <div class="ig-card" id="igCard">
+          <div class="ig-top">
+            <div class="ig-handle-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              lepetitsalon_laseu
+            </div>
+            <div class="ig-live"><span class="dot-pulse"></span> En línia</div>
+          </div>
+
+          <div class="ig-profile">
+            <div class="avatar-ring"><img src="assets/instagram/profile.jpg" alt="Le Petit Salón"></div>
+            <div class="ig-stats">
+              <div class="st"><b>283</b><span>publicacions</span></div>
+              <div class="st"><b>1.715</b><span>seguidors</span></div>
+              <div class="st"><b>1.111</b><span>seguint</span></div>
+            </div>
+          </div>
+
+          <div class="ig-name">Le Petit Salón
+            <span class="verified" title="Verificat"><svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.4-1.4z"/></svg></span>
+          </div>
+          <div class="ig-cat">Estètica i perruqueria</div>
+          <div class="ig-bio">Realçant la teva bellesa natural a La Seu d'Urgell 🌿<br>Maquillatge · Facials · Microneedling · Cursos<br><a href="https://www.instagram.com/lepetitsalon_laseu/" target="_blank">@lepetitsalon_laseu</a></div>
+
+          <div class="ig-highlights">
+            <div class="hl"><div class="hl-ring"><div>💄</div></div><span>Maquillatge</span></div>
+            <div class="hl"><div class="hl-ring"><div>🌸</div></div><span>Facials</span></div>
+            <div class="hl"><div class="hl-ring"><div>✨</div></div><span>Microneedling</span></div>
+            <div class="hl"><div class="hl-ring"><div>🎁</div></div><span>Val Regal</span></div>
+            <div class="hl"><div class="hl-ring"><div>🎓</div></div><span>Cursos</span></div>
+          </div>
+
+          <div class="ig-actions">
+            <a href="https://www.instagram.com/lepetitsalon_laseu/" target="_blank" class="ig-btn solid">Seguir</a>
+            <a href="#contacte" class="ig-btn soft">Missatge</a>
+            <a href="mailto:lepetitsalonseu@gmail.com" class="ig-btn icon" title="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#6e2440" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 6l8 6 8-6"/></svg>
+            </a>
+          </div>
+
+          <div class="ig-grid">
+            <div class="cell"><img src="assets/instagram/post-1.jpg" alt="post"></div>
+            <div class="cell"><img src="assets/instagram/post-2.jpg" alt="post"></div>
+            <div class="cell"><img src="assets/instagram/post-3.jpg" alt="post"></div>
+            <div class="cell"><img src="assets/instagram/post-4.jpg" alt="post"></div>
+            <div class="cell"><img src="assets/instagram/post-5.jpg" alt="post"></div>
+            <div class="cell"><img src="assets/instagram/post-6.jpg" alt="post"></div>
+          </div>
+          <div class="ig-foot">Segueix-nos a <a href="https://www.instagram.com/lepetitsalon_laseu/" target="_blank">@lepetitsalon_laseu</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="sec about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow">El nostre saló</span>
+        <h3>Un espai dedicat a la teva cura</h3>
+        <p>A Le Petit Salón ens dediquem a realçar la teva bellesa natural amb tractaments d'estètica i perruqueria pensats per a cada persona. Des del maquillatge professional fins als tractaments facials més avançats.</p>
+        <p>Treballem amb cura, professionalitat i una atenció propera al cor de La Seu d'Urgell, perquè surtis sentint-te radiant i amb confiança.</p>
+        <div class="pills">
+          <span class="pill">Maquillatge professional</span>
+          <span class="pill">Tractaments facials</span>
+          <span class="pill">Microneedling</span>
+          <span class="pill">Neteja facial</span>
+          <span class="pill">Perruqueria</span>
+          <span class="pill">Cursos d'automaquillatge</span>
+        </div>
+      </div>
+      <div class="about-photos reveal">
+        <img src="assets/instagram/post-7.jpg" alt="Le Petit Salón">
+        <img src="assets/instagram/post-9.jpg" alt="Le Petit Salón">
+        <img src="assets/instagram/post-11.jpg" alt="Le Petit Salón">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec" id="serveis">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Els nostres serveis</span>
+      <h2>Cura <em>integral</em> per a tu</h2>
+      <p>Serveis professionals d'estètica i perruqueria adaptats a cada moment i a cada persona.</p>
+    </div>
+    <div class="serv-grid">
+      <div class="serv reveal"><div class="ico">💄</div><h3>Maquillatge</h3><p>Maquillatge professional per a núvies, esdeveniments, nit i cap d'any. Realça la teva bellesa per a cada ocasió especial.</p></div>
+      <div class="serv reveal"><div class="ico">🌸</div><h3>Tractaments facials</h3><p>Neteja facial professional i tractaments per cuidar la pell del rostre, exposada diàriament a la contaminació.</p></div>
+      <div class="serv reveal"><div class="ico">✨</div><h3>Microneedling</h3><p>DermaRoller: sistema de micropunció facial que activa de forma instantània i natural la regeneració de la pell.</p></div>
+      <div class="serv reveal"><div class="ico">💇‍♀️</div><h3>Perruqueria</h3><p>Servei complet de perruqueria per cuidar i transformar el teu cabell amb les mans dels nostres professionals.</p></div>
+      <div class="serv reveal"><div class="ico">🎓</div><h3>Cursos d'automaquillatge</h3><p>Aprèn a maquillar-te tu mateixa amb les nostres classes. Tècniques per a tot tipus de pell i mirada.</p></div>
+      <div class="serv reveal"><div class="ico">🎁</div><h3>Val Regal</h3><p>Regala benestar i bellesa en qualsevol moment de l'any. El detall perfecte per a algú especial.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="sec gallery" id="galeria">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">El nostre treball</span>
+      <h2>Moments de <em>bellesa</em></h2>
+      <p>Una mostra real del que compartim cada dia al nostre Instagram.</p>
+    </div>
+    <div class="gal-grid">
+      <div class="g tall reveal"><img src="assets/instagram/post-1.jpg" alt="treball"><span class="gal-tag">Tractament facial</span></div>
+      <div class="g reveal"><img src="assets/instagram/post-2.jpg" alt="treball"><span class="gal-tag">Bellesa natural</span></div>
+      <div class="g reveal"><img src="assets/instagram/post-4.jpg" alt="treball"><span class="gal-tag">Resultat</span></div>
+      <div class="g reveal"><img src="assets/instagram/post-5.jpg" alt="treball"><span class="gal-tag">Maquillatge</span></div>
+      <div class="g reveal"><img src="assets/instagram/post-6.jpg" alt="treball"><span class="gal-tag">Cabell</span></div>
+      <div class="g tall reveal"><img src="assets/instagram/post-8.jpg" alt="treball"><span class="gal-tag">Detall</span></div>
+      <div class="g reveal"><img src="assets/instagram/post-10.jpg" alt="treball"><span class="gal-tag">Estètica</span></div>
+      <div class="g reveal"><img src="assets/instagram/post-12.jpg" alt="treball"><span class="gal-tag">Le Petit Salón</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="sec metrics">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" style="color:var(--gold-light)">La nostra comunitat</span>
+      <h2>Bellesa que <em>connecta</em></h2>
+    </div>
+    <div class="met-grid">
+      <div class="met reveal"><div class="n" data-count="1715">0</div><div class="l">Seguidors a Instagram</div></div>
+      <div class="met reveal"><div class="n" data-count="283">0</div><div class="l">Publicacions compartides</div></div>
+      <div class="met reveal"><div class="n" data-count="6">0</div><div class="l">Serveis professionals</div></div>
+      <div class="met reveal"><div class="n" data-count="1">0</div><div class="l">Saló al cor de La Seu</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contacte">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Parlem</span>
+      <h2>Demana la teva <em>cita</em></h2>
+      <p>Escriu-nos i et trobarem el millor moment per cuidar-te.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="ct-info reveal">
+        <h3>Le Petit Salón</h3>
+        <p style="opacity:.78;margin-bottom:10px">Estètica i perruqueria · La Seu d'Urgell</p>
+        <div class="ct-line"><div class="ci">📍</div><div><div class="ct-t">Adreça</div><div class="ct-v">Av. Salòria, 99 · La Seu d'Urgell</div></div></div>
+        <a class="ct-line" href="tel:+34973802792"><div class="ci">📞</div><div><div class="ct-t">Telèfon</div><div class="ct-v">973 80 27 92</div></div></a>
+        <a class="ct-line" href="mailto:lepetitsalonseu@gmail.com"><div class="ci">✉️</div><div><div class="ct-t">Email</div><div class="ct-v">lepetitsalonseu@gmail.com</div></div></a>
+        <a class="ct-line" href="https://www.instagram.com/lepetitsalon_laseu/" target="_blank"><div class="ci">📸</div><div><div class="ct-t">Instagram</div><div class="ct-v">@lepetitsalon_laseu</div></div></a>
+      </div>
+      <form class="reveal" onsubmit="event.preventDefault();this.querySelector('button').textContent='Gràcies! Et contactarem aviat ✨'">
+        <label>El teu nom</label>
+        <input type="text" required placeholder="Com et dius?">
+        <label>Email o telèfon</label>
+        <input type="text" required placeholder="Com et trobem?">
+        <label>Què t'agradaria?</label>
+        <textarea rows="4" placeholder="Maquillatge, tractament facial, perruqueria..."></textarea>
+        <button type="submit" class="btn btn-primary">Enviar sol·licitud</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">Le Petit Salón</div>
+    <p style="opacity:.7">Estètica i perruqueria · La Seu d'Urgell</p>
+    <div class="foot-socials">
+      <a href="https://www.instagram.com/lepetitsalon_laseu/" target="_blank" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg>
+      </a>
+      <a href="mailto:lepetitsalonseu@gmail.com" title="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 6l8 6 8-6"/></svg>
+      </a>
+      <a href="tel:+34973802792" title="Telèfon">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 013 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1z"/></svg>
+      </a>
+    </div>
+    <p class="foot-copy">© <span id="yr"></span> Le Petit Salón · La Seu d'Urgell · Tots els drets reservats</p>
+  </div>
+</footer>
+
+<script>
+  // nav scroll
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+  // burger
+  const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
+  burger.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+  // year
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  // reveal
+  const io=new IntersectionObserver((es)=>{es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);io.unobserve(e.target)}})},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // counters
+  function animate(el){
+    const target=+el.dataset.count, suffix=el.dataset.suffix||'', dur=1500, t0=performance.now();
+    function tick(now){
+      const p=Math.min((now-t0)/dur,1), val=Math.floor(p*target);
+      el.textContent=val.toLocaleString('ca-ES')+suffix;
+      if(p<1)requestAnimationFrame(tick); else el.textContent=target.toLocaleString('ca-ES')+suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+  const cio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){animate(e.target);cio.unobserve(e.target)}})},{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+  // 3D tilt on IG card
+  const card=document.getElementById('igCard');
+  const stage=card.closest('.ig-stage');
+  stage.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`rotateY(${x*7}deg) rotateX(${-y*7}deg) translateY(-4px)`;
+  });
+  stage.addEventListener('mouseleave',()=>card.style.transform='');
+
+  // parallax blobs
+  addEventListener('scroll',()=>{
+    const y=scrollY;
+    document.querySelector('.b1').style.transform=`translateY(${y*.15}px)`;
+    document.querySelector('.b2').style.transform=`translateY(${y*-.1}px)`;
+  });
+</script>
+</body>
+</html>

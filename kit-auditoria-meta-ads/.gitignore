@@ -1,0 +1,16 @@
+# Secretos — NUNCA subir
+secrets.env
+*.env
+
+# Artefactos temporales de despliegue Netlify
+deploy_create.json
+deploy_status.json
+deploy_upload.json
+netlify_sites.json
+site_info.json
+
+# Dependencias y sistema
+node_modules/
+.claude/
+.DS_Store
+Thumbs.db

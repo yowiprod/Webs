@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIA Wellness — Centro de bienestar y belleza en Andorra</title>
+<meta name="description" content="MIA Wellness, centro de bienestar y belleza en Sant Julià de Lòria, Andorra. Quiropraxia, peluquería, uñas, skincare, depilación láser y tratamientos corporales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f6f1e9;
+    --cream-2:#efe7da;
+    --sand:#e7dccb;
+    --ink:#33342c;
+    --ink-soft:#5f6357;
+    --sage:#8a9a7b;
+    --sage-d:#6f8062;
+    --gold:#b89b5e;
+    --gold-d:#a3863f;
+    --white:#fffdf9;
+    --line:rgba(51,52,44,.12);
+    --radius:18px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Jost',system-ui,sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.serif{font-family:'Cormorant Garamond',serif;line-height:1.1;font-weight:600}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--sage);color:#fff}
+
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:var(--cream-2)}
+  ::-webkit-scrollbar-thumb{background:var(--sage);border-radius:10px;border:3px solid var(--cream-2)}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+
+  /* Barra de progreso de scroll */
+  #scrollProgress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--sage),var(--gold));z-index:60;transition:width .08s linear}
+
+  /* NAV */
+  header{position:fixed;top:0;left:0;width:100%;z-index:50;transition:.35s}
+  header.scrolled{background:rgba(246,241,233,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:78px;max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  .logo{font-family:'Cormorant Garamond';font-weight:700;font-size:1.55rem;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
+  .logo .mark{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--gold-d);font-weight:700}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{color:var(--ink-soft);font-size:.93rem;font-weight:400;letter-spacing:.04em;transition:.2s;text-transform:uppercase}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a.cta{background:var(--sage);color:#fff;padding:11px 22px;border-radius:999px;letter-spacing:.06em;transition:.25s;text-transform:none;font-weight:500}
+  .nav-links a.cta:hover{background:var(--sage-d);transform:translateY(-2px);box-shadow:0 10px 26px rgba(138,154,123,.4)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0}
+  .burger span{width:26px;height:1.5px;background:var(--ink);transition:.3s}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(60% 80% at 80% 20%,rgba(184,155,94,.16),transparent 60%),
+    radial-gradient(70% 70% at 10% 90%,rgba(138,154,123,.18),transparent 60%);z-index:0}
+  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+  .hero-copy .kicker{text-transform:uppercase;letter-spacing:.32em;font-size:.78rem;color:var(--gold-d);margin-bottom:24px;font-weight:500}
+  .hero h1{font-size:clamp(3rem,7vw,5.6rem);font-weight:600;letter-spacing:-.01em}
+  .hero h1 em{font-style:italic;color:var(--sage-d)}
+  .hero p.sub{font-size:clamp(1.05rem,2vw,1.25rem);color:var(--ink-soft);max-width:46ch;margin:26px 0 38px;font-weight:300}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{padding:15px 32px;border-radius:999px;font-family:'Jost';font-weight:500;font-size:.98rem;letter-spacing:.04em;transition:.28s;cursor:pointer;border:0;display:inline-block}
+  .btn-primary{background:var(--sage);color:#fff}
+  .btn-primary:hover{background:var(--sage-d);transform:translateY(-3px);box-shadow:0 14px 36px rgba(138,154,123,.4)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--cream);transform:translateY(-3px)}
+  /* hero visual placeholder */
+  .hero-visual{position:relative;height:520px;border-radius:240px 240px 24px 24px;overflow:hidden;background:
+    linear-gradient(160deg,var(--sand),var(--cream-2));
+    border:1px solid var(--line);display:flex;align-items:center;justify-content:center;box-shadow:0 30px 80px rgba(51,52,44,.12)}
+  .hero-visual img{width:100%;height:100%;object-fit:cover;display:block}
+  .floaty{position:absolute;width:130px;height:130px;border-radius:50%;border:1px solid var(--gold);opacity:.4;animation:float 8s ease-in-out infinite}
+  .floaty.f1{top:30px;left:-30px}
+  .floaty.f2{bottom:20px;right:-20px;width:90px;height:90px;animation-delay:-3s;border-color:var(--sage)}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+
+  /* SECTION */
+  section.block{position:relative;z-index:1;padding:120px 0}
+  .center{text-align:center;max-width:760px;margin:0 auto}
+  .eyebrow{text-transform:uppercase;letter-spacing:.3em;font-size:.78rem;font-weight:500;color:var(--gold-d);margin-bottom:18px}
+  .sec-title{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:600;line-height:1.08}
+  .sec-title em{font-style:italic;color:var(--sage-d)}
+  .sec-lead{color:var(--ink-soft);font-size:1.12rem;margin-top:22px;font-weight:300}
+  .divider{width:60px;height:1px;background:var(--gold);margin:26px auto;position:relative}
+  .divider::before{content:"";position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:var(--gold)}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;margin-top:30px}
+  .about-visual{height:440px;border-radius:24px;background:linear-gradient(150deg,var(--cream-2),var(--sand));border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);position:relative;overflow:hidden}
+  .about-visual img{width:100%;height:100%;object-fit:cover;display:block}
+  .about-text h2{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:20px}
+  .about-text p{color:var(--ink-soft);margin-bottom:16px;font-weight:300}
+  .about-text .feats{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+  .about-text .feats span{background:var(--white);border:1px solid var(--line);padding:9px 18px;border-radius:999px;font-size:.88rem;color:var(--ink)}
+
+  /* SERVICES */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);transition:.35s;position:relative;overflow:hidden}
+  .card::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.4s;z-index:2}
+  .card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(51,52,44,.12)}
+  .card:hover::after{transform:scaleX(1)}
+  .card-img{height:200px;overflow:hidden;position:relative;background:linear-gradient(150deg,var(--cream-2),var(--sand))}
+  .card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+  .card:hover .card-img img{transform:scale(1.07)}
+  .card-img.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink-soft)}
+  .card-img.ph .emoji{font-size:2.6rem;opacity:.85}
+  .card-img.ph small{font-size:.7rem;letter-spacing:.05em;margin-top:8px;opacity:.7;text-transform:uppercase}
+  .card-body{padding:28px 30px 32px}
+  .card h3{font-size:1.55rem;margin-bottom:10px}
+  .card p{color:var(--ink-soft);font-size:.97rem;font-weight:300}
+  .card .more{display:inline-block;margin-top:18px;font-size:.84rem;letter-spacing:.06em;color:var(--sage-d);text-transform:uppercase;font-weight:500}
+
+  .price-note{text-align:center;margin-top:48px;color:var(--ink-soft);font-size:1.02rem}
+  .price-note a{color:var(--sage-d);font-weight:500;border-bottom:1px solid var(--sage)}
+
+  /* GALERIA */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px;margin-top:54px}
+  .gallery figure{overflow:hidden;border-radius:14px;position:relative;border:1px solid var(--line)}
+  .gallery figure img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+  .gallery figure:hover img{transform:scale(1.08)}
+  .gallery figure.tall{grid-row:span 2}
+  .gallery figure.wide{grid-column:span 2}
+  @media (max-width:920px){.gallery{grid-template-columns:repeat(2,1fr)}.gallery figure.wide{grid-column:span 2}}
+  @media (max-width:640px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.gallery figure.wide,.gallery figure.tall{grid-column:auto;grid-row:auto}}
+
+  /* HOURS + LOCATION */
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:50px}
+  .panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:42px;box-shadow:0 14px 40px rgba(51,52,44,.05)}
+  .panel h3{font-size:1.9rem;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+  .panel h3 .e{font-size:1.3rem}
+  .hours-list{list-style:none}
+  .hours-list li{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px dashed var(--line);font-size:1rem}
+  .hours-list li:last-child{border-bottom:0}
+  .hours-list li.today{color:var(--sage-d);font-weight:500}
+  .hours-list li .day{text-transform:capitalize;font-weight:400}
+  .hours-list li .closed{color:#b06a5e}
+  .map-box{height:230px;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin-bottom:22px;background:var(--cream-2)}
+  .map-box iframe{width:100%;height:100%;border:0;filter:grayscale(.2) contrast(.95)}
+  .addr{color:var(--ink-soft);font-weight:300;margin-bottom:8px}
+  .addr b{font-weight:500;color:var(--ink);font-family:'Jost'}
+
+  /* CONTACT / CTA */
+  .cta-band{background:linear-gradient(150deg,var(--sage),var(--sage-d));color:#fff;border-radius:28px;padding:70px 40px;text-align:center;position:relative;overflow:hidden}
+  .cta-band::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;border:1px solid rgba(255,255,255,.2);top:-120px;right:-80px}
+  .cta-band::after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;border:1px solid rgba(255,255,255,.18);bottom:-90px;left:-50px}
+  .cta-band h2{font-size:clamp(2rem,5vw,3.2rem);position:relative;z-index:1}
+  .cta-band p{position:relative;z-index:1;margin:18px auto 34px;max-width:48ch;color:rgba(255,255,255,.9);font-weight:300}
+  .cta-band .btn-ig{background:#fff;color:var(--sage-d);position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px}
+  .cta-band .btn-ig:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.2)}
+
+  /* FOOTER */
+  footer{padding:60px 0 40px;border-top:1px solid var(--line);margin-top:120px}
+  .foot{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px}
+  .foot .col h4{font-family:'Jost';font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;color:var(--gold-d);margin-bottom:14px}
+  .foot .col p,.foot .col a{display:block;color:var(--ink-soft);font-size:.95rem;font-weight:300;margin-bottom:6px}
+  .foot .col a:hover{color:var(--sage-d)}
+  .copy{text-align:center;color:var(--ink-soft);font-size:.84rem;margin-top:44px;font-weight:300}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(38px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}.reveal.d5{transition-delay:.5s}
+
+  @media (max-width:920px){
+    .hero .wrap,.about-grid,.cards,.info-grid{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr 1fr}
+    .hero-visual{height:380px;order:-1}
+    .about-visual{height:300px}
+  }
+  @media (max-width:640px){
+    .cards{grid-template-columns:1fr}
+    .nav-links{position:fixed;inset:78px 0 auto 0;background:rgba(246,241,233,.98);backdrop-filter:blur(12px);flex-direction:column;padding:30px;gap:22px;align-items:flex-start;transform:translateY(-140%);transition:.4s;border-bottom:1px solid var(--line)}
+    .nav-links.open{transform:none}
+    .burger{display:flex}
+  }
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.floaty{animation:none}*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="scrollProgress"></div>
+
+<header id="header">
+  <nav>
+    <a href="#inicio" class="logo"><span class="mark">M</span>MIA Wellness</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#sobre">El centro</a>
+      <a href="#horario">Horario</a>
+      <a href="#ubicacion">Dónde estamos</a>
+      <a href="https://instagram.com/mia_wellness_andorra" target="_blank" rel="noopener" class="cta">Reserva por Instagram</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="kicker reveal">Wellness &amp; Belleza · Andorra</div>
+        <h1 class="reveal d1">Tu momento de <em>cuidarte</em>, mente y cuerpo.</h1>
+        <p class="sub reveal d2">Quiropraxia, belleza y tratamientos en un solo lugar. En MIA Wellness cuidamos de ti de la cabeza a los pies, con un trato cercano y personalizado.</p>
+        <div class="hero-cta reveal d3">
+          <a href="https://instagram.com/mia_wellness_andorra" target="_blank" rel="noopener" class="btn btn-primary">Reserva tu cita</a>
+          <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal d2">
+        <div class="floaty f1"></div>
+        <div class="floaty f2"></div>
+        <img src="assets/hero-main.jpg" alt="Tratamiento facial en MIA Wellness" data-parallax="0.14" data-zoom="0.22">
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="block" id="sobre">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-visual reveal">
+          <img src="assets/centro-main.jpg" alt="Tratamiento en MIA Wellness" data-parallax="0.05">
+        </div>
+        <div class="about-text">
+          <div class="eyebrow reveal">El centro</div>
+          <h2 class="reveal d1">Un espacio donde el <em>bienestar</em> y la belleza se encuentran.</h2>
+          <p class="reveal d2">MIA Wellness es tu centro de bienestar y belleza en Sant Julià de Lòria. Aquí reunimos cuidado corporal, estética y salud en un mismo lugar, para que cuidarte sea fácil y placentero.</p>
+          <p class="reveal d2">Desde quiropraxia hasta peluquería, uñas, skincare o depilación láser: cada tratamiento se realiza con dedicación y atención al detalle.</p>
+          <div class="feats reveal d3">
+            <span>✦ Trato personalizado</span>
+            <span>✦ Profesionales cualificados</span>
+            <span>✦ Ambiente acogedor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="block" id="servicios" style="background:var(--cream-2)">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow reveal">Servicios</div>
+        <h2 class="sec-title reveal d1">Todo lo que tu cuerpo <em>necesita</em></h2>
+        <div class="divider reveal d1"></div>
+        <p class="sec-lead reveal d2">Una gama completa de tratamientos de bienestar y belleza, pensados para cuidarte por dentro y por fuera.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card reveal">
+          <div class="card-img"><img src="assets/stock-quiropraxia.jpg" alt="Sesión de quiropraxia" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Quiropraxia</h3>
+            <p>Tratamientos para aliviar tensiones, mejorar la postura y recuperar tu equilibrio físico.</p>
+            <span class="more">Reserva por Instagram →</span>
+          </div>
+        </div>
+        <div class="card reveal d1">
+          <div class="card-img"><img src="assets/stock-peluqueria.jpg" alt="Peluquería en salón" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Peluquería</h3>
+            <p>Mechas, color, corte y cuidado del cabello. También arreglo de barba.</p>
+            <span class="more">Reserva por Instagram →</span>
+          </div>
+        </div>
+        <div class="card reveal d2">
+          <div class="card-img"><img src="assets/stock-unas.jpg" alt="Manicura" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Uñas</h3>
+            <p>Manicura y pedicura para unas manos y pies siempre impecables.</p>
+            <span class="more">Reserva por Instagram →</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <div class="card-img"><img src="assets/post-1.jpg" alt="Tratamiento facial Indiba" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Skincare facial</h3>
+            <p>Tratamientos faciales para nutrir, limpiar y revitalizar tu piel.</p>
+            <span class="more">Reserva por Instagram →</span>
+          </div>
+        </div>
+        <div class="card reveal d1">
+          <div class="card-img"><img src="assets/stock-laser.jpg" alt="Depilación láser" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Depilación láser</h3>
+            <p>Depilación láser eficaz y duradera, con resultados visibles sesión tras sesión.</p>
+            <span class="more">Reserva por Instagram →</span>
+          </div>
+        </div>
+        <div class="card reveal d2">
+          <div class="card-img"><img src="assets/post-10.jpg" alt="Tratamiento de tensiones corporales" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Tratamientos corporales</h3>
+            <p>Tratamientos anticelulíticos y corporales para cuidar y reafirmar tu cuerpo.</p>
+            <span class="more">Reserva por Instagram →</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <div class="card-img"><img src="assets/stock-cejas.jpg" alt="Micropigmentación de cejas" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Micropigmentación</h3>
+            <p>Cejas, labios y mirada definida con un acabado natural y duradero.</p>
+            <span class="more">Reserva por Instagram →</span>
+          </div>
+        </div>
+        <div class="card reveal d1">
+          <div class="card-img"><img src="assets/stock-maquillaje.jpg" alt="Maquillaje profesional" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Maquillaje profesional</h3>
+            <p>Maquillaje para eventos, bodas y ocasiones especiales que realza tu belleza.</p>
+            <span class="more">Reserva por Instagram →</span>
+          </div>
+        </div>
+        <div class="card reveal d2">
+          <div class="card-img"><img src="assets/stock-capilar.jpg" alt="Tratamiento capilar" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Tratamientos capilares</h3>
+            <p>Cuidado y salud del cabello con tratamientos personalizados para cada melena.</p>
+            <span class="more">Reserva por Instagram →</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="price-note reveal">Consulta precios y disponibilidad directamente por <a href="https://instagram.com/mia_wellness_andorra" target="_blank" rel="noopener">Instagram @mia_wellness_andorra</a></p>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="block" id="galeria">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow reveal">Galería</div>
+        <h2 class="sec-title reveal d1">Nuestro <em>trabajo</em></h2>
+        <div class="divider reveal d1"></div>
+        <p class="sec-lead reveal d2">Algunos momentos y resultados reales de MIA Wellness.</p>
+      </div>
+      <div class="gallery">
+        <figure class="tall reveal"><img src="assets/post-1.jpg" alt="Tratamiento facial Indiba" loading="lazy"></figure>
+        <figure class="wide reveal d1"><img src="assets/stock-quiropraxia.jpg" alt="Sesión de quiropraxia" loading="lazy"></figure>
+        <figure class="reveal d2"><img src="assets/post-4.jpg" alt="Tratamiento de radiofrecuencia facial" loading="lazy"></figure>
+        <figure class="reveal d2"><img src="assets/stock-cejas.jpg" alt="Micropigmentación de cejas" loading="lazy"></figure>
+        <figure class="wide reveal d1"><img src="assets/post-7.jpg" alt="Quiropraxia y bienestar" loading="lazy"></figure>
+        <figure class="tall reveal d3"><img src="assets/post-10.jpg" alt="Tratamiento de tensiones y dolor" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIO + UBICACION -->
+  <section class="block" id="horario">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow reveal">Visítanos</div>
+        <h2 class="sec-title reveal d1">Horario y <em>ubicación</em></h2>
+        <div class="divider reveal d1"></div>
+      </div>
+
+      <div class="info-grid" id="ubicacion">
+        <div class="panel reveal">
+          <h3><span class="e">🕐</span> Horario</h3>
+          <ul class="hours-list" id="hoursList">
+            <li data-day="1"><span class="day">Lunes</span><span>9:00 – 19:30</span></li>
+            <li data-day="2"><span class="day">Martes</span><span>9:00 – 19:30</span></li>
+            <li data-day="3"><span class="day">Miércoles</span><span>9:00 – 19:30</span></li>
+            <li data-day="4"><span class="day">Jueves</span><span>9:00 – 19:30</span></li>
+            <li data-day="5"><span class="day">Viernes</span><span>9:00 – 19:30</span></li>
+            <li data-day="6"><span class="day">Sábado</span><span>9:00 – 14:30</span></li>
+            <li data-day="0"><span class="day">Domingo</span><span class="closed">Cerrado</span></li>
+          </ul>
+        </div>
+        <div class="panel reveal d1">
+          <h3><span class="e">📍</span> Dónde estamos</h3>
+          <div class="map-box">
+            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Av.%20Verge%20de%20Can%C3%B2lich%2012%20AD600%20Sant%20Juli%C3%A0%20de%20L%C3%B2ria%20Andorra&output=embed"
+              title="Mapa MIA Wellness"></iframe>
+          </div>
+          <p class="addr"><b>MIA Wellness Andorra</b></p>
+          <p class="addr">Av. Verge de Canòlich, 12<br>AD600 Sant Julià de Lòria, Andorra</p>
+          <a class="btn btn-ghost" style="margin-top:16px;padding:11px 24px;font-size:.9rem" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Av.+Verge+de+Can%C3%B2lich+12+AD600+Sant+Juli%C3%A0+de+L%C3%B2ria+Andorra">Cómo llegar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA CONTACTO -->
+  <section class="block" id="contacto" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>¿Lista para tu momento de cuidarte?</h2>
+        <p>Escríbenos por Instagram o llámanos para reservar tu cita o resolver cualquier duda. Te esperamos en MIA Wellness.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
+          <a class="btn btn-ig" href="https://instagram.com/mia_wellness_andorra" target="_blank" rel="noopener">📸 @mia_wellness_andorra</a>
+          <a class="btn" style="background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.5)" href="tel:+376630093">📞 +376 630093</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="col">
+        <a href="#inicio" class="logo" style="margin-bottom:14px"><span class="mark">M</span>MIA Wellness</a>
+        <p>Centro de bienestar y belleza<br>en Sant Julià de Lòria, Andorra.</p>
+      </div>
+      <div class="col">
+        <h4>Contacto</h4>
+        <a href="https://instagram.com/mia_wellness_andorra" target="_blank" rel="noopener">Instagram: @mia_wellness_andorra</a>
+        <a href="tel:+376630093">Teléfono: +376 630093</a>
+        <p>Av. Verge de Canòlich, 12</p>
+        <p>AD600 Sant Julià de Lòria</p>
+      </div>
+      <div class="col">
+        <h4>Horario</h4>
+        <p>Lun – Vie: 9:00 – 19:30</p>
+        <p>Sábado: 9:00 – 14:30</p>
+        <p>Domingo: Cerrado</p>
+      </div>
+    </div>
+    <p class="copy">© <span id="year"></span> MIA Wellness Andorra · Todos los derechos reservados</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Resaltar el día de hoy en el horario
+  const today = new Date().getDay();
+  const todayLi = document.querySelector('#hoursList li[data-day="'+today+'"]');
+  if (todayLi) todayLi.classList.add('today');
+
+  // Header scrolled
+  const header = document.getElementById('header');
+  addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 30), {passive:true});
+
+  // Menú móvil
+  const burger = document.getElementById('burger'), navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, {threshold:.14, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Barra de progreso de scroll + parallax en imágenes
+  const bar = document.getElementById('scrollProgress');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const parallaxEls = reduce ? [] : document.querySelectorAll('[data-parallax]');
+  const heroCopy = document.querySelector('.hero-copy');
+
+  function onScroll(){
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    if (bar) bar.style.width = (max > 0 ? (scrollY / max * 100) : 0) + '%';
+
+    const vh = window.innerHeight;
+    parallaxEls.forEach(el => {
+      const speed = parseFloat(el.dataset.parallax) || 0.05;
+      const rect = el.getBoundingClientRect();
+      const offset = ((rect.top + rect.height / 2) - vh / 2) * speed;
+      let scale = 1.12;
+      if (el.dataset.zoom){
+        scale = 1.12 + Math.min(Math.max(scrollY, 0) / vh, 1) * parseFloat(el.dataset.zoom);
+      }
+      el.style.transform = 'translateY(' + (-offset) + 'px) scale(' + scale + ')';
+    });
+
+    // Header con scroll: el texto del hero se desvanece y sube al bajar
+    if (heroCopy && !reduce){
+      const p = Math.min(scrollY / (vh * 0.9), 1);
+      heroCopy.style.opacity = String(1 - p);
+      heroCopy.style.transform = 'translateY(' + (scrollY * 0.35) + 'px)';
+    }
+  }
+
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (!ticking){ requestAnimationFrame(() => { onScroll(); ticking = false; }); ticking = true; }
+  }, {passive:true});
+  addEventListener('resize', onScroll);
+  onScroll();
+</script>
+</body>
+</html>

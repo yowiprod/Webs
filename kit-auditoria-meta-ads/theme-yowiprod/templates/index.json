@@ -1,0 +1,279 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "yp_3d_hero": {
+      "type": "yowiprod-3d-hero",
+      "settings": {
+        "hero_title": "Producción con identidad.",
+        "hero_subtitle": "Beats, recursos y servicios para artistas que quieren sonar reales.",
+        "button_1_label": "Escuchar Beats",
+        "button_1_link": "shopify://collections/beats",
+        "button_2_label": "Trabajar conmigo",
+        "button_2_link": "shopify://pages/high-ticket"
+      }
+    },
+    "yp_path_selector": {
+      "type": "yowiprod-path-selector",
+      "blocks": {
+        "card_beats": {
+          "type": "card",
+          "settings": {
+            "icon": "",
+            "image": "shopify://shop_images/1_9238facb-d1f7-4c5b-b5e3-d3d75734741c.png",
+            "title": "Beats",
+            "description": "Instrumentales con atmósfera, carácter y licencias claras.",
+            "link": "https://yowiprod.com/collections/beats"
+          }
+        },
+        "card_packs": {
+          "type": "card",
+          "settings": {
+            "icon": "",
+            "image": "shopify://shop_images/3_884a0d4f-bc38-4849-8667-7992213f589f.png",
+            "title": "DrumKits",
+            "description": "MIDIs, loops y herramientas para crear con más intención.",
+            "link": "https://yowiprod.com/collections/drumkits"
+          }
+        },
+        "card_servicios": {
+          "type": "card",
+          "settings": {
+            "icon": "",
+            "image": "shopify://shop_images/2_6bd997cd-48e2-4436-9156-b35a258ce45e.png",
+            "title": "Loops y MIDIs",
+            "description": "Disfruta del proceso de creación con MIDIs, loops de acordes y melodías.",
+            "link": "https://yowiprod.com/collections/loops-y-midis"
+          }
+        }
+      },
+      "block_order": [
+        "card_beats",
+        "card_packs",
+        "card_servicios"
+      ],
+      "settings": {
+        "title": "Elige cómo entrar en el universo YOWIPROD."
+      }
+    },
+    "yp_manifesto": {
+      "type": "yowiprod-manifesto",
+      "blocks": {
+        "st_1": {
+          "type": "statement",
+          "settings": {
+            "text": "No packs genéricos — material creado desde producción real."
+          }
+        },
+        "st_2": {
+          "type": "statement",
+          "settings": {
+            "text": "Calidad profesional, mismos estándares que uso con clientes."
+          }
+        },
+        "st_3": {
+          "type": "statement",
+          "settings": {
+            "text": "Sonido con identidad — mis beats no suenan a plantilla."
+          }
+        },
+        "st_4": {
+          "type": "statement",
+          "settings": {
+            "text": "Licencias claras y descarga inmediata, sin letra pequeña."
+          }
+        },
+        "st_5": {
+          "type": "statement",
+          "settings": {
+            "text": "Beat, mezcla, máster y dirección: entiendo el proceso completo."
+          }
+        }
+      },
+      "block_order": [
+        "st_1",
+        "st_2",
+        "st_3",
+        "st_4",
+        "st_5"
+      ],
+      "settings": {
+        "title": "No es solo sonido. Es identidad."
+      }
+    },
+    "yp_artists": {
+      "type": "yowiprod-artists",
+      "blocks": {
+        "artist_panther": {
+          "type": "artist",
+          "settings": {
+            "image": "shopify://shop_images/panther_sjl.png",
+            "name": "Panther SJL",
+            "role": "Producción, Mix & Master",
+            "external_link": "https://www.youtube.com/@PantherSJL600",
+            "link_label": "Ver en YouTube"
+          }
+        },
+        "artist_exuro": {
+          "type": "artist",
+          "settings": {
+            "image": "shopify://shop_images/exurio.png",
+            "name": "Exuro Soul",
+            "role": "Producción",
+            "external_link": "https://open.spotify.com/intl-es/artist/1KCf6gjmHhttVwVgylvoHx",
+            "link_label": "Ver en Spotify"
+          }
+        },
+        "artist_ramilqp": {
+          "type": "artist",
+          "settings": {
+            "image": "shopify://shop_images/ramiiiiiiiiiiii.png",
+            "name": "Ramilqp",
+            "role": "Mix & Master",
+            "external_link": "https://open.spotify.com/intl-es/artist/0UvVf48XNC6aGFksRapyC8",
+            "link_label": "Ver en Spotify"
+          }
+        },
+        "artist_pibe": {
+          "type": "artist",
+          "settings": {
+            "image": "shopify://shop_images/PIBE.png",
+            "name": "El Pibe Dogo",
+            "role": "Producción",
+            "external_link": "https://open.spotify.com/intl-es/artist/2yyp1zFPCxqr1z16awU287",
+            "link_label": "Ver en Spotify"
+          }
+        },
+        "artist_fran": {
+          "type": "artist",
+          "settings": {
+            "image": "shopify://shop_images/FJV.jpg",
+            "name": "Fran el Largo",
+            "role": "Producción",
+            "external_link": "https://www.youtube.com/@Fran.El.Largo-Oficial",
+            "link_label": "Ver en YouTube"
+          }
+        },
+        "artist_vgomez": {
+          "type": "artist",
+          "settings": {
+            "image": "shopify://shop_images/VIXU.png",
+            "name": "Vgomez",
+            "role": "Producción",
+            "external_link": "https://open.spotify.com/intl-es/artist/7dtDNOdU0y0uHtjsVDOlU4",
+            "link_label": "Ver en Spotify"
+          }
+        },
+        "artist_ngd": {
+          "type": "artist",
+          "settings": {
+            "image": "shopify://shop_images/NGD_19e377ec-8fcc-4453-bfd5-554b5ceb6986.png",
+            "name": "NGD",
+            "role": "Producción",
+            "external_link": "https://open.spotify.com/intl-es/artist/51Rngju0BbUrApILcvPDXW",
+            "link_label": "Ver en Spotify"
+          }
+        }
+      },
+      "block_order": [
+        "artist_panther",
+        "artist_exuro",
+        "artist_ramilqp",
+        "artist_pibe",
+        "artist_fran",
+        "artist_vgomez",
+        "artist_ngd"
+      ],
+      "settings": {
+        "title": "Artistas con los que he trabajado.",
+        "subtitle": "Producción, mix y dirección en proyectos reales."
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Beats y recursos destacados",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-4",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "yp_high_ticket": {
+      "type": "yowiprod-high-ticket",
+      "blocks": {
+        "svc_produccion": {
+          "type": "service",
+          "settings": {
+            "name": "Producción personalizada 1:1",
+            "price": "€500",
+            "description": "Beat desde cero, dirección artística, arreglos, edición vocal, mezcla, máster y stems incluidos.",
+            "button_label": "Reservar sesión",
+            "link": "shopify://products/producciona-personalizada"
+          }
+        },
+        "svc_asesoria": {
+          "type": "service",
+          "settings": {
+            "name": "Asesoría 1:1",
+            "price": "€100",
+            "description": "Videollamada 1h: feedback, plan de lanzamientos y dirección artística personalizada.",
+            "button_label": "Reservar asesoría",
+            "link": "shopify://products/asesoria"
+          }
+        },
+        "svc_ghostwriting": {
+          "type": "service",
+          "settings": {
+            "name": "Ghostwriting · Letra personalizada",
+            "price": "€150",
+            "description": "Letra a medida, confidencial o colaboración creativa. Adaptada a tu estilo y proyecto.",
+            "button_label": "Solicitar",
+            "link": "shopify://products/ghostwriting-letra-personalizada-1-1"
+          }
+        }
+      },
+      "block_order": [
+        "svc_produccion",
+        "svc_asesoria",
+        "svc_ghostwriting"
+      ],
+      "settings": {
+        "title": "Trabaja conmigo."
+      }
+    }
+  },
+  "order": [
+    "yp_3d_hero",
+    "yp_path_selector",
+    "yp_manifesto",
+    "yp_artists",
+    "featured_collection",
+    "yp_high_ticket"
+  ]
+}

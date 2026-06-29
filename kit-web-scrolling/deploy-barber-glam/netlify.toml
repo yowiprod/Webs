@@ -1,0 +1,10 @@
+# Configuración de Netlify para Glamur Estudi (Barber Shop)
+# Sitio estático: no hay build, solo se publica la carpeta tal cual.
+
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

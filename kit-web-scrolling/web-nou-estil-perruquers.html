@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nou Estil Perruquers · Perruqueria a Andorra la Vella</title>
+<meta name="description" content="Nou Estil Perruquers — perruqueria a Andorra la Vella. Color, metxes, talls i tractaments capil·lars. El teu nou estil comença aquí.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FCF8F6;
+    --bg-soft:#F6E9E8;
+    --bg-pink:#F2DEDD;
+    --rose:#D9A7A7;
+    --rose-deep:#C2807F;
+    --rose-dark:#A66A6A;
+    --ink:#4A3B3B;
+    --ink-soft:#7A6A6A;
+    --line:#EAD7D5;
+    --white:#FFFFFF;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Jost',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.7;
+    font-weight:300;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.1;letter-spacing:.3px}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-family:var(--sans);font-size:.72rem;font-weight:500;
+    letter-spacing:.32em;text-transform:uppercase;color:var(--rose-deep);
+    display:inline-block;margin-bottom:18px;
+  }
+  ::selection{background:var(--rose);color:#fff}
+  /* Scrollbar */
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:var(--bg-soft)}
+  ::-webkit-scrollbar-thumb{background:var(--rose);border-radius:10px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--rose-deep)}
+
+  /* NAV */
+  header{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    padding:26px 0;transition:.4s ease;
+  }
+  header.scrolled{
+    padding:14px 0;background:rgba(252,248,246,.85);
+    backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--ink);letter-spacing:.5px}
+  .logo span{color:var(--rose-deep)}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:400;position:relative;color:var(--ink-soft);transition:.3s}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--rose-deep);transition:.35s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{
+    border:1px solid var(--rose-deep);color:var(--rose-deep)!important;
+    padding:10px 22px;border-radius:40px;transition:.35s;
+  }
+  .nav-cta:hover{background:var(--rose-deep);color:#fff!important}
+  .nav-cta::after{display:none!important}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0}
+  .burger span{width:26px;height:2px;background:var(--ink);transition:.3s}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;
+    align-items:center;gap:40px;padding:130px 0 70px;position:relative;
+  }
+  .hero::before{
+    content:"";position:absolute;top:-10%;left:-12%;width:520px;height:520px;
+    background:radial-gradient(circle,rgba(217,167,167,.35),transparent 70%);
+    border-radius:50%;z-index:-1;
+  }
+  .hero-text .eyebrow{opacity:0;transform:translateY(20px);animation:rise .9s .2s forwards}
+  .hero-text h1{
+    font-size:clamp(3rem,7vw,5.6rem);line-height:.98;margin-bottom:26px;color:var(--ink);
+    opacity:0;transform:translateY(28px);animation:rise 1s .35s forwards;
+  }
+  .hero-text h1 em{font-style:italic;color:var(--rose-deep)}
+  .hero-text p{
+    font-size:1.08rem;max-width:430px;color:var(--ink-soft);margin-bottom:34px;
+    opacity:0;transform:translateY(22px);animation:rise 1s .55s forwards;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;opacity:0;transform:translateY(20px);animation:rise 1s .7s forwards}
+  .btn{
+    display:inline-block;padding:15px 34px;border-radius:40px;font-size:.85rem;
+    letter-spacing:.1em;text-transform:uppercase;font-weight:500;transition:.4s ease;cursor:pointer;
+  }
+  .btn-primary{background:var(--rose-deep);color:#fff;box-shadow:0 14px 30px -12px rgba(166,106,106,.7)}
+  .btn-primary:hover{background:var(--rose-dark);transform:translateY(-3px);box-shadow:0 20px 38px -12px rgba(166,106,106,.85)}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--rose-deep);color:var(--rose-deep)}
+  .hero-img{position:relative;opacity:0;transform:translateY(30px) scale(.97);animation:rise 1.1s .5s forwards}
+  .hero-img .frame{
+    border-radius:200px 200px 24px 24px;overflow:hidden;aspect-ratio:3/3.7;
+    box-shadow:0 40px 70px -30px rgba(120,80,80,.5);
+    animation:floaty 3.3s ease-in-out infinite;
+  }
+  @keyframes floaty{
+    0%,100%{transform:translateY(0) rotate(0deg)}
+    50%{transform:translateY(-18px) rotate(-1deg)}
+  }
+  .hero-img:hover .frame{animation-play-state:paused}
+  .hero-badge{animation:floaty 3.3s ease-in-out infinite .3s}
+  .floatbtn{animation:floaty 3.3s ease-in-out infinite}
+  .floatbtn:hover{animation-play-state:paused}
+  .hero-img img{width:100%;height:100%;object-fit:cover}
+  .hero-badge{
+    position:absolute;bottom:26px;left:-26px;background:#fff;padding:18px 26px;
+    border-radius:18px;box-shadow:0 20px 40px -18px rgba(120,80,80,.4);text-align:center;
+  }
+  .hero-badge strong{font-family:var(--serif);font-size:1.6rem;color:var(--rose-deep);display:block}
+  .hero-badge small{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+
+  @keyframes rise{to{opacity:1;transform:translateY(0) scale(1)}}
+
+  /* SECTION base */
+  section{padding:110px 0;position:relative}
+  .sec-head{max-width:640px;margin:0 auto 64px;text-align:center}
+  .sec-head h2{font-size:clamp(2.4rem,5vw,3.6rem);margin-bottom:16px}
+  .sec-head p{color:var(--ink-soft)}
+  .divider{width:60px;height:1px;background:var(--rose);margin:22px auto 0}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(40px);transition:.9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ABOUT */
+  .about{background:var(--bg-soft)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .about-img{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 40px 70px -34px rgba(120,80,80,.5)}
+  .about-img img{width:100%;aspect-ratio:4/3.4;object-fit:cover}
+  .about-text h2{font-size:clamp(2.2rem,4.5vw,3.2rem);margin-bottom:22px}
+  .about-text p{color:var(--ink-soft);margin-bottom:18px}
+  .about-text .signature{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--rose-deep);margin-top:10px}
+
+  /* SERVICES */
+  .serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .serv-card{
+    background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    transition:.45s cubic-bezier(.2,.7,.2,1);position:relative;display:flex;flex-direction:column;
+  }
+  .serv-card:hover{transform:translateY(-8px);box-shadow:0 30px 55px -28px rgba(120,80,80,.45);border-color:transparent}
+  .serv-img{position:relative;overflow:hidden;aspect-ratio:4/3.1}
+  .serv-img img{width:100%;height:100%;object-fit:cover;transition:.7s cubic-bezier(.2,.7,.2,1)}
+  .serv-card:hover .serv-img img{transform:scale(1.08)}
+  .serv-img .serv-num{
+    position:absolute;top:14px;left:16px;z-index:2;color:#fff;
+    background:rgba(166,106,106,.55);backdrop-filter:blur(4px);
+    padding:4px 12px;border-radius:30px;font-size:.85rem;
+  }
+  .serv-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(80,50,50,.28),transparent 55%)}
+  .serv-body{padding:28px 30px 34px;display:flex;flex-direction:column;flex:1}
+  .serv-num{font-family:var(--serif);color:var(--rose);letter-spacing:.2em}
+  .serv-card h3{font-size:1.55rem;margin:0 0 10px}
+  .serv-card p{font-size:.92rem;color:var(--ink-soft);margin-bottom:22px;flex:1}
+  .serv-link{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--rose-deep);transition:.3s}
+  .serv-link:hover{color:var(--rose-dark);letter-spacing:.18em}
+
+  /* GALLERY */
+  .gallery{background:var(--bg-pink)}
+  .gal-grid{columns:3;column-gap:18px}
+  .gal-grid figure{break-inside:avoid;margin-bottom:18px;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 18px 40px -24px rgba(120,80,80,.45)}
+  .gal-grid img{width:100%;transition:.7s cubic-bezier(.2,.7,.2,1)}
+  .gal-grid figure::after{
+    content:"Nou Estil";position:absolute;inset:0;display:flex;align-items:flex-end;padding:20px;
+    font-family:var(--serif);font-style:italic;font-size:1.3rem;color:#fff;
+    background:linear-gradient(to top,rgba(80,50,50,.55),transparent 55%);opacity:0;transition:.5s;
+  }
+  .gal-grid figure:hover img{transform:scale(1.07)}
+  .gal-grid figure:hover::after{opacity:1}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .contact-info h3{font-size:1.9rem;margin-bottom:8px}
+  .info-item{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--line)}
+  .info-item .ico{width:42px;height:42px;flex:none;border-radius:50%;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+  .info-item h4{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-family:var(--sans);font-weight:500;margin-bottom:3px}
+  .info-item p{font-size:1.05rem}
+  .info-item a:hover{color:var(--rose-deep)}
+  .hours{list-style:none;margin-top:6px}
+  .hours li{display:flex;justify-content:space-between;gap:18px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:.92rem}
+  .hours li:last-child{border-bottom:0}
+  .hours span{color:var(--ink-soft);font-weight:400}
+  .hours em{font-style:normal;color:var(--ink);font-weight:400;text-align:right}
+  .hours em.closed{color:var(--rose-deep);font-style:italic}
+  form{background:#fff;padding:40px;border-radius:24px;border:1px solid var(--line);box-shadow:0 30px 60px -36px rgba(120,80,80,.4)}
+  .field{margin-bottom:20px}
+  .field label{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:8px}
+  .field input,.field textarea{
+    width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:12px;
+    font-family:var(--sans);font-size:.95rem;background:var(--bg);color:var(--ink);transition:.3s;
+  }
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--rose-deep);background:#fff}
+  form .btn-primary{width:100%;border:0}
+  .contact-cta{background:#fff;padding:48px 40px;border-radius:24px;border:1px solid var(--line);box-shadow:0 30px 60px -36px rgba(120,80,80,.4);text-align:center;align-self:center}
+  .contact-cta h3{font-size:2rem;margin-bottom:14px}
+  .contact-cta p{color:var(--ink-soft);margin-bottom:28px}
+  .contact-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:#f3e8e8;padding:70px 0 30px;text-align:center}
+  footer .logo{color:#fff;font-size:2rem;margin-bottom:14px}
+  footer .logo span{color:var(--rose)}
+  footer p{color:#c9b6b6;font-size:.92rem;max-width:420px;margin:0 auto 22px}
+  .foot-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
+  .foot-links a{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:#e7d4d4;transition:.3s}
+  .foot-links a:hover{color:var(--rose)}
+  .copyright{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-size:.8rem;color:#a89393}
+  .copyright a{color:#cbb}
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;text-align:center;padding-top:120px}
+    .hero::before{left:50%;transform:translateX(-50%)}
+    .hero-actions{justify-content:center}
+    .hero-text p{margin-left:auto;margin-right:auto}
+    .hero-img{max-width:380px;margin:0 auto}
+    .about-grid,.contact-grid{grid-template-columns:1fr;gap:38px}
+    .serv-grid{grid-template-columns:1fr 1fr}
+    .gal-grid{columns:2}
+    .nav-links{
+      position:fixed;inset:0 0 0 auto;width:78%;max-width:320px;background:var(--bg);
+      flex-direction:column;justify-content:center;gap:30px;transform:translateX(100%);
+      transition:.4s ease;box-shadow:-20px 0 50px -20px rgba(120,80,80,.4);
+    }
+    .nav-links.open{transform:translateX(0)}
+    .burger{display:flex;z-index:101}
+  }
+  @media(max-width:560px){
+    section{padding:80px 0}
+    .serv-grid{grid-template-columns:1fr}
+    .gal-grid{columns:1}
+    .hero-badge{left:0}
+    form{padding:28px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* WhatsApp floating button */
+  .wa-float{
+    position:fixed;right:24px;bottom:24px;z-index:200;
+    width:60px;height:60px;border-radius:50%;background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 14px 30px -8px rgba(37,211,102,.6);
+    transition:.35s ease;
+  }
+  .wa-float svg{width:32px;height:32px;fill:#fff}
+  .wa-float:hover{transform:scale(1.08);box-shadow:0 18px 36px -8px rgba(37,211,102,.75)}
+  .wa-float::before{
+    content:"";position:absolute;inset:0;border-radius:50%;
+    background:#25D366;z-index:-1;animation:waPulse 2.4s ease-out infinite;
+  }
+  .wa-tip{
+    position:absolute;right:74px;top:50%;transform:translateY(-50%) translateX(8px);
+    background:#fff;color:var(--ink);font-size:.82rem;white-space:nowrap;
+    padding:9px 16px;border-radius:30px;box-shadow:0 10px 24px -10px rgba(120,80,80,.45);
+    opacity:0;pointer-events:none;transition:.35s ease;
+  }
+  .wa-float:hover .wa-tip{opacity:1;transform:translateY(-50%) translateX(0)}
+  @keyframes waPulse{0%{transform:scale(1);opacity:.55}70%{transform:scale(1.7);opacity:0}100%{opacity:0}}
+  @media(max-width:560px){.wa-float{right:16px;bottom:16px;width:54px;height:54px}.wa-tip{display:none}}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <nav class="wrap">
+    <a href="#inici" class="logo">Nou <span>Estil</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#sobre">Sobre nosaltres</a>
+      <a href="#serveis">Serveis</a>
+      <a href="#galeria">Treballs</a>
+      <a href="#contacte">Contacte</a>
+      <a href="tel:+376842506" class="nav-cta floatbtn">Demana cita</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero wrap" id="inici">
+  <div class="hero-text">
+    <span class="eyebrow">Perruqueria · Andorra la Vella</span>
+    <h1>El teu <em>nou estil</em> comença aquí</h1>
+    <p>Color, metxes, talls i tractaments amb cura artesanal. A Nou Estil Perruquers realcem la teva bellesa natural amb un assessorament 100% personalitzat.</p>
+    <div class="hero-actions">
+      <a href="tel:+376842506" class="btn btn-primary floatbtn">Demana la teva cita</a>
+      <a href="#galeria" class="btn btn-ghost">Veure treballs</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <div class="frame"><img src="assets/nouestil/post-9.jpg" alt="Treball de color i metxes a Nou Estil Perruquers"></div>
+    <div class="hero-badge">
+      <strong>Nou Estil</strong>
+      <small>Perruquers</small>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre">
+  <div class="wrap about-grid">
+    <div class="about-img reveal"><img src="assets/nouestil/post-1.jpg" alt="L'equip de Nou Estil Perruquers"></div>
+    <div class="about-text reveal">
+      <span class="eyebrow">Sobre nosaltres</span>
+      <h2>Un equip apassionat pel teu cabell</h2>
+      <p>A Nou Estil Perruquers creiem que cada client és únic. Per això dediquem temps a escoltar-te, entendre el que busques i crear un look que s'adapti a tu, a la teva rutina i a la teva personalitat.</p>
+      <p>Treballem amb tècniques actuals i productes de qualitat per aconseguir colors lluminosos, metxes naturals i cabells sans. Vine i comprova per què els nostres clients confien en nosaltres any rere any.</p>
+      <p class="signature">Nou Estil Perruquers</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="serveis">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Els nostres serveis</span>
+      <h2>Cuidem cada detall</h2>
+      <p>Aquests són els nostres serveis. Escriu-nos per WhatsApp i t'informem de tot sense compromís.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="serv-grid">
+      <article class="serv-card reveal">
+        <div class="serv-img"><span class="serv-num">01</span><img src="assets/nouestil/post-7.jpg" alt="Tall i pentinat" loading="lazy"></div>
+        <div class="serv-body">
+          <h3>Tall i pentinat</h3>
+          <p>Talls de senyora i cavaller, pentinats i acabats adaptats al teu estil.</p>
+          <a href="https://wa.me/376842506?text=Hola%20Nou%20Estil!%20Voldria%20informaci%C3%B3." target="_blank" rel="noopener" class="serv-link">Demana informació →</a>
+        </div>
+      </article>
+      <article class="serv-card reveal">
+        <div class="serv-img"><span class="serv-num">02</span><img src="assets/nouestil/post-3.jpg" alt="Color i tint" loading="lazy"></div>
+        <div class="serv-body">
+          <h3>Color i tint</h3>
+          <p>Coloració completa, retoc d'arrels i cobertura de canes amb colors lluminosos.</p>
+          <a href="https://wa.me/376842506?text=Hola%20Nou%20Estil!%20Voldria%20informaci%C3%B3." target="_blank" rel="noopener" class="serv-link">Demana informació →</a>
+        </div>
+      </article>
+      <article class="serv-card reveal">
+        <div class="serv-img"><span class="serv-num">03</span><img src="assets/nouestil/post-9.jpg" alt="Metxes i balayage" loading="lazy"></div>
+        <div class="serv-body">
+          <h3>Metxes i barreja</h3>
+          <p>Metxes, balayage i barreja de tons per a un resultat natural i amb llum.</p>
+          <a href="https://wa.me/376842506?text=Hola%20Nou%20Estil!%20Voldria%20informaci%C3%B3." target="_blank" rel="noopener" class="serv-link">Demana informació →</a>
+        </div>
+      </article>
+      <article class="serv-card reveal">
+        <div class="serv-img"><span class="serv-num">04</span><img src="assets/nouestil/post-4.jpg" alt="Tractaments capil·lars" loading="lazy"></div>
+        <div class="serv-body">
+          <h3>Tractaments capil·lars</h3>
+          <p>Hidratació, nutrició i tractaments reparadors per a un cabell sa i fort.</p>
+          <a href="https://wa.me/376842506?text=Hola%20Nou%20Estil!%20Voldria%20informaci%C3%B3." target="_blank" rel="noopener" class="serv-link">Demana informació →</a>
+        </div>
+      </article>
+      <article class="serv-card reveal">
+        <div class="serv-img"><span class="serv-num">05</span><img src="assets/nouestil/post-16.jpg" alt="Allisats" loading="lazy"></div>
+        <div class="serv-body">
+          <h3>Allisats</h3>
+          <p>Allisats i tractaments d'allisat per domar i suavitzar el teu cabell.</p>
+          <a href="https://wa.me/376842506?text=Hola%20Nou%20Estil!%20Voldria%20informaci%C3%B3." target="_blank" rel="noopener" class="serv-link">Demana informació →</a>
+        </div>
+      </article>
+      <article class="serv-card reveal">
+        <div class="serv-img"><span class="serv-num">06</span><img src="assets/nouestil/post-6.jpg" alt="Recollits i pentinats d'event" loading="lazy"></div>
+        <div class="serv-body">
+          <h3>Recollits i events</h3>
+          <p>Pentinats i recollits per a bodes, celebracions i ocasions especials.</p>
+          <a href="https://wa.me/376842506?text=Hola%20Nou%20Estil!%20Voldria%20informaci%C3%B3." target="_blank" rel="noopener" class="serv-link">Demana informació →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="galeria">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Els nostres treballs</span>
+      <h2>Resultats reals</h2>
+      <p>Una petita mostra de colors, metxes i talls fets al nostre saló.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="gal-grid reveal">
+      <figure><img src="assets/nouestil/post-2.jpg" alt="Color i metxes" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-9.jpg" alt="Balayage amb ones" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-5.jpg" alt="Metxes rosses" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-3.jpg" alt="Allisat cabell llarg" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-6.jpg" alt="Ones i barreja de tons" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-8.jpg" alt="Degradat ros" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-7.jpg" alt="Tall recte amb color" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-12.jpg" alt="Tall curt amb capes" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-4.jpg" alt="Cabell llarg llis" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-15.jpg" alt="Ones amb metxes" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-18.jpg" alt="Bob ondulat ros" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-13.jpg" alt="Tall curt amb ones, color coure" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-16.jpg" alt="Bob ros platí llis" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-10.jpg" alt="Ones amb barreja de tons" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-17.jpg" alt="Tall curt ros platí" loading="lazy"></figure>
+      <figure><img src="assets/nouestil/post-11.jpg" alt="Tall mig amb metxes" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacte">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Contacte</span>
+      <h2>Demana la teva cita</h2>
+      <p>Truca'ns o escriu-nos i et trobarem el millor moment.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="info-item">
+          <div class="ico">📍</div>
+          <div><h4>On som</h4><p>Carrer de Lòria nº32<br>Andorra la Vella</p></div>
+        </div>
+        <div class="info-item">
+          <div class="ico">📞</div>
+          <div><h4>Telèfon</h4><p><a href="tel:+376842506">+376 842 506</a></p></div>
+        </div>
+        <div class="info-item">
+          <div class="ico">✉️</div>
+          <div><h4>Email</h4><p><a href="mailto:nouestil@hotmail.com">nouestil@hotmail.com</a></p></div>
+        </div>
+        <div class="info-item">
+          <div class="ico">🕒</div>
+          <div style="flex:1">
+            <h4>Horari</h4>
+            <ul class="hours">
+              <li><span>Dilluns</span><em class="closed">Tancat</em></li>
+              <li><span>Dimarts</span><em>9:30–12:30 · 15:00–20:00</em></li>
+              <li><span>Dimecres</span><em>9:30–12:30 · 15:00–20:00</em></li>
+              <li><span>Dijous</span><em>9:30–12:30 · 15:00–20:00</em></li>
+              <li><span>Divendres</span><em>9:30–12:30 · 15:00–20:00</em></li>
+              <li><span>Dissabte</span><em>9:00–13:00 · 15:00–19:00</em></li>
+              <li><span>Diumenge</span><em class="closed">Tancat</em></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="contact-cta reveal">
+        <h3>Reserva en un minut</h3>
+        <p>Truca'ns, escriu-nos un email o contacta directament per WhatsApp i et trobem el millor moment per a la teva cita.</p>
+        <div class="contact-cta-btns">
+          <a href="https://wa.me/376842506?text=Hola%20Nou%20Estil!%20M'agradaria%20demanar%20cita." target="_blank" rel="noopener" class="btn btn-primary">WhatsApp</a>
+          <a href="tel:+376842506" class="btn btn-ghost">Truca'ns</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="logo">Nou <span>Estil</span> Perruquers</div>
+    <p>El teu nou estil comença aquí. Perruqueria a Andorra la Vella.</p>
+    <div class="foot-links">
+      <a href="#sobre">Sobre nosaltres</a>
+      <a href="#serveis">Serveis</a>
+      <a href="#galeria">Treballs</a>
+      <a href="tel:+376842506">+376 842 506</a>
+      <a href="mailto:nouestil@hotmail.com">nouestil@hotmail.com</a>
+    </div>
+    <div class="copyright">© <span id="year"></span> Nou Estil Perruquers · Carrer de Lòria nº32, Andorra la Vella</div>
+  </div>
+</footer>
+
+<!-- WhatsApp -->
+<a class="wa-float" href="https://wa.me/376842506?text=Hola%20Nou%20Estil!%20M'agradaria%20demanar%20cita." target="_blank" rel="noopener" aria-label="Escriu-nos per WhatsApp">
+  <span class="wa-tip">Escriu-nos per WhatsApp</span>
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C9.4 3 4 8.4 4 15.04c0 2.12.55 4.16 1.6 5.97L4 29l8.18-1.55a12 12 0 0 0 3.86.64h.01C22.69 28.09 28 22.69 28 16.05 28 8.4 22.69 3 16.04 3zm0 21.9c-1.2 0-2.39-.32-3.43-.93l-.25-.15-4.85.92.92-4.73-.16-.26a9.86 9.86 0 0 1-1.51-5.26c0-5.46 4.45-9.9 9.91-9.9 2.65 0 5.13 1.03 7 2.9a9.82 9.82 0 0 1 2.9 7c0 5.46-4.45 9.9-9.91 9.9zm5.43-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.88 1.21 3.08.15.2 2.09 3.2 5.07 4.49.71.3 1.26.49 1.69.62.71.23 1.35.2 1.86.12.57-.08 1.76-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/></svg>
+</a>
+
+<script>
+  // Header scroll state
+  const header=document.getElementById('header');
+  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+  // Mobile menu
+  const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
+  burger.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+
+  // Reveal on scroll (stagger for grids)
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const items=e.target.parentElement.classList.contains('serv-grid')||e.target.parentElement.classList.contains('gal-grid');
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    // stagger items inside grids
+    if(el.parentElement.classList.contains('serv-grid')){el.style.transitionDelay=(i%6)*0.08+0.05+'s';}
+    io.observe(el);
+  });
+  // Stagger gallery figures individually
+  const galIo=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{if(e.isIntersecting){e.target.style.transitionDelay=(Array.prototype.indexOf.call(e.target.parentElement.children,e.target)%9)*0.06+'s';e.target.classList.add('figin');galIo.unobserve(e.target);}});
+  },{threshold:.1});
+  document.querySelectorAll('.gal-grid figure').forEach(f=>{
+    f.style.opacity='0';f.style.transform='translateY(30px)';f.style.transition='.8s cubic-bezier(.2,.7,.2,1)';
+    galIo.observe(f);
+  });
+  const galStyle=document.createElement('style');
+  galStyle.textContent='.gal-grid figure.figin{opacity:1!important;transform:none!important}';
+  document.head.appendChild(galStyle);
+
+  // Parallax hero glow + image
+  const heroImg=document.querySelector('.hero-img');
+  addEventListener('scroll',()=>{
+    const y=scrollY;
+    if(heroImg&&y<800){heroImg.style.transform='translateY('+(y*0.08)+'px)';}
+  },{passive:true});
+
+  // Year
+  document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+# Configuración de Netlify para Sandra Perruquers
+# Sitio estático: no hay build, solo se publica la carpeta tal cual.
+
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

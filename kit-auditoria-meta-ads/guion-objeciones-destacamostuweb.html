@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guion de Manejo de Objeciones · Destacamos Tu Web</title>
+<style>
+  :root{
+    --tinta:#10182a;
+    --gris:#5b6678;
+    --acento:#0fb5a3;
+    --acento2:#0a7d72;
+    --suave:#eef6f5;
+    --linea:#dce3e8;
+    --amarillo:#fff6da;
+    --amarillo-b:#e8c75a;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--tinta);margin:0;background:#f4f6f8;line-height:1.5;
+  }
+  .pagina{
+    max-width:820px;margin:0 auto;background:#fff;padding:48px 54px;
+    box-shadow:0 4px 30px rgba(0,0,0,.07);
+  }
+  /* Cabecera */
+  header.top{border-bottom:3px solid var(--acento);padding-bottom:18px;margin-bottom:28px;}
+  .brand{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  .brand h1{font-size:25px;margin:0;letter-spacing:-.4px;}
+  .brand .tag{color:var(--acento2);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;}
+  .sub{color:var(--gris);font-size:14px;margin-top:6px;}
+  h2.seccion{
+    font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:var(--acento2);
+    border-bottom:1px solid var(--linea);padding-bottom:6px;margin:34px 0 16px;
+  }
+  /* Principio */
+  .principio{
+    background:var(--suave);border-left:4px solid var(--acento);border-radius:0 8px 8px 0;
+    padding:16px 20px;font-size:14.5px;
+  }
+  .principio strong{color:var(--acento2);}
+  /* Método pasos */
+  .pasos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:6px;}
+  .paso{border:1px solid var(--linea);border-radius:10px;padding:14px 16px;}
+  .paso .n{display:inline-flex;width:26px;height:26px;background:var(--acento);color:#fff;border-radius:50%;
+    align-items:center;justify-content:center;font-weight:700;font-size:14px;margin-bottom:8px;}
+  .paso h3{margin:0 0 4px;font-size:15px;}
+  .paso p{margin:0;color:var(--gris);font-size:13px;}
+  /* Tarjetas objeción */
+  .obj{border:1px solid var(--linea);border-radius:12px;overflow:hidden;margin:14px 0;break-inside:avoid;}
+  .obj .cab{background:var(--tinta);color:#fff;padding:11px 18px;display:flex;align-items:center;gap:10px;}
+  .obj .cab .num{background:var(--acento);width:24px;height:24px;border-radius:6px;display:inline-flex;
+    align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none;}
+  .obj .cab .frase{font-style:italic;font-weight:600;font-size:15px;}
+  .obj .cuerpo{padding:14px 18px 16px;}
+  .obj .etiqueta{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--acento2);font-weight:700;
+    margin:2px 0 6px;}
+  .script{
+    background:var(--suave);border-radius:8px;padding:12px 15px;font-size:14px;margin:0 0 10px;
+    border-left:3px solid var(--acento);
+  }
+  .script:before{content:"“";color:var(--acento);font-size:26px;line-height:0;vertical-align:-8px;margin-right:2px;font-weight:700;}
+  .esconde{color:var(--gris);font-size:13px;margin:2px 0 12px;}
+  .esconde b{color:var(--tinta);}
+  .ffd{background:var(--amarillo);border:1px dashed var(--amarillo-b);border-radius:8px;padding:11px 14px;font-size:13.5px;}
+  .ffd b{color:#8a6d12;}
+  /* Tabla express */
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--linea);vertical-align:top;}
+  th{background:var(--suave);color:var(--acento2);text-transform:uppercase;font-size:11px;letter-spacing:.5px;}
+  /* Cierre */
+  .cierre{background:linear-gradient(135deg,var(--acento),var(--acento2));color:#fff;border-radius:14px;
+    padding:22px 26px;text-align:center;margin-top:8px;}
+  .cierre .big{font-size:21px;font-weight:800;margin:8px 0;letter-spacing:-.3px;}
+  .cierre small{opacity:.92;font-size:13px;}
+  /* Precios chips */
+  .precios{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:6px;}
+  .precio{border:1px solid var(--linea);border-radius:10px;padding:12px 14px;}
+  .precio .s{font-weight:700;font-size:14px;}
+  .precio .p{color:var(--acento2);font-weight:800;font-size:15px;margin-top:3px;}
+  .precio .o{color:var(--gris);font-size:12px;text-decoration:line-through;}
+  .precio .extra{color:var(--gris);font-size:12px;margin-top:3px;}
+  footer{margin-top:34px;border-top:1px solid var(--linea);padding-top:14px;color:var(--gris);font-size:12px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+  .noprint{text-align:center;margin:18px 0;}
+  .btn{background:var(--acento);color:#fff;border:none;padding:11px 22px;border-radius:8px;font-size:14px;
+    font-weight:700;cursor:pointer;}
+  @media print{
+    body{background:#fff;}
+    .pagina{box-shadow:none;max-width:100%;padding:0 6mm;}
+    .noprint{display:none;}
+    .obj,.cierre,.paso{break-inside:avoid;}
+    @page{margin:14mm 12mm;}
+  }
+</style>
+</head>
+<body>
+<div class="pagina">
+
+  <div class="noprint">
+    <button class="btn" onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
+  </div>
+
+  <header class="top">
+    <div class="brand">
+      <h1>Guion de Manejo de Objeciones</h1>
+      <span class="tag">Destacamos Tu Web</span>
+    </div>
+    <p class="sub">Diseño y desarrollo web para negocios locales · bares, peluquerías, gimnasios y más · Método de venta de <b>Brian Tracy</b> aplicado a tus servicios y precios.</p>
+  </header>
+
+  <div class="principio">
+    <strong>La regla de oro de Tracy:</strong> «Las objeciones son peldaños hacia la venta, no muros.» Una objeción es <b>señal de interés</b>. El 80% de las ventas se pierden por no saber responder a 6 objeciones predecibles — y casi todas son <b>cortinas de humo</b> que esconden solo 4 reales: <b>precio, necesidad, confianza y urgencia</b>.
+  </div>
+
+  <h2 class="seccion">El método: 4 pasos para responder cualquier objeción</h2>
+  <div class="pasos">
+    <div class="paso"><span class="n">1</span><h3>Escucha completa</h3><p>No interrumpas. «El que escucha, vende.» Deja que termine de hablar.</p></div>
+    <div class="paso"><span class="n">2</span><h3>Hazla concreta</h3><p>«¿Caro comparado con qué?» Convierte la queja vaga en algo específico que sí puedas resolver.</p></div>
+    <div class="paso"><span class="n">3</span><h3>Reencuádrala</h3><p>«Entonces lo que quieres es asegurarte de recuperar la inversión, ¿correcto?»</p></div>
+    <div class="paso"><span class="n">4</span><h3>Responde y cierra</h3><p>Contesta y vuelve de inmediato al cierre. Nunca dejes la objeción en el aire.</p></div>
+  </div>
+
+  <h2 class="seccion">Tus servicios y precios (ten esto a mano)</h2>
+  <div class="precios">
+    <div class="precio"><div class="s">Landing · Página única</div><div class="p">420–630€ <span class="o">600–900€</span></div><div class="extra">−30% fundadores · 3–5 días · 1 revisión</div></div>
+    <div class="precio"><div class="s">Web Scrolling · Multipágina</div><div class="p">840–1.260€ <span class="o">1.200–1.800€</span></div><div class="extra">−30% fundadores · 1–2 semanas · hasta 5 págs · 2 revisiones</div></div>
+    <div class="precio"><div class="s">De Instagram a Web</div><div class="p">400–700€</div><div class="extra">2–3 días · 1 revisión</div></div>
+    <div class="precio"><div class="s">Tienda online · Shopify</div><div class="p">desde 1.800€ <span class="o">desde 2.500€</span></div><div class="extra">−30% fundadores · pasarela de pago · 3 revisiones</div></div>
+  </div>
+  <p class="esconde" style="margin-top:10px"><b>Pago en todos los servicios:</b> 50% al inicio · 50% en la entrega. Sin costes ocultos.</p>
+
+  <div class="etiqueta" style="margin:16px 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#0a7d72;font-weight:700">Mantenimiento mensual (donde está tu negocio recurrente)</div>
+  <div class="precios">
+    <div class="precio"><div class="s">🌐 Webs · Tranquilidad</div><div class="p">39€/mes</div><div class="extra">hosting+dominio+SSL · 1 cambio/mes · soporte</div></div>
+    <div class="precio"><div class="s">🌐 Webs · Crecimiento</div><div class="p">79€/mes</div><div class="extra">3 cambios/mes · informe visitas</div></div>
+    <div class="precio"><div class="s">🌐 Webs · Premium</div><div class="p">149€/mes</div><div class="extra">6 cambios · SEO básico · Google Business</div></div>
+    <div class="precio"><div class="s">🛒 Shopify · Tienda Tranquila</div><div class="p">249€/mes</div><div class="extra">técnico+apps+pagos · 8 cambios/mes</div></div>
+    <div class="precio"><div class="s">🛒 Shopify · Tienda Activa</div><div class="p">449€/mes</div><div class="extra">catálogo · Klaviyo · informe ventas</div></div>
+    <div class="precio"><div class="s">🛒 Shopify · Socio E-commerce</div><div class="p">desde 799€/mes</div><div class="extra">flows Klaviyo · SEO · CRO · reunión</div></div>
+  </div>
+  <p class="esconde" style="margin-top:10px"><b>Contratación:</b> 6 o 12 meses (el plan de 12 meses incluye 1 mes gratis). La suscripción de Shopify va aparte. Cambios fuera de plan: 45€/cambio o 60€/hora.</p>
+
+  <h2 class="seccion">Las objeciones reales + tus respuestas</h2>
+
+  <div class="principio" style="margin-bottom:18px">
+    <strong>Tus dos tipos de cliente:</strong> <b>1) El que NO tiene web</b> → te pondrá sobre todo precio (objeción 1), «no lo necesito» (objeción 2 / boca a boca) y «¿quién eres tú?» (objeción 5). <b>2) El que SÍ tiene web pero no sabe que quiere mejorarla</b> → entra por la objeción 2: mírale su web delante de él y enséñale qué está perdiendo. Ahí le creas la necesidad.
+  </div>
+
+  <!-- 1 PRECIO -->
+  <div class="obj">
+    <div class="cab"><span class="num">1</span><span class="frase">«Es muy caro / No tengo presupuesto»</span></div>
+    <div class="cuerpo">
+      <div class="etiqueta">Reencuadre: gasto → inversión</div>
+      <p class="script">Te entiendo, y me alegra que mires bien lo que inviertes. Pero déjame preguntarte: ¿caro comparado con qué? Una web no es un gasto, es un comercial que trabaja para ti 24/7 sin sueldo. Mira, una landing te sale en <b>420€ como fundador</b> y se entrega en <b>3–5 días</b>. Si te trae solo <b>2 clientes</b>, ya se ha pagado sola, ¿no crees?</p>
+      <div class="etiqueta">Si insiste</div>
+      <p class="script">La pregunta no es cuánto cuesta la web. Es cuánto te está costando <b>ahora</b> no tenerla. ¿Cuántos clientes crees que pierdes cada mes porque no te encuentran en Google o porque lo que ven no transmite confianza? Además lo pones fácil: <b>50% ahora y 50% cuando la veas terminada</b>. No arriesgas nada.</p>
+      <p class="esconde">🔎 <b>Lo que esconde:</b> no le has demostrado suficiente <b>valor</b>. Nunca defiendas el precio: <b>sube el valor percibido</b> (a medida, no plantillas; trato directo; entrega en días).</p>
+      <div class="ffd"><b>Honestidad que vende (sin inventar clientes):</b> «Te seré sincero: estamos empezando, y justo por eso tienes la <b>tarifa fundadores con −30%</b>. A cambio te pido una cosa: que cuando veas el resultado y te encante, nos dejes contarlo. Tú ganas una web a precio de salida y nosotros ganamos un primer caso real. ¿Trato justo, no?»</div>
+    </div>
+  </div>
+
+  <!-- 2 NECESIDAD -->
+  <div class="obj">
+    <div class="cab"><span class="num">2</span><span class="frase">«Ya tengo web / Me funciona el boca a boca»</span></div>
+    <div class="cuerpo">
+      <div class="etiqueta">Abrir la herida (ya tengo web)</div>
+      <p class="script">Genial que ya tengas presencia. Una pregunta honesta: tu web actual, ¿te <b>genera clientes</b> o es más bien un folleto online que nadie visita y que ni se ve bien en el móvil? Porque tener web y tener una web que <b>vende</b> son dos cosas muy distintas. Nosotros diseñamos para convertir visitas en clientes, todo adaptado a móvil.</p>
+      <div class="etiqueta">El boca a boca</div>
+      <p class="script">El boca a boca es oro, no lo toques. Pero piénsalo: cuando alguien te recomienda, ¿qué es lo primero que hace antes de llamarte? Te busca en internet. Si no encuentra nada — o encuentra algo pobre — acabas de perder un cliente que ya venía caliente. La web no sustituye el boca a boca: lo <b>multiplica</b>.</p>
+      <p class="esconde">🔎 <b>Lo que esconde:</b> no percibe el <b>dolor</b>. La gente compra para resolver un problema o evitar una pérdida. Hazle ver el cliente que se le escapa cada semana.</p>
+      <div class="ffd"><b>Frase de cierre:</b> «Hagamos una cosa: déjame mirar tu web actual contigo 5 minutos y te señalo 3 cosas que ahora mismo te están haciendo perder clientes. Sin compromiso. Si ves que tengo razón, seguimos hablando; si no, no pasa nada.»</div>
+    </div>
+  </div>
+
+  <!-- 3 CONFIANZA -->
+  <div class="obj">
+    <div class="cab"><span class="num">3</span><span class="frase">«No te conozco / ¿Y si no me gusta?»</span></div>
+    <div class="cuerpo">
+      <div class="etiqueta">Revertir el riesgo</div>
+      <p class="script">Es totalmente razonable, yo en tu lugar pensaría igual. Por eso trabajamos así: <b>50% al inicio y 50% solo cuando la web está terminada y te gusta</b>. Y tienes <b>revisiones incluidas</b> para ajustarla a tu gusto. El riesgo lo asumimos nosotros, no tú. Además trabajas <b>directamente con nosotros</b> — hablas siempre con quien diseña tu web, sin intermediarios.</p>
+      <div class="etiqueta">Si el miedo es al resultado</div>
+      <p class="script">Entiendo el miedo, equivocarse cuesta dinero. Pero el mayor riesgo no es invertir en una buena web… es seguir un año más perdiendo clientes con la que tienes. Y para los proyectos más sencillos la tienes lista en <b>2–3 días</b>: lo ves funcionando enseguida.</p>
+      <p class="esconde">🔎 <b>Lo que esconde:</b> miedo a equivocarse — «el mayor obstáculo del comprador». Combátelo con cercanía, revisiones y el pago 50/50.</p>
+      <div class="ffd"><b>Frase de cierre:</b> «Empezamos con el 50%, ves la web terminada, y solo cuando te guste pagas el resto. Y la ajustamos hasta que sea justo lo que querías. Dime, ¿qué tienes que perder?»</div>
+    </div>
+  </div>
+
+  <!-- 4 URGENCIA -->
+  <div class="obj">
+    <div class="cab"><span class="num">4</span><span class="frase">«Ahora no es el momento / Déjame pensarlo»</span></div>
+    <div class="cuerpo">
+      <div class="etiqueta">La técnica clave de Tracy: descubrir la objeción real</div>
+      <p class="script">Por supuesto, es una decisión importante. Solo para ayudarte mejor: cuando alguien dice que se lo va a pensar, normalmente es por una de tres cosas — el <b>precio</b>, los <b>plazos</b>, o si somos las <b>personas adecuadas</b> para hacerlo. ¿Cuál de las tres es la que más te frena?</p>
+      <div class="etiqueta">Sobre el momento + el descuento fundadores</div>
+      <p class="script">Lo entiendo. Pero el mejor momento para tener una buena web era hace un año; el segundo mejor es hoy. Cada mes sin ella son clientes que se van a la competencia. Y ahora mismo tienes el <b>−30% de tarifa fundadores</b>: una landing por <b>420€</b> en vez de 600€. ¿Qué tendría que pasar para que sí fuese el momento?</p>
+      <p class="esconde">🔎 <b>Lo que esconde:</b> «me lo pienso» es la objeción más letal: educada y mata la venta sin decir no. No la aceptes — conviértela en algo concreto.</p>
+      <div class="ffd"><b>Frase de cierre:</b> «La tarifa fundadores con −30% no va a estar siempre. Si la reservas hoy, te la guardo aunque empecemos la semana que viene. ¿Te la aparto?»</div>
+    </div>
+  </div>
+
+  <!-- 5 PORTFOLIO / EMPEZANDO -->
+  <div class="obj">
+    <div class="cab"><span class="num">5</span><span class="frase">«¿Me enseñas webs que hayáis hecho? / ¿Lleváis mucho?»</span></div>
+    <div class="cuerpo">
+      <div class="etiqueta">Honestidad + giro a tu favor (NO mientas)</div>
+      <p class="script">Te voy a ser totalmente sincero: estamos arrancando y por eso estás entrando en nuestra <b>tarifa fundadores con −30%</b>. ¿Qué significa eso para ti? Que no eres «un cliente más» de una lista de 200. Tu proyecto es de los primeros, así que le vamos a dedicar una atención y un mimo que ninguna agencia grande te va a dar. Hablas directamente con <b>nosotros</b>, los que diseñamos tu web, de principio a fin.</p>
+      <div class="etiqueta">Cómo das seguridad sin portfolio</div>
+      <p class="script">Y para que no arriesgues nada lo hacemos así: <b>solo pagas el 50% al empezar y el otro 50% cuando la web está terminada y te gusta</b>, con revisiones incluidas para dejarla a tu gusto. Si quieres, antes de pagar nada te preparo un <b>boceto de tu página de inicio sin compromiso</b>, para que veas exactamente cómo vamos a trabajar tu web. ¿Te lo monto?</p>
+      <p class="esconde">🔎 <b>Lo que esconde:</b> miedo a ser el «conejillo de indias». Neutralízalo con transparencia, el pago 50/50, revisiones y un boceto previo. La novedad es ventaja: <b>más dedicación y mejor precio</b>, no menos calidad.</p>
+      <div class="ffd"><b>Frase de cierre para esta objeción:</b> «Alguien tiene que ser nuestro primer gran caso de éxito… y por eso te doy el mejor precio y la mayor dedicación que voy a dar nunca. ¿Lo hacemos juntos?»</div>
+    </div>
+  </div>
+
+  <h2 class="seccion">Objeciones de mantenimiento (las nuevas y clave)</h2>
+
+  <!-- 6 PAGO MENSUAL -->
+  <div class="obj">
+    <div class="cab"><span class="num">6</span><span class="frase">«¿Por qué pago todos los meses? Ya te pagué la web»</span></div>
+    <div class="cuerpo">
+      <div class="etiqueta">Reencuadre: una web no es un cuadro, está viva</div>
+      <p class="script">Buena pregunta. La web no es como un cartel que cuelgas y ya está: vive en internet, y eso hay que mantenerlo. El mantenimiento cubre tres cosas que tú no quieres ni tienes que hacer: que esté <b>siempre online y segura</b>, las <b>copias de seguridad</b> por si algo pasa, y tener a <b>alguien (nosotros) que lo arregla</b> si falla. Son <b>39€/mes</b>: menos que tu factura de móvil, para no preocuparte nunca de tu web.</p>
+      <div class="etiqueta">El argumento que cierra</div>
+      <p class="script">Imagina que tu web se cae un sábado que tienes el negocio lleno y nadie puede ver tus horarios ni reservar. Sin mantenimiento, eso se queda así hasta que alguien lo note y te cobre por arreglarlo. Con mantenimiento, <b>me llamas y lo soluciono yo</b>. Es un seguro de tranquilidad, no un gasto.</p>
+      <p class="esconde">🔎 <b>Lo que esconde:</b> ve el mantenimiento como «pagar por nada». Tu trabajo es que vea <b>qué pasa el día que algo falla y no tiene a nadie</b>. Vendes tranquilidad, no «mantenimiento».</p>
+      <div class="ffd"><b>Opción de salida (no pierdas la venta):</b> «Si prefieres no tener cuota, te entrego la web y tú gestionas tu hosting; los cambios luego te los cobro sueltos a 45€. Pero la mayoría prefiere los 39€/mes justo para no tener que preocuparse de nada. ¿Cómo lo ves?»</div>
+    </div>
+  </div>
+
+  <!-- 7 MANTENIMIENTO SHOPIFY CARO -->
+  <div class="obj">
+    <div class="cab"><span class="num">7</span><span class="frase">«249€/mes por la tienda es mucho»</span></div>
+    <div class="cuerpo">
+      <div class="etiqueta">Reencuadre: gestionas un activo que gana dinero</div>
+      <p class="script">Lo entiendo, pero compara con lo que es. Una tienda online no es una web: vende todos los días, tiene pagos, pedidos, stock, apps que actualizar y cosas que se rompen. Gestionar todo eso bien es lo que hace que <b>siga vendiendo</b>. Si tu tienda factura, pongamos, 4.000€ al mes, <b>249€ es el 6%</b> por tenerla funcionando, optimizada y sin que tú toques nada técnico. Lo que ganas por tenerla bien gestionada es muchísimo más que lo que cuesta.</p>
+      <div class="etiqueta">Si sigue dudando</div>
+      <p class="script">Y si quieres empezar más suave, montamos el plan base para que esté técnicamente perfecta y segura, y subimos a gestión de catálogo y email marketing cuando veas que las ventas lo piden. Pero una tienda sin mantenimiento es una tienda que tarde o temprano da un problema… normalmente el peor día.</p>
+      <p class="esconde">🔎 <b>Lo que esconde:</b> compara la cuota con una web normal, no con lo que gana una tienda. Llévalo siempre a <b>% de lo que factura</b> y a «activo que genera ingresos».</p>
+      <div class="ffd"><b>Frase de cierre:</b> «Empieza por el plan base este mes. Si en 60 días no notas que te quita problemas y te hace ganar tiempo, lo replanteamos. Pero una tienda sin nadie que la cuide siempre acaba costando más… y el peor día.»</div>
+    </div>
+  </div>
+
+  <h2 class="seccion">Objeciones express del sector (respuesta rápida)</h2>
+  <table>
+    <tr><th>Te dicen…</th><th>Respondes</th></tr>
+    <tr><td>«Lo hago yo con Wix / con IA»</td><td>«Y puedes. ¿Pero es ahí donde quieres invertir tu tiempo? Tú eres experto en lo tuyo, no en diseño ni conversión. Te llevará 40 horas y saldrá con cara de plantilla. Nosotros te la entregamos lista para vender, <b>a medida</b>, en días.»</td></tr>
+    <tr><td>«Otro me lo hace más barato»</td><td>«Siempre habrá alguien más barato. ¿Pero incluye diseño a medida, SEO básico, móvil y revisiones? Lo barato sale caro cuando hay que rehacerla en 6 meses. No vendemos webs, vendemos clientes.»</td></tr>
+    <tr><td>«Lo consulto con mi socio/pareja»</td><td>«Perfecto, las buenas decisiones se consultan. ¿Qué crees que le preocupará más, el precio o el resultado? Así te preparo los números y se lo presentas resuelto. ¿Lo vemos los tres 15 min?»</td></tr>
+    <tr><td>«Mándame info y ya te digo»</td><td>«Claro. Pero un PDF genérico no te servirá: tu negocio es único. Dame 10 minutos y te digo exactamente qué necesita tu web y cuánto te costaría. ¿Te va bien?»</td></tr>
+    <tr><td>«Solo quiero pasar mi Instagram a web»</td><td>«Eso es justo uno de nuestros servicios: <b>de Instagram a web desde 250€</b>, lista en 2–3 días, con tu identidad, galería y formulario. Es el primer paso perfecto, y luego escalamos cuando quieras.»</td></tr>
+    <tr><td>«No tengo tiempo para esto»</td><td>«Por eso lo hacemos nosotros de principio a fin. Tú solo nos cuentas tu negocio una vez; del resto nos encargamos. En 3–5 días la tienes lista.»</td></tr>
+  </table>
+
+  <h2 class="seccion">El cierre (úsalo SIEMPRE tras responder)</h2>
+  <div class="cierre">
+    <small>Después de cualquier objeción, no esperes. Vuelve directo al cierre:</small>
+    <div class="big">«¿Hay algo más que te impida empezar hoy?»</div>
+    <small>Si dice NO → cierras. Si dice SÍ → acabas de descubrir la objeción real. Resuélvela y vuelve a cerrar.</small>
+  </div>
+
+  <footer>
+    <span><b>Destacamos Tu Web</b> · destacamostuweb.es · @destacamos.tu.web</span>
+    <span>Guion de objeciones · Método Brian Tracy</span>
+  </footer>
+
+</div>
+</body>
+</html>

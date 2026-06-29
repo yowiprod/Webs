@@ -1,0 +1,105 @@
+<section class="yp-high-ticket" id="yp-high-ticket">
+  <div class="yp-section-inner">
+    <h2 class="yp-section-title">{{ section.settings.title }}</h2>
+    <div class="yp-ht-grid">
+      {%- for block in section.blocks -%}
+        <div class="yp-ht-card" {{ block.shopify_attributes }}>
+          <div class="yp-ht-card-inner">
+            <h3 class="yp-ht-name">{{ block.settings.name }}</h3>
+            <div class="yp-ht-price">{{ block.settings.price }}</div>
+            <p class="yp-ht-desc">{{ block.settings.description }}</p>
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}" class="yp-cta yp-cta-gold">{{ block.settings.button_label }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "YP High Ticket",
+  "tag": "div",
+  "class": "yp-ht-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titulo",
+      "default": "Trabaja conmigo."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Servicio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre del servicio",
+          "default": "Produccion personalizada"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Precio",
+          "default": "€500"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descripcion"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Texto del boton",
+          "default": "Reservar"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "YP High Ticket",
+      "blocks": [
+        {
+          "type": "service",
+          "settings": {
+            "name": "Produccion personalizada 1:1",
+            "price": "€500",
+            "description": "Beat desde cero, direccion artistica, arreglos, edicion vocal, mezcla, master y stems incluidos.",
+            "button_label": "Reservar sesion"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "name": "Asesoria 1:1",
+            "price": "€100",
+            "description": "Videollamada 1h: feedback, plan de lanzamientos y direccion artistica personalizada.",
+            "button_label": "Reservar asesoria"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "name": "Ghostwriting · Letra personalizada",
+            "price": "€150",
+            "description": "Letra a medida, confidencial o colaboracion creativa. Adaptada a tu estilo y proyecto.",
+            "button_label": "Solicitar"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

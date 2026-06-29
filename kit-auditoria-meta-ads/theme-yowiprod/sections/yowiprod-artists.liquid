@@ -1,0 +1,96 @@
+<section class="yp-artists" id="yp-artists">
+  <div class="yp-section-inner">
+    <h2 class="yp-section-title">{{ section.settings.title }}</h2>
+    <p class="yp-section-subtitle">{{ section.settings.subtitle }}</p>
+    <div class="yp-artists-grid">
+      {%- for block in section.blocks -%}
+        <div class="yp-artist-card" {{ block.shopify_attributes }}>
+          <div class="yp-artist-img-wrap">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 600 | image_tag: class: 'yp-artist-img', loading: 'lazy' }}
+            {%- else -%}
+              <div class="yp-artist-img-placeholder"></div>
+            {%- endif -%}
+          </div>
+          <h3 class="yp-artist-name">{{ block.settings.name }}</h3>
+          <p class="yp-artist-role">{{ block.settings.role }}</p>
+          {%- if block.settings.external_link != blank -%}
+            <a href="{{ block.settings.external_link }}" class="yp-artist-link" target="_blank" rel="noopener">&gt;{{ block.settings.link_label | default: 'Ver en Spotify' }} &rarr;</a>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "YP Artists",
+  "tag": "div",
+  "class": "yp-artists-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titulo",
+      "default": "Artistas con los que he trabajado."
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitulo",
+      "default": "Produccion, mix y direccion en proyectos reales."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "artist",
+      "name": "Artista",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Foto"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre",
+          "default": "Artista"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Rol / Proyecto",
+          "default": "Produccion, Mix & Master"
+        },
+        {
+          "type": "text",
+          "id": "external_link",
+          "label": "Link externo (YouTube/Spotify URL)"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Texto del enlace",
+          "default": "Ver en Spotify"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "YP Artists",
+      "blocks": [
+        {"type": "artist", "settings": {"name": "Panther SJL", "role": "Produccion, Mix & Master"}},
+        {"type": "artist", "settings": {"name": "Exuro Soul", "role": "Produccion"}},
+        {"type": "artist", "settings": {"name": "Ramilqp", "role": "Produccion, Mix & Master"}},
+        {"type": "artist", "settings": {"name": "El Pibe Dogo", "role": "Produccion"}},
+        {"type": "artist", "settings": {"name": "Fran el Largo", "role": "Produccion, Mix & Master"}},
+        {"type": "artist", "settings": {"name": "Vgomez", "role": "Produccion"}},
+        {"type": "artist", "settings": {"name": "NGD", "role": "Produccion, Mix & Master"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

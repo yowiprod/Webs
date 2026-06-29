@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Black Venom INK — Estudio de tatuajes en Andorra | Realismo & Minimalista</title>
+<meta name="description" content="Black Venom INK — Renato Felipe. Estudio de tatuajes en Sant Julià de Lòria, Andorra, especializado en realismo y minimalista. Agendemos cita." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Black&family=Ruslan+Display&family=Pacifico&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#000000;
+    --txt:#f4f3f1;
+    --muted:#8c8c89;
+    --line:rgba(255,255,255,.13);
+    --red:#ff1414;
+    --red-deep:#c40000;
+    --maxw:1340px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--txt);font-family:'Archivo',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--red);color:#000}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#000}
+  ::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:10px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--red)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px}
+  .black{font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:.92;letter-spacing:-.01em}
+  .script{font-family:'Pacifico',cursive;text-transform:none;font-weight:400}
+  .r{color:var(--red)}
+  .w{color:#fff}
+
+  /* red duotone images */
+  .duo{position:relative;overflow:hidden;background:#000}
+  .duo img{position:absolute;top:-16%;left:0;width:100%;height:132%;object-fit:cover;filter:grayscale(1) contrast(1.05);transition:filter .6s;will-change:transform}
+  .duo::after{content:"";position:absolute;inset:0;background:var(--red-deep);mix-blend-mode:multiply;transition:opacity .6s;pointer-events:none}
+  .duo:hover img{filter:none}
+  .duo:hover::after{opacity:0}
+  /* relleno de color de letras al hacer scroll */
+  .fx .word{color:#2c2c2c;transition:color .3s ease}
+  .fx .word.lit{color:#fff}
+  .fx .word.accent.lit{color:var(--red)}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:'Archivo';font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;padding:16px 32px;border-radius:50px;cursor:pointer;border:none;transition:.25s}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:#ff3838;transform:translateY(-2px)}
+  .btn-out{background:transparent;border:1.5px solid rgba(255,255,255,.3);color:#fff}
+  .btn-out:hover{border-color:var(--red);color:var(--red)}
+
+  /* ---------- NAV ---------- */
+  header{position:fixed;top:0;left:0;width:100%;z-index:100;padding:26px 0;transition:.4s;border-bottom:1px solid transparent}
+  header.scrolled{background:rgba(0,0,0,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:16px 0}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);object-fit:cover}
+  .brand-name{font-family:'Ruslan Display',serif;font-size:1.25rem;letter-spacing:.02em;color:#fff}
+  .brand-name span{color:var(--red)}
+  .nav-right{display:flex;align-items:center;gap:34px}
+  .nav-addr{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.5;text-align:right}
+  .menu-btn{display:flex;align-items:center;gap:11px;background:none;border:none;cursor:pointer;font-family:'Archivo';font-weight:700;font-size:1rem;letter-spacing:.18em;text-transform:uppercase;color:#fff;z-index:101}
+  .menu-btn .bars{display:flex;flex-direction:column;gap:4px}
+  .menu-btn .bars span{width:24px;height:2px;background:#fff;transition:.3s}
+  nav.links{position:fixed;inset:0 0 0 auto;width:80%;max-width:400px;background:#080808;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 50px;gap:4px;transform:translateX(100%);transition:transform .45s cubic-bezier(.6,0,.2,1);border-left:1px solid var(--line);z-index:99;display:flex}
+  nav.links.open{transform:none}
+  nav.links a{font-family:'Archivo Black';font-size:2.2rem;text-transform:uppercase;color:var(--txt);transition:color .25s;padding:6px 0;line-height:1.1}
+  nav.links a:hover{color:var(--red)}
+  nav.links .btn{margin-top:24px;font-family:'Archivo'}
+  nav.links .lang{font-size:.8rem;font-weight:700;letter-spacing:.14em;color:var(--muted);margin-top:20px;font-family:'Archivo'}
+  nav.links .lang b{color:#fff}
+  .menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;visibility:hidden;transition:.4s;z-index:98}
+  .menu-overlay.open{opacity:1;visibility:visible}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;height:200vh;background:#000}
+  .hero-sticky{position:sticky;top:0;height:100vh;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+  .hero-stage{position:relative;z-index:2;width:100%;padding:0 20px}
+  .brand-display{font-family:'Ruslan Display',serif;color:var(--red);font-size:clamp(2.6rem,11vw,9.2rem);line-height:1;letter-spacing:.01em;position:relative;z-index:1;text-transform:uppercase}
+  .hero-huge-wrap{position:relative;z-index:2;display:inline-block}
+  .hero-huge{font-family:'Archivo Black',sans-serif;color:#fff;font-size:clamp(3.4rem,17vw,13.5rem);line-height:.86;letter-spacing:-.02em;text-transform:uppercase;margin-top:-.22em;position:relative;z-index:2}
+  .hero-thumb{position:absolute;left:50%;bottom:8%;transform-origin:center center;width:clamp(150px,16vw,250px);aspect-ratio:16/10;object-fit:cover;filter:grayscale(100%) contrast(1.05);z-index:3;will-change:transform}
+  .hero .based{position:relative;z-index:2;font-size:clamp(.9rem,2vw,1.35rem);font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#fff;margin-top:26px;align-self:flex-end;margin-right:7%}
+  .badge{position:absolute;right:34px;bottom:34px;width:118px;height:118px;z-index:5}
+  .badge .ring{width:100%;height:100%;animation:spin 16s linear infinite}
+  .badge .ring text{fill:var(--muted);font-family:'Archivo';font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+  .badge .oni{position:absolute;inset:0;margin:auto;width:52px;height:52px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:9px;color:var(--muted);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase}
+  .scroll-hint .mouse{width:22px;height:36px;border:1px solid rgba(255,255,255,.35);border-radius:14px;position:relative}
+  .scroll-hint .mouse::after{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:3px;height:7px;border-radius:3px;background:var(--red);animation:wheel 1.8s infinite}
+  @keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}80%{opacity:0;transform:translate(-50%,12px)}}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(42px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .pad{padding:140px 0}
+
+  /* ---------- TAGLINE ---------- */
+  .tagline{position:relative;text-align:center;padding:150px 0}
+  .tagline h2{font-size:clamp(3rem,11vw,9rem)}
+  .tagline .script{font-size:clamp(2.6rem,9vw,7rem);color:var(--red);display:block;margin-top:-.1em}
+  .tagline .sub{margin-top:40px;font-size:.78rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+  .tag-img{position:absolute;width:clamp(150px,17vw,260px);aspect-ratio:3/4;z-index:0}
+  .tag-img.l{left:5%;top:20%}
+  .tag-img.r{right:5%;top:34%;aspect-ratio:4/5}
+  @media(max-width:880px){.tag-img{display:none}}
+
+  /* ---------- STATEMENT ---------- */
+  .statement{padding:120px 0}
+  .statement .big{font-size:clamp(2.4rem,7.5vw,6.5rem);max-width:1100px}
+  .statement .lead{max-width:620px;margin:46px 0 0 auto;color:var(--muted);font-size:1.05rem}
+  .statement .lead strong{color:#fff;font-weight:600}
+  .statement .cta{margin-top:40px;display:flex;justify-content:flex-end}
+  .statement .row{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+
+  /* ---------- SECTION HEADS ---------- */
+  .head{margin-bottom:60px}
+  .head .k{font-size:.78rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:18px}
+  .head h2{font-size:clamp(2.6rem,8vw,6rem)}
+  .head .script{color:var(--red);font-size:clamp(2.2rem,7vw,5rem);display:block;margin-top:-.05em}
+  .head.center{text-align:center}
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .gallery-grid .duo{aspect-ratio:4/5;border-radius:2px;cursor:pointer}
+
+  /* ---------- ARTIST ---------- */
+  .artist-row{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+  .artist-photo{aspect-ratio:4/5;border-radius:3px}
+  .artist-name{font-size:clamp(2.6rem,7vw,5.4rem)}
+  .artist-name .script{color:var(--red);font-size:clamp(2.2rem,6vw,4.4rem);display:block;margin-top:-.06em}
+  .artist-handle{color:var(--red);font-weight:700;letter-spacing:.06em;margin-top:18px;font-size:.95rem}
+  .artist-desc{color:var(--muted);margin-top:20px;max-width:460px;font-size:1.02rem}
+  .artist-desc em{color:#fff;font-style:italic}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{border-top:1px solid var(--line)}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-q{display:flex;align-items:center;gap:26px;width:100%;background:none;border:none;color:#fff;text-align:left;cursor:pointer;padding:30px 0;font-family:'Archivo Black';font-size:clamp(1.1rem,2.6vw,1.9rem);text-transform:uppercase;line-height:1.05;transition:color .25s}
+  .faq-q:hover{color:var(--red)}
+  .faq-q .n{color:var(--red);flex:0 0 auto;font-size:.7em}
+  .faq-q .plus{margin-left:auto;font-family:'Archivo';font-weight:400;font-size:2rem;line-height:1;color:var(--muted);transition:transform .3s,color .3s;flex:0 0 auto}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);color:var(--red)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .45s ease}
+  .faq-a p{color:var(--red);padding:0 0 30px 64px;font-size:clamp(.95rem,1.6vw,1.15rem);font-weight:600;text-transform:uppercase;letter-spacing:.02em;line-height:1.5}
+  @media(max-width:600px){.faq-a p{padding-left:0}}
+
+  /* ---------- CONTACT ---------- */
+  .contact h2{font-size:clamp(2.6rem,8vw,6rem);margin-bottom:10px}
+  .contact .script{color:var(--red);font-size:clamp(2.2rem,7vw,5rem);display:block;margin-top:-.05em}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:56px}
+  .cinfo a,.cinfo span{display:block;padding:18px 0;border-bottom:1px solid var(--line);transition:color .25s}
+  .cinfo a:hover{color:var(--red)}
+  .cinfo .k{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:0;border:none;margin-bottom:5px}
+  .cinfo .v{font-size:1.15rem;font-weight:600}
+  form{display:grid;gap:16px}
+  form .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  label.fld{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px}
+  input,textarea,select{width:100%;background:#0d0d0d;border:1px solid var(--line);color:#fff;padding:16px;border-radius:3px;font-family:'Archivo';font-size:.95rem;transition:border-color .3s}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--red)}
+  textarea{min-height:120px;resize:vertical}
+  .check{display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:.82rem}
+  .check input{width:auto;margin-top:4px}
+  .form-note{font-size:.78rem;color:var(--muted)}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line);padding:70px 0 34px;margin-top:40px}
+  .foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+  .foot-brand{max-width:340px}
+  .foot-brand .brand-name{font-size:1.5rem}
+  .foot-brand p{color:var(--muted);font-size:.9rem;margin-top:14px}
+  .est{font-family:'Ruslan Display';color:var(--red);letter-spacing:.06em;font-size:1rem;margin-top:18px}
+  .foot-col h5{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin-bottom:18px}
+  .foot-col a,.foot-col p{display:block;color:var(--muted);font-size:.9rem;margin-bottom:11px;transition:color .25s}
+  .foot-col a:hover{color:var(--red)}
+  .socials{display:flex;gap:10px;margin-top:18px}
+  .socials a{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;transition:.3s}
+  .socials a:hover{border-color:var(--red);color:var(--red);transform:translateY(-3px)}
+  .foot-bottom{margin-top:50px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+  .foot-bottom a{margin-left:18px}.foot-bottom a:hover{color:var(--red)}
+
+  .wa-float{position:fixed;right:22px;bottom:22px;z-index:120;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(37,211,102,.35);transition:transform .3s}
+  .wa-float:hover{transform:scale(1.08)}
+  .wa-float svg{width:30px;height:30px;fill:#fff}
+
+  /* lightbox */
+  .lb{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;padding:30px}
+  .lb.open{display:flex}
+  .lb img{max-width:92vw;max-height:88vh;border-radius:4px}
+  .lb .close{position:absolute;top:22px;right:30px;font-size:2.2rem;color:#fff;cursor:pointer;line-height:1}
+  .lb .arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:2.6rem;color:#fff;cursor:pointer;padding:20px;user-select:none}
+  .lb .prev{left:6px}.lb .next{right:6px}
+
+  @media(max-width:1000px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:900px){
+    .nav-addr{display:none}
+    .artist-row,.contact-grid{grid-template-columns:1fr;gap:40px}
+    .gallery-grid{grid-template-columns:repeat(2,1fr)}
+    .pad{padding:90px 0}
+    .statement .lead{margin-left:0}
+  }
+  @media(max-width:560px){
+    .gallery-grid{grid-template-columns:repeat(2,1fr)}
+    form .row{grid-template-columns:1fr}
+    .wrap{padding:0 20px}
+    .foot-bottom a{margin-left:0;margin-right:16px}
+    /* header */
+    header{padding:18px 0}
+    .brand img{width:30px;height:30px}
+    .brand-name{font-size:.82rem;line-height:1.05}
+    .menu-btn{font-size:.82rem;letter-spacing:.1em;gap:8px}
+    .menu-btn .bars span{width:20px}
+    /* hero */
+    .brand-display{font-size:clamp(2.1rem,11vw,4rem)}
+    .hero-huge{font-size:clamp(2.9rem,15vw,5rem)}
+    .hero-thumb{width:118px;bottom:10%}
+    .hero .based{font-size:.8rem;margin-right:0;align-self:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <img src="assets/blackvenom/profile.jpg" alt="Black Venom INK" />
+      <span class="brand-name">Black <span>Venom</span> Ink</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-addr">SANT JULIÀ DE LÒRIA<br/>ANDORRA</div>
+      <button class="menu-btn" id="menuBtn" aria-label="Menú">MENU<span class="bars"><span></span><span></span><span></span></span></button>
+    </div>
+    <nav class="links" id="menu">
+      <a href="#estudio">Estudio</a>
+      <a href="#galeria">Galería</a>
+      <a href="#artista">Artista</a>
+      <a href="#faqs">FAQs</a>
+      <a href="#contacto">Citas</a>
+      <a href="https://wa.me/376686772" target="_blank" class="btn btn-red">➜ Agendemos cita</a>
+      <span class="lang"><b>ES</b> · EN</span>
+    </nav>
+  </div>
+</header>
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+ <div class="hero-sticky">
+  <div class="hero-stage">
+    <div class="brand-display">Black Venom Ink</div>
+    <div class="hero-huge-wrap">
+      <div class="hero-huge">TATTOO<br/>ARTIST</div>
+      <img class="hero-thumb" src="assets/blackvenom/post-1.jpg" alt="Tatuaje realismo en proceso — Black Venom INK" />
+    </div>
+    <p class="based">Andorra based</p>
+  </div>
+  <a class="badge" href="#contacto" aria-label="Contáctanos">
+    <svg class="ring" viewBox="0 0 120 120">
+      <defs><path id="badgePath" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+      <text><textPath href="#badgePath">CONTÁCTANOS · CONTÁCTANOS · CONTÁCTANOS · </textPath></text>
+    </svg>
+    <svg class="oni" viewBox="0 0 64 64" fill="none" stroke="#cfcabf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 12c-2 6-3 9-3 16 0 12 9 22 21 22s21-10 21-22c0-7-1-10-3-16"/>
+      <path d="M11 13c5-1 9 1 12 4M53 13c-5-1-9 1-12 4"/>
+      <path d="M19 30c2-2 6-2 8 0M37 30c2-2 6-2 8 0"/>
+      <circle cx="23" cy="31" r="1.4" fill="#cfcabf"/><circle cx="41" cy="31" r="1.4" fill="#cfcabf"/>
+      <path d="M26 42c3 3 9 3 12 0"/><path d="M28 42l-1 4M36 42l1 4"/>
+    </svg>
+  </a>
+  <div class="scroll-hint"><div class="mouse"></div><span>Scroll</span></div>
+ </div>
+</section>
+
+<!-- ============ TAGLINE ============ -->
+<section class="tagline" id="estudio">
+  <div class="duo tag-img l reveal"><img src="assets/blackvenom/post-5.jpg" alt="Tatuaje Black Venom INK" /></div>
+  <div class="duo tag-img r reveal"><img src="assets/blackvenom/post-10.jpg" alt="Tatuaje Black Venom INK" /></div>
+  <div class="wrap">
+    <h2 class="black reveal"><span class="w fx">Que corra</span><span class="script">la tinta</span></h2>
+    <p class="sub reveal">Estudio de tatuajes en Andorra · Especializado en realismo y minimalista</p>
+  </div>
+</section>
+
+<!-- ============ STATEMENT ============ -->
+<section class="statement">
+  <div class="wrap">
+    <h3 class="black big fx reveal" data-accent="piel idea precisión">Cada pieza nace de la piel, la idea y la precisión.</h3>
+    <div class="row">
+      <div></div>
+      <div>
+        <p class="lead reveal">Black Venom INK es el proyecto de <strong>Renato Felipe</strong>, artista del tatuaje en Sant Julià de Lòria (Andorra). Cada proyecto se desarrolla desde cero, adaptándolo a tu idea, tu piel y tu estilo — del realismo en blanco y negro al trazo minimalista. Material de un solo uso y protocolos estrictos de higiene. <strong>“I like the challenge.”</strong></p>
+        <div class="cta reveal"><a href="https://wa.me/376686772" target="_blank" class="btn btn-red">➜ Agendemos cita</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="pad" id="galeria">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="k">Portfolio</span>
+      <h2 class="black"><span class="w">El</span> <span class="script">trabajo</span></h2>
+    </div>
+    <div class="gallery-grid" id="gallery"></div>
+  </div>
+</section>
+
+<!-- ============ ARTIST ============ -->
+<section class="pad" id="artista">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="k">El artista</span>
+      <h2 class="black"><span class="w fx">Conoce a</span> <span class="script">Black Venom</span></h2>
+    </div>
+    <div class="artist-row">
+      <div class="duo artist-photo reveal"><img src="assets/blackvenom/renato.png" alt="Renato Felipe — Black Venom INK" /></div>
+      <div>
+        <h3 class="artist-name black reveal"><span class="w">Renato</span><span class="script">Felipe</span></h3>
+        <div class="artist-handle reveal">@blackvenomink</div>
+        <p class="artist-desc reveal">Tatuador especializado en <em>realismo</em> y <em>minimalista</em>. “I like the challenge” — el reto es lo que mueve cada sesión: piezas detalladas, limpias y que se sienten vivas sobre la piel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="pad" id="faqs">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="k">Preguntas frecuentes</span>
+      <h2 class="black"><span class="w">F</span><span class="r">A</span><span class="w">Q</span><span class="r">s</span></h2>
+    </div>
+    <div class="faq-list reveal" id="faqList">
+      <div class="faq-item"><button class="faq-q"><span class="n">01</span>¿Los tatuajes duelen?<span class="plus">+</span></button><div class="faq-a"><p>Spoiler: sí. Depende de la zona, el tamaño y tu umbral. Te acompaño durante toda la sesión.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="n">02</span>¿Qué debo saber antes de tatuarme?<span class="plus">+</span></button><div class="faq-a"><p>Ven descansado, hidratado y habiendo comido. Evita el alcohol y el sol las 24 h previas. Trae tus referencias.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="n">03</span>¿Qué materiales se utilizan?<span class="plus">+</span></button><div class="faq-a"><p>Material desechable de un solo uso y tintas de alta calidad. Todo se abre delante de ti.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="n">04</span>¿Cómo se realiza la pigmentación?<span class="plus">+</span></button><div class="faq-a"><p>La tinta se deposita en la dermis con la máquina, a la profundidad justa para un resultado nítido y duradero.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="n">05</span>¿Se reutiliza el equipo?<span class="plus">+</span></button><div class="faq-a"><p>No. Lo que entra en contacto contigo es de un solo uso. El resto se desinfecta y esteriliza.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="n">06</span>¿Qué cuidados debo tener después?<span class="plus">+</span></button><div class="faq-a"><p>Zona limpia e hidratada, no rascar, evita sol, piscina y sauna durante la cicatrización. Te lo doy por escrito.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="n">07</span>¿En cuánto tiempo se retoca?<span class="plus">+</span></button><div class="faq-a"><p>Si hace falta retoque, se valora una vez cicatrizado, a partir de las 3–4 semanas.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="n">08</span>¿Usáis anestesia?<span class="plus">+</span></button><div class="faq-a"><p>Se puede valorar crema anestésica tópica según la zona. Coméntamelo antes de la cita.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="n">09</span>¿Puedo hacer ejercicio después?<span class="plus">+</span></button><div class="faq-a"><p>Mejor esperar unos días, sobre todo si afecta a la zona tatuada (sudor, roce).</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="n">10</span>¿Saldrá sangre durante el tatuaje?<span class="plus">+</span></button><div class="faq-a"><p>Es normal un ligero sangrado y exudado. Forma parte del proceso y está controlado.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="n">11</span>¿Podré donar sangre después?<span class="plus">+</span></button><div class="faq-a"><p>Suele haber un periodo de espera. Consulta el plazo exacto con tu banco de sangre.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="n">12</span>¿Dónde está el estudio?<span class="plus">+</span></button><div class="faq-a"><p>En Sant Julià de Lòria, Andorra. Con cita previa: escríbeme por WhatsApp al +376 686 772.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="pad contact" id="contacto">
+  <div class="wrap">
+    <div class="head reveal" style="margin-bottom:0">
+      <span class="k">Reserva</span>
+      <h2 class="black"><span class="w fx">¿Tienes mono</span><span class="script">de tinta?</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="cinfo reveal">
+        <div class="k">WhatsApp / Teléfono</div>
+        <a href="https://wa.me/376686772" target="_blank" class="v">+376 686 772</a>
+        <div class="k" style="margin-top:14px">Email</div>
+        <a href="mailto:blackvenomink.and@gmail.com" class="v">blackvenomink.and@gmail.com</a>
+        <div class="k" style="margin-top:14px">Estudio</div>
+        <span class="v">Sant Julià de Lòria, Andorra</span>
+        <div class="k" style="margin-top:14px">Citas</div>
+        <span class="v">Con cita previa</span>
+      </div>
+      <form class="reveal" onsubmit="event.preventDefault();sendWA();">
+        <div class="row">
+          <div><label class="fld">Nombre *</label><input id="f-name" type="text" placeholder="Tu nombre" required /></div>
+          <div><label class="fld">Teléfono *</label><input id="f-phone" type="tel" placeholder="Tu teléfono" required /></div>
+        </div>
+        <div class="row">
+          <div><label class="fld">Email *</label><input id="f-email" type="email" placeholder="tu@email.com" required /></div>
+          <div><label class="fld">¿Eres mayor de 18 años? *</label>
+            <select id="f-age" required><option value="">Selecciona</option><option>Sí</option><option>No</option></select>
+          </div>
+        </div>
+        <div><label class="fld">¿Qué te quieres tatuar? *</label><textarea id="f-msg" placeholder="Describe tu idea, estilo (realismo / minimalista), zona, tamaño y referencias…" required></textarea></div>
+        <div><label class="fld">¿Tienes un código de descuento?</label><input id="f-code" type="text" placeholder="Opcional" /></div>
+        <label class="check"><input type="checkbox" id="f-terms" required /> <span>Acepto los términos y condiciones legales y la política de privacidad.</span></label>
+        <button class="btn btn-red" type="submit" style="justify-content:center">Enviar</button>
+        <p class="form-note">Al enviar se abrirá WhatsApp con tu solicitud lista para Renato.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="brand-name">Black <span>Venom</span> Ink</span>
+        <p>Estudio de tatuajes en Andorra especializado en realismo y minimalista. Por Renato Felipe.</p>
+        <div class="est">EST. ANDORRA</div>
+        <div class="socials">
+          <a href="https://wa.me/376686772" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg></a>
+          <a href="https://instagram.com/" target="_blank" aria-label="Instagram" title="Pon aquí tu enlace real de Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="mailto:blackvenomink.and@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Estudio</h5>
+        <p>Sant Julià de Lòria</p>
+        <p>Andorra</p>
+        <a href="https://wa.me/376686772" target="_blank">+376 686 772</a>
+        <a href="mailto:blackvenomink.and@gmail.com">blackvenomink.and@gmail.com</a>
+      </div>
+      <div class="foot-col">
+        <h5>Navegación</h5>
+        <a href="#estudio">Estudio</a>
+        <a href="#galeria">Galería</a>
+        <a href="#artista">Artista</a>
+        <a href="#faqs">FAQs</a>
+        <a href="#contacto">Citas</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Black Venom INK · Renato Felipe</span>
+      <span><a href="#">Legal</a><a href="#">Privacidad</a><a href="#">Cookies</a><a href="#"><b style="color:#fff">ES</b></a><a href="#">EN</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/376686772" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+</a>
+
+<!-- lightbox -->
+<div class="lb" id="lb">
+  <span class="close" id="lbClose">&times;</span>
+  <span class="arrow prev" id="lbPrev">&#8249;</span>
+  <img id="lbImg" src="" alt="" />
+  <span class="arrow next" id="lbNext">&#8250;</span>
+</div>
+
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+<script>
+  /* Red de seguridad: el contenido se muestra aunque el resto del JS falle */
+  (function(){
+    function showAll(){var e=document.querySelectorAll('.reveal');for(var i=0;i<e.length;i++)e[i].classList.add('in');}
+    if(document.readyState!=='loading')setTimeout(showAll,1400);
+    window.addEventListener('load',function(){setTimeout(showAll,1400);});
+    setTimeout(showAll,4000);
+  })();
+</script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const header = document.getElementById('header');
+  addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 40), {passive:true});
+
+  const menuBtn = document.getElementById('menuBtn'), menu = document.getElementById('menu'), overlay = document.getElementById('menuOverlay');
+  const toggleMenu = open => { menu.classList.toggle('open', open); overlay.classList.toggle('open', open); };
+  menuBtn.addEventListener('click', () => toggleMenu(!menu.classList.contains('open')));
+  overlay.addEventListener('click', () => toggleMenu(false));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+  /* gallery (masonry, red duotone) — se excluyen post-2 y post-11 */
+  const gallery = document.getElementById('gallery'), imgs = [];
+  const postNums = [1,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18];
+  postNums.forEach((n, idx) => {
+    const src = `assets/blackvenom/post-${n}.jpg`;
+    imgs.push(src);
+    const fig = document.createElement('div');
+    fig.className = 'duo';
+    fig.innerHTML = `<img src="${src}" loading="lazy" alt="Tatuaje Black Venom INK ${n}"/>`;
+    fig.addEventListener('click', () => openLB(idx));
+    gallery.appendChild(fig);
+  });
+
+  /* lightbox */
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg');
+  let cur = 0;
+  function openLB(i){ cur = i; lbImg.src = imgs[cur]; lb.classList.add('open'); }
+  function closeLB(){ lb.classList.remove('open'); }
+  function step(d){ cur = (cur + d + imgs.length) % imgs.length; lbImg.src = imgs[cur]; }
+  document.getElementById('lbClose').onclick = closeLB;
+  document.getElementById('lbNext').onclick = () => step(1);
+  document.getElementById('lbPrev').onclick = () => step(-1);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLB();
+    if (e.key === 'ArrowRight') step(1);
+    if (e.key === 'ArrowLeft') step(-1);
+  });
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q'), a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => { o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = null; });
+      if (!open) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    });
+  });
+
+  /* reveal */
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} }), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ===== efectos al hacer scroll: parallax de imágenes + relleno de color de letras ===== */
+  // dividir los textos .fx en palabras
+  const fxEls = Array.from(document.querySelectorAll('.fx'));
+  fxEls.forEach(el => {
+    const accent = (el.dataset.accent || '').toLowerCase().split(/\s+/).filter(Boolean);
+    const words = el.textContent.trim().split(/\s+/);
+    el.textContent = '';
+    el._words = [];
+    words.forEach(w => {
+      const s = document.createElement('span');
+      s.className = 'word';
+      const clean = w.toLowerCase().replace(/[.,!?¿¡:;]/g, '');
+      if (accent.includes(clean)) s.classList.add('accent');
+      s.textContent = w;
+      el.appendChild(s);
+      el.appendChild(document.createTextNode(' '));
+      el._words.push(s);
+    });
+  });
+
+  const paraImgs = Array.from(document.querySelectorAll('.duo img'));
+  const heroThumb = document.querySelector('.hero-thumb');
+  const heroEl = document.querySelector('.hero');
+
+  function fx(){
+    const vh = window.innerHeight;
+    // parallax imágenes
+    for (const img of paraImgs){
+      const c = img.parentElement.getBoundingClientRect();
+      if (c.bottom < -200 || c.top > vh + 200) continue;
+      const off = ((c.top + c.height/2) - vh/2) / vh;
+      img.style.transform = 'translateY(' + (off * -72).toFixed(1) + 'px)';
+    }
+    if (heroThumb){
+      // efecto scroll: empieza al lado (pequeña) y al bajar se centra y crece hasta +75%
+      const vw = window.innerWidth;
+      const mob = vw <= 560;
+      const range = Math.max(1, heroEl.offsetHeight - vh);
+      const p = Math.max(0, Math.min(1, window.scrollY / range));
+      const startX = vw * (mob ? 0.17 : 0.27); // posición inicial a la derecha (como estaba)
+      const x = startX * (1 - p);          // p=0 -> al lado ; p=1 -> centrado
+      const scale = 1 + (mob ? 0.5 : 0.75) * p; // crece (móvil un poco menos)
+      heroThumb.style.transform = 'translate(calc(-50% + ' + x.toFixed(0) + 'px), 0) scale(' + scale.toFixed(3) + ')';
+    }
+    // relleno de letras
+    for (const el of fxEls){
+      const r = el.getBoundingClientRect();
+      const prog = (vh * 0.82 - r.top) / (r.height + vh * 0.25);
+      const n = Math.max(0, Math.min(1, prog)) * el._words.length * 1.25;
+      for (let i = 0; i < el._words.length; i++) el._words[i].classList.toggle('lit', i < n);
+    }
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking){ requestAnimationFrame(() => { fx(); ticking = false; }); ticking = true; }
+  }, {passive:true});
+  window.addEventListener('resize', fx);
+  fx();
+
+  /* form -> WhatsApp */
+  function sendWA(){
+    const v = id => (document.getElementById(id).value || '').trim();
+    if (!document.getElementById('f-terms').checked) return;
+    let t = `Hola Renato! Quiero agendar cita.%0A`;
+    t += `Nombre: ${v('f-name') || '-'}%0A`;
+    t += `Teléfono: ${v('f-phone') || '-'}%0A`;
+    t += `Email: ${v('f-email') || '-'}%0A`;
+    t += `Mayor de 18: ${document.getElementById('f-age').value || '-'}%0A`;
+    t += `Qué me quiero tatuar: ${v('f-msg') || '-'}`;
+    if (v('f-code')) t += `%0ACódigo descuento: ${v('f-code')}`;
+    location.href = `https://wa.me/376686772?text=${t}`;
+  }
+</script>
+</body>
+</html>

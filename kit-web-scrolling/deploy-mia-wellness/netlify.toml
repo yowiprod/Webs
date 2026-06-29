@@ -1,0 +1,11 @@
+# Configuración de Netlify para MIA Wellness
+# Sitio estático: no hay build, solo se publica la carpeta tal cual.
+
+[build]
+  publish = "."
+
+# Cabeceras de caché para las imágenes (mejora la velocidad)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:destacamostuweb.netlify.app)",
+      "Bash(node -e \"require\\('playwright'\\)\" 2>nul && echo \"PLAYWRIGHT_OK\" || echo \"NO_PLAYWRIGHT\")",
+      "Bash(ls -la assets assets/instagram 2>/dev/null; echo \"---PLAYWRIGHT BROWSERS---\"; ls ~/AppData/Local/ms-playwright 2>/dev/null || echo \"no browsers cached\")",
+      "Read(//c/Users/Montse/AppData/Local/ms-playwright/**)",
+      "Bash(ls -la assets/ assets/instagram/)",
+      "Bash(ls *.json)",
+      "Bash(head -c 1500 ig-data.json)",
+      "Bash(node scrape-auth.js mattperruquers)",
+      "Bash(cmd.exe /c start \"\" \"web-lepetitsalon-laseu.html\")",
+      "PowerShell(Start-Process \"chrome.exe\" -ArgumentList \"`\"c:\\\\Users\\\\Montse\\\\skills adri\\\\10 SKILLS ADRI Y JUANPE\\\\10 SKILLS ADRI Y JUANPE\\\\kit-instagram-web\\\\web-joelpuig-artist.html`\"\")",
+      "Bash(rm -f assets/instagram/post-*.jpg assets/instagram/profile-*.jpg 2>/dev/null; echo \"cleared\"; ls assets/instagram)",
+      "Bash(node scrape-auth.js mia_wellness_andorra)",
+      "Bash(node scrape-generic.js sandraperruquers sandra)",
+      "Bash(node -e \"const d=require\\('./ig-data-sandra.json'\\); console.log\\('hasNetUser fields:', !!d.fullName, '| postsCount:', d.postsCount, '| captions:', \\(d.captions||[]\\).length\\); console.log\\('sample img widths:', \\(d.allImages||[]\\).map\\(i=>i.w\\).slice\\(0,12\\)\\); console.log\\('sample src:', \\(d.allImages||[]\\)[0] && \\(d.allImages||[]\\)[0].src.slice\\(0,90\\)\\);\")",
+      "Bash(node -e \"let s='';process.stdin.on\\('data',d=>s+=d\\).on\\('end',\\(\\)=>{try{const j=JSON.parse\\(s\\);console.log\\('hdCount:',j.hdCount,'downloaded:',j.downloaded,'profileSaved:',j.profileSaved,'err:',j.error\\)}catch\\(e\\){console.log\\(s.slice\\(0,500\\)\\)}}\\)\")",
+      "Bash(node -e \"let s='';process.stdin.on\\('data',d=>s+=d\\).on\\('end',\\(\\)=>{try{const j=JSON.parse\\(s\\);console.log\\('hdCount:',j.hdCount,'downloaded:',j.downloaded,'fetchTry:',JSON.stringify\\(j.fetchTry\\),'err:',j.error\\)}catch\\(e\\){console.log\\(s.slice\\(0,600\\)\\)}}\\)\")",
+      "Bash(node scrape-grid.js sandraperruquers sandra-grid 48)",
+      "Bash(node debug-state.js sandraperruquers)",
+      "Bash(node scrape-login.js sandraperruquers sandra-more)",
+      "Bash(rm -f login-status.json)",
+      "Bash(node login-and-scrape.js sandraperruquers sandra-salon)",
+      "Bash(node scrape-generic.js barber.glam.ad barber-glam-ad)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\Montse\\skills adri\\10 SKILLS ADRI Y JUANPE\\10 SKILLS ADRI Y JUANPE\\kit-instagram-web",
+      "C:\\Users\\Montse\\skills adri\\10 SKILLS ADRI Y JUANPE\\10 SKILLS ADRI Y JUANPE\\kit-instagram-web\\assets\\instagram"
+    ]
+  }
+}

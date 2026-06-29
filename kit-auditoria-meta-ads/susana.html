@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovació by Susana · Perruqueria & Barberia · Sant Julià de Lòria, Andorra</title>
+<meta name="description" content="Innovació by Susana — perruqueria, barberia, coloració, balayage i pentinats de núvia a Sant Julià de Lòria, Andorra. Personalitat, innovació i experiència.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&family=Allura&display=swap" rel="stylesheet">
+<style>
+:root{
+  --negre:#0a0908;
+  --negre-2:#100e0b;
+  --negre-3:#15120d;
+  --or:#cBA361;
+  --or-2:#d8b873;
+  --or-clar:#f1d9a5;
+  --crema:#efe7d8;
+  --crema-soft:#a99f8e;
+  --lila:#b478ff;
+  --cian:#5ee0ff;
+  --line:rgba(203,163,97,.16);
+  --line-soft:rgba(203,163,97,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--negre);
+  color:var(--crema);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  line-height:1.75;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--or);color:#0a0908}
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:#0a0908}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--or),#7a5e2e);border-radius:9px}
+
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;line-height:1.05;letter-spacing:-.5px}
+.script{font-family:'Allura',cursive;font-weight:400;letter-spacing:0}
+.label{font-family:'Jost';font-weight:500;letter-spacing:.4em;text-transform:uppercase;font-size:.68rem;color:var(--or)}
+.container{max-width:1200px;margin:0 auto;padding:0 30px}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* AURORES (gradients difuminats de fons) */
+.aurora{position:absolute;border-radius:50%;filter:blur(80px);opacity:.92;pointer-events:none;z-index:0}
+.au-or{background:radial-gradient(circle,rgba(224,190,118,.85),rgba(200,150,70,.35) 45%,transparent 70%)}
+.au-lila{background:radial-gradient(circle,rgba(180,120,255,.70),rgba(150,90,230,.30) 45%,transparent 70%)}
+.au-cian{background:radial-gradient(circle,rgba(94,224,255,.60),rgba(70,180,220,.26) 45%,transparent 70%)}
+
+/* CURSOR GLOW */
+#glow{position:fixed;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(216,184,115,.10),transparent 65%);
+  pointer-events:none;transform:translate(-50%,-50%);z-index:1;mix-blend-mode:screen}
+
+/* PILL BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:40px;
+  font-family:'Jost';font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;
+  padding:16px 32px;transition:.45s cubic-bezier(.2,.7,.2,1);cursor:pointer}
+.btn-dark{background:linear-gradient(135deg,var(--or-2),#9c7836);color:#0a0908;
+  box-shadow:0 12px 34px -12px rgba(216,184,115,.6)}
+.btn-dark:hover{transform:translateY(-3px);box-shadow:0 18px 44px -12px rgba(216,184,115,.85)}
+.btn-soft{background:rgba(255,255,255,.03);color:var(--crema);border:1px solid var(--line);
+  backdrop-filter:blur(8px)}
+.btn-soft:hover{border-color:var(--or);color:var(--or-clar);box-shadow:0 0 30px rgba(216,184,115,.2)}
+
+/* ============ NAV ============ */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;
+  justify-content:space-between;padding:24px 40px;transition:.45s}
+nav.scrolled{background:rgba(10,9,8,.78);backdrop-filter:blur(18px);padding:14px 40px;border-bottom:1px solid var(--line)}
+nav .brand{display:flex;align-items:center;gap:12px}
+nav .brand .logo-mark{width:42px;height:42px;filter:drop-shadow(0 0 8px rgba(216,184,115,.4))}
+.teardrop .logo-mark{width:150px;height:150px;filter:drop-shadow(0 0 16px rgba(216,184,115,.4))}
+nav .brand span{font-family:'Allura';font-size:1.8rem;color:var(--or-clar);line-height:1}
+nav .links{display:flex;gap:38px;align-items:center}
+nav .links a{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--crema);opacity:.82;
+  transition:.3s;position:relative}
+nav .links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--or);transition:.35s}
+nav .links a:hover{opacity:1}nav .links a:hover::after{width:100%}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:26px;height:2px;background:var(--or-clar)}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:120px 0 60px}
+.hero .au1{width:680px;height:680px;left:-160px;top:60px}
+.hero .au2{width:520px;height:520px;left:120px;bottom:-120px}
+.hero .au3{width:300px;height:300px;left:340px;top:120px}
+.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;width:100%;position:relative;z-index:2}
+.hero-img-wrap{position:relative;display:flex;justify-content:center}
+.hero-img{width:min(460px,82%);aspect-ratio:.82;object-fit:cover;
+  border-radius:62% 38% 55% 45% / 50% 52% 48% 50%;
+  border:1px solid var(--line);box-shadow:0 40px 100px -30px rgba(0,0,0,.9);
+  animation:morph 14s ease-in-out infinite}
+@keyframes morph{
+  0%,100%{border-radius:62% 38% 55% 45% / 50% 52% 48% 50%}
+  50%{border-radius:42% 58% 42% 58% / 58% 42% 58% 42%}
+}
+.hero-right{padding-left:10px}
+.hero-right .label{display:block;margin-bottom:24px}
+.hero-right h1{font-size:clamp(2.8rem,6vw,5rem);color:#fff;font-weight:500}
+.hero-right h1 em{font-style:italic;color:var(--or-clar)}
+.hero-right p{color:var(--crema-soft);font-family:'Fraunces';font-style:italic;font-size:1.3rem;
+  max-width:420px;margin:26px 0 36px;line-height:1.5}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ============ TRUST ROW ============ */
+.trust{position:relative;padding:30px 0 90px}
+.trust .container{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.feat{text-align:center;padding:0 14px}
+.feat .drop{width:52px;height:52px;margin:0 auto 18px;border-radius:60% 60% 60% 6px;
+  background:linear-gradient(140deg,var(--or-2),rgba(180,120,255,.5));transform:rotate(-45deg);
+  box-shadow:0 8px 26px -8px rgba(216,184,115,.6)}
+.feat h4{font-family:'Fraunces';font-size:1.3rem;color:#fff;font-weight:500;margin-bottom:8px}
+.feat p{color:var(--crema-soft);font-size:.92rem}
+.proof{margin-top:60px;text-align:center}
+.proof .stars{color:var(--or-clar);letter-spacing:3px;font-size:1.1rem}
+.proof b{font-family:'Fraunces';color:var(--or-clar);font-weight:500}
+
+/* ============ CAROUSEL PILLS ============ */
+.cats{padding:50px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--negre-2);overflow:hidden;position:relative}
+.cat-row{display:flex;gap:16px;width:max-content;animation:slide 40s linear infinite}
+.cat-row.rev{animation-direction:reverse;animation-duration:48s;margin-top:16px}
+@keyframes slide{to{transform:translateX(-50%)}}
+.pill{display:flex;align-items:center;gap:12px;padding:8px 22px 8px 8px;border-radius:40px;
+  border:1px solid var(--line);background:rgba(255,255,255,.02);white-space:nowrap;flex-shrink:0}
+.pill img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+.pill span{font-size:.85rem;letter-spacing:.05em;color:var(--crema)}
+.pill.txt{padding:12px 26px}
+.pill.txt span{color:var(--or-clar);font-family:'Fraunces';font-style:italic}
+
+/* ============ SECTIONS ============ */
+section{position:relative;z-index:2}
+.sec-pad{padding:130px 0}
+.sec-head{max-width:640px;margin-bottom:64px}
+.sec-head.center{margin:0 auto 64px;text-align:center}
+.sec-head .label{display:block;margin-bottom:18px}
+.sec-head h2{font-size:clamp(2.2rem,5vw,3.8rem);color:#fff;font-weight:500}
+.sec-head h2 em{font-style:italic;color:var(--or-clar)}
+.sec-head p{color:var(--crema-soft);margin-top:20px;font-size:1.05rem;font-family:'Fraunces';font-style:italic}
+
+.reveal{opacity:0;transform:translateY(42px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ SERVEIS (teardrop + pills, com els blocs de Salvato) ============ */
+.serveis-block{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:center;position:relative}
+.serveis-block .au-or{width:480px;height:480px;left:-80px;top:-80px}
+.teardrop-wrap{position:relative;display:flex;justify-content:center;align-items:center;min-height:420px}
+.teardrop{position:relative;width:330px;height:330px;border-radius:70% 70% 70% 8px;
+  background:linear-gradient(var(--negre),var(--negre)) padding-box,
+            linear-gradient(150deg,var(--or-2),var(--lila),var(--cian)) border-box;
+  border:2px solid transparent;display:flex;align-items:center;justify-content:center;text-align:center;
+  animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.teardrop .in-t{padding:30px}
+.teardrop .script{font-size:2.8rem;color:var(--or-clar);line-height:.9}
+.teardrop small{display:block;letter-spacing:.4em;text-transform:uppercase;font-size:.6rem;color:var(--crema-soft);margin-top:10px}
+.serv-pills{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.serv-pills a{border:1px solid var(--line);border-radius:40px;padding:11px 22px;font-size:.82rem;
+  letter-spacing:.06em;color:var(--crema);transition:.4s;display:flex;align-items:center;gap:8px}
+.serv-pills a:hover{border-color:var(--or);color:var(--or-clar);transform:translateY(-2px)}
+.serv-pills a b{color:var(--or);font-weight:400}
+
+/* ============ SALO / ABOUT (blob images Salvato style) ============ */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative}
+.split.rev .split-txt{order:2}
+.split.rev .split-img{order:1}
+.split-img{position:relative;display:flex;justify-content:center}
+.blob{width:min(440px,90%);aspect-ratio:1;object-fit:cover;
+  border-radius:58% 42% 48% 52% / 52% 50% 50% 48%;border:1px solid var(--line);
+  box-shadow:0 40px 100px -30px rgba(0,0,0,.9)}
+.blob-2{border-radius:42% 58% 60% 40% / 48% 42% 58% 52%}
+.split-img .floatcard{position:absolute;bottom:10px;right:0;background:rgba(16,14,11,.86);
+  backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:18px;padding:18px 22px;max-width:200px}
+.split-img .floatcard b{font-family:'Fraunces';color:var(--or-clar);display:block;font-size:1.4rem}
+.split-img .floatcard small{color:var(--crema-soft);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
+.split-txt h2{font-size:clamp(2rem,4.2vw,3.2rem);color:#fff;font-weight:500;margin-bottom:20px}
+.split-txt h2 em{font-style:italic;color:var(--or-clar)}
+.split-txt p{color:var(--crema-soft);margin-bottom:18px}
+.addr{display:flex;gap:14px;align-items:flex-start;margin:18px 0;color:var(--crema-soft)}
+.addr .ic{color:var(--or);flex-shrink:0;margin-top:4px}
+.addr b{color:var(--crema);font-weight:400;display:block}
+
+/* ============ TRANSFORMACIONS (grid sobre aurora, en lloc de testimonis) ============ */
+.gallery-sec{position:relative;overflow:hidden}
+.gallery-sec .au-lila{width:600px;height:600px;left:50%;top:30%;transform:translateX(-50%)}
+.gallery-sec .au-or{width:520px;height:520px;right:-100px;bottom:0}
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;grid-auto-rows:180px;position:relative;z-index:2}
+.g-item{position:relative;overflow:hidden;border:1px solid var(--line-soft)}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.g-item:hover img{transform:scale(1.07)}
+.g-item .cap{position:absolute;inset:0;display:flex;align-items:flex-end;padding:22px;
+  background:linear-gradient(to top,rgba(8,7,6,.85),transparent 55%);opacity:0;transition:.5s}
+.g-item:hover .cap{opacity:1}
+.g-item .cap b{font-family:'Fraunces';font-style:italic;font-weight:500;font-size:1.2rem;color:#fff}
+.g-item .cap small{display:block;letter-spacing:.18em;text-transform:uppercase;font-size:.6rem;color:var(--or-clar);margin-top:4px}
+.gi-a{grid-column:span 6;grid-row:span 2;border-radius:46% 54% 50% 50% / 52% 50% 50% 48%}
+.gi-b{grid-column:span 3;grid-row:span 2;border-radius:18px}
+.gi-c{grid-column:span 3;grid-row:span 2;border-radius:18px}
+.gi-d{grid-column:span 4;grid-row:span 2;border-radius:18px}
+.gi-e{grid-column:span 4;grid-row:span 2;border-radius:50%}
+.gi-f{grid-column:span 4;grid-row:span 2;border-radius:18px}
+.gi-g{grid-column:span 6;grid-row:span 2;border-radius:18px}
+.gi-h{grid-column:span 6;grid-row:span 2;border-radius:18px}
+.gi-a .cap,.gi-e .cap{border-radius:inherit}
+
+/* ============ PRODUCTES ============ */
+.prod-list{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.prod-card{display:flex;align-items:center;gap:18px;border:1px solid var(--line);border-radius:16px;
+  padding:16px 20px;transition:.4s cubic-bezier(.2,.7,.2,1);background:rgba(255,255,255,.02)}
+.prod-card:hover{border-color:var(--or);transform:translateX(6px);box-shadow:0 0 26px rgba(216,184,115,.14)}
+.prod-card .pc-ic{width:46px;height:46px;border-radius:13px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;color:#0a0908;font-family:'Fraunces';font-weight:600;font-size:1.1rem;
+  background:linear-gradient(140deg,var(--or-2),rgba(180,120,255,.5));box-shadow:0 8px 22px -8px rgba(216,184,115,.5)}
+.prod-card .pc-txt h4{font-family:'Fraunces';font-size:1.18rem;color:#fff;font-weight:500;line-height:1.2}
+.prod-card .pc-txt p{color:var(--crema-soft);font-size:.82rem;margin:2px 0 0;letter-spacing:.04em}
+
+/* ============ CONTACTE ============ */
+.contact{text-align:center;padding:140px 0;position:relative;overflow:hidden}
+.contact .au-or{width:560px;height:560px;left:50%;top:20%;transform:translateX(-50%);opacity:.4}
+.contact .inner{position:relative;z-index:2}
+.contact .script{font-size:clamp(3rem,8vw,5.5rem);color:var(--or-clar);line-height:.9;display:block}
+.contact h2{font-size:clamp(1.6rem,3vw,2.4rem);color:#fff;margin:6px 0 26px;font-weight:400}
+.contact p{color:var(--crema-soft);max-width:480px;margin:0 auto 36px;font-family:'Fraunces';font-style:italic;font-size:1.1rem}
+.socials{margin-top:46px;display:flex;gap:18px;justify-content:center}
+.socials a{width:50px;height:50px;border:1px solid var(--line);border-radius:50%;display:flex;
+  align-items:center;justify-content:center;color:var(--crema);transition:.4s}
+.socials a:hover{border-color:var(--or);color:var(--or-clar);transform:translateY(-4px);box-shadow:0 0 24px rgba(216,184,115,.35)}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:70px 0 36px;background:var(--negre-2)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px}
+.foot-grid .brand{font-family:'Allura';font-size:2.2rem;color:var(--or-clar);display:block;margin-bottom:14px}
+.foot-grid p{color:var(--crema-soft);font-size:.88rem;max-width:260px}
+.foot-col h5{font-family:'Jost';font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  font-size:.7rem;color:var(--or);margin-bottom:18px}
+.foot-col a,.foot-col span{display:block;color:var(--crema-soft);font-size:.88rem;margin-bottom:10px;transition:.3s}
+.foot-col a:hover{color:var(--or-clar)}
+.foot-bot{border-top:1px solid var(--line);padding-top:26px;text-align:center;color:var(--crema-soft);font-size:.8rem}
+.foot-bot a{color:var(--or)}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:920px){
+  nav .links{display:none}
+  .burger{display:flex}
+  nav .links.open{display:flex;position:absolute;top:100%;right:0;left:0;flex-direction:column;
+    background:rgba(10,9,8,.97);backdrop-filter:blur(16px);padding:26px;gap:22px;border-bottom:1px solid var(--line)}
+  .hero .container,.serveis-block,.split{grid-template-columns:1fr;gap:40px}
+  .hero-img-wrap{order:-1}
+  .split.rev .split-txt,.split.rev .split-img{order:0}
+  .trust .container{grid-template-columns:1fr;gap:46px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:34px}
+  .gallery{grid-auto-rows:150px}
+  .gi-a,.gi-b,.gi-c,.gi-d,.gi-e,.gi-f,.gi-g,.gi-h{grid-column:span 6;border-radius:18px}
+  .gi-a .cap,.gi-e .cap{border-radius:18px}
+}
+@media(max-width:540px){
+  .container{padding:0 20px}
+  .foot-grid{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr;grid-auto-rows:260px}
+  .gi-a,.gi-b,.gi-c,.gi-d,.gi-e,.gi-f,.gi-g,.gi-h{grid-column:span 1}
+  .teardrop{width:260px;height:260px}
+}
+</style>
+</head>
+<body>
+
+<div id="glow"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#top" class="brand">
+    <svg class="logo-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="33" r="27" stroke="url(#lm1)" stroke-width="1.6" opacity=".9"/>
+      <path d="M15 23 C19 16 26 12 33 11" stroke="url(#lm1)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <g fill="url(#lm1)">
+        <ellipse cx="16" cy="25" rx="3.1" ry="1.4" transform="rotate(45 16 25)"/>
+        <ellipse cx="20" cy="19.5" rx="3.1" ry="1.4" transform="rotate(32 20 19.5)"/>
+        <ellipse cx="25.5" cy="15" rx="3" ry="1.4" transform="rotate(18 25.5 15)"/>
+        <ellipse cx="31" cy="12.6" rx="2.6" ry="1.3" transform="rotate(5 31 12.6)"/>
+      </g>
+      <g stroke="url(#lm1)" stroke-width="1.6" stroke-linecap="round" fill="none">
+        <circle cx="26" cy="48" r="3.3"/><circle cx="38" cy="48" r="3.3"/>
+        <path d="M28.4 45.6 L42 26"/><path d="M35.6 45.6 L22 26"/>
+      </g>
+      <circle cx="32" cy="36" r="1.3" fill="url(#lm1)"/>
+      <defs><linearGradient id="lm1" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop stop-color="#f1d9a5"/><stop offset="1" stop-color="#b88b3e"/></linearGradient></defs>
+    </svg>
+    <span>Innovació</span>
+  </a>
+  <div class="links" id="navlinks">
+    <a href="#serveis">Serveis</a>
+    <a href="#salo">El Saló</a>
+    <a href="#treballs">Treballs</a>
+    <a href="#productes">Productes</a>
+    <a href="#contacte">Contacte</a>
+    <a href="https://www.instagram.com/innovacio_by_susana/" target="_blank" class="btn btn-dark" style="padding:11px 24px">Reserva</a>
+  </div>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="aurora au-or au1"></div>
+  <div class="aurora au-lila au2"></div>
+  <div class="aurora au-cian au3"></div>
+  <div class="container">
+    <div class="hero-img-wrap">
+      <img class="hero-img" src="assets/instagram/post-6c.jpg" alt="Pentinat de núvia amb tiara — Innovació by Susana">
+    </div>
+    <div class="hero-right">
+      <span class="label">Perruqueria · Barberia · Color</span>
+      <h1>On el teu estil<br><em>cobra vida</em></h1>
+      <p>Balayage, coloració, talls i pentinats de núvia amb personalitat. Tota la cura al servei de la teva imatge.</p>
+      <div class="hero-cta">
+        <a href="https://www.instagram.com/innovacio_by_susana/" target="_blank" class="btn btn-dark">Reserva per Instagram</a>
+        <a href="#treballs" class="btn btn-soft">Veure treballs</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="container">
+    <div class="feat reveal"><div class="drop"></div><h4>Equip qualificat</h4><p>Tècnica, formació constant i un tracte proper en cada visita.</p></div>
+    <div class="feat reveal"><div class="drop"></div><h4>Tècnica i tendència</h4><p>Color, balayage i talls actuals adaptats a la teva personalitat.</p></div>
+    <div class="feat reveal"><div class="drop"></div><h4>Al cor d'Andorra</h4><p>Un saló modern i acollidor a Sant Julià de Lòria.</p></div>
+  </div>
+  <div class="container proof reveal">
+    <div class="stars">★★★★★</div>
+    <p><b>+195 treballs compartits</b> i una comunitat de <b>219 seguidors</b> a Instagram</p>
+  </div>
+</section>
+
+<!-- CAROUSEL CATEGORIES -->
+<div class="cats">
+  <div class="cat-row">
+    <div class="pill"><img src="assets/instagram/post-3.jpg" alt=""><span>Balayage & Mèches</span></div>
+    <div class="pill txt"><span>Color</span></div>
+    <div class="pill"><img src="assets/instagram/post-9c.jpg" alt=""><span>Color de fantasia</span></div>
+    <div class="pill"><img src="assets/instagram/post-5.jpg" alt=""><span>Pixie & talls</span></div>
+    <div class="pill txt"><span>Estil</span></div>
+    <div class="pill"><img src="assets/instagram/post-6c.jpg" alt=""><span>Pentinats de núvia</span></div>
+    <div class="pill"><img src="assets/instagram/post-10.jpg" alt=""><span>Coure & rossos</span></div>
+    <!-- duplicat per al loop -->
+    <div class="pill"><img src="assets/instagram/post-3.jpg" alt=""><span>Balayage & Mèches</span></div>
+    <div class="pill txt"><span>Color</span></div>
+    <div class="pill"><img src="assets/instagram/post-9c.jpg" alt=""><span>Color de fantasia</span></div>
+    <div class="pill"><img src="assets/instagram/post-5.jpg" alt=""><span>Pixie & talls</span></div>
+    <div class="pill txt"><span>Estil</span></div>
+    <div class="pill"><img src="assets/instagram/post-6c.jpg" alt=""><span>Pentinats de núvia</span></div>
+    <div class="pill"><img src="assets/instagram/post-10.jpg" alt=""><span>Coure & rossos</span></div>
+  </div>
+  <div class="cat-row rev">
+    <div class="pill txt"><span>Barberia</span></div>
+    <div class="pill"><img src="assets/instagram/post-7.jpg" alt=""><span>Recollits & trenes</span></div>
+    <div class="pill txt"><span>Tractaments K89</span></div>
+    <div class="pill"><img src="assets/instagram/post-2c.jpg" alt=""><span>Rossos naturals</span></div>
+    <div class="pill txt"><span>Personalitat</span></div>
+    <div class="pill"><img src="assets/instagram/post-12.jpg" alt=""><span>Degradats & fades</span></div>
+    <!-- duplicat -->
+    <div class="pill txt"><span>Barberia</span></div>
+    <div class="pill"><img src="assets/instagram/post-7.jpg" alt=""><span>Recollits & trenes</span></div>
+    <div class="pill txt"><span>Tractaments K89</span></div>
+    <div class="pill"><img src="assets/instagram/post-2c.jpg" alt=""><span>Rossos naturals</span></div>
+    <div class="pill txt"><span>Personalitat</span></div>
+    <div class="pill"><img src="assets/instagram/post-12.jpg" alt=""><span>Degradats & fades</span></div>
+  </div>
+</div>
+
+<!-- SERVEIS -->
+<section class="sec-pad" id="serveis">
+  <div class="container serveis-block">
+    <div class="aurora au-or"></div>
+    <div class="teardrop-wrap reveal">
+      <div class="teardrop"><div class="in-t">
+        <svg class="logo-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <circle cx="32" cy="33" r="27" stroke="url(#lm2)" stroke-width="1.4" opacity=".9"/>
+          <path d="M15 23 C19 16 26 12 33 11" stroke="url(#lm2)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+          <g fill="url(#lm2)">
+            <ellipse cx="16" cy="25" rx="3.1" ry="1.4" transform="rotate(45 16 25)"/>
+            <ellipse cx="20" cy="19.5" rx="3.1" ry="1.4" transform="rotate(32 20 19.5)"/>
+            <ellipse cx="25.5" cy="15" rx="3" ry="1.4" transform="rotate(18 25.5 15)"/>
+            <ellipse cx="31" cy="12.6" rx="2.6" ry="1.3" transform="rotate(5 31 12.6)"/>
+          </g>
+          <g stroke="url(#lm2)" stroke-width="1.5" stroke-linecap="round" fill="none">
+            <circle cx="26" cy="48" r="3.3"/><circle cx="38" cy="48" r="3.3"/>
+            <path d="M28.4 45.6 L42 26"/><path d="M35.6 45.6 L22 26"/>
+          </g>
+          <circle cx="32" cy="36" r="1.3" fill="url(#lm2)"/>
+          <defs><linearGradient id="lm2" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop stop-color="#f1d9a5"/><stop offset="1" stop-color="#b88b3e"/></linearGradient></defs>
+        </svg>
+      </div></div>
+    </div>
+    <div class="reveal">
+      <span class="label">El que fem</span>
+      <h2 style="font-family:'Fraunces';font-size:clamp(2rem,4.2vw,3.2rem);color:#fff;font-weight:500;margin:18px 0 18px">Serveis pensats <em style="font-style:italic;color:var(--or-clar)">per a tu</em></h2>
+      <p style="color:var(--crema-soft);font-family:'Fraunces';font-style:italic;font-size:1.1rem;max-width:480px">Cada servei s'adapta al teu cabell i a la teva imatge. Tria el teu i en parlem per Instagram.</p>
+      <div class="serv-pills">
+        <a href="#contacte"><b>01</b> Color & Balayage</a>
+        <a href="#contacte"><b>02</b> Talls & Estil</a>
+        <a href="#contacte"><b>03</b> Barberia</a>
+        <a href="#contacte"><b>04</b> Núvies & Esdeveniments</a>
+        <a href="#contacte"><b>05</b> Tractaments K89</a>
+        <a href="#contacte"><b>06</b> Assessorament d'imatge</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SALO -->
+<section class="sec-pad" id="salo" style="background:var(--negre-2)">
+  <div class="container split">
+    <div class="split-img reveal">
+      <img class="blob" src="assets/instagram/post-12.jpg" alt="Interior del saló amb el logo de neó ddaurat">
+      <div class="floatcard"><b>Sant Julià</b><small>de Lòria · Andorra</small></div>
+    </div>
+    <div class="split-txt reveal">
+      <span class="label">El nostre espai</span>
+      <h2>Un saló on et sents <em>com a casa</em></h2>
+      <p>Un ambient modern i acollidor amb el segell daurat d'Innovació by Susana. Llum càlida, detalls cuidats i l'experiència d'estar en bones mans.</p>
+      <div class="addr"><span class="ic">◈</span><div><b>Innovació by Susana</b>C/ de les Escoles, núm 9, Baixos B<br>Sant Julià de Lòria · AD600 · Andorra</div></div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Innovaci%C3%B3+by+Susana+Sant+Juli%C3%A0+de+L%C3%B2ria+Andorra" target="_blank" class="btn btn-soft">Com arribar-hi</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / FILOSOFIA -->
+<section class="sec-pad">
+  <div class="container split rev">
+    <div class="split-txt reveal">
+      <span class="label">La nostra manera de fer</span>
+      <h2>Innovar amb <em>personalitat</em></h2>
+      <p>Creiem que cada cabell explica una història. Treballem amb tècnica, productes de qualitat com K89 Hair Experts i molta il·lusió per aconseguir un resultat que sigui ben teu.</p>
+      <p>Des de la coloració més atrevida fins al recollit del dia més important — sentir que som part de la felicitat d'algú no té preu.</p>
+      <a href="#treballs" class="btn btn-soft">Descobreix els treballs</a>
+    </div>
+    <div class="split-img reveal">
+      <img class="blob blob-2" src="assets/instagram/post-7.jpg" alt="Recollit de núvia trenat">
+      <div class="floatcard" style="left:0;right:auto;bottom:14px"><b>Núvies</b><small>Pentinats & recollits</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMACIONS -->
+<section class="sec-pad gallery-sec" id="treballs">
+  <div class="aurora au-lila"></div>
+  <div class="aurora au-or"></div>
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="label">La nostra feina</span>
+      <h2>Les <em>transformacions</em></h2>
+      <p>Treballs reals del saló, compartits dia a dia a Instagram.</p>
+    </div>
+    <div class="gallery">
+      <div class="g-item gi-a reveal"><img src="assets/instagram/post-6c.jpg" alt="Núvia amb tiara"><div class="cap"><div><b>Núvia & esdeveniment</b><small>Recollit amb peça</small></div></div></div>
+      <div class="g-item gi-b reveal"><img src="assets/instagram/post-9c.jpg" alt="Color vermell"><div class="cap"><div><b>Color vibrant</b><small>Coloració de fantasia</small></div></div></div>
+      <div class="g-item gi-c reveal"><img src="assets/instagram/post-5.jpg" alt="Pixie amb balayage"><div class="cap"><div><b>Pixie & balayage</b><small>Tall amb moviment</small></div></div></div>
+      <div class="g-item gi-d reveal"><img src="assets/instagram/post-3.jpg" alt="Balayage llarg"><div class="cap"><div><b>Balayage</b><small>Llum i dimensió</small></div></div></div>
+      <div class="g-item gi-e reveal"><img src="assets/instagram/post-7.jpg" alt="Recollit trenat"><div class="cap"><div><b>Recollit trenat</b><small>Pentinat de núvia</small></div></div></div>
+      <div class="g-item gi-f reveal"><img src="assets/instagram/post-10.jpg" alt="Color coure"><div class="cap"><div><b>Coure intens</b><small>Coloració</small></div></div></div>
+      <div class="g-item gi-g reveal"><img src="assets/instagram/post-2c.jpg" alt="Rossos amb balayage"><div class="cap"><div><b>Ros lluminós</b><small>Balayage & mèches</small></div></div></div>
+      <div class="g-item gi-h reveal"><img src="assets/instagram/post-12.jpg" alt="Tall masculí amb degradat"><div class="cap"><div><b>Barberia</b><small>Degradat & estil</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTES -->
+<section class="sec-pad" id="productes" style="background:var(--negre-2);overflow:hidden">
+  <div class="aurora au-or" style="width:480px;height:480px;right:-120px;top:-60px"></div>
+  <div class="container split rev">
+    <div class="split-txt reveal">
+      <span class="label">Productes de confiança</span>
+      <h2>Cura amb <em>K89 Hair Experts</em></h2>
+      <p>Treballem amb productes professionals K89 per cuidar i protegir el teu cabell tot l'any. Fórmules de qualitat, aptes per al mètode curly i pensades per mantenir el color i la salut de la teva melena.</p>
+      <div class="prod-list">
+        <div class="prod-card reveal">
+          <div class="pc-ic">01</div>
+          <div class="pc-txt"><h4>After Sun Shampoo</h4><p>K89 Sun Care · Línia Summer · 250 ml</p></div>
+        </div>
+        <div class="prod-card reveal">
+          <div class="pc-ic">02</div>
+          <div class="pc-txt"><h4>Sun Protection Conditioner Spray</h4><p>K89 Sun Care · Protecció solar · 250 ml</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="split-img reveal">
+      <img class="blob blob-2" src="assets/instagram/post-8.jpg" alt="Productes K89 Sun Care — After Sun Shampoo i Sun Protection Conditioner Spray">
+      <div class="floatcard" style="left:0;right:auto;bottom:14px"><b>K89</b><small>Hair Experts · Curly</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTE -->
+<section class="contact" id="contacte">
+  <div class="aurora au-or"></div>
+  <div class="container inner reveal">
+    <span class="script">Et podem ajudar?</span>
+    <h2>Reserva la teva cita</h2>
+    <p>Escriu-nos un missatge directe a Instagram i et donem cita. Estarem encantats de cuidar de tu.</p>
+    <a href="https://www.instagram.com/innovacio_by_susana/" target="_blank" class="btn btn-dark" style="padding:18px 42px;font-size:.82rem">Escriu-nos a Instagram</a>
+    <div class="socials">
+      <a href="https://www.instagram.com/innovacio_by_susana/" target="_blank" title="Instagram" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.google.com/maps/search/?api=1&query=Innovaci%C3%B3+by+Susana+Sant+Juli%C3%A0+de+L%C3%B2ria+Andorra" target="_blank" title="Ubicació" aria-label="Ubicació"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <span class="brand">Innovació by Susana</span>
+        <p>Perruqueria, barberia i color amb personalitat al cor de Sant Julià de Lòria, Andorra.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Serveis</h5>
+        <a href="#serveis">Color & Balayage</a>
+        <a href="#serveis">Talls & Estil</a>
+        <a href="#serveis">Barberia</a>
+        <a href="#serveis">Núvies</a>
+      </div>
+      <div class="foot-col">
+        <h5>Saló</h5>
+        <span>C/ de les Escoles, 9</span>
+        <span>Sant Julià de Lòria</span>
+        <span>AD600 · Andorra</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=Innovaci%C3%B3+by+Susana+Sant+Juli%C3%A0+de+L%C3%B2ria+Andorra" target="_blank">Com arribar-hi</a>
+      </div>
+      <div class="foot-col">
+        <h5>Segueix-nos</h5>
+        <a href="https://www.instagram.com/innovacio_by_susana/" target="_blank">@innovacio_by_susana</a>
+        <a href="https://www.instagram.com/innovacio_by_susana/" target="_blank">Reserva cita</a>
+      </div>
+    </div>
+    <div class="foot-bot">© <span id="year"></span> Innovació by Susana · Fet amb cura a Andorra · <a href="https://www.instagram.com/innovacio_by_susana/" target="_blank">Instagram</a></div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+document.getElementById('burger').onclick=()=>document.getElementById('navlinks').classList.toggle('open');
+document.querySelectorAll('#navlinks a').forEach(a=>a.onclick=()=>document.getElementById('navlinks').classList.remove('open'));
+
+const glow=document.getElementById('glow');
+addEventListener('mousemove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
+
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){
+  const sibs=e.target.parentElement?Array.from(e.target.parentElement.querySelectorAll(':scope > .reveal')):[];
+  const idx=sibs.indexOf(e.target);
+  setTimeout(()=>e.target.classList.add('in'),idx>0?idx*90:0);
+  io.unobserve(e.target);}})},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

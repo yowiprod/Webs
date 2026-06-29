@@ -1,0 +1,11 @@
+# Configuració de Netlify per a Nou Estil Perruquers
+# Lloc estàtic: no hi ha build, només es publica la carpeta tal qual.
+
+[build]
+  publish = "."
+
+# Memòria cau per a les imatges (millora la velocitat)
+[[headers]]
+  for = "/assets/nouestil/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

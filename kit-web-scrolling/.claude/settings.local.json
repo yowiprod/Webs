@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sL \"https://cafecomercialmadrid.com\" -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\)\" -o /tmp/cafecomercial.html)",
+      "Read(//tmp/**)",
+      "Read(//private/tmp/**)",
+      "Bash(gh auth *)",
+      "Bash(gh repo *)",
+      "Bash(curl -sL \"https://destacamostuweb.com\" -o index_live.html)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(ls -la \"c:/Users/Montse/skills adri/10 SKILLS ADRI Y JUANPE/10 SKILLS ADRI Y JUANPE/kit-instagram-web/\" 2>/dev/null | head -40)",
+      "Read(//c/Users/Montse/skills adri/10 SKILLS ADRI Y JUANPE/10 SKILLS ADRI Y JUANPE/kit-instagram-web/**)",
+      "WebFetch(domain:ballenacabo.com)",
+      "Bash(find \"c:/Users/Montse/skills adri/10 SKILLS ADRI Y JUANPE/10 SKILLS ADRI Y JUANPE/kit-web-scrolling/.claude\" -type f 2>/dev/null; echo \"---SKILLS GLOBAL---\"; find \"C:/Users/Montse/.claude/skills\" -iname \"*scroll*\" -o -iname \"*web-scroll*\" 2>/dev/null | head)",
+      "Read(//c/Users/Montse/.claude/**)",
+      "Bash(echo \"=== contenido carpeta memory ===\")",
+      "Bash(ls -la C:/Users/Montse/.claude/projects/c--Users-Montse-skills-adri-10-SKILLS-ADRI-Y-JUANPE-10-SKILLS-ADRI-Y-JUANPE-kit-web-scrolling/memory)",
+      "Bash(echo \"=== MEMORY.md ===\")",
+      "Bash(cat C:/Users/Montse/.claude/projects/c--Users-Montse-skills-adri-10-SKILLS-ADRI-Y-JUANPE-10-SKILLS-ADRI-Y-JUANPE-kit-web-scrolling/memory/MEMORY.md)",
+      "Bash(echo \"=== hay cambios sin commit en Fam? ===\")",
+      "WebSearch",
+      "Bash(ls -la \"c:/Users/Montse/skills adri/10 SKILLS ADRI Y JUANPE/10 SKILLS ADRI Y JUANPE/\")",
+      "Read(//c/Users/Montse/skills adri/10 SKILLS ADRI Y JUANPE/10 SKILLS ADRI Y JUANPE/**)",
+      "Bash(netlify sites:list --json)",
+      "Bash(mkdir -p deploy-germans-gonzalez)",
+      "Bash(curl -s \"https://germans-gonzalez-andorra.netlify.app/\" -o deploy-germans-gonzalez/index.html)",
+      "Bash(curl -s -o distgar-live.html \"https://distgar-checkout.netlify.app/\")"
+    ]
+  }
+}

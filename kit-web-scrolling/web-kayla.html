@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kayla.com — Productos de temporada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#161616;
+    --muted:#9a9a9a;
+    --line:#eee;
+    --thumb:#f3f2ef;
+    --accent:#d2683f;
+    --maxw:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;
+  }
+  ::selection{background:var(--ink);color:#fff}
+  ::-webkit-scrollbar{width:9px}
+  ::-webkit-scrollbar-thumb{background:#dcdcdc;border-radius:9px}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+
+  /* ---------- HEADER ---------- */
+  header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-weight:700;font-size:1.05rem;letter-spacing:.04em}
+  .logo b{color:var(--accent)}
+  .topnav{display:flex;gap:30px}
+  .topnav a{font-size:.85rem;color:var(--muted);font-weight:500;transition:color .2s}
+  .topnav a:hover,.topnav a.active{color:var(--ink)}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+  .burger span{width:22px;height:1.6px;background:var(--ink)}
+
+  /* ---------- INTRO ---------- */
+  .intro{padding:84px 0 64px;border-bottom:1px solid var(--line)}
+  .intro p{font-size:clamp(1.2rem,2.6vw,1.9rem);font-weight:500;max-width:820px;line-height:1.32;letter-spacing:-.01em}
+  .intro p .dim{color:var(--muted)}
+  .intro .tag{margin-top:24px;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .intro .tag .live{color:var(--accent)}
+
+  /* ---------- CATEGORY + GRID ---------- */
+  .section{padding:56px 0;border-bottom:1px solid var(--line)}
+  .catbar{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:34px;flex-wrap:wrap;gap:8px}
+  .catbar h2{font-size:1rem;font-weight:700;letter-spacing:.02em}
+  .catbar .note{font-size:.8rem;color:var(--muted);font-weight:500}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px 26px}
+  .product{display:flex;flex-direction:column;cursor:pointer}
+  .thumb{
+    aspect-ratio:1/1;background:var(--thumb);border-radius:6px;overflow:hidden;
+    position:relative;
+  }
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .product:hover .thumb img{transform:scale(1.05)}
+  .rank{position:absolute;top:10px;left:10px;background:var(--ink);color:#fff;font-size:.6rem;
+    font-weight:700;letter-spacing:.08em;padding:4px 8px;border-radius:3px}
+  .pinfo{padding-top:13px}
+  .pname{font-size:.92rem;font-weight:600;letter-spacing:-.005em;line-height:1.3}
+  .pdesc{font-size:.78rem;color:var(--muted);margin-top:3px;line-height:1.35}
+  .pprice{font-size:.85rem;color:var(--muted);margin-top:7px}
+  .pprice.ph{font-style:italic;color:#c6c6c6}
+
+  /* ---------- SEASONS ---------- */
+  .seasons{padding:56px 0;border-bottom:1px solid var(--line)}
+  .seasons h2{font-size:1rem;font-weight:700;margin-bottom:20px}
+  .srow{display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:16px 2px;border-top:1px solid #f4f4f4}
+  .srow:first-of-type{border-top:none}
+  .sleft{display:flex;align-items:center;gap:15px}
+  .sleft .em{font-size:1.3rem;width:30px;text-align:center}
+  .sleft .sn{font-size:1rem;font-weight:600}
+  .sstate{font-size:.78rem;color:var(--muted);font-weight:500}
+  .sstate.now{color:var(--accent);font-weight:600}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:66px 0 34px}
+  .footgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;margin-bottom:48px}
+  .footgrid .big{font-size:1.35rem;font-weight:700;margin-bottom:12px}
+  .footgrid .big b{color:var(--accent)}
+  .footgrid p{font-size:.9rem;color:var(--muted);max-width:320px}
+  .fcol h4{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:700}
+  .fcol a,.fcol span{display:block;font-size:.9rem;margin-bottom:9px}
+  .fcol a:hover{color:var(--muted)}
+  .fcol .ph{color:#c6c6c6;font-style:italic}
+  .news{display:flex;gap:9px;margin-top:6px;max-width:300px}
+  .news input{flex:1;border:1px solid var(--line);border-radius:6px;padding:10px 12px;font-family:inherit;font-size:.86rem;outline:none}
+  .news input:focus{border-color:var(--ink)}
+  .news button{background:var(--ink);color:#fff;border:none;border-radius:6px;padding:0 16px;font-weight:600;font-size:.82rem;cursor:pointer}
+  .footbottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem;color:var(--muted)}
+  .footbottom .soc{display:flex;gap:14px}
+
+  /* ---------- REVEAL ---------- */
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .rv.in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:980px){.grid{grid-template-columns:repeat(3,1fr)}.footgrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:680px){
+    .topnav{position:fixed;inset:64px 0 auto 0;flex-direction:column;gap:0;background:#fff;
+      border-bottom:1px solid var(--line);padding:6px 32px 16px;transform:translateY(-130%);transition:transform .35s ease}
+    .topnav.open{transform:none}
+    .topnav a{padding:11px 0}
+    .burger{display:flex}
+    .grid{grid-template-columns:repeat(2,1fr);gap:26px 18px}
+    .footgrid{grid-template-columns:1fr;gap:28px}
+  }
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body id="top">
+
+<!-- HEADER -->
+<header class="site">
+  <div class="wrap topbar">
+    <a href="#top" class="logo">KAYLA<b>.</b>com</a>
+    <nav class="topnav" id="topnav">
+      <a href="#verano" class="active">Verano 2026</a>
+      <a href="#temporadas">Temporadas</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="wrap">
+    <p class="rv">Kayla.com es una tienda online de productos de temporada. <span class="dim">Lo justo, útil y bien elegido para cada época del año, entregado en tu casa.</span></p>
+    <div class="tag rv"><span class="live">●</span> Temporada activa · Verano 2026</div>
+  </div>
+</section>
+
+<!-- VERANO GRID -->
+<section class="section" id="verano">
+  <div class="wrap">
+    <div class="catbar">
+      <h2 class="rv">Verano 2026</h2>
+      <span class="note rv">Lo más vendido de la temporada</span>
+    </div>
+    <div class="grid">
+
+      <!-- 1 ventilador -->
+      <div class="product rv">
+        <div class="thumb">
+          <span class="rank">TOP VENTAS</span>
+          <img src="https://images.unsplash.com/photo-1665298455913-dd43714f5ad1?w=700&h=700&fit=crop&q=72&auto=format" alt="Ventilador portátil recargable" loading="lazy">
+        </div>
+        <div class="pinfo">
+          <div class="pname">Ventilador portátil recargable</div>
+          <div class="pdesc">Batería de varias horas · ligero y silencioso</div>
+          <div class="pprice ph">[PRECIO]</div>
+        </div>
+      </div>
+
+      <!-- 2 aire acondicionado -->
+      <div class="product rv">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1757219525975-03b5984bc6e8?w=700&h=700&fit=crop&q=72&auto=format" alt="Aire acondicionado" loading="lazy">
+        </div>
+        <div class="pinfo">
+          <div class="pname">Aire acondicionado</div>
+          <div class="pdesc">Refresca tu espacio en los días de más calor</div>
+          <div class="pprice ph">[PRECIO]</div>
+        </div>
+      </div>
+
+      <!-- 3 nevera -->
+      <div class="product rv">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1550720295-a59523cb8872?w=700&h=700&fit=crop&q=72&auto=format" alt="Nevera portátil" loading="lazy">
+        </div>
+        <div class="pinfo">
+          <div class="pname">Nevera portátil</div>
+          <div class="pdesc">Frío durante horas · playa y camping</div>
+          <div class="pprice ph">[PRECIO]</div>
+        </div>
+      </div>
+
+      <!-- 4 altavoz -->
+      <div class="product rv">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=700&h=700&fit=crop&q=72&auto=format" alt="Altavoz Bluetooth acuático" loading="lazy">
+        </div>
+        <div class="pinfo">
+          <div class="pname">Altavoz Bluetooth acuático</div>
+          <div class="pdesc">Resistente al agua y la arena</div>
+          <div class="pprice ph">[PRECIO]</div>
+        </div>
+      </div>
+
+      <!-- 5 bateria -->
+      <div class="product rv">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1566554738544-d962991c3fee?w=700&h=700&fit=crop&q=72&auto=format" alt="Batería externa de alta capacidad" loading="lazy">
+        </div>
+        <div class="pinfo">
+          <div class="pname">Batería externa de alta capacidad</div>
+          <div class="pdesc">Carga rápida para móvil y tablet</div>
+          <div class="pprice ph">[PRECIO]</div>
+        </div>
+      </div>
+
+      <!-- 6 sombrilla -->
+      <div class="product rv">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1521170813716-0b3f42fcfb65?w=700&h=700&fit=crop&q=72&auto=format" alt="Sombrilla de playa UV+" loading="lazy">
+        </div>
+        <div class="pinfo">
+          <div class="pname">Sombrilla de playa UV+</div>
+          <div class="pdesc">Alta protección solar · montaje rápido</div>
+          <div class="pprice ph">[PRECIO]</div>
+        </div>
+      </div>
+
+      <!-- 7 piscina -->
+      <div class="product rv">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1506359585186-16ff29581308?w=700&h=700&fit=crop&q=72&auto=format" alt="Piscina desmontable" loading="lazy">
+        </div>
+        <div class="pinfo">
+          <div class="pname">Piscina desmontable</div>
+          <div class="pdesc">Montaje fácil para patio o terraza</div>
+          <div class="pprice ph">[PRECIO]</div>
+        </div>
+      </div>
+
+      <!-- 8 termo -->
+      <div class="product rv">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=700&h=700&fit=crop&q=72&auto=format" alt="Botella térmica fría 24h" loading="lazy">
+        </div>
+        <div class="pinfo">
+          <div class="pname">Botella térmica fría 24h</div>
+          <div class="pdesc">Mantiene tus bebidas heladas todo el día</div>
+          <div class="pprice ph">[PRECIO]</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SEASONS -->
+<section class="seasons" id="temporadas">
+  <div class="wrap">
+    <h2 class="rv">Cada temporada, su catálogo</h2>
+    <div class="srow rv"><span class="sleft"><span class="em">☀️</span><span class="sn">Verano</span></span><span class="sstate now">Disponible ahora</span></div>
+    <div class="srow rv"><span class="sleft"><span class="em">❄️</span><span class="sn">Invierno · mantas, estufas</span></span><span class="sstate">Próximamente</span></div>
+    <div class="srow rv"><span class="sleft"><span class="em">🎃</span><span class="sn">Halloween</span></span><span class="sstate">Próximamente</span></div>
+    <div class="srow rv"><span class="sleft"><span class="em">❤️</span><span class="sn">San Valentín</span></span><span class="sstate">Próximamente</span></div>
+    <div class="srow rv"><span class="sleft"><span class="em">🎄</span><span class="sn">Navidad</span></span><span class="sstate">Próximamente</span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="wrap">
+    <div class="footgrid">
+      <div class="rv">
+        <div class="big">KAYLA<b>.</b>com</div>
+        <p>Tu tienda online de productos de temporada. Lo que necesitas en cada época del año, sin salir de casa.</p>
+      </div>
+      <div class="fcol rv">
+        <h4>Temporadas</h4>
+        <a href="#verano">Verano 2026</a>
+        <span>Invierno</span>
+        <span>Halloween</span>
+        <span>San Valentín · Navidad</span>
+      </div>
+      <div class="fcol rv">
+        <h4>Contacto</h4>
+        <span class="ph">[TU EMAIL AQUÍ]</span>
+        <span class="ph">[TU TELÉFONO AQUÍ]</span>
+        <div class="news"><input type="email" placeholder="Tu email" aria-label="Email"><button type="button">Suscribir</button></div>
+      </div>
+    </div>
+    <div class="footbottom">
+      <span>© <span id="year"></span> Kayla.com — Productos de temporada</span>
+      <span class="soc"><span class="ph">[INSTAGRAM]</span><span class="ph">[TIKTOK]</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const burger=document.getElementById('burger'), topnav=document.getElementById('topnav');
+  burger.addEventListener('click',()=>topnav.classList.toggle('open'));
+  topnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>topnav.classList.remove('open')));
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.1,rootMargin:'0px 0px -5% 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

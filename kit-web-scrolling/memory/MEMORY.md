@@ -1,0 +1,1 @@
+- [destacamostuweb deploy](destacamostuweb-deploy.md) — cómo editar/desplegar la web en Netlify + estructura y precios de servicios actuales

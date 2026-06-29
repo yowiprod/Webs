@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Esquilada — Perruqueria canina a Sant Julià de Lòria</title>
+<meta name="description" content="L'Esquilada, perruqueria canina a Sant Julià de Lòria (Andorra). Bany, tall, desllanat i cura integral per al teu gos amb mim i professionalitat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf5ec;
+    --bg-2:#f1e8d8;
+    --sand:#e9dcc6;
+    --surface:#ffffff;
+    --ink:#322b22;
+    --muted:#7b6f5e;
+    --brown:#c07a45;
+    --brown-d:#a8662f;
+    --teal:#37a89b;
+    --teal-d:#2c8a7f;
+    --line:rgba(50,43,34,.12);
+    --grad:linear-gradient(120deg,#c07a45 0%,#d99a52 45%,#37a89b 100%);
+    --radius:20px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.display{font-family:'Quicksand',sans-serif;line-height:1.1;font-weight:700;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--teal);color:#fff}
+  ::-webkit-scrollbar{width:11px}
+  ::-webkit-scrollbar-track{background:var(--bg-2)}
+  ::-webkit-scrollbar-thumb{background:var(--brown);border-radius:10px;border:3px solid var(--bg-2)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+  /* Barra de progrés */
+  #scrollProgress{position:fixed;top:0;left:0;height:4px;width:0;background:var(--grad);z-index:60;transition:width .08s linear}
+
+  /* NAV */
+  header{position:fixed;top:0;left:0;width:100%;z-index:50;transition:.35s}
+  header.scrolled{background:rgba(250,245,236,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:76px;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .logo{font-family:'Quicksand';font-weight:700;font-size:1.4rem;display:flex;align-items:center;gap:10px}
+  .logo .paw{width:38px;height:38px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1rem;overflow:hidden;padding:2px}
+  .logo .paw img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:.96rem;font-weight:600;transition:.2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a.cta{background:var(--grad);color:#fff;padding:11px 22px;border-radius:999px;font-family:'Quicksand';transition:.25s}
+  .nav-links a.cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(192,122,69,.4)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0}
+  .burger span{width:26px;height:2px;background:var(--ink);border-radius:2px}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;z-index:0;background:
+    radial-gradient(55% 70% at 85% 15%,rgba(55,168,155,.16),transparent 60%),
+    radial-gradient(60% 70% at 8% 90%,rgba(192,122,69,.18),transparent 60%)}
+  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+  .hero-copy .kicker{text-transform:uppercase;letter-spacing:.22em;font-size:.8rem;color:var(--brown-d);font-weight:700;margin-bottom:22px}
+  .hero h1{font-size:clamp(2.8rem,7vw,5.2rem)}
+  .hero h1 em{font-style:normal}
+  .hero p.sub{font-size:clamp(1.05rem,2vw,1.28rem);color:var(--muted);max-width:46ch;margin:24px 0 36px}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{padding:15px 30px;border-radius:999px;font-family:'Quicksand';font-weight:700;font-size:1rem;transition:.28s;cursor:pointer;border:0;display:inline-block}
+  .btn-primary{background:var(--grad);color:#fff}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(192,122,69,.42)}
+  .btn-ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--bg);transform:translateY(-3px)}
+  .hero-visual{position:relative;height:520px;border-radius:50% 50% 26px 26px/40% 40% 26px 26px;overflow:hidden;background:linear-gradient(160deg,var(--sand),var(--bg-2));border:1px solid var(--line);box-shadow:0 30px 80px rgba(50,43,34,.14)}
+  .hero-visual img{width:100%;height:100%;object-fit:cover;display:block}
+  .paw-deco{position:absolute;font-size:2rem;opacity:.5;animation:float 7s ease-in-out infinite}
+  .paw-deco.p1{top:24px;left:-10px}
+  .paw-deco.p2{bottom:20px;right:-6px;animation-delay:-3s}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-18px) rotate(8deg)}}
+
+  /* SECCIONS */
+  section.block{position:relative;z-index:1;padding:110px 0}
+  .center{text-align:center;max-width:760px;margin:0 auto}
+  .eyebrow{text-transform:uppercase;letter-spacing:.28em;font-size:.8rem;font-weight:700;color:var(--teal-d);margin-bottom:16px}
+  .sec-title{font-size:clamp(2.1rem,5vw,3.4rem)}
+  .sec-lead{color:var(--muted);font-size:1.1rem;margin-top:20px}
+  .divider{width:64px;height:4px;border-radius:4px;background:var(--grad);margin:22px auto}
+
+  /* SERVEIS */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:54px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.35s;position:relative}
+  .card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(50,43,34,.14)}
+  .card-img{height:200px;overflow:hidden;background:var(--bg-2)}
+  .card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+  .card:hover .card-img img{transform:scale(1.08)}
+  .card-body{padding:26px 28px 30px}
+  .card h3{font-size:1.4rem;margin-bottom:9px}
+  .card p{color:var(--muted);font-size:.97rem}
+  .card .more{display:inline-block;margin-top:16px;font-size:.84rem;letter-spacing:.05em;color:var(--brown-d);text-transform:uppercase;font-weight:700}
+  .note-edit{text-align:center;margin-top:30px;font-size:.92rem;color:var(--muted);background:rgba(192,122,69,.08);border:1px dashed var(--brown);border-radius:14px;padding:14px 20px;max-width:640px;margin-left:auto;margin-right:auto}
+
+  /* GALERIA */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px;margin-top:54px}
+  .gallery figure{overflow:hidden;border-radius:16px;border:1px solid var(--line);position:relative}
+  .gallery figure img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+  .gallery figure:hover img{transform:scale(1.08)}
+  .gallery figure.tall{grid-row:span 2}
+  .gallery figure.wide{grid-column:span 2}
+  @media (max-width:920px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:640px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.gallery figure.wide,.gallery figure.tall{grid-column:auto;grid-row:auto}}
+
+  /* QUI SOM */
+  .about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:60px;align-items:center;margin-top:30px}
+  .about-visual{height:440px;border-radius:24px;overflow:hidden;border:1px solid var(--line)}
+  .about-visual img{width:100%;height:100%;object-fit:cover;display:block}
+  .about-text h2{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:18px}
+  .about-text p{color:var(--muted);margin-bottom:14px}
+  .feats{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+  .feats span{background:var(--surface);border:1px solid var(--line);padding:9px 18px;border-radius:999px;font-size:.9rem;font-weight:600}
+
+  /* INFO */
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:50px}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:40px;box-shadow:0 14px 40px rgba(50,43,34,.05)}
+  .panel h3{font-size:1.8rem;margin-bottom:22px;display:flex;align-items:center;gap:12px}
+  .hours-list{list-style:none}
+  .hours-list li{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px dashed var(--line);font-weight:600}
+  .hours-list li:last-child{border-bottom:0}
+  .ph-text{color:var(--brown-d);font-weight:700;background:rgba(192,122,69,.1);padding:2px 10px;border-radius:8px;font-size:.92rem}
+  .map-box{height:230px;border-radius:14px;overflow:hidden;border:1px solid var(--line);margin-bottom:20px;background:var(--bg-2)}
+  .map-box iframe{width:100%;height:100%;border:0}
+  .addr{color:var(--muted);margin-bottom:8px}
+  .addr b{color:var(--ink)}
+
+  /* CTA */
+  .cta-band{background:var(--grad);color:#fff;border-radius:28px;padding:70px 40px;text-align:center;position:relative;overflow:hidden}
+  .cta-band::before{content:"🐾";position:absolute;font-size:9rem;opacity:.12;top:-10px;right:20px;transform:rotate(15deg)}
+  .cta-band h2{font-size:clamp(2rem,5vw,3.2rem);position:relative;z-index:1}
+  .cta-band p{position:relative;z-index:1;margin:16px auto 32px;max-width:48ch;color:rgba(255,255,255,.92)}
+  .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+  .cta-band .btn-w{background:#fff;color:var(--brown-d)}
+  .cta-band .btn-o{background:rgba(255,255,255,.16);color:#fff;border:2px solid rgba(255,255,255,.5)}
+  .cta-band .btn-w:hover,.cta-band .btn-o:hover{transform:translateY(-3px)}
+
+  /* FOOTER */
+  footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:120px}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px}
+  .foot .col h4{font-family:'Quicksand';text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;color:var(--teal-d);margin-bottom:14px}
+  .foot .col p,.foot .col a{display:block;color:var(--muted);font-size:.95rem;margin-bottom:6px}
+  .foot .col a:hover{color:var(--brown-d)}
+  .copy{text-align:center;color:var(--muted);font-size:.85rem;margin-top:40px}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+
+  @media (max-width:920px){
+    .hero .wrap,.about-grid,.cards,.info-grid{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr 1fr}
+    .hero-visual{height:380px;order:-1}
+    .about-visual{height:320px}
+  }
+  @media (max-width:640px){
+    .cards{grid-template-columns:1fr}
+    .nav-links{position:fixed;inset:76px 0 auto 0;background:rgba(250,245,236,.98);backdrop-filter:blur(12px);flex-direction:column;padding:30px;gap:22px;align-items:flex-start;transform:translateY(-140%);transition:.4s;border-bottom:1px solid var(--line)}
+    .nav-links.open{transform:none}
+    .burger{display:flex}
+  }
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.paw-deco{animation:none}*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="scrollProgress"></div>
+
+<header id="header">
+  <nav>
+    <a href="#inicio" class="logo"><span class="paw"><img src="assets-lesquilada/logo.jpg" alt="Logo L'Esquilada"></span>L'Esquilada</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#serveis">Serveis</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#quisom">Qui som</a>
+      <a href="#contacte" class="cta">Demana cita</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="kicker reveal">Perruqueria canina · Sant Julià de Lòria</div>
+        <h1 class="reveal d1">El teu millor amic, en les <span class="grad-text">millors mans</span>.</h1>
+        <p class="sub reveal d2">A L'Esquilada cuidem el teu gos amb mim i professionalitat: bany, tall i arranjament a mida perquè surti maco, net i feliç.</p>
+        <div class="hero-cta reveal d3">
+          <a href="#contacte" class="btn btn-primary">Demana la teva cita</a>
+          <a href="#serveis" class="btn btn-ghost">Veure serveis</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal d2">
+        <span class="paw-deco p1">🐾</span>
+        <span class="paw-deco p2">🐾</span>
+        <img src="assets-lesquilada/hero.jpg" alt="Gos feliç a la perruqueria canina L'Esquilada" data-parallax="0.14" data-zoom="0.22">
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVEIS -->
+  <section class="block" id="serveis" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow reveal">Serveis</div>
+        <h2 class="sec-title reveal d1">Cura integral per al teu <span class="grad-text">gos</span></h2>
+        <div class="divider reveal d1"></div>
+        <p class="sec-lead reveal d2">Tot el que el teu pelut necessita per veure's i sentir-se de meravella.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card reveal">
+          <div class="card-img"><img src="assets-lesquilada/serv-bano.jpg" alt="Bany de gos" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Bany i higiene</h3>
+            <p>Bany amb productes adaptats al seu pèl i pell, assecat i raspallat complet.</p>
+            <span class="more">Demana cita →</span>
+          </div>
+        </div>
+        <div class="card reveal d1">
+          <div class="card-img"><img src="assets-lesquilada/serv-corte.jpg" alt="Tall de pèl de gos" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Tall i arranjament</h3>
+            <p>Tall de raça o al teu gust, perfilat i acabat per a cada tipus de pèl.</p>
+            <span class="more">Demana cita →</span>
+          </div>
+        </div>
+        <div class="card reveal d2">
+          <div class="card-img"><img src="assets-lesquilada/serv-deslanado.jpg" alt="Desllanat i raspallat" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Desllanat i raspallat</h3>
+            <p>Eliminem el pèl mort i els nusos per a un mantell sa i brillant.</p>
+            <span class="more">Demana cita →</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <div class="card-img"><img src="assets-lesquilada/serv-unas.jpg" alt="Tall d'ungles de gos" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Ungles i coixinets</h3>
+            <p>Tall d'ungles i cura dels coixinets perquè camini còmode i segur.</p>
+            <span class="more">Demana cita →</span>
+          </div>
+        </div>
+        <div class="card reveal d1">
+          <div class="card-img"><img src="assets-lesquilada/serv-oidos.jpg" alt="Neteja d'orelles i ulls" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Orelles i ulls</h3>
+            <p>Neteja i higiene d'orelles i contorn d'ulls amb productes específics.</p>
+            <span class="more">Demana cita →</span>
+          </div>
+        </div>
+        <div class="card reveal d2">
+          <div class="card-img"><img src="assets-lesquilada/serv-antiparasitos.jpg" alt="Tractament antiparasitari" loading="lazy"></div>
+          <div class="card-body">
+            <h3>Tractament antiparasitari</h3>
+            <p>Banys i tractaments per prevenir puces i paparres i cuidar la seva pell.</p>
+            <span class="more">Demana cita →</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="note-edit reveal">✏️ Aquests són serveis habituals de perruqueria canina. <b>Digues-me quins oferiu de debò</b> (i si vols afegir preus) i els ajusto.</p>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="block" id="galeria">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow reveal">Galeria</div>
+        <h2 class="sec-title reveal d1">Els nostres <span class="grad-text">peluts</span></h2>
+        <div class="divider reveal d1"></div>
+        <p class="sec-lead reveal d2">Imatges d'exemple del sector. Quan tingueu fotos reals dels vostres clients, les canviem aquí.</p>
+      </div>
+      <div class="gallery">
+        <figure class="tall reveal"><img src="assets-lesquilada/gal-1.jpg" alt="Gos feliç" loading="lazy"></figure>
+        <figure class="wide reveal d1"><img src="assets-lesquilada/serv-corte.jpg" alt="Tall de pèl" loading="lazy"></figure>
+        <figure class="reveal d2"><img src="assets-lesquilada/serv-bano.jpg" alt="Bany de gos" loading="lazy"></figure>
+        <figure class="reveal d2"><img src="assets-lesquilada/gal-2.jpg" alt="Gos arreglat" loading="lazy"></figure>
+        <figure class="wide reveal d1"><img src="assets-lesquilada/sobre.jpg" alt="Perruqueria canina" loading="lazy"></figure>
+        <figure class="tall reveal d3"><img src="assets-lesquilada/serv-deslanado.jpg" alt="Raspallat de gos" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUI SOM -->
+  <section class="block" id="quisom" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-visual reveal">
+          <img src="assets-lesquilada/sobre.jpg" alt="Perruquera canina cuidant un gos" data-parallax="0.05">
+        </div>
+        <div class="about-text">
+          <div class="eyebrow reveal">Qui som</div>
+          <h2 class="reveal d1">Cuidem el teu gos com si fos <span class="grad-text">nostre</span>.</h2>
+          <p class="reveal d2">L'Esquilada és la teva perruqueria canina a Sant Julià de Lòria. Tractem cada gos amb paciència i afecte, adaptant-nos al seu caràcter, la seva raça i el seu tipus de pèl perquè la visita sigui una experiència tranquil·la i agradable.</p>
+          <p class="reveal d2">Bany, tall, desllanat i higiene: cuidem cada detall perquè el teu millor amic surti resplendent.</p>
+          <div class="feats reveal d3">
+            <span>🐾 Tracte proper</span>
+            <span>🛁 Productes adaptats</span>
+            <span>✂️ Talls a mida</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARI + UBICACIÓ -->
+  <section class="block" id="visitans">
+    <div class="wrap">
+      <div class="center">
+        <div class="eyebrow reveal">Visita'ns</div>
+        <h2 class="sec-title reveal d1">Horari i <span class="grad-text">ubicació</span></h2>
+        <div class="divider reveal d1"></div>
+      </div>
+      <div class="info-grid">
+        <div class="panel reveal">
+          <h3>🕐 Horari</h3>
+          <ul class="hours-list">
+            <li><span>Dilluns – Divendres</span><span class="ph-text">[PER CONFIRMAR]</span></li>
+            <li><span>Dissabte</span><span class="ph-text">[PER CONFIRMAR]</span></li>
+            <li><span>Diumenge</span><span class="ph-text">[PER CONFIRMAR]</span></li>
+          </ul>
+          <p style="margin-top:18px;color:var(--muted);font-size:.92rem">Digues-me l'horari real i el poso aquí.</p>
+        </div>
+        <div class="panel reveal d1">
+          <h3>📍 On som</h3>
+          <div class="map-box">
+            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Sant%20Juli%C3%A0%20de%20L%C3%B2ria%20Andorra&output=embed"
+              title="Mapa Sant Julià de Lòria"></iframe>
+          </div>
+          <p class="addr"><b>L'Esquilada</b></p>
+          <p class="addr">Sant Julià de Lòria, Andorra</p>
+          <p class="addr"><span class="ph-text">[ADREÇA EXACTA PER CONFIRMAR]</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / CONTACTE -->
+  <section class="block" id="contacte" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Toca perruqueria?</h2>
+        <p>Escriu-nos per reservar la cita del teu gos. Estarem encantats de cuidar-lo.</p>
+        <div class="cta-actions">
+          <a class="btn btn-w" href="https://instagram.com/lesquilada" target="_blank" rel="noopener">📸 @lesquilada</a>
+          <a class="btn btn-o" href="tel:+000000000">📞 [EL TEU TELÈFON]</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="col">
+        <a href="#inicio" class="logo" style="margin-bottom:14px"><span class="paw"><img src="assets-lesquilada/logo.jpg" alt="Logo L'Esquilada"></span>L'Esquilada</a>
+        <p>Perruqueria canina<br>a Sant Julià de Lòria, Andorra.</p>
+      </div>
+      <div class="col">
+        <h4>Contacte</h4>
+        <a href="https://instagram.com/lesquilada" target="_blank" rel="noopener">Instagram: @lesquilada</a>
+        <p>Telèfon: <span class="ph-text">[PER CONFIRMAR]</span></p>
+        <p>Correu: <span class="ph-text">[PER CONFIRMAR]</span></p>
+      </div>
+      <div class="col">
+        <h4>On</h4>
+        <p>Sant Julià de Lòria</p>
+        <p>Andorra</p>
+      </div>
+    </div>
+    <p class="copy">© <span id="year"></span> L'Esquilada · Perruqueria canina · Sant Julià de Lòria</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const header = document.getElementById('header');
+  addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 30), {passive:true});
+
+  const burger = document.getElementById('burger'), navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, {threshold:.14, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Barra de progrés + parallax + header amb scroll
+  const bar = document.getElementById('scrollProgress');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const parallaxEls = reduce ? [] : document.querySelectorAll('[data-parallax]');
+  const heroCopy = document.querySelector('.hero-copy');
+
+  function onScroll(){
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    if (bar) bar.style.width = (max > 0 ? (scrollY / max * 100) : 0) + '%';
+
+    const vh = window.innerHeight;
+    parallaxEls.forEach(el => {
+      const speed = parseFloat(el.dataset.parallax) || 0.05;
+      const rect = el.getBoundingClientRect();
+      const offset = ((rect.top + rect.height / 2) - vh / 2) * speed;
+      let scale = 1.12;
+      if (el.dataset.zoom){ scale = 1.12 + Math.min(Math.max(scrollY, 0) / vh, 1) * parseFloat(el.dataset.zoom); }
+      el.style.transform = 'translateY(' + (-offset) + 'px) scale(' + scale + ')';
+    });
+
+    if (heroCopy && !reduce){
+      const p = Math.min(scrollY / (vh * 0.9), 1);
+      heroCopy.style.opacity = String(1 - p);
+      heroCopy.style.transform = 'translateY(' + (scrollY * 0.35) + 'px)';
+    }
+  }
+  let ticking = false;
+  addEventListener('scroll', () => { if (!ticking){ requestAnimationFrame(() => { onScroll(); ticking = false; }); ticking = true; } }, {passive:true});
+  addEventListener('resize', onScroll);
+  onScroll();
+</script>
+</body>
+</html>

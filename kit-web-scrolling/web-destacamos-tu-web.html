@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Destacamos Tu Web — Páginas web modernas para negocios reales</title>
+<meta name="description" content="Diseño y desarrollo web 100% a medida. Landing pages, webs multipágina y tiendas online. Trato directo, entrega rápida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070711;
+    --bg-2:#0d0d1c;
+    --surface:#13132a;
+    --surface-2:#191938;
+    --text:#eef0ff;
+    --muted:#9aa0c4;
+    --line:rgba(255,255,255,.08);
+    --grad:linear-gradient(120deg,#7c5cff 0%,#3db5ff 52%,#46e5c8 100%);
+    --accent:#7c5cff;
+    --accent-2:#3db5ff;
+    --radius:20px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.display{font-family:'Sora',sans-serif;line-height:1.08;letter-spacing:-.02em}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:#fff}
+
+  /* Scrollbar */
+  ::-webkit-scrollbar{width:11px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(var(--accent),var(--accent-2));border-radius:10px;border:3px solid var(--bg)}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+  /* Background decorative glow */
+  .glow{position:fixed;border-radius:50%;filter:blur(120px);opacity:.35;z-index:0;pointer-events:none}
+  .glow.g1{width:520px;height:520px;background:#7c5cff;top:-160px;left:-120px}
+  .glow.g2{width:480px;height:480px;background:#3db5ff;top:40%;right:-160px;opacity:.22}
+
+  /* NAV */
+  header{position:fixed;top:0;left:0;width:100%;z-index:50;transition:.35s}
+  header.scrolled{background:rgba(7,7,17,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:74px;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .logo{font-family:'Sora';font-weight:800;font-size:1.18rem;letter-spacing:-.03em;display:flex;align-items:center;gap:9px}
+  .logo .dot{width:11px;height:11px;border-radius:50%;background:var(--grad);box-shadow:0 0 16px var(--accent)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:.94rem;font-weight:500;transition:.2s;position:relative}
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a.cta{background:var(--grad);color:#070711;font-weight:700;padding:10px 20px;border-radius:999px;transition:.25s}
+  .nav-links a.cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(124,92,255,.4)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0}
+  .burger span{width:26px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px;z-index:1}
+  .badge{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:rgba(255,255,255,.03);padding:8px 16px;border-radius:999px;font-size:.84rem;color:var(--muted);margin-bottom:30px;width:fit-content}
+  .badge .pulse{width:8px;height:8px;border-radius:50%;background:#46e5c8;box-shadow:0 0 0 0 rgba(70,229,200,.6);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(70,229,200,.5)}70%{box-shadow:0 0 0 12px rgba(70,229,200,0)}100%{box-shadow:0 0 0 0 rgba(70,229,200,0)}}
+  .hero h1{font-size:clamp(2.6rem,7vw,5.4rem);font-weight:800;max-width:14ch}
+  .hero p.sub{font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--muted);max-width:56ch;margin:28px 0 40px}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{padding:15px 30px;border-radius:999px;font-weight:700;font-size:1rem;transition:.28s;cursor:pointer;border:0;font-family:'Sora'}
+  .btn-primary{background:var(--grad);color:#070711}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(124,92,255,.45)}
+  .btn-ghost{background:rgba(255,255,255,.04);color:var(--text);border:1px solid var(--line)}
+  .btn-ghost:hover{background:rgba(255,255,255,.09);transform:translateY(-3px)}
+  .hero-meta{display:flex;gap:38px;margin-top:64px;flex-wrap:wrap}
+  .hero-meta .m{display:flex;flex-direction:column}
+  .hero-meta .m b{font-family:'Sora';font-size:1.9rem;font-weight:800}
+  .hero-meta .m span{color:var(--muted);font-size:.9rem}
+
+  /* SECTION basics */
+  section.block{position:relative;z-index:1;padding:110px 0}
+  .eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.78rem;font-weight:700;color:var(--accent-2);margin-bottom:16px}
+  .sec-title{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;max-width:20ch}
+  .sec-lead{color:var(--muted);font-size:1.1rem;max-width:60ch;margin-top:20px}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;margin-top:50px}
+  .about-card{background:linear-gradient(160deg,var(--surface),var(--bg-2));border:1px solid var(--line);border-radius:var(--radius);padding:40px;position:relative;overflow:hidden}
+  .about-card::before{content:"";position:absolute;inset:0;background:var(--grad);opacity:.06}
+  .about-card .who{display:flex;align-items:center;gap:18px;margin-bottom:26px}
+  .avatar{width:64px;height:64px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:800;font-size:1.5rem;color:#070711;flex-shrink:0}
+  .about-card .who b{font-family:'Sora';font-size:1.25rem;display:block}
+  .about-card .who span{color:var(--muted);font-size:.92rem}
+  .about-card p{color:#c5c9ec;position:relative}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;transition:.3s}
+  .stat:hover{transform:translateY(-5px);border-color:rgba(124,92,255,.4)}
+  .stat b{font-family:'Sora';font-size:2.4rem;font-weight:800;display:block}
+  .stat span{color:var(--muted);font-size:.92rem}
+
+  /* SERVICES */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:54px}
+  .card{background:linear-gradient(165deg,var(--surface),var(--bg-2));border:1px solid var(--line);border-radius:var(--radius);padding:34px;position:relative;overflow:hidden;transition:.35s}
+  .card:hover{transform:translateY(-8px);border-color:rgba(124,92,255,.45);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .card .ico{width:52px;height:52px;border-radius:14px;background:rgba(124,92,255,.14);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:22px}
+  .card.feat{border-color:rgba(124,92,255,.5)}
+  .card .tag{position:absolute;top:22px;right:22px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;background:var(--grad);color:#070711;padding:5px 12px;border-radius:999px}
+  .card h3{font-size:1.4rem;font-weight:700;margin-bottom:10px}
+  .card .price{font-family:'Sora';font-weight:800;font-size:1.7rem;margin:16px 0 4px}
+  .card .price small{font-size:.95rem;font-weight:600;color:var(--muted)}
+  .card .founder{display:inline-block;font-size:.85rem;color:#46e5c8;font-weight:600;margin-bottom:16px}
+  .card ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:9px}
+  .card ul li{color:#c5c9ec;font-size:.96rem;padding-left:26px;position:relative}
+  .card ul li::before{content:"";position:absolute;left:0;top:8px;width:14px;height:14px;border-radius:50%;background:var(--grad)}
+  .card .delivery{margin-top:18px;font-size:.86rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+
+  /* PROCESS */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:54px;counter-reset:s}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:30px 26px;transition:.3s}
+  .step:hover{transform:translateY(-6px);background:var(--surface-2)}
+  .step .num{font-family:'Sora';font-weight:800;font-size:1rem;color:#070711;background:var(--grad);width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .step h4{font-size:1.12rem;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:.92rem}
+
+  /* PRICING NOTE / maintenance */
+  .pay{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+  .pay .pill{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;gap:16px;align-items:flex-start}
+  .pay .pill .e{font-size:1.6rem}
+  .pay .pill b{font-family:'Sora';display:block;margin-bottom:4px}
+  .pay .pill span{color:var(--muted);font-size:.92rem}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:50px}
+  .contact-info{display:flex;flex-direction:column;gap:18px}
+  .ci{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;transition:.25s}
+  .ci:hover{transform:translateX(6px);border-color:rgba(124,92,255,.4)}
+  .ci .e{width:46px;height:46px;border-radius:12px;background:rgba(124,92,255,.14);display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+  .ci small{color:var(--muted);display:block;font-size:.8rem}
+  .ci b{font-family:'Sora';font-size:1.02rem}
+  form{background:linear-gradient(165deg,var(--surface),var(--bg-2));border:1px solid var(--line);border-radius:var(--radius);padding:34px}
+  form label{display:block;font-size:.86rem;color:var(--muted);margin:0 0 7px;font-weight:500}
+  form input,form textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 15px;color:var(--text);font-family:inherit;font-size:.98rem;margin-bottom:18px;transition:.2s}
+  form input:focus,form textarea:focus{outline:none;border-color:var(--accent)}
+  form textarea{resize:vertical;min-height:120px}
+  form button{width:100%}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:50px 0 36px;position:relative;z-index:1}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  .foot .socials{display:flex;gap:14px}
+  .foot .socials a{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:.25s;color:var(--muted)}
+  .foot .socials a:hover{background:var(--grad);color:#070711;transform:translateY(-3px);border-color:transparent}
+  .copy{color:var(--muted);font-size:.85rem;margin-top:24px;text-align:center}
+
+  /* Reveal animations */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+  @media (max-width:880px){
+    .about-grid,.cards,.contact-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .pay{grid-template-columns:1fr}
+    .nav-links{position:fixed;inset:74px 0 auto 0;background:rgba(7,7,17,.97);backdrop-filter:blur(14px);flex-direction:column;padding:30px 24px;gap:22px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:.4s;align-items:flex-start}
+    .nav-links.open{transform:none}
+    .burger{display:flex}
+  }
+  @media (max-width:520px){.steps{grid-template-columns:1fr}.hero-meta{gap:26px}}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+
+<header id="header">
+  <nav>
+    <a href="#inicio" class="logo"><span class="dot"></span>Destacamos Tu Web</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Cómo trabajo</a>
+      <a href="#sobre">Sobre mí</a>
+      <a href="#contacto" class="cta">Hablemos</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <div class="badge reveal"><span class="pulse"></span>Diseño 100% a medida · Trato directo</div>
+      <h1 class="reveal d1">Páginas web modernas para <span class="grad-text">negocios reales</span>.</h1>
+      <p class="sub reveal d2">Diseño y desarrollo web sin plantillas genéricas ni intermediarios. Tu proyecto, hecho a medida, entregado rápido y con un trato directo de principio a fin.</p>
+      <div class="hero-cta reveal d3">
+        <a href="#contacto"><button class="btn btn-primary">Hablemos de tu proyecto</button></a>
+        <a href="#servicios"><button class="btn btn-ghost">Ver servicios</button></a>
+      </div>
+      <div class="hero-meta reveal d4">
+        <div class="m"><b data-count="100" data-suffix="%">0%</b><span>Diseño a medida</span></div>
+        <div class="m"><b data-count="2" data-prefix="" data-suffix="–3 días">0</b><span>Entrega mínima</span></div>
+        <div class="m"><b data-count="50" data-suffix="/50">0</b><span>Pago transparente</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="block" id="servicios">
+    <div class="wrap">
+      <div class="eyebrow reveal">Servicios</div>
+      <h2 class="sec-title reveal d1">Todo lo que tu negocio necesita <span class="grad-text">online</span>.</h2>
+      <p class="sec-lead reveal d2">Elige el formato que encaja con tu negocio. Precios reales y transparentes, con descuento especial para clientes fundadores.</p>
+
+      <div class="cards">
+        <div class="card reveal">
+          <div class="ico">🚀</div>
+          <h3>Landing Page</h3>
+          <div class="price">600–1.000€</div>
+          <span class="founder">−30% fundadores: 420–700€</span>
+          <ul>
+            <li>Página única, moderna y optimizada</li>
+            <li>Formulario de contacto</li>
+            <li>SEO básico incluido</li>
+          </ul>
+          <div class="delivery">⏱ Entrega en 3–5 días</div>
+        </div>
+
+        <div class="card feat reveal d1">
+          <span class="tag">Más completo</span>
+          <div class="ico">🌐</div>
+          <h3>Web Multipágina</h3>
+          <div class="price">900–1.500€</div>
+          <span class="founder">−30% fundadores: 630–1.050€</span>
+          <ul>
+            <li>Hasta 5 páginas + blog integrado</li>
+            <li>Animaciones y Google Maps</li>
+            <li>Diseño completo a medida</li>
+          </ul>
+          <div class="delivery">⏱ Entrega en 1–2 semanas</div>
+        </div>
+
+        <div class="card reveal d2">
+          <div class="ico">📸</div>
+          <h3>Instagram a Web</h3>
+          <div class="price">250–600€</div>
+          <span class="founder">−30% fundadores: 175–420€</span>
+          <ul>
+            <li>Tu Instagram convertido en web</li>
+            <li>Galería de fotos integrada</li>
+            <li>Lista y rápida</li>
+          </ul>
+          <div class="delivery">⏱ Entrega en 2–3 días</div>
+        </div>
+
+        <div class="card reveal d3">
+          <div class="ico">🛒</div>
+          <h3>Tienda Online Shopify</h3>
+          <div class="price">desde 999,99€</div>
+          <span class="founder">Pasarela de pago configurada</span>
+          <ul>
+            <li>Tienda Shopify lista para vender</li>
+            <li>Pasarela de pago configurada</li>
+            <li>Mantenimiento: 1.200–4.000€/mes</li>
+          </ul>
+          <div class="delivery">⏱ Proyecto a medida</div>
+        </div>
+      </div>
+
+      <div class="pay">
+        <div class="pill reveal"><span class="e">💳</span><div><b>Pago transparente</b><span>50% al inicio, 50% a la entrega. Sin sorpresas.</span></div></div>
+        <div class="pill reveal d1"><span class="e">🛠</span><div><b>Mantenimiento desde 250€/mes</b><span>Cambios incluidos y soporte de lunes a viernes, 9–18h.</span></div></div>
+        <div class="pill reveal d2"><span class="e">🤝</span><div><b>Trato directo</b><span>Hablas siempre conmigo. Sin intermediarios.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="block" id="proceso" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="eyebrow reveal">Cómo trabajo</div>
+      <h2 class="sec-title reveal d1">Un proceso simple, <span class="grad-text">rápido y claro</span>.</h2>
+      <div class="steps">
+        <div class="step reveal"><div class="num">1</div><h4>Hablamos</h4><p>Me cuentas tu negocio y qué necesitas. Sin compromiso.</p></div>
+        <div class="step reveal d1"><div class="num">2</div><h4>Diseño a medida</h4><p>Creo una propuesta única adaptada a tu marca y tu sector.</p></div>
+        <div class="step reveal d2"><div class="num">3</div><h4>Ajustes</h4><p>Revisamos juntos y pulimos cada detalle hasta que encaje.</p></div>
+        <div class="step reveal d3"><div class="num">4</div><h4>Entrega</h4><p>Tu web online en días, no en meses. Lista para funcionar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="block" id="sobre">
+    <div class="wrap">
+      <div class="eyebrow reveal">Sobre mí</div>
+      <div class="about-grid">
+        <div>
+          <h2 class="sec-title reveal">Detrás de cada web <span class="grad-text">hay una persona</span>, no una agencia.</h2>
+          <p class="sec-lead reveal d1">Soy Ángel, fundador de Destacamos Tu Web. Combino diseño, creatividad y tecnología para crear webs que destacan de verdad. Trabajo directamente contigo, sin intermediarios ni plantillas genéricas, para que tu negocio tenga la presencia online que merece.</p>
+          <div class="stats" style="margin-top:34px">
+            <div class="stat reveal d2"><b data-count="100" data-suffix="%">0%</b><span>Diseño personalizado</span></div>
+            <div class="stat reveal d3"><b data-count="2" data-suffix="–3 días">0</b><span>Entregas mínimas</span></div>
+          </div>
+        </div>
+        <div class="about-card reveal d2">
+          <div class="who">
+            <div class="avatar">Á</div>
+            <div><b>Ángel</b><span>Fundador · Diseño &amp; desarrollo</span></div>
+          </div>
+          <p>"No hago plantillas. Cada web la diseño desde cero para que represente a tu negocio tal y como es. Trato directo, entrega rápida y un resultado del que estar orgulloso."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="block" id="contacto" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="eyebrow reveal">Contacto</div>
+      <h2 class="sec-title reveal d1">¿Listo para <span class="grad-text">destacar</span>?</h2>
+      <p class="sec-lead reveal d2">Cuéntame tu proyecto y te respondo lo antes posible. Sin compromiso.</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <a href="mailto:info@destacamostuweb.com" class="ci reveal"><span class="e">✉️</span><div><small>Email</small><b>info@destacamostuweb.com</b></div></a>
+          <a href="tel:+376656660" class="ci reveal d1"><span class="e">📞</span><div><small>Teléfono</small><b>+376 656 660</b></div></a>
+          <a href="https://instagram.com/destacamostuweb" target="_blank" rel="noopener" class="ci reveal d2"><span class="e">📸</span><div><small>Instagram</small><b>@destacamostuweb</b></div></a>
+          <a href="https://destacamostuweb.com" target="_blank" rel="noopener" class="ci reveal d3"><span class="e">🌐</span><div><small>Web</small><b>destacamostuweb.com</b></div></a>
+        </div>
+        <form class="reveal d2" onsubmit="event.preventDefault();this.querySelector('button').textContent='¡Gracias! Te escribo pronto ✓';">
+          <label for="n">Nombre</label>
+          <input id="n" type="text" placeholder="Tu nombre" required>
+          <label for="e">Email</label>
+          <input id="e" type="email" placeholder="tucorreo@ejemplo.com" required>
+          <label for="m">¿Qué necesitas?</label>
+          <textarea id="m" placeholder="Cuéntame sobre tu negocio y tu proyecto..." required></textarea>
+          <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a href="#inicio" class="logo"><span class="dot"></span>Destacamos Tu Web</a>
+      <div class="socials">
+        <a href="https://instagram.com/destacamostuweb" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a href="mailto:info@destacamostuweb.com" aria-label="Email">@</a>
+        <a href="tel:+376656660" aria-label="Teléfono">☎</a>
+      </div>
+    </div>
+    <p class="copy">© <span id="year"></span> Destacamos Tu Web · Diseño y desarrollo web a medida · info@destacamostuweb.com</p>
+  </div>
+</footer>
+
+<script>
+  // Año actual
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Header scrolled
+  const header = document.getElementById('header');
+  addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 30), {passive:true});
+
+  // Menú móvil
+  const burger = document.getElementById('burger'), navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, {threshold:.14, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Counters
+  const fmt = (el, val) => {
+    const pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+    el.textContent = pre + Math.round(val) + suf;
+  };
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, end = +el.dataset.count, dur = 1300; let start = null;
+      const tick = (t) => {
+        if (!start) start = t;
+        const p = Math.min((t - start)/dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        fmt(el, end * eased);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      counterIO.unobserve(el);
+    });
+  }, {threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
+
+  // Parallax glows
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    document.querySelector('.g1').style.transform = `translateY(${y*.18}px)`;
+    document.querySelector('.g2').style.transform = `translateY(${y*-.12}px)`;
+  }, {passive:true});
+</script>
+</body>
+</html>
